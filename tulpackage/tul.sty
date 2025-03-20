@@ -1,0 +1,803 @@
+\ProvidesPackage{tulpackage/tul}[2024/12/02 verze 2.1 fork 0.1]
+% Licence: CC BY
+
+% Používané balíčky:
+% ==========================================================================
+% ifthen       % Podmíněné příkazy
+% graphicx     % Vkládání obrázků
+% xcolor       % Definice a použití barev
+% fancyhdr     % Vlastní záhlaví a zápatí
+% silence      % Potlačení varování
+% tocloft      % Úprava obsahu, seznamu obrázků a tabulek
+% etoolbox     % Úprava existujících příkazů
+% fontspec     % Práce s OpenType fonty
+
+% Možnosti nastavení:
+% ==========================================================================
+% EN:  Přepíná dokument do angličtiny
+% FS, FT, FP, EF, FE, FUA, FA, FM, FZS, CXI:  Styl dokumentu podle fakulty
+% numbering:  Číslování nadpisů v dokumentu
+% bwtitles:  Vypíná barevné nadpisy
+% bw:  Vypíná všechny barevné prvky, monochromatický režim
+% fonts:  Používání lokálně uložených fontů TUL
+% sfbody:  Patkový font v těle dokumentu
+% sfheadings:  Patkový font v nadpisech.
+% margins:  Odsazená zleva/zprava, i pro jednostranný tisk
+% noheader:  Vypíná záhlaví
+
+\RequirePackage{ifthen}
+
+% Indikátor aktivní fakulty/ústavu podle volby balíku
+\newcommand{\sekce@TUL}{TUL}
+
+% Jazykové verze
+\newcommand{\TUL@nguage}{CZ}
+\newcommand{\CZTUL}{Technická univerzita v Liberci}
+\newcommand{\ENTUL}{Technical University of Liberec}
+\newcommand{\TUL}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTUL}{\CZTUL}}
+\newcommand{\CZTULsoucast}{\CZTUL}
+\newcommand{\ENTULsoucast}{\ENTUL}
+\newcommand{\TULsoucast}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTULsoucast}{\CZTULsoucast}}
+
+% Barvy TUL a jednotlivých fakult
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\definecolor{tul}{HTML}{5948AD}
+\definecolor{tulgray}{cmyk}{0, 0, 0, 0.8}
+\definecolor{tulFS}{HTML}{888B95}
+\definecolor{tulFT}{HTML}{924C14}
+\definecolor{tulFP}{HTML}{0076D5}
+\definecolor{tulEF}{HTML}{65A812}
+\definecolor{tulFUA}{HTML}{006443}
+\definecolor{tulFM}{HTML}{EA7603}
+\definecolor{tulFZS}{HTML}{00B0BE}
+\definecolor{tulCXI}{HTML}{C20019}
+\newcommand{\tulcolor}{tul}
+\newcommand{\titlecolor}{tul}
+
+% Nastavení jednotky délky = 1 mm
+\setlength{\unitlength}{1mm}
+
+% Kontaktní informace
+\newcommand{\TULkontakt@name}{}
+\newcommand{\TULname}[1]{\renewcommand{\TULkontakt@name}{#1}}
+\newcommand{\TULkontakt@pos}{}
+\newcommand{\TULposition}[1]{\renewcommand{\TULkontakt@pos}{#1}}
+\newcommand{\TULkontakt@mail}{info@tul.cz}
+\newcommand{\TULmail}[1]{\renewcommand{\TULkontakt@mail}{#1}}
+\newcommand{\TULkontakt@phone}{+420 485 351 111}
+\newcommand{\TULphone}[1]{\renewcommand{\TULkontakt@phone}{#1}}
+\newcommand{\TUL@URL}{www.tul.cz}
+\newcommand{\TUL@adr}{{Studentská 1402/2, 461~17 Liberec~1\add@cz}}
+\newcommand{\add@cz}{\ifthenelse{\equal{\TUL@nguage}{EN}}{, Czech Republic}{}}
+\newcommand{\TULsekce@adr}{}
+
+% Příprava záhlaví a zápatí
+\RequirePackage{fancyhdr}
+\setlength{\headheight}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newboolean{TUL@header}
+\setboolean{TUL@header}{true}
+\newlength{\logo@height}
+\newlength{\logo@shift}
+
+% Potlačení neopravitelného varování kvůli výšce vyprázdněných záhlaví
+\usepackage{silence}
+\WarningFilter{fancyhdr}{\headheight is too small}
+
+% Nastavení a vykreslování záhlaví / žádné záhlaví
+\newcommand{\noTULheader}{\setboolean{TUL@header}{false}\render@TULheader}
+\newcommand{\TULheader}{\setboolean{TUL@header}{true}\render@TULheader}
+
+% Vykreslování záhlaví / žádné záhlaví
+\newcommand{\render@TULheader}{
+    \fancyhead{}
+    \ifthenelse{\boolean{TUL@header}}{
+        \settoheight{\logo@height}{\logotext}
+        \setlength{\logo@shift}{13mm}
+        \addtolength{\logo@shift}{-\logo@height}
+        
+        % \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}
+        % \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}
+        
+        \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}
+        \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}
+        
+        \fancyheadoffset{10mm}
+    }{}
+}
+
+
+% Příkaz pro tvorbu zápatí TUL s číslováním stránek, kontaktními informacemi apod.
+\newcommand{\makeTULf@@ter}[1]{%
+  \fancyfootoffset{0mm}%
+  \fancyfoot[C]{}%
+    % Definice formátovaných kontaktních informací
+    \newcommand{\TULcontactinfo}{%
+      \color{\tulcolor}\fontsize{9pt}{12pt}\selectfont
+      \raisebox{-7mm}[0pt]{\vbox{%
+        \ifthenelse{\equal{\TULkontakt@name}{}}{}{%
+          \TULkontakt@name\ |%
+          \ifthenelse{\equal{\TULkontakt@pos}{}}{\unskip}{\TULkontakt@pos\ |}%
+        }%
+        \TULkontakt@phone\ | \TULkontakt@mail\\%
+        \TUL%
+        \ifthenelse{\equal{\CZTUL}{\CZTULsoucast}}{}{ | \TULsoucast}\\%
+        \TUL@adr\ | \TUL@URL%
+      }}%
+    }%
+    \if@twoside
+      % Dvoustranná verze: kontaktní info na vnitřek, číslo stránky na vnější strany
+      \fancyfoot[LO,RE]{\TULcontactinfo}%
+      \ifthenelse{\equal{#1}{true}}{%
+        \fancyfoot[RO,LE]{\raisebox{-1.5mm}[0pt]{\TULp@ge}}%
+      }{%
+        \fancyfoot[RO,LE]{}%
+      }%
+    \else
+      % Jednostranná verze: původní nastavení
+      \fancyfoot[L]{\TULcontactinfo}%
+      \ifthenelse{\equal{#1}{true}}{%
+        \fancyfoot[R]{\raisebox{-1.5mm}[0pt]{\TULp@ge}}%
+      }{%
+        \fancyfoot[R]{}%
+      }%
+    \fi
+}
+
+
+% Výchozí příkaz stránky TUL
+\newcommand{\TULp@ge}{\thepage}
+
+% Různé mutace zápatí TUL
+\newcommand{\TULfooter}{\makeTULf@@ter{true}}
+\newcommand{\TULfooternopage}{\makeTULf@@ter{false}}
+\newcommand{\noTULfooter}{\fancyfoot[L,R]{}\fancyfoot[C]{\TULp@ge}}
+\newcommand{\nofootaddress}{\fancyfoot[L,C]{}\fancyfoot[R]{\TULp@ge}}
+% Stránka TUL
+\newcommand{\TULpage}{\TULheader\TULfooter}
+
+% Styly stránek TUL
+\fancypagestyle{TUL}{\TULheader\TULfooter}
+\fancypagestyle{TULnopage}{\TULheader\TULfooternopage}
+\fancypagestyle{TULheader}{\TULheader\noTULfooter}
+\fancypagestyle{TULheaderonly}{\TULheader\fancyfoot{}}
+\fancypagestyle{TULfooter}{\fancyhead{}\TULfooter}
+\fancypagestyle{TULfooternopage}{\fancyhead{}\TULfooternopage}
+\fancypagestyle{TULfooternoaddr}{\fancyhead{}\nofootaddress}
+
+% Společné umístění pro loga a symboly
+\newcommand{\logosPath}{tulpackage/logos/}
+
+% Symboly (sluníčka) podle fakulty
+\newcommand{\symbolTUL}{\includegraphics[scale=0.3]{\logosPath symbol-tul}}
+\newcommand{\symbolTULwh}{\includegraphics[scale=0.3]{\logosPath symbol-tul-wh}}
+\newcommand{\symbolTULbw}{\includegraphics[scale=0.3]{\logosPath symbol-tul-bw}}
+\newcommand{\symbolFS}{\includegraphics[scale=0.3]{\logosPath symbol-fs}}
+\newcommand{\symbolFT}{\includegraphics[scale=0.3]{\logosPath symbol-ft}}
+\newcommand{\symbolFP}{\includegraphics[scale=0.3]{\logosPath symbol-fp}}
+\newcommand{\symbolEF}{\includegraphics[scale=0.3]{\logosPath symbol-ef}}
+\newcommand{\symbolFUA}{\includegraphics[scale=0.3]{\logosPath symbol-fua}}
+\newcommand{\symbolFM}{\includegraphics[scale=0.3]{\logosPath symbol-fm}}
+\newcommand{\symbolFZS}{\includegraphics[scale=0.3]{\logosPath symbol-fzs}}
+\newcommand{\symbolCXI}{\includegraphics[scale=0.3]{\logosPath symbol-cxi}}
+% Zástupci pod klíčem znak odkazující na hlavní symboly
+\newcommand{\znakTUL}{\symbolTUL}
+\newcommand{\znakTULwh}{\symbolTULwh}
+\newcommand{\znakTULbw}{\symbolTULbw}
+% Loga TUL
+\newcommand{\logoTUL}{\includegraphics[scale=0.3]{\logosPath logo-tul}}
+\newcommand{\logoTULwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-wh}}
+\newcommand{\logoTULtext}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt}}
+\newcommand{\logoTULtextwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt-wh}}
+\newcommand{\logoTULalt}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r}}
+\newcommand{\logoTULaltwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r-wh}}
+% Loga FS
+\newcommand{\logoFS}{\includegraphics[scale=0.3]{\logosPath logo-fs}}
+\newcommand{\logoFSwh}{\includegraphics[scale=0.3]{\logosPath logo-fs-wh}}
+\newcommand{\logoFStext}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt}}
+\newcommand{\logoFStextwh}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt-wh}}
+% Loga FT
+\newcommand{\logoFT}{\includegraphics[scale=0.3]{\logosPath logo-ft}}
+\newcommand{\logoFTwh}{\includegraphics[scale=0.3]{\logosPath logo-ft-wh}}
+\newcommand{\logoFTtext}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt}}
+\newcommand{\logoFTtextwh}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt-wh}}
+% Loga FP
+\newcommand{\logoFP}{\includegraphics[scale=0.3]{\logosPath logo-fp}}
+\newcommand{\logoFPwh}{\includegraphics[scale=0.3]{\logosPath logo-fp-wh}}
+\newcommand{\logoFPtext}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt}}
+\newcommand{\logoFPtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt-wh}}
+% Loga EF
+\newcommand{\logoEF}{\includegraphics[scale=0.3]{\logosPath logo-ef}}
+\newcommand{\logoEFwh}{\includegraphics[scale=0.3]{\logosPath logo-ef-wh}}
+\newcommand{\logoEFtext}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt}}
+\newcommand{\logoEFtextwh}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt-wh}}
+% Logoa FUA
+\newcommand{\logoFUA}{\includegraphics[scale=0.3]{\logosPath logo-fua}}
+\newcommand{\logoFUAwh}{\includegraphics[scale=0.3]{\logosPath logo-fua-wh}}
+\newcommand{\logoFUAtext}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt}}
+\newcommand{\logoFUAtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt-wh}}
+% Loga FM
+\newcommand{\logoFM}{\includegraphics[scale=0.3]{\logosPath logo-fm}}
+\newcommand{\logoFMwh}{\includegraphics[scale=0.3]{\logosPath logo-fm-wh}}
+\newcommand{\logoFMtext}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt}}
+\newcommand{\logoFMtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt-wh}}
+% Loga FZS
+\newcommand{\logoFZS}{\includegraphics[scale=0.3]{\logosPath logo-fzs}}
+\newcommand{\logoFZSwh}{\includegraphics[scale=0.3]{\logosPath logo-fzs-wh}}
+\newcommand{\logoFZStext}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt}}
+\newcommand{\logoFZStextwh}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt-wh}}
+% Loga CXI
+\newcommand{\logoCXI}{\includegraphics[scale=0.3]{\logosPath logo-cxi}}
+\newcommand{\logoCXIwh}{\includegraphics[scale=0.3]{\logosPath logo-cxi-wh}}
+\newcommand{\logoCXItext}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt}}
+\newcommand{\logoCXItextwh}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt-wh}}
+% Loga TUL [EN]
+\newcommand{\ENlogoTUL}{\includegraphics[scale=0.3]{\logosPath logo-tul}}
+\newcommand{\ENlogoTULwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-wh}}
+\newcommand{\ENlogoTULtext}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt-en}}
+\newcommand{\ENlogoTULtextwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt-en-wh}}
+\newcommand{\ENlogoTULalt}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r-en}}
+\newcommand{\ENlogoTULaltwh}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r-en-wh}}
+% Loga FS [EN]
+\newcommand{\ENlogoFS}{\includegraphics[scale=0.3]{\logosPath logo-fs-en}}
+\newcommand{\ENlogoFSwh}{\includegraphics[scale=0.3]{\logosPath logo-fs-en-wh}}
+\newcommand{\ENlogoFStext}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt-en}}
+\newcommand{\ENlogoFStextwh}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt-en-wh}}
+% Loga FT [EN]
+\newcommand{\ENlogoFT}{\includegraphics[scale=0.3]{\logosPath logo-ft}}
+\newcommand{\ENlogoFTwh}{\includegraphics[scale=0.3]{\logosPath logo-ft-wh}}
+\newcommand{\ENlogoFTtext}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt-en}}
+\newcommand{\ENlogoFTtextwh}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt-en-wh}}
+% Loga FP [EN]
+\newcommand{\ENlogoFP}{\includegraphics[scale=0.3]{\logosPath logo-fp-en}}
+\newcommand{\ENlogoFPwh}{\includegraphics[scale=0.3]{\logosPath logo-fp-en-wh}}
+\newcommand{\ENlogoFPtext}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt-en}}
+\newcommand{\ENlogoFPtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt-en-wh}}
+% Loga EF [EN]
+\newcommand{\ENlogoEF}{\includegraphics[scale=0.3]{\logosPath logo-ef-en}}
+\newcommand{\ENlogoEFwh}{\includegraphics[scale=0.3]{\logosPath logo-ef-en-wh}}
+\newcommand{\ENlogoEFtext}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt-en}}
+\newcommand{\ENlogoEFtextwh}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt-en-wh}}
+% Loga FUA [EN]
+\newcommand{\ENlogoFUA}{\includegraphics[scale=0.3]{\logosPath logo-fua-en}}
+\newcommand{\ENlogoFUAwh}{\includegraphics[scale=0.3]{\logosPath logo-fua-en-wh}}
+\newcommand{\ENlogoFUAtext}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt-en}}
+\newcommand{\ENlogoFUAtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt-en-wh}}
+% Loga FM [EN]
+\newcommand{\ENlogoFM}{\includegraphics[scale=0.3]{\logosPath logo-fm}}
+\newcommand{\ENlogoFMwh}{\includegraphics[scale=0.3]{\logosPath logo-fm-wh}}
+\newcommand{\ENlogoFMtext}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt-en}}
+\newcommand{\ENlogoFMtextwh}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt-en-wh}}
+% Loga FZS [EN]
+\newcommand{\ENlogoFZS}{\includegraphics[scale=0.3]{\logosPath logo-fzs-en}}
+\newcommand{\ENlogoFZSwh}{\includegraphics[scale=0.3]{\logosPath logo-fzs-en-wh}}
+\newcommand{\ENlogoFZStext}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt-en}}
+\newcommand{\ENlogoFZStextwh}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt-en-wh}}
+% Loga CXI [EN]
+\newcommand{\ENlogoCXI}{\includegraphics[scale=0.3]{\logosPath logo-cxi}}
+\newcommand{\ENlogoCXIwh}{\includegraphics[scale=0.3]{\logosPath logo-cxi-wh}}
+\newcommand{\ENlogoCXItext}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt-en}}
+\newcommand{\ENlogoCXItextwh}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt-en-wh}}
+% Aliasy pro loga TUL podle jazyka
+\newcommand{\CZlogo}{\logoTUL}
+\newcommand{\CZlogowh}{\logoTULwh}
+\newcommand{\ENlogo}{\ENlogoTUL}
+\newcommand{\ENlogowh}{\ENlogoTULwh}
+\newcommand{\CZlogotext}{\logoTULtext}
+\newcommand{\CZlogotextwh}{\logoTULtextwh}
+\newcommand{\ENlogotext}{\ENlogoTULtext}
+\newcommand{\ENlogotextwh}{\ENlogoTULtextwh}
+% Variabilní aliasy pro loga TUL podle zvolené jazykové mutace
+\newcommand{\logo}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENlogo}{\CZlogo}}
+\newcommand{\logowh}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENlogowh}{\CZlogowh}}
+\newcommand{\logotext}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENlogotext}{\CZlogotext}}
+\newcommand{\logotextwh}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENlogotextwh}{\CZlogotextwh}}
+
+% Příkaz pro sázení světlých verzí na dokumentech s tmavým pozadím
+\newcommand{\darkTULbg}{
+    \renewcommand{\symbolTUL}{\symbolTULwh}
+    \renewcommand{\logo}{\logowh}
+    \renewcommand{\logotext}{\logotextwh}
+    \renewcommand{\logoTULalt}{\logoTULaltwh}
+}
+
+% Oddělovač v textu (svislá čára ve fakultní barvě)
+\newcommand{\oddel}{{\color{\tulcolor}\rule{1pt}{1.7ex}}}
+% Styl a barva nadpisů
+\RequirePackage[sf, bf]{titlesec}
+% Font nadpisů
+\newcommand{\TUL@headfnt}{\TULHeadFont}
+
+% Definice centrální barvy pro obsah a seznam obrázků/tabulek
+\newcommand{\TUL@TOCtextcolor}{black}
+
+% Balík pro tečkování kapitol, centrální barvu textu v obsahu
+\RequirePackage{tocloft}
+% Nastavení fontu pro nadpis obsahu
+\renewcommand{\cfttoctitlefont}{%
+    \color{\titlecolor}\TUL@headfnt\LARGE\raggedright
+}
+
+% Deklarace mezer mezi položkami obsahu
+\newlength{\TUL@TOC@skip}
+
+\@ifundefined{chapter}{%
+    % Nastavení mezer v obsahu pro dokumenty bez kapitol (např. article)
+    \setlength{\cftbeforetoctitleskip}{2mm}%
+    \setlength{\cftaftertoctitleskip}{10mm}%
+    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\TUL@TOC@skip}{8pt}%
+}{%
+    % Nastavení mezer v obsahu pro dokumenty s kapitolami (např. book, report)
+    \setlength{\cftbeforetoctitleskip}{0mm}%
+    \setlength{\cftaftertoctitleskip}{6mm}%
+    \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\TUL@TOC@skip}{4pt}%
+    \renewcommand{\cftbeforechapskip}{\TUL@TOC@skip}%
+}
+
+% Použití společné mezery pro všechny položky na úrovni sekcí
+\renewcommand{\cftbeforesecskip}{\TUL@TOC@skip}%
+\renewcommand{\cftbeforesubsecskip}{\TUL@TOC@skip}%
+\renewcommand{\cftbeforesubsubsecskip}{\TUL@TOC@skip}%
+
+
+
+% Fonty v obsahu
+\renewcommand{\cftpartfont}{\color{\TUL@TOCtextcolor}}
+\renewcommand{\cftloftitlefont}{\color{\TUL@TOCtextcolor}\LARGE\bfseries}
+\renewcommand{\cftfigfont}{\color{\TUL@TOCtextcolor}}
+\renewcommand{\cfttabfont}{\color{\TUL@TOCtextcolor}}
+
+
+% Balík pro vynucenou centrální barvu hypertextu v obsahu
+\usepackage{etoolbox}
+\pretocmd{\l@chapter}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@section}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@subsection}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+
+% Balík pro vynucenou centrální barvu textu a hypertextu v seznamu obrázků/tabulek
+\pretocmd{\l@figure}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@table}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+
+
+% Titulní stránka
+\newcommand{\create@uthb@x}[2]{%
+    \vspace{20mm}
+    {\Large #1}\\
+    \vspace{5mm}
+    {\large #2}\par
+}
+
+% Výška textu s příponou "pt" pro násobení v řádkování
+\newlength{\f@ntsize}
+\setlength{\f@ntsize}{\f@size pt}
+
+% Úvodní strana TUL
+\newcommand{\TULtitlepage}[3]{{%
+    \thispagestyle{TULheaderonly}
+    \mbox{}
+    \vfill
+    \vfill
+    \vfill
+    \bgroup
+    \raggedright
+    \color{\tulcolor}\huge\bfseries\TULmono\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+    \create@uthb@x{#2}{#3}
+    \egroup
+    \vfill
+    \newpage
+}}
+
+% Fancy úvodní strana TUL
+\newcommand{\TULfancytitlepage}[3]{{%
+    \thispagestyle{TULheaderonly}
+    \pagecolor{\tulcolor}\darkTULbg
+    \mbox{}
+    \vfill
+    \vfill
+    \vfill
+    \bgroup
+    \raggedright
+    \color{white}\huge\TULFancyFont\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+    \create@uthb@x{#2}{#3}
+    \egroup
+    \vfill
+    \newpage
+    \pagecolor{white}
+}}
+
+% Přepínač stylu podle názvu fakulty/ústavu
+\newcommand{\switchTULstyle}[1]{
+    \renewcommand{\sekce@TUL}{#1}
+    \renewcommand{\tulcolor}{tul#1}
+    \renewcommand{\titlecolor}{tul#1}
+    \renewcommand{\CZlogo}{\csname logo#1\endcsname}
+    \renewcommand{\CZlogowh}{\csname logo#1wh\endcsname}
+    \renewcommand{\ENlogo}{\csname ENlogo#1\endcsname}
+    \renewcommand{\ENlogowh}{\csname ENlogo#1wh\endcsname}
+    \renewcommand{\CZlogotext}{\csname logo#1text\endcsname}
+    \renewcommand{\CZlogotextwh}{\csname logo#1textwh\endcsname}
+    \renewcommand{\ENlogotext}{\csname ENlogo#1text\endcsname}
+    \renewcommand{\ENlogotextwh}{\csname ENlogo#1textwh\endcsname}
+    \renewcommand{\symbolTUL}{\csname symbol#1\endcsname}
+}
+
+
+% Možné konfigurace fakult/ústavů: \TUL@<útvar>@setup
+% Konfigurace FS TUL
+\newcommand{\TUL@FS@setup}{
+    \switchTULstyle{FS}%
+    \renewcommand{\ENTULsoucast}{Faculty of Mechanical Engineering}%
+    \renewcommand{\CZTULsoucast}{Fakulta strojní}%
+    \TULphone{+420 485 353 108}
+    \renewcommand{\TUL@URL}{www.fs.tul.cz}
+}
+% Konfigurace FT TUL
+\newcommand{\TUL@FT@setup}{
+    \switchTULstyle{FT}%
+    \renewcommand{\ENTULsoucast}{Faculty of Textile Engineering}%
+    \renewcommand{\CZTULsoucast}{Fakulta textilní}%
+    \TULphone{+420 485 353 452}
+    \renewcommand{\TUL@URL}{www.ft.tul.cz}
+}
+% Konfigurace FP TUL
+\newcommand{\TUL@FP@setup}{
+    \switchTULstyle{FP}%
+    \renewcommand{\ENTULsoucast}{Faculty of Sciences, Humanities and Education}%
+    \renewcommand{\CZTULsoucast}{Fakulta
+        přírodovědně-humanitní a pedagogická}%
+    \TULphone{+420 485 352 815}
+    \renewcommand{\TUL@URL}{www.fp.tul.cz}
+    \renewcommand{\TUL@adr}{Univerzitní náměstí 1410/1,
+        461~17 Liberec~1\add@cz}
+}
+% Konfigurace EF TUL
+\newcommand{\TUL@EF@setup}{
+    \switchTULstyle{EF}%
+    \renewcommand{\ENTULsoucast}{Faculty of Economics}%
+    \renewcommand{\CZTULsoucast}{Ekonomická fakulta}%
+    \TULphone{+420 485 352 388}
+    \renewcommand{\TUL@URL}{www.ef.tul.cz}
+    \renewcommand{\TUL@adr}{Voroněžská 1329/13, 460~02 Liberec~2\add@cz}
+}
+% Alias pro formulaci FE TUL místo EF TUL
+\newcommand{\TUL@FE@setup}{\TUL@EF@setup}
+% Konfigurace FUA TUL
+\newcommand{\TUL@FUA@setup}{
+    \switchTULstyle{FUA}%
+    \renewcommand{\ENTULsoucast}{Faculty of Arts and Architecture}%
+    \renewcommand{\CZTULsoucast}{Fakulta umění a architektury}%
+    \TULphone{+420 485 353 506}
+    \TULmail{fua@tul.cz}
+    \renewcommand{\TUL@URL}{www.fua.tul.cz}
+    }
+% Konfigurace FM TUL
+\newcommand{\TUL@FM@setup}{
+    \switchTULstyle{FM}%
+    \renewcommand{\ENTULsoucast}{Faculty of Mechatronics, Informatics
+        and Interdisciplinary Studies}%
+    \renewcommand{\CZTULsoucast}{Fakulta mechatroniky, informatiky
+        a mezioborových studií}%
+    \TULphone{+420 485 353 757}
+    \renewcommand{\TUL@URL}{www.fm.tul.cz}
+}
+% Konfigurace FZS TUL
+\newcommand{\TUL@FZS@setup}{
+    \switchTULstyle{FZS}%
+    \renewcommand{\ENTULsoucast}{Faculty of Health Studies}%
+    \renewcommand{\CZTULsoucast}{Fakulta zdravotnických studií}%
+    \TULphone{+420 485 353 593}
+    \TULmail{fzs@tul.cz}
+    \renewcommand{\TUL@URL}{www.fzs.tul.cz}
+}
+% Konfigurace CXI TUL
+\newcommand{\TUL@CXI@setup}{
+    \switchTULstyle{CXI}%
+    \renewcommand{\ENTULsoucast}{Institute for Nanomaterials,
+        Advanced Technologies and Innovation}%
+    \renewcommand{\CZTULsoucast}{Ústav pro nanomateriály,
+        pokročilé technologie a inovace}%
+    \TULphone{+420 485 353 852}
+    \TULmail{cxi@tul.cz}
+    \renewcommand{\TUL@URL}{www.cxi.tul.cz}
+}
+
+% Deklarace jazykového balíku EN
+\DeclareOption{EN}{\renewcommand{\TUL@nguage}{EN}}
+
+% Deklarace balíků fakult/ústavů
+\DeclareOption{FS}{\TUL@FS@setup}
+\DeclareOption{FT}{\TUL@FT@setup}
+\DeclareOption{FP}{\TUL@FP@setup}
+\DeclareOption{EF}{\TUL@EF@setup}
+\DeclareOption{FE}{\TUL@EF@setup}   % Alias pro použití s databázemi obsahujícími FE
+\DeclareOption{FUA}{\TUL@FUA@setup}
+\DeclareOption{FA}{\TUL@FUA@setup}  % Pro zpětnou kompatibilitu
+\DeclareOption{FM}{\TUL@FM@setup}
+\DeclareOption{FZS}{\TUL@FZS@setup}
+\DeclareOption{CXI}{\TUL@CXI@setup}
+
+
+% Boolean definice číslování nadpisů
+\newboolean{TUL@numbering}
+\setboolean{TUL@numbering}{false}
+% Možnost zapnout číslování nadpisů
+\DeclareOption{numbering}{\setboolean{TUL@numbering}{true}}
+
+
+% Vypíná barvy nadpisů ve variantách - monochromatický režim
+\DeclareOption{bwtitles}{
+    \renewcommand{\titlecolor}{black}
+}
+
+% Vypíná barvy všech log a symbolů - monochromatický režim
+\DeclareOption{bw}{
+    \renewcommand{\tulcolor}{black!50}
+    \renewcommand{\titlecolor}{black}
+    \renewcommand{\symbolTUL}{\symbolTULbw}
+    \renewcommand{\symbolFS}{\symbolTULbw}
+    \renewcommand{\symbolFT}{\symbolTULbw}
+    \renewcommand{\symbolFP}{\symbolTULbw}
+    \renewcommand{\symbolEF}{\symbolTULbw}
+    \renewcommand{\symbolFUA}{\symbolTULbw}
+    \renewcommand{\symbolFM}{\symbolTULbw}
+    \renewcommand{\symbolFZS}{\symbolTULbw}
+    \renewcommand{\symbolCXI}{\symbolTULbw}
+    \renewcommand{\znakTUL}{\symbolTULbw}
+    \renewcommand{\logoTUL}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-bw}}
+    \renewcommand{\logoTULtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-txt-bw}}
+    \renewcommand{\logoTULalt}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-3r-bw}}
+    \renewcommand{\logoFS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-bw}}
+    \renewcommand{\logoFStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-txt-bw}}
+    \renewcommand{\logoFT}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-bw}}
+    \renewcommand{\logoFTtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-txt-bw}}
+    \renewcommand{\logoFP}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-bw}}
+    \renewcommand{\logoFPtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-txt-bw}}
+    \renewcommand{\logoEF}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-bw}}
+    \renewcommand{\logoEFtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-txt-bw}}
+    \renewcommand{\logoFUA}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-bw}}
+    \renewcommand{\logoFUAtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-txt-bw}}
+    \renewcommand{\logoFM}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-bw}}
+    \renewcommand{\logoFMtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-txt-bw}}
+    \renewcommand{\logoFZS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-bw}}
+    \renewcommand{\logoFZStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-txt-bw}}
+    \renewcommand{\logoCXI}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-bw}}
+    \renewcommand{\logoCXItext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-txt-bw}}
+    \renewcommand{\ENlogoTUL}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-bw}}
+    \renewcommand{\ENlogoTULtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-txt-en-bw}}
+    \renewcommand{\ENlogoTULalt}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-3r-en-bw}}
+    \renewcommand{\ENlogoFS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-en-bw}}
+    \renewcommand{\ENlogoFStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-txt-en-bw}}
+    \renewcommand{\ENlogoFT}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-bw}}
+    \renewcommand{\ENlogoFTtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-txt-en-bw}}
+    \renewcommand{\ENlogoFP}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-en-bw}}
+    \renewcommand{\ENlogoFPtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-txt-en-bw}}
+    \renewcommand{\ENlogoEF}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-en-bw}}
+    \renewcommand{\ENlogoEFtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-txt-en-bw}}
+    \renewcommand{\ENlogoFUA}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-en-bw}}
+    \renewcommand{\ENlogoFUAtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-txt-en-bw}}
+    \renewcommand{\ENlogoFM}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-bw}}
+    \renewcommand{\ENlogoFMtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-txt-en-bw}}
+    \renewcommand{\ENlogoFZS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-en-bw}}
+    \renewcommand{\ENlogoFZStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-txt-en-bw}}
+    \renewcommand{\ENlogoCXI}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-bw}}
+    \renewcommand{\ENlogoCXItext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-txt-en-bw}}
+}
+
+% Možnost "fonts" pro používání fontů TUL (v rámci balíku documentclass)
+\newboolean{TULf@nts}
+\setboolean{TULf@nts}{false}
+\DeclareOption{fonts}{\setboolean{TULf@nts}{true}}
+
+% Možnost "sfbody" pro používání patkového fontu v těle dokumentu (v rámci balíku documentclass)
+\newboolean{TULsfb@dy}
+\setboolean{TULsfb@dy}{false}
+\DeclareOption{sfbody}{\setboolean{TULsfb@dy}{true}}
+
+% Možnost "sfheadings" pro používání patkového fontu v nadpisech (v rámci balíku documentclass)
+\newboolean{TULsfhe@dings}
+\setboolean{TULsfhe@dings}{false}
+\DeclareOption{sfheadings}{\setboolean{TULsfhe@dings}{true}}
+
+% Možnost zapnutí odsazení zleva a zprava v dokumentu
+\newif\ifTUL@margins
+\TUL@marginsfalse
+\DeclareOption{margins}{\TUL@marginstrue}
+
+% Možnost "noheader" pro balík documentclass
+% Napsání "noheader" aktivuje konfiguraci dokumentu bez záhlaví
+\DeclareOption{noheader}{\noTULheader}
+
+% Spouštěcí příkaz pro všechny předané možnosti
+\ProcessOptions
+
+% Podmíněná konfigurace stránky podle bool hodnoty "TUL@header"
+% True -> Styl stránky = "TUL", False -> Styl stránky = "TULfooter"
+\ifthenelse{\boolean{TUL@header}}{\pagestyle{TUL}}{\pagestyle{TULfooter}}
+
+
+\newcommand{\setup@TUL@titleformats}{%
+  \def\setupTitleFormat##1##2##3##4{%
+    \ifthenelse{\boolean{TUL@numbering}}{%
+      \titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{##3}{1em}{}%
+    }{%
+      \titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{}{0pt}{}%
+    }%
+  }
+
+  % CHAPTER
+  \ifcsname chapter\endcsname
+    \setupTitleFormat{\chapter}{\LARGE}{\thechapter}{}%
+  \fi
+  % SECTION
+  \ifcsname section\endcsname
+    \setupTitleFormat{\section}{\Large}{\thesection}{}%
+  \fi
+  % SUBSECTION
+  \ifcsname subsection\endcsname
+    \setupTitleFormat{\subsection}{\large}{\thesubsection}{}%
+  \fi
+  % SUBSUBSECTION
+  \ifcsname subsubsection\endcsname
+    \setupTitleFormat{\subsubsection}{\normalsize}{\thesubsubsection}{}%
+  \fi
+  % PARAGRAPH - no numbering
+  \ifcsname paragraph\endcsname
+    \titleformat{\paragraph}{\color{\titlecolor}\TUL@headfnt\normalsize\raggedright}{}{0pt}{}%
+  \fi
+}
+
+% Nastavení číslování kapitol v obsahu
+\ifthenelse{\boolean{TUL@numbering}}{}{%
+  \renewcommand{\numberline}[1]{} % No numbering in TOC
+}
+
+
+
+% Velikost a rozložení stránky
+
+% Nastavení základního layoutu podle velikosti papíru.
+\ifthenelse{\lengthtest{\paperwidth=210mm}\AND\lengthtest{\paperheight=297mm}}{%
+  % Pro A4 papír
+  \ifTUL@margins
+    \setlength{\oddsidemargin}{10mm}%
+    \setlength{\evensidemargin}{0mm}%
+    \setlength{\textwidth}{\dimexpr\paperwidth-60mm\relax}%
+  \else
+    \setlength{\oddsidemargin}{0mm}%
+    \setlength{\evensidemargin}{0mm}%
+    \setlength{\textwidth}{\dimexpr\paperwidth-50mm\relax}%
+  \fi
+  % Hodnoty pro A4
+  \setlength{\topmargin}{-2mm}%
+  \setlength{\headheight}{0mm}%
+  \setlength{\headsep}{0mm}%
+  \setlength{\textheight}{230mm}%
+  \setlength{\footskip}{15mm}%
+  \fancyfootoffset{0pt}%
+}{%
+  % Pro jiný formát papíru než A4
+  \ifTUL@margins
+    \setlength{\oddsidemargin}{10mm}%
+    \setlength{\evensidemargin}{0mm}%
+    \setlength{\textwidth}{\dimexpr\paperwidth-60mm\relax}%
+  \else
+    \setlength{\oddsidemargin}{0mm}%
+    \setlength{\evensidemargin}{0mm}%
+    \setlength{\textwidth}{\dimexpr\paperwidth-50mm\relax}%
+  \fi
+  % Upravené hodnoty pro jiný formát
+  \addtolength{\topmargin}{-10mm}%
+  \setlength{\headheight}{18mm}%
+  \setlength{\headsep}{10mm}%
+  \addtolength{\textheight}{7.5mm}%
+  \setlength{\footskip}{1.2mm}%
+}
+% Široký režim
+\newcommand{\TULwide}{%
+  \setlength{\oddsidemargin}{0mm}%
+  \setlength{\evensidemargin}{0mm}%
+  \setlength{\textwidth}{\dimexpr\paperwidth-50mm\relax}%
+  \makeTULf@@ter%
+}
+
+
+\setup@TUL@titleformats
+
+% Odsazení nadpisů
+\titlespacing{\chapter}{0pt}{-1.2em}{1.0em}
+\titlespacing{\section}{0pt}{1.4em}{0.8em}
+\titlespacing{\subsection}{0pt}{1.4em}{0.8em}
+\titlespacing{\subsubsection}{0pt}{1.4em}{0.8em}
+
+
+% Aktivace TUL písem, pokud je povolena volba "fonts"
+\ifthenelse{\boolean{TULf@nts}}{
+
+    % Balíček pro práci s OpenType fonty
+    \RequirePackage{fontspec}
+    % Společná cesta k souborům fontů
+    \newcommand{\fontsPath}{tulpackage/fonts/}
+
+    % Hlavní font - serif nebo sans-serif podle volby
+    \ifthenelse{\boolean{TULsfb@dy}}{
+        % Serif hlavní font: Merriweather
+        \setmainfont[
+            Path=\fontsPath,
+            UprightFont=Merriweather-Regular.ttf,
+            BoldFont=Merriweather-Bold.ttf,
+            ItalicFont=Merriweather-Italic.ttf,
+            BoldItalicFont=Merriweather-BoldItalic.ttf,
+            Mapping=tex-text
+        ]{Merriweather}
+    }{
+        % Sans-serif hlavní font: Inter Regular
+        \setmainfont[
+            Path=\fontsPath,
+            UprightFont=Inter-Regular.otf,
+            BoldFont=Inter-Bold.otf,
+            ItalicFont=Inter-Italic.otf,
+            BoldItalicFont=Inter-BoldItalic.otf,
+            Mapping=tex-text
+        ]{Inter}
+    }
+
+    % Monospace font: Noto Sans Mono (nemění se)
+    \setmonofont[
+        Path=\fontsPath,
+        UprightFont=NotoSansMono-Regular.ttf,
+        BoldFont=NotoSansMono-Bold.ttf,
+        ItalicFont=NotoSansMono-Regular.ttf,
+        BoldItalicFont=NotoSansMono-Bold.ttf,
+        Mapping=tex-text
+    ]{Noto Sans Mono}
+
+    % Font nadpisů - serif nebo sans-serif podle volby
+    \ifthenelse{\boolean{TULsfhe@dings}}{
+        \newfontfamily\TULHeadFont[
+            Path=\fontsPath,
+            UprightFont=Merriweather-Black.ttf,
+            ItalicFont=Merriweather-BlackItalic.ttf
+        ]{Merriweather}
+    }{
+        \newfontfamily\TULHeadFont[
+            Path=\fontsPath,
+            UprightFont=Inter-Bold.otf,
+            ItalicFont=Inter-BoldItalic.otf
+        ]{Inter ExtraBold}
+    }
+
+    % Zdobný font nadpisů
+    \newfontfamily\TULFancyFont[
+        Path=\fontsPath,
+        UprightFont=TULMono-Regular.otf
+    ]{TUL Mono}
+
+    \newfontfamily\TULFancyFontBold[
+        Path=\fontsPath,
+        UprightFont=TULMono-Bold.otf
+    ]{TUL Mono}
+}{
+
+    % Když není aktivována volba fonts
+    \ifthenelse{\boolean{TULsfb@dy}}{
+        \renewcommand{\TULMainFont}{\rmfamily} % Serif body text
+    }{
+        \renewcommand{\TULMainFont}{\sffamily} % Sans-serif body text
+    }
+
+    \ifthenelse{\boolean{TULsfhe@dings}}{
+        \renewcommand{\TULHeadFont}{\rmfamily\bfseries} % Serif headings
+    }{
+        \renewcommand{\TULHeadFont}{\sffamily\bfseries} % Sans-serif headings
+    }
+
+    % Alternativní fonty zůstávají jako standardní LaTeX rodiny
+    \renewcommand{\TULAltMainFont}{\rmfamily}
+    \renewcommand{\TULAltHeadFont}{\bfseries}
+    \renewcommand{\TULFancyFont}{\ttfamily}
+    \renewcommand{\TULFancyFontBold}{\ttfamily}
+}
