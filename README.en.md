@@ -169,7 +169,7 @@ The `tulpackage-for-latex` package offers several ways to customize the appearan
 
 * 🎨 Changing the document style according to the specific faculty (e.g., `FM`, `EF`, `FS`).
 * ⚫ Enabling or disabling colored headings (`bwtitles`) or switching to a completely black and white mode (`bw`).
-* <0xF0><0x9F><0x96><0x84> Setting which fonts will be used (`fonts`, `sfbody`, `sfheadings`).
+* 🔠 Setting which fonts will be used (`fonts`, `sfbody`, `sfheadings`).
 * And much more. Exploration of all available options is recommended.
 
 ✍️ **Preamble Modifications:** If these options are insufficient, the document can be further customized by adding standard LaTeX commands and packages to the preamble of the `.tex` file. The example files (`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex`) illustrate how the preamble is set up. If commands are used/defined directly in the preambles, it signifies that their configuration is left to the user.
@@ -184,5 +184,4 @@ The authorship of the foundation of this package (`tulthesis 2.1`) and therefore
 
 * **doc. RNDr. Pavel Satrapa, Ph.D.**
     * E-mail: Pavel.Satrapa@tul.cz
-    * Phone: +420 485 351 234
     * Website: [www.root.cz/autori/pavel-satrapa/](https://www.root.cz/autori/pavel-satrapa/)
