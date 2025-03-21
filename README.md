@@ -168,7 +168,7 @@ Balík `tulpackage-for-latex` poskytuje několik způsobů, jak upravit vzhled d
 
 * 🎨 Změnit styl dokumentu podle konkrétní fakulty (například `FM`, `EF`, `FS`).
 * ⚫ Aktivovat či deaktivovat barevné nadpisy (`bwtitles`) nebo přepnout do zcela černobílého režimu (`bw`).
-* <0xF0><0x9F><0x96><0x84> Nastavit, jaké fonty se budou používat (`fonts`, `sfbody`, `sfheadings`).
+* 🔠 Nastavit, jaké fonty se budou používat (`fonts`, `sfbody`, `sfheadings`).
 * A mnoho dalšího. Doporučuje se prozkoumat všechny dostupné možnosti.
 
 ✍️ **Úpravy v preambuli:** Pokud by tyto možnosti nepostačovaly, je možné dokument dále přizpůsobit přidáním standardních příkazů a balíků LaTeXu do preambule daného `.tex` souboru. V ukázkových souborech (`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex`) je ilustrováno, jak se preambule nastavuje. Pokud jsou příkazy používány/definovány přímo v preambulích, znamená to, že je na uživateli, jak si je nastaví.
@@ -183,5 +183,4 @@ Autorství základu tohoto balíku (`tulthesis 2.1`) a tím pádem i všechny z�
 
 * **doc. RNDr. Pavel Satrapa, Ph.D.**
     * E-mail: Pavel.Satrapa@tul.cz
-    * Telefon: +420 485 351 234
     * Webová stránka: [www.root.cz/autori/pavel-satrapa/](https://www.root.cz/autori/pavel-satrapa/)
