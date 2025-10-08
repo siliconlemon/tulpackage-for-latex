@@ -1,5 +1,5 @@
-# tulpackage-for-latex
 <a name="czech"></a>
+# tulpackage-for-latex
 
 [English version below.](#english)
 
@@ -189,8 +189,8 @@ Autorství základu tohoto balíku (`tulthesis 2.1`) a tím pádem i všechny z�
 
 --- 
 
-# tulpackage-for-latex (en)
 <a name="english"></a>
+# tulpackage-for-latex (en)
 
 [Česká verze výše.](#czech)
 
