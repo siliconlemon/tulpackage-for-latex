@@ -1,0 +1,44 @@
+# pycharm files, if they're even needed for LaTeX
+.idea/
+*~
+*.bak
+*.swp
+*.orig
+
+# windows files
+Thumbs.db
+Desktop.ini
+
+# Ignores PDFs, but only directly inside the root dir
+# You can uncomment this in your actual working directory to save space
+# /*.pdf
+
+# LaTeX artifacts, output PDFs etc.
+out/
+*.dvi
+*.ps
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.tdo
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+*.ist
+
+# Synchronization files
+*.synctex.gz
+*.fls
+*.fdb_latexmk
