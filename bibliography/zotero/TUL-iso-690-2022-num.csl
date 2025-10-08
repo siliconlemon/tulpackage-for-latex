@@ -752,6 +752,7 @@
                 </group>
               </group>
               <text macro="isbn"/>
+              <text macro="issn"/>
               <text macro="url"/>
               <text variable="archive" prefix="Místo: "/>
             </group>

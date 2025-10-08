@@ -819,6 +819,7 @@
               </group>
             </group>
             <text macro="isbn"/>
+            <text macro="issn"/>
             <text macro="url-chapter"/>
             <text variable="archive" prefix="Přístup: "/>
           </group>
