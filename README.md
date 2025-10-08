@@ -1,5 +1,5 @@
 # tulpackage-for-latex
-<a name="english"></a>
+<a name="czech"></a>
 
 [English version below.](#english)
 
