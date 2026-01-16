@@ -61,3 +61,29 @@ All the config files are placed in the **./zed-setup** directory.
 - Open the compatibility settings using **Settings -> Options -> Set inverse search command-line**
 - Set the command-line to:
   *cmd /V:ON /C "set "p=%f" & zed "!p:\\?\=!""*
+
+
+## Common Issues & Troubleshooting
+
+### **Missing Packages (LaTeX Error: File '....sty' not found)**
+If your compilation fails with an error indicating a missing style file (e.g., `! LaTeX Error: File 'booktabs.sty' not found.`), you need to install the package manually via the terminal.
+
+**The Fix:**
+1. Open your terminal (PowerShell).
+2. Run the installation command using the package name:
+   ```powershell
+   mpm --install=<package_name>
+   ```
+
+### **MiKTeX Configuration/Database Corruption**
+If the compilation fails immediately, or if you see the error **"A MiKTeX configuration file could not be loaded"** when trying to install packages, your local package database is likely corrupted.
+
+**The Fix:**
+1. Open File Explorer and paste this path into the address bar:
+   `%LOCALAPPDATA%\Programs\MiKTeX\miktex\config\`
+   *(Note: If you installed MiKTeX as Admin for all users, check `C:\ProgramData\MiKTeX\miktex\config\` instead).*
+2. Locate and **delete** the file named **`package-manifests.ini`**.
+3. Open your terminal (PowerShell) and run the following command to regenerate the database:
+   ```powershell
+   mpm --update-db
+   ```

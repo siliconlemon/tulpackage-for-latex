@@ -200,6 +200,9 @@
  \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
 \fi
 
+% Implementace příkazu \uv pro čeké uvozovky (chybí v polyglossia)
+\providecommand{\uv}[1]{„#1“}
+
 % Definice typu práce
 \newcommand{\TULthesisType}[2]{\renewcommand{\TUL@levelCZ}{#1}%
 \renewcommand{\TUL@levelEN}{#2}}
@@ -405,17 +408,17 @@
     s pou\v{z}it\'{\i}m uveden\'{e} literatury%
     \ifthenelse{\equal{\TUL@kat}{Hab}}{}{ a na z\'{a}klad\v{e} konzultac\'{\i} s vedouc\'{\i}m
     \TULpracerod{m\'eho}{m\'e}{m\'ych} \TULpracee\ a konzultantem}.
-    
+
     \ifthenelse{\equal{\TUL@kat}{Hab}}{}{Jsem si v\v{e}dom\TULfem{#1} toho, \v{z}e
     na \TULpracerod{m\r uj}{mou}{m\'e} \TULpraceou\ se pln\v{e} vztahuje z\'{a}kon
     \v{c}.~121/2000 Sb., o~pr\'{a}vu autorsk\'{e}m, zejm\'{e}na \S~60~-- \v
     skoln\'{\i} d\'{\i}lo.
-    
+
     Beru na v\v edom\'{\i}, \v ze Technick\'a univerzita v~Liberci nezasahuje
     do m\'ych autorsk\'ych pr\'av u\v zit\'{\i}m
     \TULpracerod{m\'eho}{m\'e}{m\'ych} \TULpracee\ pro
     vnit\v rn\'{\i} pot\v rebu Technick\'{e} univerzity v~Liberci.
-    
+
     U\v ziji-li \TULpraceou\ nebo poskytnu-li licenci
     k~\TULpracerod{jeho}{jej\'{\i}mu}{jejich} vyu\v zit\'{\i},
     jsem si v\v edom\TULfem{#1} povinnosti informovat
@@ -424,12 +427,12 @@
     pr\'avo ode mne po\v zadovat \'uhradu n\'aklad\r u,
     kter\'e vynalo\v zila na vytvo\v ren\'{\i} d\'{\i}la,
     a\v z do jejich skute\v cn\'e v\'y\v se.
-    
+
     \ifthenelse{\equal{\TUL@kat}{BP} \OR \equal{\TUL@kat}{DP} \OR
     \equal{\TUL@kat}{Dis}}{Sou\v{c}asn\v{e} \v{c}estn\v{e} prohla\v{s}uji,
     \v{z}e text elektronick\'{e} podoby pr\'{a}ce vlo\v{z}en\'{y} do IS STAG
     se shoduje s textem ti\v{s}t\v{e}n\'{e} podoby pr\'{a}ce.}{}}
-    
+
     Beru na v\v{e}dom\'{\i}, \v{z}e \TULpracerod{m\r uj}{m\'a}{m\'e}
     \TULpraceCZ\ \TULpracerod{bude zve\v{r}ejn\v{e}n}{bude zve\v{r}ejn\v{e}na}{budou
     zve\v{r}ejn\v{e}ny} Technickou univerzitou v~Liberci v souladu s~\S~47b
@@ -437,7 +440,7 @@
     o~zm\v{e}n\v{e} a dopln\v{e}n\'{\i} dal\v{s}\'{\i}ch z\'{a}kon\r{u} (z\'{a}kon
     o~vysok\'{y}ch \v{s}kol\'{a}ch), ve zn\v{e}n\'{\i} pozd\v{e}j\v{s}\'{\i}ch
     p\v{r}edpis\r{u}.
-    
+
     Jsem si v\v{e}dom\TULfem{#1} n\'{a}sledk\r{u}, kter\'{e} podle z\'{a}kona
     o~vysok\'{y}ch \v{s}kol\'{a}ch mohou vypl\'{y}vat z poru\v{s}en\'{\i} tohoto
     prohl\'{a}\v{s}en\'{\i}.
@@ -463,30 +466,30 @@
     primary work using the literature listed below%
     \ifthenelse{\equal{\TUL@kat}{Hab}}{}{ and consulting it with my thesis
     supervisor and my thesis counsellor}.
-    
+
     \ifthenelse{\equal{\TUL@kat}{Hab}}{}{I acknowledge that my \ThesisType@EN\ is
     fully governed by Act No.~121/2000 Coll., the Copyright Act, in particular
     Article~60 -- School Work.
-    
+
     I acknowledge that the Technical University of Liberec does not infringe my
     copyrights by using my \ThesisType@EN\ for internal purposes of the Technical
     University of Liberec.
-    
+
     I am aware of my obligation to inform the Technical University of Liberec on
     having used or granted license to use the results of my \ThesisType@EN; in
     such a case the Technical University of Liberec may require reimbursement of
     the costs incurred for creating the result up to their actual amount.
-    
+
     \ifthenelse{\equal{\TUL@kat}{BP} \OR \equal{\TUL@kat}{DP} \OR
     \equal{\TUL@kat}{Dis}}{At the same time, I honestly declare that the text of
     the printed version of my \ThesisType@EN\ is identical with the text of the
     electronic version uploaded into the IS STAG.}{}}
-    
+
     I acknowledge that the Technical University of Liberec will make my
     \ThesisType@EN\ public in accordance with paragraph~47b of Act No.~111/1998
     Coll., on Higher Education Institutions and on Amendment to Other Acts (the
     Higher Education Act), as amended.
-    
+
     I am aware of the consequences which may under the Higher Education Act result
     from a breach of this declaration.
 

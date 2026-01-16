@@ -97,8 +97,8 @@
 
 % Aktivace balíku hyperref (pouze pokud je povolen PDF režim)
 \ifTUL@pdf
-  \RequirePackage{hyperref}
-  \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
+	\RequirePackage{hyperref}
+	\hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
 \fi
 
 % Načtení potřebných balíčků pro tul.sty
@@ -114,34 +114,37 @@
 % Načtení balíčku s předanými možnostmi
 \RequirePackage{tulpackage/tul}
 
+% Implementace příkazu \uv pro čeké uvozovky (chybí v polyglossia)
+\providecommand{\uv}[1]{„#1“}
+
 % noTULheader jako fixní možnost
 \noTULheader
 
 % Předdefinovaný obsah
 \newcommand{\TULarticleTOC}{%
-  \tableofcontents
-  \thispagestyle{empty}
-  \clearpage
+	\tableofcontents
+	\thispagestyle{empty}
+	\clearpage
 }
 
 % Prostředí pro seznam zkratek
 \newenvironment{abbrList}{\phantomsection
-  % Nadpis pro seznam zkratek (podle jazyka práce)
-  \ifthenelse{\equal{\TUL@nguage}{EN}}%
-    {\section*{\large List of abbreviations}\vspace{-1em}}
-    {\section*{\Large Seznam zkratek}\vspace{-1em}} % Same for Czech version
-  \thispagestyle{plain}
-  % Reset šablon pro tabulky (tabularray)
-  \DefTblrTemplate{contfoot-text}{default}{}
-  \DefTblrTemplate{conthead-text}{default}{}
-  \DefTblrTemplate{contfoot}{default}{}
-  \DefTblrTemplate{conthead}{default}{}
-  \DefTblrTemplate{caption}{default}{}
-  \DefTblrTemplate{capcont}{default}{}
-  % Seznam zkratek ve dvou sloupcích
-  \noindent\tblr[long]{column{2}={co=1}}}
+	% Nadpis pro seznam zkratek (podle jazyka práce)
+	\ifthenelse{\equal{\TUL@nguage}{EN}}%
+	{\section*{\large List of abbreviations}\vspace{-1em}}
+	{\section*{\Large Seznam zkratek}\vspace{-1em}} % Same for Czech version
+	\thispagestyle{plain}
+	% Reset šablon pro tabulky (tabularray)
+	\DefTblrTemplate{contfoot-text}{default}{}
+	\DefTblrTemplate{conthead-text}{default}{}
+	\DefTblrTemplate{contfoot}{default}{}
+	\DefTblrTemplate{conthead}{default}{}
+	\DefTblrTemplate{caption}{default}{}
+	\DefTblrTemplate{capcont}{default}{}
+	% Seznam zkratek ve dvou sloupcích
+	\noindent\tblr[long]{column{2}={co=1}}}
 {\endtblr
-  \clearpage % Nová stránka po seznamu zkratek
+	\clearpage % Nová stránka po seznamu zkratek
 }
 
 % Přiblížení následujících odstavců k popiskům obrázků apod.

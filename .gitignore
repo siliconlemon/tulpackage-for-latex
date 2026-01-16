@@ -5,7 +5,11 @@
 *.swp
 *.orig
 
-# windows files
+# Compilation folers (created automatically)
+auxil/
+out/
+
+# Windows files
 Thumbs.db
 Desktop.ini
 

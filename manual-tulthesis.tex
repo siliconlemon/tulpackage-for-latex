@@ -17,7 +17,14 @@
 \usepackage{xunicode}
 \usepackage{xltxtra}
 % Potřebuji neproporcionální kurzívu, kterou Noto Sans Mono zatím nemá
-\setmonofont{Roboto Mono}
+\setmonofont{RobotoMono}[
+    Path = ./tulpackage/fonts/, % chktex 26
+    Extension = .ttf, % chktex 26
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+]
 
 % Mezery mezi odstavci místo odsazení prvních řádků
 \usepackage{parskip}
@@ -194,8 +201,8 @@ strukturování \prikazneindex{chapter}. Pro kratší dokumenty lze volbou
 Typické zahájení diplomové práce na Fakultě mechatroniky pro sazbu \XeLaTeX{}em
 bude proto vypadat nějak takto:
 
-\begin{lstlisting}
-\begin{verbatim}
+\begin{listing}
+	\begin{verbatim}
 \documentclass[FM,DP]{tulthesis}
 \usepackage{polyglossia}
 \setdefaultlanguage{czech}
@@ -247,7 +254,7 @@ Vám poděkování a lásku vám.
 
 Ve své diplomové práci...
 \end{verbatim}
-\end{lstlisting}
+\end{listing}
 
 Dáváte-li přednost pdf\LaTeX{}u (což byste rozhodně neměli dělat, používejte raději
 moderní implementace \XeLaTeX\ nebo Lua\LaTeX), změní se úvodní skupina příkazů na:
