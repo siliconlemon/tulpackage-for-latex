@@ -1,0 +1,16 @@
+{
+  "language": "en,cs",
+  "import": [
+    "C:\\Users\\ondre\\AppData\\Roaming\\npm\\node_modules\\@cspell\\dict-cs-cz\\cspell-ext.json"
+  ],
+  "words": [
+    "keymap",
+    "keymaps",
+    "keybind",
+    "keybinds",
+    "winget",
+    "enumitem",
+    "lstlisting",
+    "tulthesis"
+  ]
+}

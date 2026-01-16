@@ -1,0 +1,31 @@
+{
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "base_keymap": "JetBrains",
+  "icon_theme": "Base Charmed Icons",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Github Dark Dimmed"
+  },
+  "languages": {
+    "LaTeX": { "language_servers": ["texlab"] }
+  },
+  "lsp": {
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": { "onSave": false },
+          "chktex": {
+            "onOpenAndSave": true,
+            "onEdit": true,
+            "args": ["-n", "all"]
+          }
+        }
+      }
+    }
+  }
+}

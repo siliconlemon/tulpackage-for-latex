@@ -40,7 +40,7 @@
 \newcommand{\argumentprom}[1]{\argument{\{\emph{#1}\}}}
 \newcommand{\argumentindex}[1]{\argument{#1}\index{#1}}
 \newcommand{\prostredi}[1]{\argumentindex{#1}}
-\newcommand{\prikazneindex}[1]{\argument{\textbackslash #1}}
+\newcommand{\prikazneindex}[1]{\argument{\textbackslash{}#1}}
 \newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
 \newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}
 \newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}
@@ -80,48 +80,48 @@
 %\ThesisStart{zadani-a-prohlaseni.pdf}
 
 \begin{abstractCZ}
-Tato zpráva popisuje třídu \thinspace \texttt{tulthesis} \thinspace pro sazbu absolventských prací Technické univerzity v Liberci pomocí typografického systému \LaTeX.
+	Tato zpráva popisuje třídu \thinspace\texttt{tulthesis}\thinspace{} pro sazbu absolventských prací Technické univerzity v Liberci pomocí typografického systému \LaTeX.
 \end{abstractCZ}
 
 \begin{keywordsCZ}
-\LaTeX, balík, třída, TUL
+	\LaTeX, balík, třída, TUL
 \end{keywordsCZ}
 
 \vspace{2cm}
 
 \begin{abstractEN}
-This report describes the \thinspace \texttt{tulthesis} \thinspace package for Technical university of Liberec thesis typesetting using the \LaTeX\ typographic system.
+	This report describes the \thinspace\texttt{tulthesis}\thinspace{} package for Technical university of Liberec thesis typesetting using the \LaTeX\ typographic system.
 \end{abstractEN}
 
 \begin{keywordsEN}
-\LaTeX, package, class, TUL
+	\LaTeX, package, class, TUL
 \end{keywordsEN}
 
 \clearpage
 
 \begin{acknowledgement}
-Rád bych poděkoval všem, kteří přispěli ke vzniku tohoto díla.
+	Rád bych poděkoval všem, kteří přispěli ke vzniku tohoto díla.
 \end{acknowledgement}
 
 % Předdefinovaný obsah
-\TULthesisTOC
+\TULthesisTOC{}
 
 \begin{abbrList}
-\textbf{TUL} & Technická univerzita v~Liberci \\
-\textbf{FM} & Fakulta mechatroniky, informatiky a mezioborových studií
-Technické univerzity v~Liberci \\
+	\textbf{TUL} & Technická univerzita v~Liberci \\
+	\textbf{FM} & Fakulta mechatroniky, informatiky a mezioborových studií
+	Technické univerzity v~Liberci \\
 \end{abbrList}
 
 \chapter{Základy použití}
 
-Návody tohoto typu poměrně často obsahují úvod do \LaTeX u jako takového. Já se
+Návody tohoto typu poměrně často obsahují úvod do \LaTeX{}u jako takového. Já se
 s~dovolením omezím jen na popis samotné třídy \argument{tulthesis} a budu
-předpokládat, že jste v~otázkách \LaTeX u dostatečně zorientováni. Pokud
+předpokládat, že jste v~otázkách \LaTeX{}u dostatečně zorientováni. Pokud
 to není pravda, snad vám pomůže můj \emph{\LaTeX\ pro pragmatiky}, který
 najdete na adrese:
 
 \begin{myquote}
-\href{https://www.nti.tul.cz/~satrapa/docs/latex/}{\emph{https://www.nti.tul.cz/\textasciitilde satrapa/docs/latex/}}
+	\href{https://www.nti.tul.cz/~satrapa/docs/latex/}{\emph{https://www.nti.tul.cz/\textasciitilde satrapa/docs/latex/}}
 \end{myquote}
 
 Třída \argumentindex{tulthesis} pro typografický systém \LaTeX\ slouží pro sazbu
@@ -140,13 +140,13 @@ straně~\pageref{volby}. Bakalářská práce Fakulty mechatroniky tedy bude
 začínat:
 
 \begin{listing}
-\prikazneindex{documentclass[FM]\{tulpackage/tulthesis\}}
+	\prikazneindex{documentclass[FM]\{tulpackage/tulthesis\}}
 \end{listing}
 
 zatímco diplomová práce Fakulty strojní:
 
 \begin{listing}
-\prikazneindex{documentclass[FS,DP]\{tulpackage/tulthesis\}}
+	\prikazneindex{documentclass[FS,DP]\{tulpackage/tulthesis\}}
 \end{listing}
 
 V~preambuli pak musíte v~deklaracích uvést popisné informace: jméno práce, kód
@@ -157,12 +157,12 @@ nepovinným údajem je identifikační kód práce, pokud je práci přidělen. 
 k~tomu příkazy:
 
 \begin{listing}
-\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}\\
-\prikaz{TULprogramme}\argumentprom{kód studijního programu}\argumentprom{název česky}\argumentprom{anglicky}\\
-\prikaz{TULbranch}\argumentprom{kód studijního oboru}\argumentprom{název česky}\argumentprom{anglicky}\\
-\prikaz{TULauthor}\argumentprom{jméno autora}\\
-\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}\\
-\prikaz{TULyear}\argumentprom{rok}\\
+	\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}\\
+	\prikaz{TULprogramme}\argumentprom{kód studijního programu}\argumentprom{název česky}\argumentprom{anglicky}\\
+	\prikaz{TULbranch}\argumentprom{kód studijního oboru}\argumentprom{název česky}\argumentprom{anglicky}\\
+	\prikaz{TULauthor}\argumentprom{jméno autora}\\
+	\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}\\
+	\prikaz{TULyear}\argumentprom{rok}\\
 \end{listing}
 
 U habilitačních prací se deklaruje méně údajů, podrobněji viz
@@ -174,9 +174,9 @@ jestliže práci píše muž. Na hodnotě tohoto povinného parametru závisí r
 použitý v~prohlášení o~autorství. Příkaz \prikaz{ThesisStart} vysází:
 
 \begin{itemize}
-\item titulní stránku v odpovídající jazykové verzi,
-\item prázdnou stránku, která se nahradí zadáním,
-\item prohlášení o~autorství a autorských právech.
+	\item titulní stránku v odpovídající jazykové verzi,
+	\item prázdnou stránku, která se nahradí zadáním,
+	\item prohlášení o~autorství a autorských právech.
 \end{itemize}
 
 Následuje typicky abstrakt a klíčová slova ve dvou jazycích, pro něž jsou
@@ -191,10 +191,10 @@ strukturování \prikazneindex{chapter}. Pro kratší dokumenty lze volbou
 \argument{article} změnit výchozí třídu na \argument{article} a jako základ pro
 členění dokumentu pak používat příkazy \prikazneindex{section}.
 
-Typické zahájení diplomové práce na Fakultě mechatroniky pro sazbu \XeLaTeX em
+Typické zahájení diplomové práce na Fakultě mechatroniky pro sazbu \XeLaTeX{}em
 bude proto vypadat nějak takto:
 
-\begin{listing}
+\begin{lstlisting}
 \begin{verbatim}
 \documentclass[FM,DP]{tulthesis}
 \usepackage{polyglossia}
@@ -247,13 +247,13 @@ Vám poděkování a lásku vám.
 
 Ve své diplomové práci...
 \end{verbatim}
-\end{listing}
+\end{lstlisting}
 
-Dáváte-li přednost pdf\LaTeX u (což byste rozhodně neměli dělat, používejte raději
+Dáváte-li přednost pdf\LaTeX{}u (což byste rozhodně neměli dělat, používejte raději
 moderní implementace \XeLaTeX\ nebo Lua\LaTeX), změní se úvodní skupina příkazů na:
 
 \begin{listing}
-\begin{verbatim}
+	\begin{verbatim}
 \documentclass[FM,DP]{tulthesis}
 \usepackage[czech]{babel}
 \usepackage[utf8]{inputenc}
@@ -267,7 +267,7 @@ který je součástí distribuce vizuálního stylu TUL pro \LaTeX.
 \chapter{Závislosti a instalace}
 
 Snažil jsem se, aby závislosti třídy byly co nejmenší. Třída samotná kromě
-standardních součástí \LaTeX u (třída \argument{report} a balík
+standardních součástí \LaTeX{}u (třída \argument{report} a balík
 \argument{ifthen}) využívá jen balíky \argument{tul}, \argument{tabularray},
 \argument{hyperref} a \argument{pdfpages}. Další závislosti ovšem plynou
 z~použití balíku \argument{tul}, podrobnosti najdete v~jeho dokumentaci.
@@ -275,12 +275,12 @@ z~použití balíku \argument{tul}, podrobnosti najdete v~jeho dokumentaci.
 Třída je distribuována v~jednom archivu společně s~balíkem \argument{tul} a
 nemá proto samostatnou instalaci. Sama je tvořena jen souborem
 \emph{tulthesis.cls}, který stačí umístit kamkoli, kde jej vaše instalace
-\LaTeX u najde. 
+\LaTeX{}u najde.
 
 Oficiální distribuční adresou je:
 
 \begin{listing}
-\href{https://www.nti.tul.cz/~satrapa/vyuka/latex-tul/}{\emph{https://www.nti.tul.cz/\textasciitilde satrapa/vyuka/latex-tul/}}
+	\href{https://www.nti.tul.cz/~satrapa/vyuka/latex-tul/}{\emph{https://www.nti.tul.cz/\textasciitilde satrapa/vyuka/latex-tul/}}
 \end{listing}
 
 
@@ -290,69 +290,69 @@ Oficiální distribuční adresou je:
 skupin:
 
 \begin{description}
-\item[Vlastní volby] určují zejména typ práce:
+	\item[Vlastní volby] určují zejména typ práce:
 
-\begin{itemize}
-\item \argumentindex{DP}~-- diplomová práce,
-\item \argumentindex{BP}~-- bakalářská práce (nedělá nic, bakalářská
-práce je implicitní hodnotou, je zařazena jen pro zachování symetrie voleb),
-\item \argumentindex{Dis}~-- disertační práce,
-\item \argumentindex{Teze}~-- teze disertační práce,
-\item \argumentindex{Autoref}~-- autoreferát disertační práce,
-\item \argumentindex{Hab}~-- habilitační práce,
-\item \argumentindex{SP}~-- semestrální práce,
-\item \argumentindex{Proj}~-- projekt.
-\end{itemize}
+	      \begin{itemize}
+		      \item \argumentindex{DP}~-- diplomová práce,
+		      \item \argumentindex{BP}~-- bakalářská práce (nedělá nic, bakalářská
+		            práce je implicitní hodnotou, je zařazena jen pro zachování symetrie voleb),
+		      \item \argumentindex{Dis}~-- disertační práce,
+		      \item \argumentindex{Teze}~-- teze disertační práce,
+		      \item \argumentindex{Autoref}~-- autoreferát disertační práce,
+		      \item \argumentindex{Hab}~-- habilitační práce,
+		      \item \argumentindex{SP}~-- semestrální práce,
+		      \item \argumentindex{Proj}~-- projekt.
+	      \end{itemize}
 
-Kromě nastavení typu práce jsou k dispozici ještě následující volby:
+	      Kromě nastavení typu práce jsou k dispozici ještě následující volby:
 
-\begin{itemize}
+	      \begin{itemize}
 
-\item \argumentindex{article}~-- použít pro dokument základní třídu \LaTeX u
-\argument{article}. Je vhodná pro kratší dokumenty (např. autoreferát nebo
-teze).
+		      \item \argumentindex{article}~-- použít pro dokument základní třídu \LaTeX{}u
+		            \argument{article}. Je vhodná pro kratší dokumenty (např.~autoreferát nebo
+		            teze).
 
-\item \argumentindex{report}~-- použít pro dokument základní třídu \LaTeX u
-\argument{report} (nedělá nic, toto je výchozí nastavení).
+		      \item \argumentindex{report}~-- použít pro dokument základní třídu \LaTeX{}u
+		            \argument{report} (nedělá nic, toto je výchozí nastavení).
 
-\end{itemize}
+	      \end{itemize}
 
-\item[Volby balíku \argument{tul}] jsou předány tomuto balíku. Zde uvedu jen
-ty, které mají na vzhled práce přímý dopad:
+	\item[Volby balíku \argument{tul}] jsou předány tomuto balíku. Zde uvedu jen
+	      ty, které mají na vzhled práce přímý dopad:
 
-\begin{itemize}
-\item \argumentindex{FS},
-\argumentindex{FT},
-\argumentindex{FP},
-\argumentindex{EF},
-\argumentindex{FA},
-\argumentindex{FM},
-\argumentindex{FZS} a
-\argumentindex{CXI}~-- určují součást, na které práce vzniká; mají dopad jednak
-na titulní stránku, jednak na volbu základní barvy. Neuvedete-li žádnou volbu
-součásti, použije se styl celé univerzity.
+	      \begin{itemize}
+		      \item \argumentindex{FS},
+		            \argumentindex{FT},
+		            \argumentindex{FP},
+		            \argumentindex{EF},
+		            \argumentindex{FA},
+		            \argumentindex{FM},
+		            \argumentindex{FZS} a
+		            \argumentindex{CXI}~-- určují součást, na které práce vzniká; mají dopad jednak
+		            na titulní stránku, jednak na volbu základní barvy. Neuvedete-li žádnou volbu
+		            součásti, použije se styl celé univerzity.
 
-\item \argumentindex{EN}~-- práce je v angličtině. Projeví se na jazyku titulní
-stránky a prohlášení v \prikaz{ThesisStart}.
+		      \item \argumentindex{EN}~-- práce je v angličtině. Projeví se na jazyku titulní
+		            stránky a prohlášení v \prikaz{ThesisStart}.
 
-\item \argumentindex{bw}~-- sází se černobíle, titulní stránka a nadpisy částí
-textu nebudou používat barvy. Lze předpokládat, že tato volba bude
-u~absolventských prací dost obvyklá.
+		      \item \argumentindex{bw}~-- sází se černobíle, titulní stránka a nadpisy částí
+		            textu nebudou používat barvy. Lze předpokládat, že tato volba bude
+		            u~absolventských prací dost obvyklá.
 
-\item \argumentindex{fonts}~-- použít písma podle vizuální identity TUL. Bez
-této volby ponechá výchozí písma \LaTeX u.
+		      \item \argumentindex{fonts}~-- použít písma podle vizuální identity TUL\@. Bez
+		            této volby ponechá výchozí písma \LaTeX{}u.
 
-\item \argumentindex{sfheadings}~-- nadpisy nejvyšších úrovní sázet
-bezserifovým písmem, nikoli písmem TUL Mono.
+		      \item \argumentindex{sfheadings}~-- nadpisy nejvyšších úrovní sázet
+		            bezserifovým písmem, nikoli písmem TUL Mono.
 
-\end{itemize}
+	      \end{itemize}
 
-\item[Volby třídy \argument{report} (resp. \argument{article})] se předají této
-třídě a mají standardní dopad. V~základu se třída volá s~volbami
-\argument{a4paper} a \argument{12pt}, protože práce se standardně sázejí
-dvanáctibodovým písmem na papír formátu A4. Tyto dvě volby jsou pevné,
-případnými dalšími můžete ovlivnit chování třídy, například nastavit
-oboustranný tisk nebo způsob zarovnání matematických vzorců.
+	\item[Volby třídy \argument{report} (resp.~\argument{article})] se předají této
+	      třídě a mají standardní dopad. V~základu se třída volá s~volbami
+	      \argument{a4paper} a \argument{12pt}, protože práce se standardně sázejí
+	      dvanáctibodovým písmem na papír formátu A4. Tyto dvě volby jsou pevné,
+	      případnými dalšími můžete ovlivnit chování třídy, například nastavit
+	      oboustranný tisk nebo způsob zarovnání matematických vzorců.
 
 \end{description}
 
@@ -370,51 +370,51 @@ Cílem této skupiny příkazů je definovat důležité popisné informace o~pr
 
 \begin{description}
 
-\polozka{\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}}
-definuje název práce. První argument obsahuje jeho českou verzi, druhý verzi
-anglickou. Povinný příkaz.
+	\polozka{\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}}
+	definuje název práce. První argument obsahuje jeho českou verzi, druhý verzi
+	anglickou. Povinný příkaz.
 
-\polozka{\prikaz{TULprogramme}\argumentprom{kód programu}\argumentprom{název
-programu česky}\argumentprom{anglicky}} definuje kód a název studijního
-programu, v~jehož rámci je práce vytvořena. Kód je pro obě jazykové verze
-shodný, proto se zadává samostatným parametrem. Povinný příkaz kromě
-habilitačních prací.
+	\polozka{\prikaz{TULprogramme}\argumentprom{kód programu}\argumentprom{název
+			programu česky}\argumentprom{anglicky}} definuje kód a název studijního
+	programu, v~jehož rámci je práce vytvořena. Kód je pro obě jazykové verze
+	shodný, proto se zadává samostatným parametrem. Povinný příkaz kromě
+	habilitačních prací.
 
-\polozka{\prikaz{TULbranch}\argumentprom{kód oboru}\argumentprom{název oboru
-česky}\argumentprom{anglicky}} definuje kód a název studijního oboru nebo
-specializace, v~jehož rámci je práce vytvořena. Povinný příkaz pro habilitační
-práce, kde obsahuje obor habilitačního řízení. Pro ostatní typy prací je
-nepovinný, ale může se vyskytnout i vícekrát. Studuje-li student kombinaci
-několika oborů (typické pro FP), uvede po jednom příkazu \prikaz{TULbranch} pro
-každý obor.
+	\polozka{\prikaz{TULbranch}\argumentprom{kód oboru}\argumentprom{název oboru
+			česky}\argumentprom{anglicky}} definuje kód a název studijního oboru nebo
+	specializace, v~jehož rámci je práce vytvořena. Povinný příkaz pro habilitační
+	práce, kde obsahuje obor habilitačního řízení. Pro ostatní typy prací je
+	nepovinný, ale může se vyskytnout i vícekrát. Studuje-li student kombinaci
+	několika oborů (typické pro FP), uvede po jednom příkazu \prikaz{TULbranch} pro
+	každý obor.
 
-\polozka{\prikaz{TULauthor}\argumentprom{jméno autora}} definuje titul a jméno autora
-práce. Povinný příkaz.
+	\polozka{\prikaz{TULauthor}\argumentprom{jméno autora}} definuje titul a jméno autora
+	práce. Povinný příkaz.
 
-\polozka{\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}} definuje titul a jméno
-vedoucího práce. Povinný příkaz kromě habilitačních prací.
+	\polozka{\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}} definuje titul a jméno
+	vedoucího práce. Povinný příkaz kromě habilitačních prací.
 
-\polozka{\prikaz{TULconsultant}\argumentprom{jméno konzultanta}} definuje
-titul a jméno konzultanta práce, pokud byl určen. Nepovinný příkaz. Lze jej
-použít vícekrát, jestliže má práce více konzultantů.
+	\polozka{\prikaz{TULconsultant}\argumentprom{jméno konzultanta}} definuje
+	titul a jméno konzultanta práce, pokud byl určen. Nepovinný příkaz. Lze jej
+	použít vícekrát, jestliže má práce více konzultantů.
 
-\polozka{\prikaz{TULyear}\argumentprom{rok vytvoření práce}} definuje rok, ve kterém
-práce vznikla. Příkaz je nepovinný, pokud jej vynecháte, doplní se při překladu
-automaticky aktuální rok. Přesto doporučuji jej použít, jinak by při případném
-pozdějším překladu mohla vzniknout iluze, že práce vznikla v~pozdějším roce,
-než ve skutečnosti.
+	\polozka{\prikaz{TULyear}\argumentprom{rok vytvoření práce}} definuje rok, ve kterém
+	práce vznikla. Příkaz je nepovinný, pokud jej vynecháte, doplní se při překladu
+	automaticky aktuální rok. Přesto doporučuji jej použít, jinak by při případném
+	pozdějším překladu mohla vzniknout iluze, že práce vznikla v~pozdějším roce,
+	než ve skutečnosti.
 
-\polozka{\prikaz{TULthesisType}\argumentprom{typ práce česky}\argumentprom{anglicky}}
-umožňuje definovat jiný typ práce, než na které pamatují volby balíku
-\argument{BP}, \argument{DP} a další. V~prvním argumentu uveďte český
-název typu práce, ve druhém jeho anglický ekvivalent. Například pro výzkumnou
-zprávu by preambule obsahovala:
+	\polozka{\prikaz{TULthesisType}\argumentprom{typ práce česky}\argumentprom{anglicky}}
+	umožňuje definovat jiný typ práce, než na které pamatují volby balíku
+	\argument{BP}, \argument{DP} a další. V~prvním argumentu uveďte český
+	název typu práce, ve druhém jeho anglický ekvivalent. Například pro výzkumnou
+	zprávu by preambule obsahovala:
 
-\begin{listing}
-\begin{verbatim}
+	\begin{listing}
+		\begin{verbatim}
 \TULthesisType{Výzkumná zpráva}{Research report}
 \end{verbatim}
-\end{listing}
+	\end{listing}
 
 \end{description}
 
@@ -427,88 +427,90 @@ součásti, především pro úvodní partie práce.
 
 \begin{description}
 
-\polozka{\prikaz{ThesisStart}\argumentprom{rod}} v závislosti na parametru
-buď vygeneruje, nebo vloží standardní zahájení práce~-- titulní list, zadání a
-prohlášení o~autorství a autorských právech. Parametr \argument{\emph{rod}} má
-v základní podobě hodnotu \argument{female} nebo \argument{male} a určuje, zda
-bude prohlášení uvedeno v~rodě ženském nebo mužském. Interně se uvnitř volá
-níže uvedená trojice příkazů.
+	\polozka{\prikaz{ThesisStart}\argumentprom{rod}} v závislosti na parametru
+	buď vygeneruje, nebo vloží standardní zahájení práce~-- titulní list, zadání a
+	prohlášení o~autorství a autorských právech. Parametr \argument{\emph{rod}} má
+	v základní podobě hodnotu \argument{female} nebo \argument{male} a určuje, zda
+	bude prohlášení uvedeno v~rodě ženském nebo mužském. Interně se uvnitř volá
+	níže uvedená trojice příkazů.
 
-Pro bakalářské a diplomové práce jsou v současnosti úvodní stránky generovány
-IS/STAG. Chcete-li je použít, předejte příkazu jako parametr název PDF souboru.
-\prikaz{ThesisStart} pak jednoduše vloží jeho obsah. Podrobnosti najdete v
-části~\ref{stag} na straně~\pageref{stag}.
+	Pro bakalářské a diplomové práce jsou v současnosti úvodní stránky generovány
+	IS/STAG\@. Chcete-li je použít, předejte příkazu jako parametr název PDF souboru.
+	\prikaz{ThesisStart} pak jednoduše vloží jeho obsah. Podrobnosti najdete v
+	části~\ref{stag} na straně~\pageref{stag}.
 
-\polozka{\prikaz{ThesisTitle}\argumentprom{jazyk}} vygeneruje titulní list práce.
-Informace čerpá z~výše uvedených deklaračních příkazů \prikaz{TULtitle} a spol.
-Argument určuje, jaká jazyková verze se má vysázet. K dispozici je česká
-(hodnota \argument{CZ}) a anglická (\argument{EN}) verze titulního listu. Pokud
-použijete \prikaz{ThesisStart}, nemusí vás zajímat~-- je určen pro situace, kdy
-vám standardní zahájení práce nevyhovuje a chcete je nějakým způsobem upravit.
+	\polozka{\prikaz{ThesisTitle}\argumentprom{jazyk}} vygeneruje titulní list práce.
+	Informace čerpá z~výše uvedených deklaračních příkazů \prikaz{TULtitle} a spol.
+	Argument určuje, jaká jazyková verze se má vysázet. K dispozici je česká
+	(hodnota \argument{CZ}) a anglická (\argument{EN}) verze titulního listu. Pokud
+	použijete \prikaz{ThesisStart}, nemusí vás zajímat~-- je určen pro situace, kdy
+	vám standardní zahájení práce nevyhovuje a chcete je nějakým způsobem upravit.
 
-\polozka{\prikaz{Assignment}} vygeneruje prázdný list, který se v~práci nahradí
-originálem jejího zadání. Má dva účely: upomíná, abyste nezapomněli vložit
-zadání, a zajišťuje správné číslování stránek (list se zadáním se počítá mezi
-stránky práce, přestože na něm číslo není uvedeno). Pokud použijete
-\prikaz{ThesisStart}, nemusí vás zajímat~-- je určen pro situace, kdy vám
-standardní zahájení práce nevyhovuje a chcete je nějakým způsobem upravit.
+	\polozka{\prikaz{Assignment}} vygeneruje prázdný list, který se v~práci nahradí
+	originálem jejího zadání. Má dva účely: upomíná, abyste nezapomněli vložit
+	zadání, a zajišťuje správné číslování stránek (list se zadáním se počítá mezi
+	stránky práce, přestože na něm číslo není uvedeno). Pokud použijete
+	\prikaz{ThesisStart}, nemusí vás zajímat~-- je určen pro situace, kdy vám
+	standardní zahájení práce nevyhovuje a chcete je nějakým způsobem upravit.
 
-\polozka{\prikaz{Declaration}\argumentprom{rod}} vygeneruje prohlášení o~autorství a
-autorských právech. Parametr \argument{\emph{rod}} má hodnotu
-\argument{female} nebo \argument{male} a určuje, zda bude prohlášení uvedeno
-v~rodě ženském nebo mužském. Pokud použijete \prikaz{ThesisStart}, nemusí vás
-zajímat~-- je určen pro situace, kdy vám standardní zahájení práce nevyhovuje a
-chcete je nějakým způsobem upravit.
+	\polozka{\prikaz{Declaration}\argumentprom{rod}} vygeneruje prohlášení o~autorství a
+	autorských právech. Parametr \argument{\emph{rod}} má hodnotu
+	\argument{female} nebo \argument{male} a určuje, zda bude prohlášení uvedeno
+	v~rodě ženském nebo mužském. Pokud použijete \prikaz{ThesisStart}, nemusí vás
+	zajímat~-- je určen pro situace, kdy vám standardní zahájení práce nevyhovuje a
+	chcete je nějakým způsobem upravit.
 
-\polozka{\prostredi{abstractCZ}} je prostředí pro sazbu českého abstraktu práce.
-Nedělá mnoho~-- vysází český název práce, nadpis „Abstrakt“ a zúží řádek,
-protože abstrakty obvykle bývají krátké a na plnou šířku řádku nevypadají
-dobře. Je-li váš abstrakt dlouhý, použijte nepovinný argument \argument{wide},
-který vynechá zúžení a sází abstrakt na celou šířku řádku:
+	\polozka{\prostredi{abstractCZ}} je prostředí pro sazbu českého abstraktu práce.
+	Nedělá mnoho~-- vysází český název práce, nadpis „Abstrakt“ a zúží řádek,
+	protože abstrakty obvykle bývají krátké a na plnou šířku řádku nevypadají
+	dobře. Je-li váš abstrakt dlouhý, použijte nepovinný argument \argument{wide},
+	který vynechá zúžení a sází abstrakt na celou šířku řádku:
 
-\begin{listing}
-\begin{verbatim}
+	\begin{listing}
+		\begin{verbatim}
 \begin{abstractCZ}[wide]
 Široký text abstraktu.
 \end{abstractCZ}
 \end{verbatim}
-\end{listing}
+	\end{listing}
 
-Volba \argument{wide} je k dispozici pro všechna čtyři prostředí zajišťující
-sazbu abstraktu a klíčových slov. Používejte ji konzistentně~-- u všech nebo u
-žádného.
+	Volba \argument{wide} je k dispozici pro všechna čtyři prostředí zajišťující
+	sazbu abstraktu a klíčových slov. Používejte ji konzistentně~-- u všech nebo u
+	žádného.
 
-\polozka{\prostredi{abstractEN}} je prostředí pro sazbu anglického abstraktu práce.
-Od \argument{abstractCZ} se liší jen anglickým názvem práce a nadpisem.
+	\polozka{\prostredi{abstractEN}} je prostředí pro sazbu anglického abstraktu práce.
+	Od \argument{abstractCZ} se liší jen anglickým názvem práce a nadpisem.
 
-\polozka{\prostredi{keywordsCZ}} je prostředí pro sazbu českých klíčových slov.
-Podobně jako abstrakt vysází nadpis „Klíčová slova“ a zúží řádek. Opět je k
-dispozici volba \argument{wide}, která řádky nezužuje. Předpokládá se, že
-klíčová slova následují vždy za abstraktem.
+	\polozka{\prostredi{keywordsCZ}} je prostředí pro sazbu českých klíčových slov.
+	Podobně jako abstrakt vysází nadpis „Klíčová slova“ a zúží řádek. Opět je k
+	dispozici volba \argument{wide}, která řádky nezužuje. Předpokládá se, že
+	klíčová slova následují vždy za abstraktem.
 
-\polozka{\prostredi{keywordsEN}} je prostředí pro sazbu anglických klíčových slov.
-Od \argument{keywordsCZ} se liší jen anglickým nadpisem.
+	\polozka{\prostredi{keywordsEN}} je prostředí pro sazbu anglických klíčových slov.
+	Od \argument{keywordsCZ} se liší jen anglickým nadpisem.
 
-\polozka{\prostredi{acknowledgement}} je prostředí pro poděkování. Opět se chová
-stejně~-- vysází nadpis „Poděkování“ a sází svůj obsah do užších řádků, pokud
-nepoužijete nepovinný argument \argument{wide}.
+	\polozka{\prostredi{acknowledgement}} je prostředí pro poděkování. Opět se chová
+	stejně~-- vysází nadpis „Poděkování“ a sází svůj obsah do užších řádků, pokud
+	nepoužijete nepovinný argument \argument{wide}.
 
-\polozka{\prostredi{abbrList}} je prostředí pro sazbu seznamu zkratek. Obsah
-seznamu zkratek je koncipován jako tabulka se dvěma sloupci. Zkratku od popisu
-proto oddělte znakem \argument{\&} a popis zakončete
-\argument{\textbackslash\textbackslash}. Použití vypadá nějak takto:
+	\polozka{\prostredi{abbrList}} je prostředí pro sazbu seznamu zkratek. Obsah
+	seznamu zkratek je koncipován jako tabulka se dvěma sloupci. Zkratku od popisu
+	proto oddělte znakem \argument{\&} a popis zakončete
+	\argument{\textbackslash\textbackslash}. Použití vypadá nějak takto:
 
-{\color{\tulcolor}
-\begin{verbatim}
+	\begingroup
+	\color{\tulcolor}
+	\begin{verbatim}
 \begin{abbrList}
 CSS  & Cascading Style Sheets \\
 HTML & HyperText Markup Language \\
 PHP  & PHP: Hypertext Preprocessor \\
 W3C  & World Wide Web Consortium \\
 \end{abbrList}
-\end{verbatim}}
+\end{verbatim}
+	\endgroup
 
-Komentář k seznamu zkratek najdete v~části~\ref{zkratky}.
+	Komentář k seznamu zkratek najdete v~části~\ref{zkratky}.
 
 \end{description}
 
@@ -521,7 +523,7 @@ Několik poznámek a povzdechů závěrem.
 \section{Úvodní stránky generované IS/STAG}\label{stag}
 
 V současnosti jsou úvodní stránky bakalářských a diplomových prací (titulní
-strana, zadání a autorské prohlášení) generovány IS/STAG. Na začátek práce se
+strana, zadání a autorské prohlášení) generovány IS/STAG\@. Na začátek práce se
 jednoduše vloží. V tom případě se nemusíte zatěžovat deklaracemi popsanými v
 kapitole~\ref{deklarace} na straně~\pageref{deklarace}. Z nich stačí použít jen
 \prikaz{TULtitle}, protože název práce se používá v abstraktu.
@@ -531,17 +533,17 @@ jako parametr příkazu \prikaz{ThesisStart}. Příkaz pak sám nedělá nic, je
 místo sebe vloží obsah zadaného souboru. Postupujte následovně:
 
 \begin{enumerate}
-\item Vygenerujte z IS/STAG úvodní stránky práce a uložte je do PDF souboru,
-například \emph{zahajeni.pdf}.
+	\item Vygenerujte z IS/STAG úvodní stránky práce a uložte je do PDF souboru,
+	      například \emph{zahajeni.pdf}.
 
-\item Na začátek práce vložte příkaz \prikaz{ThesisStart} a jako jeho argument
-uveďte název příslušného souboru, tedy:
+	\item Na začátek práce vložte příkaz \prikaz{ThesisStart} a jako jeho argument
+	      uveďte název příslušného souboru, tedy:
 
-\prikaz{ThesisStart}\argument{\{zahajeni.pdf\}}
+	      \prikaz{ThesisStart}\argument{\{zahajeni.pdf\}}
 
-\item Práci znovu přeložte. V místě příkazu \prikaz{ThesisStart} by měl být
-vložen obsah externího PDF souboru. Pokud chybí, pravděpodobně jste udělali
-chybu v názvu souboru.
+	\item Práci znovu přeložte. V místě příkazu \prikaz{ThesisStart} by měl být
+	      vložen obsah externího PDF souboru. Pokud chybí, pravděpodobně jste udělali
+	      chybu v názvu souboru.
 
 \end{enumerate}
 
@@ -564,8 +566,8 @@ uvedeny, i když jsou prázdné.
 Zahájení habilitační práce může vypadat například nějak takto:
 
 \begin{listing}
-\begin{verbatim}
-\documentclass[FM,Hab]{packege_tul/tulthesis}
+	\begin{verbatim}
+\documentclass[FM,Hab]{tulpackage/tulthesis}
 \TULtitle{Stochastické řízení}{Stochastic control}
 \TULbranch{}{Technická kybernetika}{Technical cybernetics}
 \TULauthor{Ing. Jan Řidič, Ph.D.}
@@ -581,17 +583,17 @@ a pokud možno se nepletla do cesty různým balíkům. Její činnost, která b
 mohla mít dopady na kompatibilitu s~dalšími balíky, se omezuje na:
 
 \begin{itemize}
-\item Nastavení velikosti papíru a okrajů. K~tomu se používají standardní
-prostředky \LaTeX u~-- volba \argument{a4paper} a rozměry
-\prikazneindex{oddsidemargin} a spol.
+	\item Nastavení velikosti papíru a okrajů. K~tomu se používají standardní
+	      prostředky \LaTeX{}u~-- volba \argument{a4paper} a rozměry
+	      \prikazneindex{oddsidemargin} a spol.
 
-\item Nastavení zápatí stránky prostřednictvím balíku \argument{fancyhdr}.
-Chcete-li zasahovat do záhlaví nebo zápatí stránek, dělejte to pomocí příkazů
-tohoto balíku.
+	\item Nastavení zápatí stránky prostřednictvím balíku \argument{fancyhdr}.
+	      Chcete-li zasahovat do záhlaví nebo zápatí stránek, dělejte to pomocí příkazů
+	      tohoto balíku.
 
-\item Změna formátu nadpisu kapitol pomocí balíku \argument{titlesec}. Opět,
-pokud vám nevyhovuje, využijte ke změně nástroje poskytované tímto balíkem,
-konkrétně příkaz \prikazneindex{titleformat}.
+	\item Změna formátu nadpisu kapitol pomocí balíku \argument{titlesec}. Opět,
+	      pokud vám nevyhovuje, využijte ke změně nástroje poskytované tímto balíkem,
+	      konkrétně příkaz \prikazneindex{titleformat}.
 
 \end{itemize}
 
@@ -600,10 +602,10 @@ možností sazby by nemělo stát nic v~cestě. Nechávám to na vás.
 
 Například jsem rezignoval na nastavení konkrétního písma pro sazbu práce,
 protože písmo a způsob jeho volby závisí jak na písmech dostupných ve vašem
-systému, tak na konkrétní variantě \LaTeX u, kterou používáte. Pokud používáte
+systému, tak na konkrétní variantě \LaTeX{}u, kterou používáte. Pokud používáte
 \XeLaTeX, máte k~dispozici balík \argument{fontspec}. Sázíte-li pdf\-\LaTeX\-em
 (což byste už dělat neměli, připravujete se o vymoženosti moderních
-implementací, jako jsou \XeLaTeX nebo Lua\LaTeX), můžete sáhnout po některém ze
+implementací, jako jsou \XeLaTeX{} nebo Lua\LaTeX), můžete sáhnout po některém ze
 standardních balíků typu \argument{palatino} či \argument{newcent}.
 
 \clearpage
@@ -624,7 +626,7 @@ způsobem, například prostřednictvím standardního prostředí
 \argument{description}. Tedy něco jako:
 
 \begin{listing}
-\begin{verbatim}
+	\begin{verbatim}
 \section*{Seznam zkratek}\phantomsection
 \addcontentsline{toc}{chapter}{Seznam zkratek}
 

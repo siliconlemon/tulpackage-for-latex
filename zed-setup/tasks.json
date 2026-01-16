@@ -1,0 +1,36 @@
+[
+  {
+    "label": "latexmk-build",
+    "command": "latexmk",
+    "args": [
+      "-xelatex",
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "-outdir=out",
+      "-auxdir=auxil",
+      "$ZED_FILENAME"
+    ],
+    "cwd": "$ZED_DIRNAME",
+    "tags": ["latex-build"],
+    "hide": "never"
+  },
+  {
+    "label": "cspell-tex-current-file",
+    "command": "powershell",
+    "args": [
+      "-NoProfile",
+      "-Command",
+      "cspell \"$env:ZED_FILENAME\" --config \"$env:ZED_WORKTREE_ROOT\\lsp\\cspell.json\" --show-context --show-suggestions; exit 0"
+    ],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "reveal_target": "dock",
+    "hide": "never",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "show_summary": true,
+    "show_command": true,
+    "tags": ["spellcheck"]
+  }
+]

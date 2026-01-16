@@ -1,0 +1,95 @@
+{
+  "language": "en,cs",
+  "import": [
+    "C:\\Users\\ondre\\AppData\\Roaming\\npm\\node_modules\\@cspell\\dict-cs-cz\\cspell-ext.json"
+  ],
+
+  "patterns": [
+    { "name": "ALL_TEXT", "pattern": "[\\s\\S]+" },
+
+    { "name": "TEX_COMMAND", "pattern": "\\\\[a-zA-Z@]+\\*?" },
+
+    { "name": "TEX_MATH_INLINE", "pattern": "\\$[^$]*\\$" },
+    { "name": "TEX_MATH_DISPLAY_DOLLARS", "pattern": "\\$\\$[\\s\\S]*?\\$\\$" },
+    {
+      "name": "TEX_MATH_DISPLAY_BRACKETS",
+      "pattern": "\\\\\\[[\\s\\S]*?\\\\\\]"
+    },
+
+    {
+      "name": "TEX_LABEL_REF_CITE",
+      "pattern": "\\\\(?:label|ref|eqref|pageref|autoref|cite[a-zA-Z*]*)\\{[^}]*\\}"
+    },
+
+    { "name": "TEX_URL", "pattern": "\\\\url\\{[^}]*\\}" },
+    { "name": "TEX_HREF", "pattern": "\\\\href\\{[^}]*\\}\\{[^}]*\\}" },
+
+    {
+      "name": "TEX_FILE_EXTENSIONS",
+      "pattern": "\\b\\w+\\.(?:tex|bib|sty|cls|png|jpg|jpeg|pdf|eps|svg)\\b"
+    }
+  ],
+
+  "words": [
+    "tulthesis",
+    "tulpackage",
+
+    "enumitem",
+    "itemsep",
+    "parsep",
+    "lstlisting",
+
+    "documentclass",
+    "tableofcontents",
+    "inputenc",
+
+    "polyglossia",
+    "makeidx",
+    "xunicode",
+    "xltxtra",
+    "parskip",
+    "myquote",
+
+    "ifthen",
+    "tabularray",
+    "hyperref",
+    "pdfpages",
+
+    "Autoref",
+    "sfheadings",
+
+    "oddsidemargin",
+    "fancyhdr",
+    "titlesec",
+    "titleformat",
+    "fontspec",
+    "formatcom",
+    "palatino",
+    "newcent",
+    "tblr",
+
+    "twoside",
+    "oneside"
+  ],
+
+  "overrides": [
+    {
+      "filename": "**/*.tex",
+      "languageId": "plaintext",
+      "dictionaries": ["cs_cz", "en_US"],
+      "includeRegExpList": ["ALL_TEXT"],
+      "ignoreRegExpList": [
+        "TEX_MATH_INLINE",
+        "TEX_MATH_DISPLAY_DOLLARS",
+        "TEX_MATH_DISPLAY_BRACKETS",
+
+        "TEX_LABEL_REF_CITE",
+        "TEX_URL",
+        "TEX_HREF",
+
+        "TEX_COMMAND",
+        "TEX_FILE_EXTENSIONS"
+      ]
+    }
+  ]
+}

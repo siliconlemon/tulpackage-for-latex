@@ -3,7 +3,7 @@
 
 [English version below.](#english)
 
-LaTeX balík připravený k okamžitému použití na platformě Overleaf - obsahuje styly a třídy nezbytné pro psaní prací v souladu se směrnicemi Technické univerzity v Liberci (TUL). Jedná se o upravenou verzi původního balíku `tulthesis 2.1`, u které se předpokládá vyšší přístupnost a jednodušší používání, a to i za cenu většího počtu importovaných balíčků a po provedení změn ve struktuře repozitáře.
+LaTeX balík připravený k okamžitému použití na platformě Overleaf, případně v textových editorech (uveden setup pro Zed editor). Obsahuje styly a třídy nezbytné pro psaní prací v souladu se směrnicemi Technické univerzity v Liberci (TUL). Jedná se o upravenou verzi původního balíku `tulthesis 2.1`, u které se předpokládá vyšší přístupnost a jednodušší používání, a to i za cenu většího počtu importovaných balíčků a po provedení změn ve struktuře repozitáře.
 
 **Důležité:** Přestože je s tímto balíkem možné psát i v anglickém jazyce, veškeré komentáře a dokumentace jsou v současné době vedeny pouze v češtině.
 
@@ -194,7 +194,7 @@ Autorství základu tohoto balíku (`tulthesis 2.1`) a tím pádem i všechny z�
 
 [Česká verze výše.](#czech)
 
-This LaTeX package is prepared for immediate use on the Overleaf platform. It includes styles and classes necessary for writing theses and other academic works in accordance with the guidelines of the Technical University of Liberec (TUL). This package represents a modified version of the original `tulthesis 2.1` package, with the aim of providing increased accessibility and ease of use, potentially at the cost of a larger number of imported packages and following structural changes in the repository.
+This LaTeX package is prepared for immediate use on the Overleaf platform (or desktop text editors - a setup example for Zed editor is shown). It includes styles and classes necessary for writing theses and other academic works in accordance with the guidelines of the Technical University of Liberec (TUL). This package represents a modified version of the original `tulthesis 2.1` package, with the aim of providing increased accessibility and ease of use, potentially at the cost of a larger number of imported packages and following structural changes in the repository.
 
 **Important Note:** Although writing in English is possible with this package, all comments and documentation are currently provided only in Czech.
 
