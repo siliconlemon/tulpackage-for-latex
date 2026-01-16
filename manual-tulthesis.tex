@@ -1,4 +1,5 @@
 \documentclass[fonts,numbering,twoside,margins]{./tulpackage/tulthesis}
+% \documentclass[numbering,twoside,margins]{./tulpackage/tulthesis}
 % Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit
 % pouze XeLaTeXem. Pokud nemáte instalována použitá (komerční) písma, změňte
 % nebo odstraňte příkazy \set...font na následujících řádcích
@@ -14,8 +15,8 @@
 \makeindex
 
 % Podpora pro Unicode a XeLaTeX specifické funkce
-\usepackage{xunicode}
-\usepackage{xltxtra}
+% \usepackage{xunicode}
+% \usepackage{xltxtra}
 % Potřebuji neproporcionální kurzívu, kterou Noto Sans Mono zatím nemá
 \setmonofont{RobotoMono}[
     Path = ./tulpackage/fonts/, % chktex 26
@@ -201,8 +202,7 @@ strukturování \prikazneindex{chapter}. Pro kratší dokumenty lze volbou
 Typické zahájení diplomové práce na Fakultě mechatroniky pro sazbu \XeLaTeX{}em
 bude proto vypadat nějak takto:
 
-\begin{listing}
-	\begin{verbatim}
+\begin{lstlisting}[caption={Příklad zahájení diplomové práce}]
 \documentclass[FM,DP]{tulthesis}
 \usepackage{polyglossia}
 \setdefaultlanguage{czech}
@@ -253,18 +253,19 @@ Vám poděkování a lásku vám.
 \chapter{Úvod}
 
 Ve své diplomové práci...
-\end{verbatim}
-\end{listing}
+\end{lstlisting}
+
+\clearpage
 
 Dáváte-li přednost pdf\LaTeX{}u (což byste rozhodně neměli dělat, používejte raději
 moderní implementace \XeLaTeX\ nebo Lua\LaTeX), změní se úvodní skupina příkazů na:
 
 \begin{listing}
 	\begin{verbatim}
-\documentclass[FM,DP]{tulthesis}
-\usepackage[czech]{babel}
-\usepackage[utf8]{inputenc}
-\end{verbatim}
+        \documentclass[FM,DP]{tulthesis}
+        \usepackage[czech]{babel}
+        \usepackage[utf8]{inputenc}
+    \end{verbatim}
 \end{listing}
 
 Kompletní příklad použití třídy najdete ve zdrojovém textu tohoto dokumentu,

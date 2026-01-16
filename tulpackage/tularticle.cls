@@ -104,8 +104,6 @@
 % Načtení potřebných balíčků pro tul.sty
 \RequirePackage{polyglossia}
 \RequirePackage{fontspec}
-\RequirePackage{xunicode}
-\RequirePackage{xltxtra}
 \RequirePackage{tabularx}
 \RequirePackage{makeidx}
 \RequirePackage{tocloft}
@@ -118,7 +116,7 @@
 \providecommand{\uv}[1]{„#1“}
 
 % noTULheader jako fixní možnost
-\noTULheader
+\noTULheader{}
 
 % Předdefinovaný obsah
 \newcommand{\TULarticleTOC}{%
