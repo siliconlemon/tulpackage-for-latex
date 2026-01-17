@@ -126,7 +126,7 @@
 }
 
 % Prostředí pro seznam zkratek
-\newenvironment{abbrList}{\phantomsection
+\newenvironment{abbrList}{\phantomsection%
 	% Nadpis pro seznam zkratek (podle jazyka práce)
 	\ifthenelse{\equal{\TUL@nguage}{EN}}%
 	{\section*{\large List of abbreviations}\vspace{-1em}}
@@ -141,7 +141,7 @@
 	\DefTblrTemplate{capcont}{default}{}
 	% Seznam zkratek ve dvou sloupcích
 	\noindent\tblr[long]{column{2}={co=1}}}
-{\endtblr
+{\endtblr%
 	\clearpage % Nová stránka po seznamu zkratek
 }
 

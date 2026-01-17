@@ -196,7 +196,7 @@
 
 % Načtení balíku TUL (bez záhlaví, zápatí řešíme zde)
 \RequirePackage[noheader]{tulpackage/tul}
-\noTULfooter
+\noTULfooter%
 
 % Logika a formátování
 \RequirePackage{ifthen}
@@ -229,7 +229,7 @@
 }
 
 % Název práce
-\newcommand{\TUL@nazevCZ}{Chybí \textbackslash TULtitle\{česky\}\{anglicky\}}
+\newcommand{\TUL@nazevCZ}{Chybí \textbackslash{}TULtitle\{česky\}\{anglicky\}}
 \newcommand{\TUL@nazevEN}{English title}
 \newcommand{\TULtitle}[2]{
 	\renewcommand{\TUL@nazevCZ}{#1}
@@ -242,7 +242,7 @@
 }
 
 % Autor
-\newcommand{\TUL@autor}{Chybí \textbackslash TULauthor\{jméno\}}
+\newcommand{\TUL@autor}{Chybí \textbackslash{}TULauthor\{jméno\}}
 \newcommand{\TULauthor}[1]{
 	\renewcommand{\TUL@autor}{#1}
 	\ifTUL@pdf
@@ -251,7 +251,7 @@
 }
 
 % Vedoucí práce
-\newcommand{\TUL@vedouci}{Chybí \textbackslash TULsupervisor\{jméno\}}
+\newcommand{\TUL@vedouci}{Chybí \textbackslash{}TULsupervisor\{jméno\}}
 \newcommand{\TULsupervisor}[1]{\renewcommand{\TUL@vedouci}{#1}}
 
 % Konzultanti
@@ -263,17 +263,17 @@
 }
 
 % Studijní program
-\newcommand{\TUL@programCZ}{Chybí \textbackslash TULprogramme\{kód\}\{česky\}\{anglicky\}}
+\newcommand{\TUL@programCZ}{Chybí \textbackslash{}TULprogramme\{kód\}\{česky\}\{anglicky\}}
 \newcommand{\TUL@programEN}{Study Programme}
 \newcommand{\TULprogramme}[3]{
-	\renewcommand{\TUL@programCZ}{#1 -- #2}
-	\renewcommand{\TUL@programEN}{#1 -- #3}
+	\renewcommand{\TUL@programCZ}{#1~-- #2}
+	\renewcommand{\TUL@programEN}{#1~-- #3}
 }
 
 % Studijní obory
 \newcounter{TUL@bor}
 \setcounter{TUL@bor}{0}
-\newcommand{\i@TULoborCZ}{Chybí \textbackslash TULbranch\{kód\}\{česky\}\{anglicky\}}
+\newcommand{\i@TULoborCZ}{Chybí \textbackslash{}TULbranch\{kód\}\{česky\}\{anglicky\}}
 \newcommand{\i@TULoborEN}{Study Branches}
 \newcommand{\TULbranch}[3]{
 	\stepcounter{TUL@bor}
@@ -281,8 +281,8 @@
 		\@namedef{\roman{TUL@bor}@TULoborCZ}{#2}
 		\@namedef{\roman{TUL@bor}@TULoborEN}{#3}
 	}{
-		\@namedef{\roman{TUL@bor}@TULoborCZ}{#1 -- #2}
-		\@namedef{\roman{TUL@bor}@TULoborEN}{#1 -- #3}
+		\@namedef{\roman{TUL@bor}@TULoborCZ}{#1~-- #2}
+		\@namedef{\roman{TUL@bor}@TULoborEN}{#1~-- #3}
 	}
 }
 
@@ -343,9 +343,9 @@
 
 			% Nadpis
 			\begin{minipage}{\textwidth}
-				\noindent\large\TULHeadFont
+				\noindent\large\TULHeadFont%
 				\ifthenelse{\equal{#1}{EN}}{\TUL@levelEN}{\TUL@levelCZ}\\[\bigskipamount]
-				\raggedright\fontsize{18pt}{22pt}\selectfont\color{\tulcolor}\TULHeadFont
+				\raggedright\fontsize{18pt}{22pt}\selectfont\color{\tulcolor}\TULHeadFont%
 				\ifthenelse{\equal{#1}{EN}}{\TUL@nazevEN}{\TUL@nazevCZ}\par
 			\end{minipage}
 
@@ -353,7 +353,7 @@
 
 			% Tabulka s informacemi
 			\newcommand{\t@nd}{&}
-			\newcommand{\n@dpis}{\itshape}
+			\newcommand{\n@dpis}{\itshape}%
 			\newdimen{\TUL@hodnoty}
 			\newcounter{TULc@unter}
 
@@ -405,7 +405,7 @@
 				\rule{0pt}{10mm}                                                        & Liberec \TUL@rok                                            \\
 			\end{tabular}
 
-			\cleardoublepage
+			\cleardoublepage%
 		}}
 
 % ==========================================================================
@@ -423,7 +423,7 @@
 		\thispagestyle{empty}
 	\end{center}
 	\vfill
-	\cleardoublepage
+	\cleardoublepage%
 }
 
 % Pomocné pro prohlášení
@@ -434,7 +434,7 @@
 % Prohlášení CZ
 \newcommand{\DeclarationCZ}[1]{
 	\vspace{2em}
-	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright Prohlášení}
+	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Prohlášení}
 	\vspace{1.5em}
 
 	Prohlašuji, že \TULpracerod{svůj}{svou}{své} \TULpraceou\ jsem vypracoval\TULfem{#1}
@@ -456,7 +456,7 @@
 		právo ode mne požadovat úhradu nákladů, které vynaložila na vytvoření díla,
 		až do jejich skutečné výše.
 
-		\ifthenelse{\equal{\TUL@kat}{BP} \OR \equal{\TUL@kat}{DP} \OR \equal{\TUL@kat}{Dis}}
+		\ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
 		{Současně čestně prohlašuji, že text elektronické podoby práce vložený do IS STAG
 			se shoduje s textem tištěné podoby práce.}{}
 	}
@@ -471,13 +471,13 @@
 	vyplývat z porušení tohoto prohlášení.
 
 	\vspace{3em}
-	\noindent \the\day. \the\month. \the\year \hfill \noindent \TUL@autor
+	\noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
 }
 
 % Prohlášení EN
 \newcommand{\DeclarationEN}{
 	\vspace{2em}
-	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright Declaration}
+	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Declaration}
 	\vspace{1.5em}
 
 	I hereby certify, I, myself, have written my \ThesisType@EN\ as an original and
@@ -487,18 +487,18 @@
 
 	\ifthenelse{\equal{\TUL@kat}{Hab}}{}{
 		I acknowledge that my \ThesisType@EN\ is fully governed by Act No.~121/2000 Coll.,
-		the Copyright Act, in particular Article~60 -- School Work.
+		the Copyright Act, in particular Article~60!-- School Work.
 
 		I acknowledge that the Technical University of Liberec does not infringe my
 		copyrights by using my \ThesisType@EN\ for internal purposes of the Technical
 		University of Liberec.
 
 		I am aware of my obligation to inform the Technical University of Liberec on
-		having used or granted license to use the results of my \ThesisType@EN; in
+		having used or granted license to use the results of my \ThesisType@EN\@; in
 		such a case the Technical University of Liberec may require reimbursement of
 		the costs incurred for creating the result up to their actual amount.
 
-		\ifthenelse{\equal{\TUL@kat}{BP} \OR \equal{\TUL@kat}{DP} \OR \equal{\TUL@kat}{Dis}}
+		\ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
 		{At the same time, I honestly declare that the text of the printed version of my
 			\ThesisType@EN\ is identical with the text of the electronic version uploaded
 			into the IS STAG.}{}
@@ -513,7 +513,7 @@
 	from a breach of this declaration.
 
 	\vspace{3em}
-	\noindent \the\day. \the\month. \the\year \hfill \noindent \TUL@autor
+	\noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
 }
 
 % Automatický výběr prohlášení
@@ -522,18 +522,18 @@
 	\begin{uzky@text}
 		\ifthenelse{\equal{\TUL@nguage}{EN}}{\DeclarationEN{#1}}{\DeclarationCZ{#1}}
 	\end{uzky@text}
-	\cleardoublepage
+	\cleardoublepage%
 }
 
 % Hlavní příkaz pro zahájení práce
 \newcommand{\ThesisStart}[1]{
-	\ifthenelse{\equal{#1}{female} \OR \equal{#1}{male}}{
+	\ifthenelse{\equal{#1}{female} \OR\equal{#1}{male}}{
 		\ifthenelse{\equal{\TUL@nguage}{EN}}{\ThesisTitle{EN}}{\ThesisTitle{CZ}}
 		% Vložení zadání (pouze BP, DP, RP, MP)
 		\ifthenelse{\equal{\TUL@kat}{BP}
-			\OR \equal{\TUL@kat}{DP}
-			\OR \equal{\TUL@kat}{RP}
-			\OR \equal{\TUL@kat}{MP}}{\Assignment}{}
+			\OR\equal{\TUL@kat}{DP}
+			\OR\equal{\TUL@kat}{RP}
+			\OR\equal{\TUL@kat}{MP}}{\Assignment}{}
 		\Declaration{#1}
 	}{
 		\includepdf[pages=-]{#1}
