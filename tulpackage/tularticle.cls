@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{./tulpackage/tularticle}[2025/03/15 TUL Article Class v1.0]
+\ProvidesClass{./tulpackage/tularticle}[2026/01/20 v1.0.0]
 % Licence: CC BY
 
 % Používané balíčky:
@@ -126,7 +126,7 @@
 }
 
 % Prostředí pro seznam zkratek
-\newenvironment{abbrList}{\phantomsection%
+\newenvironment{abbreviations}{\phantomsection%
 	% Nadpis pro seznam zkratek (podle jazyka práce)
 	\ifthenelse{\equal{\TUL@nguage}{EN}}%
 	{\section*{\large List of abbreviations}\vspace{-1em}}

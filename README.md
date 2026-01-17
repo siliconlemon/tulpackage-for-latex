@@ -3,7 +3,7 @@
 
 [English version below.](#english)
 
-LaTeX balík připravený k okamžitému použití na platformě Overleaf, případně v textových editorech (uveden setup pro Zed editor). Obsahuje styly a třídy nezbytné pro psaní prací v souladu se směrnicemi Technické univerzity v Liberci (TUL). Jedná se o upravenou verzi původního balíku `tulthesis 2.1`, u které se předpokládá vyšší přístupnost a jednodušší používání, a to i za cenu většího počtu importovaných balíčků a po provedení změn ve struktuře repozitáře.
+LaTeX balík připravený k okamžitému použití na platformě Overleaf, případně v textových editorech (uveden setup pro Zed editor). Obsahuje styly a třídy nezbytné pro psaní prací v souladu se směrnicemi Technické univerzity v Liberci (TUL). Jedná se o upravenou verzi původního balíku `tulthesis 2.1`, u které se předpokládá vyšší přístupnost a jednodušší používání, a to i za cenu většího počtu importovaných balíčků a po provedení změn ve struktuře repositáře.
 
 **Důležité:** Přestože je s tímto balíkem možné psát i v anglickém jazyce, veškeré komentáře a dokumentace jsou v současné době vedeny pouze v češtině.
 
@@ -22,7 +22,7 @@ Balík poskytuje veškeré potřebné nástroje pro vytváření dokumentů odpo
 
 Pro použití tohoto `tulpackage-for-latex` na platformě Overleaf se doporučuje postupovat následovně:
 
-1. **Stažení repozitáře:** Na stránce repozitáře na GitHubu je třeba kliknout na tlačítko "Code" a následně vybrat možnost "Download ZIP".
+1. **Stažení repositáře:** Na stránce repositáře na GitHubu je třeba kliknout na tlačítko "Code" a následně vybrat možnost "Download ZIP".
 2. **Nahrání souboru do Overleafu:** Ve vlastním projektu na Overleafu je nutné kliknout na tlačítko "Add Files" a poté na "Upload". Následně se vybere stažený ZIP soubor, který Overleaf automaticky rozbalí.
 
 ### Lokální distribuce LaTeXu (TeXworks, TeXstudio apod.)
@@ -105,7 +105,7 @@ Balík by měl být použitelný i na lokálních zařízení (v TeXworks nebo T
 - `\begin{keywordsCZ} ...`: Prostředí pro vložení klíčových slov v češtině
 - `\begin{keywordsEN} ...`: Prostředí pro vložení klíčových slov v angličtině
 - `\begin{acknowledgement} ...`: Prostředí pro vložení poděkování
-- `\begin{abbrList} ...`: Prostředí pro vložení seznamu zkratek
+- `\begin{abbreviations} ...`: Prostředí pro vložení seznamu zkratek
 - `\TULthesisTOC`: Předdefinovaný obsah
 
 #### Třída `tularticle`
@@ -297,7 +297,7 @@ The package should also be usable on local devices (in TeXworks or TeXstudio) �
 - `\begin{keywordsCZ} ...`: Environment for inserting keywords in Czech
 - `\begin{keywordsEN} ...`: Environment for inserting keywords in English
 - `\begin{acknowledgement} ...`: Environment for inserting acknowledgements
-- `\begin{abbrList} ...`: Environment for inserting the list of abbreviations
+- `\begin{abbreviations} ...`: Environment for inserting the list of abbreviations
 - `\TULthesisTOC`: Predefined table of contents
 
 #### `tularticle` Class

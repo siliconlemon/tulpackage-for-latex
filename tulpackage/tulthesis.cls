@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{./tulpackage/tulthesis}[2024/12/02 version 2.1 fork 0.1]
+\ProvidesClass{./tulpackage/tulthesis}[2026/01/20 v1.0.0]
 % Licence: CC BY
 %
 % % Používané balíčky:
@@ -70,7 +70,7 @@
 % \begin{keywordsCZ} ... :  Prostředí pro klíčová slova v češtině
 % \begin{keywordsEN} ... :  Prostředí pro klíčová slova v angličtině
 % \begin{acknowledgement} ... :  Prostředí pro poděkování
-% \begin{abbrList} ... :  Prostředí pro seznam zkratek
+% \begin{abbreviations} ... :  Prostředí pro seznam zkratek
 % \TULthesisTOC:  Předdefinovaný obsah
 
 % ==========================================================================

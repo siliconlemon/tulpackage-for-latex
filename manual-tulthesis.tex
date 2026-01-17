@@ -112,11 +112,20 @@
 % Předdefinovaný obsah
 \TULthesisTOC{}
 
-\begin{abbrList}
+\begin{abbreviations}
 	\textbf{TUL} & Technická univerzita v~Liberci \\
 	\textbf{FM} & Fakulta mechatroniky, informatiky a mezioborových studií
 	Technické univerzity v~Liberci \\
-\end{abbrList}
+\end{abbreviations}
+
+\clearpage
+
+% Změňte nebo zakomentujte vspace podle toho, kolik položek bude v seznamech
+\listoflistings%
+\vspace{10em}
+\listoffigures%
+\vspace{10em}
+\listoftables%
 
 \chapter{Základy použití}
 
@@ -191,7 +200,7 @@ Následuje typicky abstrakt a klíčová slova ve dvou jazycích, pro něž jsou
 k~dispozici prostředí \prostredi{abstractCZ}, \prostredi{keywordsCZ},
 \prostredi{abstractEN} a \prostredi{keywordsEN}, poděkování (prostředí
 \prostredi{acknowledgement}), obsah (standardní příkaz
-\prikazneindex{tableofcontents}), seznam zkratek (prostředí \prostredi{abbrList}) a
+\prikazneindex{tableofcontents}), seznam zkratek (prostředí \prostredi{abbreviations}) a
 pak již vlastní text práce.
 
 Jelikož vychází z~třídy \argument{report}, je základním příkazem pro jeho
@@ -249,9 +258,9 @@ Vám poděkování a lásku vám.
 
 \clearpage
 
-\begin{abbrList}
+\begin{abbreviations}
 \textbf{EU} & Evropská unie \\
-\end{abbrList}
+\end{abbreviations}
 
 \chapter{Úvod}
 
@@ -504,7 +513,7 @@ součásti, především pro úvodní partie práce.
 	stejně~-- vysází nadpis „Poděkování“ a sází svůj obsah do užších řádků, pokud
 	nepoužijete nepovinný argument \argument{wide}.
 
-	\polozka{\prostredi{abbrList}} je prostředí pro sazbu seznamu zkratek. Obsah
+	\polozka{\prostredi{abbreviations}} je prostředí pro sazbu seznamu zkratek. Obsah
 	seznamu zkratek je koncipován jako tabulka se dvěma sloupci. Zkratku od popisu
 	proto oddělte znakem \argument{\&} a popis zakončete
 	\argument{\textbackslash\textbackslash}. Použití vypadá nějak takto:
@@ -513,12 +522,12 @@ součásti, především pro úvodní partie práce.
 	\color{\tulcolor}
 	\begin{slisting}
 		\begin{verbatim}
-\begin{abbrList}
+\begin{abbreviations}
 CSS  & Cascading Style Sheets \\
 HTML & HyperText Markup Language \\
 PHP  & PHP: Hypertext Preprocessor \\
 W3C  & World Wide Web Consortium \\
-\end{abbrList}
+\end{abbreviations}
 \end{verbatim}
 	\end{slisting}
 	\endgroup
@@ -578,10 +587,6 @@ uvedeny, i když jsou prázdné.
 
 Zahájení habilitační práce může vypadat například nějak takto:
 
-%%% TODO: PROMAZAT
-
-\listoflistings{}
-
 \begin{linelisting}
 	\begin{verbatim}
 \documentclass[FM,Hab]{tulpackage/tulthesis}
@@ -591,9 +596,8 @@ Zahájení habilitační práce může vypadat například nějak takto:
 \TULyear{2021}
 \end{verbatim}
 \end{linelisting}
+%%% TODO: PROMAZAT
 \listingcaption{Příklad konfigurace dokumentu\label{lst:config}}
-
-See Listing~\ref{lst:config} for details.
 
 \section{Kombinace s~dalšími balíky}
 
@@ -631,7 +635,7 @@ standardních balíků typu \argument{palatino} či \argument{newcent}.
 
 \section{Seznam zkratek}\label{zkratky}
 
-Ve verzi~2.1 bylo prostředí \argument{abbrList} pro seznam zkratek přepracováno
+Ve verzi~2.1 bylo prostředí \argument{abbreviations} pro seznam zkratek přepracováno
 s využitím balíku \argument{tabularray}. Nyní je implementováno jako dlouhá~--
 tedy potenciálně vícestránková~-- tabulka (prostředí \argument{tblr}) se dvěma
 sloupci, kde v prvním jsou zkratky a ve druhém jejich významy. Mělo by
@@ -640,7 +644,7 @@ vyhovovat pro valnou většinu případů.
 Pokud se délky jednotlivých zkratek výrazně liší, tabulková varianta
 pravděpodobně nebude vypadat dobře~-- levý sloupec bude široký a za krátkými
 zkratkami budou velké mezery. V tom případě raději nevyužijte připravené
-prostředí \argument{abbrList} a implementujte si seznam zkratek vhodnějším
+prostředí \argument{abbreviations} a implementujte si seznam zkratek vhodnějším
 způsobem, například prostřednictvím standardního prostředí
 \argument{description}. Tedy něco jako:
 
