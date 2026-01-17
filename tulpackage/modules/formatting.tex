@@ -1,0 +1,213 @@
+% tulpackage/modules/formatting.tex
+% Description: Formatting for Titles, TOC, Title Page, and Listings environments.
+
+% Oddělovač v textu (svislá čára ve fakultní barvě)
+\newcommand{\oddel}{{\color{\tulcolor}\rule{1pt}{1.7ex}}}
+% Styl a barva nadpisů
+\RequirePackage[sf, bf]{titlesec}
+% Font nadpisů (Uses \TULHeadFont defined in fonts.tex)
+\newcommand{\TUL@headfnt}{\TULHeadFont}
+
+% Definice centrální barvy pro obsah a seznam obrázků/tabulek
+\newcommand{\TUL@TOCtextcolor}{black}
+
+% Balík pro tečkování kapitol, centrální barvu textu v obsahu
+\RequirePackage{tocloft}
+% Nastavení fontu pro nadpis obsahu
+\renewcommand{\cfttoctitlefont}{%
+    \color{\titlecolor}\TUL@headfnt\LARGE\raggedright%
+}
+
+% Deklarace mezer mezi položkami obsahu
+\newlength{\TUL@TOC@skip}
+
+\@ifundefined{chapter}{%
+    % Nastavení mezer v obsahu pro dokumenty bez kapitol (např. article)
+    \setlength{\cftbeforetoctitleskip}{2mm}%
+    \setlength{\cftaftertoctitleskip}{10mm}%
+    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\TUL@TOC@skip}{8pt}%
+}{%
+    % Nastavení mezer v obsahu pro dokumenty s kapitolami (např. book, report)
+    \setlength{\cftbeforetoctitleskip}{0mm}%
+    \setlength{\cftaftertoctitleskip}{6mm}%
+    \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\TUL@TOC@skip}{4pt}%
+    \renewcommand{\cftbeforechapskip}{\TUL@TOC@skip}%
+}
+
+% Použití společné mezery pro všechny položky na úrovni sekcí
+\renewcommand{\cftbeforesecskip}{\TUL@TOC@skip}%
+\renewcommand{\cftbeforesubsecskip}{\TUL@TOC@skip}%
+\renewcommand{\cftbeforesubsubsecskip}{\TUL@TOC@skip}%
+
+% Fonty v obsahu
+\renewcommand{\cftpartfont}{\color{\TUL@TOCtextcolor}}
+\renewcommand{\cftloftitlefont}{\color{\TUL@TOCtextcolor}\LARGE\bfseries}
+\renewcommand{\cftfigfont}{\color{\TUL@TOCtextcolor}}
+\renewcommand{\cfttabfont}{\color{\TUL@TOCtextcolor}}
+
+% Balík pro vynucenou centrální barvu hypertextu v obsahu
+\RequirePackage{etoolbox}
+\pretocmd{\l@chapter}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@section}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@subsection}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+
+% Balík pro vynucenou centrální barvu textu a hypertextu v seznamu obrázků/tabulek
+\pretocmd{\l@figure}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+\pretocmd{\l@table}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+
+% Seznam zkratek
+\newenvironment{abbrList}{
+    \phantomsection%
+    \ifthenelse{\equal{\TUL@nguage}{EN}}
+    {\section*{\large List of abbreviations}\vspace{-1em}}
+    {\section*{\large Seznam zkratek}\vspace{-1em}}
+    \thispagestyle{plain}
+    % Reset šablon pro tabularray
+    \DefTblrTemplate{contfoot-text}{default}{}
+    \DefTblrTemplate{conthead-text}{default}{}
+    \DefTblrTemplate{contfoot}{default}{}
+    \DefTblrTemplate{conthead}{default}{}
+    \DefTblrTemplate{caption}{default}{}
+    \DefTblrTemplate{capcont}{default}{}
+    \noindent\tblr[long]{column{2}={co=1}}
+}{
+    \endtblr%
+    \clearpage
+}
+
+% Titulní stránka
+\newcommand{\create@uthb@x}[2]{%
+    \vspace{20mm}
+    {\Large #1}\\
+    \vspace{5mm}
+    {\large #2}\par
+}
+
+% Výška textu s příponou "pt" pro násobení v řádkování
+\newlength{\f@ntsize}
+\setlength{\f@ntsize}{\f@size pt}
+
+% Úvodní strana TUL
+\newcommand{\TULtitlepage}[3]{{%
+            \thispagestyle{TULheaderonly}
+            \mbox{}
+            \vfill
+            \vfill
+            \vfill
+            \bgroup%
+            \raggedright%
+            \color{\tulcolor}\huge\bfseries\TULmono\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+            \create@uthb@x{#2}{#3}
+            \egroup%
+            \vfill%
+            \newpage%
+        }}
+
+% Fancy úvodní strana TUL
+\newcommand{\TULfancytitlepage}[3]{{%
+            \thispagestyle{TULheaderonly}
+            \pagecolor{\tulcolor}\darkTULbg%
+            \mbox{}
+            \vfill
+            \vfill
+            \vfill
+            \bgroup%
+            \raggedright%
+            \color{white}\huge\TULFancyFont\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+            \create@uthb@x{#2}{#3}
+            \egroup%
+            \vfill
+            \newpage
+            \pagecolor{white}
+        }}
+
+% Definice formátování nadpisů (makro, bude voláno v layout.tex)
+\newcommand{\setup@TUL@titleformats}{%
+    \def\setupTitleFormat##1##2##3##4{%
+        \ifthenelse{\boolean{TUL@numbering}}{%
+            \titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{##3}{1em}{}%
+        }{%
+            \titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{}{0pt}{}%
+        }%
+    }
+    % CHAPTER
+    \ifcsname chapter\endcsname % chktex 1
+        \setupTitleFormat{\chapter}{\LARGE}{\thechapter}{}%
+    \fi
+    % SECTION
+    \ifcsname section\endcsname % chktex 1
+        \setupTitleFormat{\section}{\Large}{\thesection}{}%
+    \fi
+    % SUBSECTION
+    \ifcsname subsection\endcsname % chktex 1
+        \setupTitleFormat{\subsection}{\large}{\thesubsection}{}%
+    \fi
+    % SUBSUBSECTION
+    \ifcsname subsubsection\endcsname % chktex 1
+        \setupTitleFormat{\subsubsection}{\normalsize}{\thesubsubsection}{}%
+    \fi
+    % PARAGRAPH - no numbering
+    \ifcsname paragraph\endcsname % chktex 1
+        \titleformat{\paragraph}{\color{\titlecolor}\TUL@headfnt\normalsize\raggedright}{}{0pt}{}%
+    \fi
+}
+
+% === LISTINGS / BLOKY KÓDU ===
+\usepackage{framed}
+% listoflistings - seznam bloků kódu
+\newcommand{\listoflistings}{%
+    \clearpage
+    \phantomsection%
+    \ifthenelse{\equal{\TUL@nguage}{EN}}
+    {\section*{\large List of Listings}\@mkboth{List of Listings}{List of Listings}}
+    {\section*{\large Seznam listingů}\@mkboth{Seznam listingů}{Seznam listingů}}
+    \thispagestyle{plain}
+    {%
+        \hypersetup{linkcolor=black}%
+        \@starttoc{lol}%
+    }%
+}
+% Formatting for the list lines:
+\newcommand{\l@tullisting}{\@dottedtocline{0}{0pt}{2.3em}}
+
+% listingcaption - titulek pro bloky kódu
+\newcounter{tullisting}
+\newcommand{\listingcaption}[1]{%
+    \par\vspace{0pt}
+    \refstepcounter{tullisting}
+    \addcontentsline{lol}{tullisting}{\protect\numberline{\thetullisting}#1}%
+    \noindent{Listing \thetullisting:} #1
+    \par\vspace{8pt}
+}
+% myquote - základní blok citátu, použit pro bloky kódu
+\newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}
+% listing - standardní blok kódu, velký text
+\newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}
+% slisting - zmenšený blok kódu, menší text
+\newenvironment{slisting}{%
+    \vspace{16pt}
+    \begin{myquote}
+        \footnotesize
+        \color{\tulcolor}
+        \def\FrameCommand{\hspace{16pt}\hspace{0.6pt}\hspace{10pt}}
+        \MakeFramed{}{\advance\hsize-\width{}\FrameRestore}
+        }{%
+        \endMakeFramed{}
+    \end{myquote}
+    \vspace{0pt}
+}
+% linelisting - blok kódu s čárou, menší text
+\newenvironment{linelisting}{%
+    \vspace{16pt}
+    \begin{myquote}
+        \footnotesize
+        \color{\tulcolor}
+        \def\FrameCommand{\hspace{28pt}{\color{\tulcolor}\vrule width 0.6pt} \hspace{10pt}}
+        \MakeFramed{}{\advance\hsize-\width{}\FrameRestore}
+        }{%
+        \endMakeFramed{}
+    \end{myquote}
+    \vspace{0pt}
+}
