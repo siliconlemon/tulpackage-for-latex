@@ -75,7 +75,7 @@
 
     % B. Redefinice příkazu pro seznam obrázků
     \renewcommand{\listoffigures}{%
-        \phantomsection
+        \phantomsection%
         \ifthenelse{\equal{\TUL@nguage}{EN}}
         {\section*{\Large List of Figures}\@mkboth{List of Figures}{List of Figures}}
         {\section*{\Large Seznam obrázků}\@mkboth{Seznam obrázků}{Seznam obrázků}}
@@ -90,7 +90,7 @@
 
     % C. Redefinice příkazu pro seznam tabulek
     \renewcommand{\listoftables}{%
-        \phantomsection
+        \phantomsection%
         \ifthenelse{\equal{\TUL@nguage}{EN}}
         {\section*{\Large List of Tables}\@mkboth{List of Tables}{List of Tables}}
         {\section*{\Large Seznam tabulek}\@mkboth{Seznam tabulek}{Seznam tabulek}}
