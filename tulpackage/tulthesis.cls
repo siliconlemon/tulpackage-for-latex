@@ -599,26 +599,6 @@
 	\clearpage
 }
 
-% Seznam zkratek
-\newenvironment{abbrList}{
-	\phantomsection
-	\ifthenelse{\equal{\TUL@nguage}{EN}}
-	{\section*{\large List of abbreviations}\vspace{-1em}}
-	{\section*{\Large Seznam zkratek}\vspace{-1em}}
-	\thispagestyle{plain}
-	% Reset šablon pro tabularray
-	\DefTblrTemplate{contfoot-text}{default}{}
-	\DefTblrTemplate{conthead-text}{default}{}
-	\DefTblrTemplate{contfoot}{default}{}
-	\DefTblrTemplate{conthead}{default}{}
-	\DefTblrTemplate{caption}{default}{}
-	\DefTblrTemplate{capcont}{default}{}
-	\noindent\tblr[long]{column{2}={co=1}}
-}{
-	\endtblr
-	\clearpage
-}
-
 % Formátování nadpisů
 \titleformat{\chapter}
 {\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright}

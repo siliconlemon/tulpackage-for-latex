@@ -12,7 +12,7 @@
     "dark": "Github Dark Dimmed"
   },
   "languages": {
-    "LaTeX": { "language_servers": ["texlab"] }
+    "LaTeX": { "language_servers": ["texlab"], "format_on_save": "off" }
   },
   "lsp": {
     "texlab": {

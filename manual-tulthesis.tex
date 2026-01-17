@@ -50,8 +50,6 @@
 \newcommand{\prostredi}[1]{\argumentindex{#1}}
 \newcommand{\prikazneindex}[1]{\argument{\textbackslash{}#1}}
 \newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
-\newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}
-\newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}
 \newcommand{\polozka}[1]{\item[#1]\mbox{}\\}
 
 % Zvýšení řádkování
@@ -157,6 +155,8 @@ zatímco diplomová práce Fakulty strojní:
 	\prikazneindex{documentclass[FS,DP]\{tulpackage/tulthesis\}}
 \end{listing}
 
+\clearpage
+
 V~preambuli pak musíte v~deklaracích uvést popisné informace: jméno práce, kód
 a název studijního programu a případně oboru, své jméno a jméno vedoucího. Všechny
 předchozí údaje jsou povinné. Kromě nich můžete uvést i rok vzniku práce. Pokud
@@ -164,14 +164,14 @@ jej vynecháte implicitně se doplní rok aktuální v~okamžiku překladu. Dal�
 nepovinným údajem je identifikační kód práce, pokud je práci přidělen. Slouží
 k~tomu příkazy:
 
-\begin{listing}
+\begin{linelisting}
 	\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}\\
 	\prikaz{TULprogramme}\argumentprom{kód studijního programu}\argumentprom{název česky}\argumentprom{anglicky}\\
 	\prikaz{TULbranch}\argumentprom{kód studijního oboru}\argumentprom{název česky}\argumentprom{anglicky}\\
 	\prikaz{TULauthor}\argumentprom{jméno autora}\\
 	\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}\\
-	\prikaz{TULyear}\argumentprom{rok}\\
-\end{listing}
+	\prikaz{TULyear}\argumentprom{rok}
+\end{linelisting}
 
 U habilitačních prací se deklaruje méně údajů, podrobněji viz
 část~\ref{habilitace} na straně~\pageref{habilitace}. Po deklaracích už může
@@ -199,10 +199,13 @@ strukturování \prikazneindex{chapter}. Pro kratší dokumenty lze volbou
 \argument{article} změnit výchozí třídu na \argument{article} a jako základ pro
 členění dokumentu pak používat příkazy \prikazneindex{section}.
 
+\clearpage
+
 Typické zahájení diplomové práce na Fakultě mechatroniky pro sazbu \XeLaTeX{}em
 bude proto vypadat nějak takto:
 
-\begin{lstlisting}[caption={Příklad zahájení diplomové práce}]
+\begin{linelisting}
+	{\begin{verbatim}
 \documentclass[FM,DP]{tulthesis}
 \usepackage{polyglossia}
 \setdefaultlanguage{czech}
@@ -253,20 +256,20 @@ Vám poděkování a lásku vám.
 \chapter{Úvod}
 
 Ve své diplomové práci...
-\end{lstlisting}
+\end{verbatim}} % chktex 31
+\end{linelisting}
 
-\clearpage
 
 Dáváte-li přednost pdf\LaTeX{}u (což byste rozhodně neměli dělat, používejte raději
 moderní implementace \XeLaTeX\ nebo Lua\LaTeX), změní se úvodní skupina příkazů na:
 
-\begin{listing}
+\begin{linelisting}
 	\begin{verbatim}
-        \documentclass[FM,DP]{tulthesis}
-        \usepackage[czech]{babel}
-        \usepackage[utf8]{inputenc}
-    \end{verbatim}
-\end{listing}
+\documentclass[FM,DP]{tulthesis}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\end{verbatim}
+\end{linelisting}
 
 Kompletní příklad použití třídy najdete ve zdrojovém textu tohoto dokumentu,
 který je součástí distribuce vizuálního stylu TUL pro \LaTeX.
@@ -474,13 +477,13 @@ součásti, především pro úvodní partie práce.
 	dobře. Je-li váš abstrakt dlouhý, použijte nepovinný argument \argument{wide},
 	který vynechá zúžení a sází abstrakt na celou šířku řádku:
 
-	\begin{listing}
+	\begin{slisting}
 		\begin{verbatim}
 \begin{abstractCZ}[wide]
 Široký text abstraktu.
 \end{abstractCZ}
 \end{verbatim}
-	\end{listing}
+	\end{slisting}
 
 	Volba \argument{wide} je k dispozici pro všechna čtyři prostředí zajišťující
 	sazbu abstraktu a klíčových slov. Používejte ji konzistentně~-- u všech nebo u
@@ -508,7 +511,8 @@ součásti, především pro úvodní partie práce.
 
 	\begingroup
 	\color{\tulcolor}
-	\begin{verbatim}
+	\begin{slisting}
+		\begin{verbatim}
 \begin{abbrList}
 CSS  & Cascading Style Sheets \\
 HTML & HyperText Markup Language \\
@@ -516,6 +520,7 @@ PHP  & PHP: Hypertext Preprocessor \\
 W3C  & World Wide Web Consortium \\
 \end{abbrList}
 \end{verbatim}
+	\end{slisting}
 	\endgroup
 
 	Komentář k seznamu zkratek najdete v~části~\ref{zkratky}.
@@ -573,7 +578,11 @@ uvedeny, i když jsou prázdné.
 
 Zahájení habilitační práce může vypadat například nějak takto:
 
-\begin{listing}
+%%% TODO: PROMAZAT
+
+\listoflistings{}
+
+\begin{linelisting}
 	\begin{verbatim}
 \documentclass[FM,Hab]{tulpackage/tulthesis}
 \TULtitle{Stochastické řízení}{Stochastic control}
@@ -581,8 +590,10 @@ Zahájení habilitační práce může vypadat například nějak takto:
 \TULauthor{Ing. Jan Řidič, Ph.D.}
 \TULyear{2021}
 \end{verbatim}
-\end{listing}
+\end{linelisting}
+\listingcaption{Příklad konfigurace dokumentu\label{lst:config}}
 
+See Listing \ref{lst:config} for details.
 
 \section{Kombinace s~dalšími balíky}
 
@@ -633,7 +644,7 @@ prostředí \argument{abbrList} a implementujte si seznam zkratek vhodnějším
 způsobem, například prostřednictvím standardního prostředí
 \argument{description}. Tedy něco jako:
 
-\begin{listing}
+\begin{linelisting}
 	\begin{verbatim}
 \section*{Seznam zkratek}\phantomsection
 \addcontentsline{toc}{chapter}{Seznam zkratek}
@@ -643,12 +654,12 @@ způsobem, například prostřednictvím standardního prostředí
 \item[CSS] Cascading Style Sheets
 \end{description}
 \end{verbatim}
-\end{listing}
+\end{linelisting}
 
 \clearpage
 
-\renewcommand{\indexname}{Přehled příkazů, prostředí a voleb}
-\phantomsection\addcontentsline{toc}{chapter}{\indexname}
+% \renewcommand{\indexname}{Přehled příkazů, prostředí a voleb}
+% \phantomsection\addcontentsline{toc}{chapter}{\indexname}
 
 \begingroup
 \titlespacing{\chapter}{0pt}{10pt}{*4} % Adjust only for the index
