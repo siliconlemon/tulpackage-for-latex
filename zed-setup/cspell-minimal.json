@@ -11,6 +11,9 @@
     "winget",
     "enumitem",
     "lstlisting",
-    "tulthesis"
+    "tulthesis",
+    "slisting",
+    "linelisting",
+    "chktex"
   ]
 }
