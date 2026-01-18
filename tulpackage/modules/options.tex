@@ -179,24 +179,26 @@
     \renewcommand{\ENlogoCXItext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-txt-en-bw}}
 }
 
+% * Zakomentované definice booleans jsou v basics kvůli správnému načítání
+
 % Možnost "fonts" pro používání fontů TUL (v rámci balíku documentclass)
-\newboolean{TULf@nts}
-\setboolean{TULf@nts}{false}
+% \newboolean{TULf@nts}
+% \setboolean{TULf@nts}{false}
 \DeclareOption{fonts}{\setboolean{TULf@nts}{true}}
 
 % Možnost "sfbody" pro používání patkového fontu v těle dokumentu (v rámci balíku documentclass)
-\newboolean{TULsfb@dy}
-\setboolean{TULsfb@dy}{false}
+% \newboolean{TULsfb@dy}
+% \setboolean{TULsfb@dy}{false}
 \DeclareOption{sfbody}{\setboolean{TULsfb@dy}{true}}
 
 % Možnost "sfheadings" pro používání patkového fontu v nadpisech (v rámci balíku documentclass)
-\newboolean{TULsfhe@dings}
-\setboolean{TULsfhe@dings}{false}
+% \newboolean{TULsfhe@dings}
+% \setboolean{TULsfhe@dings}{false}
 \DeclareOption{sfheadings}{\setboolean{TULsfhe@dings}{true}}
 
 % Možnost zapnutí odsazení zleva a zprava v dokumentu
-\newif\ifTUL@margins
-\TUL@marginsfalse
+% \newif\ifTUL@margins
+% \TUL@marginsfalse
 \DeclareOption{margins}{\TUL@marginstrue}
 
 % Možnost "noheader" pro balík documentclass

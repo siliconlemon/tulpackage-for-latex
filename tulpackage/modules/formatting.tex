@@ -1,28 +1,32 @@
 % tulpackage/modules/formatting.tex
-% Description: Formatting for Titles, TOC, Title Page, and Listings environments.
+% Popis: Formátování pro nadpisy, obsah (TOC), titulní stranu a prostředí pro výpisy.
 
-% === REQUIRED PACKAGES ===
+% === VYŽADOVANÉ BALÍČKY ===
 \RequirePackage{ifthen}
 \RequirePackage[sf, bf]{titlesec}
 \RequirePackage{tocloft}
 \RequirePackage{etoolbox}
 \RequirePackage{framed}
 \RequirePackage{tabularray}
-\RequirePackage{fvextra}    % REQUIRED for wrapping Verbatim
+\RequirePackage{fvextra}    % VYŽADOVÁNO pro zalamování Verbatim
 
-% === GENERAL HELPERS ===
-\newcommand{\oddel}{{\color{\tulcolor}\rule{1pt}{1.7ex}}}
-\newcommand{\TUL@headfnt}{\TULHeadFont}
-\newcommand{\TUL@TOCtextcolor}{black}
+% === OBECNÉ POMOCNÉ MAKRA ===
+\providecommand{\oddel}{{\color{\tulcolor}\rule{1pt}{1.7ex}}}
+\providecommand{\TUL@headfnt}{\TULHeadFont}
+\providecommand{\TUL@TOCtextcolor}{black}
 
-% === TABLE OF CONTENTS (TOC) ===
+% === OBSAH (TOC) ===
 \renewcommand{\cfttoctitlefont}{\color{\titlecolor}\TUL@headfnt\LARGE\raggedright}
 \renewcommand{\cftpartfont}{\color{\TUL@TOCtextcolor}}
 \renewcommand{\cftloftitlefont}{\color{\TUL@TOCtextcolor}\LARGE\bfseries}
 \renewcommand{\cftfigfont}{\color{\TUL@TOCtextcolor}}
 \renewcommand{\cfttabfont}{\color{\TUL@TOCtextcolor}}
 
-\newlength{\TUL@TOC@skip}
+% Délka: založit jen pokud neexistuje
+\ifcsdef{TUL@TOC@skip}{}{%
+  \newlength{\TUL@TOC@skip}%
+}
+
 \@ifundefined{chapter}{%
     \setlength{\cftbeforetoctitleskip}{2mm}
     \setlength{\cftaftertoctitleskip}{10mm}
@@ -39,11 +43,18 @@
 \renewcommand{\cftbeforesubsecskip}{\TUL@TOC@skip}
 \renewcommand{\cftbeforesubsubsecskip}{\TUL@TOC@skip}
 
-\ifcsdef{l@chapter}{\pretocmd{\l@chapter}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}}{}
-\pretocmd{\l@section}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
-\pretocmd{\l@subsection}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}
+% Bezpečné patchování: jen pokud existují příslušná makra.
+\ifcsdef{l@chapter}{%
+  \pretocmd{\l@chapter}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}%
+}{}%
+\ifcsdef{l@section}{%
+  \pretocmd{\l@section}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}%
+}{}%
+\ifcsdef{l@subsection}{%
+  \pretocmd{\l@subsection}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}%
+}{}%
 
-% === LIST OF FIGURES & TABLES ===
+% === SEZNAM OBRÁZKŮ A TABULEK ===
 \setlength{\cftfigindent}{0pt}
 \setlength{\cfttabindent}{0pt}
 \renewcommand{\cftfigaftersnum}{:}
@@ -51,17 +62,16 @@
 
 \AtBeginDocument{%
     \ifthenelse{\equal{\TUL@nguage}{EN}}{%
-        \renewcommand{\cftfigpresnum}{Figure }
-        \renewcommand{\cfttabpresnum}{Table }
-        \setlength{\cftfignumwidth}{5.5em}
-        \setlength{\cfttabnumwidth}{5.5em}
+        \renewcommand{\cftfigpresnum}{Figure }%
+        \renewcommand{\cfttabpresnum}{Table }%
+        \setlength{\cftfignumwidth}{5.5em}%
+        \setlength{\cfttabnumwidth}{5.5em}%
     }{%
-        \renewcommand{\cftfigpresnum}{Obrázek }
-        \renewcommand{\cfttabpresnum}{Tabulka }
-        \setlength{\cftfignumwidth}{7.5em}
-        \setlength{\cfttabnumwidth}{7.0em}
+        \renewcommand{\cftfigpresnum}{Obrázek }%
+        \renewcommand{\cfttabpresnum}{Tabulka }%
+        \setlength{\cftfignumwidth}{7.5em}%
+        \setlength{\cfttabnumwidth}{7.0em}%
     }%
-
     \renewcommand{\listoffigures}{%
         \phantomsection%
         \ifthenelse{\equal{\TUL@nguage}{EN}}%
@@ -78,7 +88,6 @@
         \vspace{0.5em}\thispagestyle{plain}%
         {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lof}}\par\vspace{1em}%
     }%
-
     \renewcommand{\listoftables}{%
         \phantomsection%
         \ifthenelse{\equal{\TUL@nguage}{EN}}%
@@ -97,26 +106,35 @@
     }%
 }
 
-% === LIST OF ABBREVIATIONS ===
-\newenvironment{abbreviations}{
-    \phantomsection%
-    \ifthenelse{\equal{\TUL@nguage}{EN}}{\section*{\Large List of abbreviations}}{\section*{\Large Seznam zkratek}}%
-    \vspace{-1em}\thispagestyle{plain}
-    \DefTblrTemplate{contfoot-text}{default}{}
-    \DefTblrTemplate{conthead-text}{default}{}
-    \DefTblrTemplate{contfoot}{default}{}
-    \DefTblrTemplate{conthead}{default}{}
-    \DefTblrTemplate{caption}{default}{}
-    \DefTblrTemplate{capcont}{default}{}
-    \noindent\begin{tblr}[long, entry=none]{column{2}={co=1}}
-}{\end{tblr}\vspace{1em}}
+% === SEZNAM ZKRATEK ===
+% Prostředí existuje, pokud existuje makro \abbreviations (a \endabbreviations).
+\ifcsdef{abbreviations}{%
+  % už je definované -> nedělej nic
+}{%
+  \newenvironment{abbreviations}{%
+      \phantomsection%
+      \ifthenelse{\equal{\TUL@nguage}{EN}}%
+        {\section*{\Large List of abbreviations}}%
+        {\section*{\Large Seznam zkratek}}%
+      \vspace{-1em}\thispagestyle{plain}%
+      \DefTblrTemplate{contfoot-text}{default}{}%
+      \DefTblrTemplate{conthead-text}{default}{}%
+      \DefTblrTemplate{contfoot}{default}{}%
+      \DefTblrTemplate{conthead}{default}{}%
+      \DefTblrTemplate{caption}{default}{}%
+      \DefTblrTemplate{capcont}{default}{}%
+      \noindent\begin{tblr}[long, entry=none]{column{2}={co=1}}%
+  }{%
+      \end{tblr}\vspace{1em}%
+  }%
+}
 
-% === LISTINGS / BLOKY KÓDU ===
-% Force standard verbatim environments to wrap lines
+% === VÝPISY / BLOKY KÓDU ===
+% Vynutit zalamování standardních verbatim prostředí
 \fvset{breaklines=true, breakanywhere=true}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
 
-\newcommand{\listoflistings}{%
+\providecommand{\listoflistings}{%
     \phantomsection%
     \ifthenelse{\equal{\TUL@nguage}{EN}}%
     {%
@@ -129,64 +147,92 @@
         \@mkboth{Seznam zdrojových kódů}{Seznam zdrojových kódů}%
         \addcontentsline{toc}{chapter}{Seznam zdrojových kódů}%
     }%
-    \vspace{0.5em}\thispagestyle{plain}
+    \vspace{0.5em}\thispagestyle{plain}%
     {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lol}}\par\vspace{1em}%
 }
 
-\newcommand{\l@tullisting}{%
-    \ifthenelse{\equal{\TUL@nguage}{EN}}{\@dottedtocline{0}{0pt}{5.5em}}{\@dottedtocline{0}{0pt}{8.5em}}%
+\providecommand{\l@tullisting}{%
+    \ifthenelse{\equal{\TUL@nguage}{EN}}%
+      {\@dottedtocline{0}{0pt}{5.5em}}%
+      {\@dottedtocline{0}{0pt}{8.5em}}%
 }
 
-\newcounter{tullisting}
-\newcommand{\listingcaption}[1]{%
-    \par\vspace{-8pt}\refstepcounter{tullisting}
-    \ifthenelse{\equal{\TUL@nguage}{EN}}
-    {\addcontentsline{lol}{tullisting}{\protect\numberline{Listing \thetullisting:}#1}\noindent{Listing \thetullisting:} #1}
-    {\addcontentsline{lol}{tullisting}{\protect\numberline{Zdrojový kód \thetullisting:}#1}\noindent{Zdrojový kód \thetullisting:} #1}
-    \par\vspace{8pt}
+% Čítač je globální; pokud už existuje, znovu ho nezakládáme.
+\ifcsdef{c@tullisting}{}{%
+  \newcounter{tullisting}%
 }
 
-% Environments
-\newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}
-\newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}
+\providecommand{\listingcaption}[1]{%
+    \par\vspace{-8pt}\refstepcounter{tullisting}%
+    \ifthenelse{\equal{\TUL@nguage}{EN}}%
+    {%
+      \addcontentsline{lol}{tullisting}{\protect\numberline{Listing \thetullisting:}#1}%
+      \noindent{Listing \thetullisting:} #1%
+    }%
+    {%
+      \addcontentsline{lol}{tullisting}{\protect\numberline{Zdrojový kód \thetullisting:}#1}%
+      \noindent{Zdrojový kód \thetullisting:} #1%
+    }%
+    \par\vspace{8pt}%
+}
 
-\newenvironment{slisting}{%
-    \vspace{12pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy
-    \def\FrameCommand##1{\hspace{10pt}##1}
-    \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}
-}{\endMakeFramed{}\end{myquote}\vspace{0pt}}
-
-\newenvironment{linelisting}{%
-    \vspace{16pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy
-    \def\FrameCommand##1{\hspace{0pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{10pt}##1}
-    \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}
-}{\endMakeFramed{}\end{myquote}\vspace{0pt}}
+% Prostředí
+\ifcsdef{myquote}{}{%
+  \newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}%
+}
+\ifcsdef{listing}{}{%
+  \newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}%
+}
+\ifcsdef{slisting}{}{%
+  \newenvironment{slisting}{%
+      \vspace{12pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy%
+      \def\FrameCommand##1{\hspace{10pt}##1}%
+      \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
+  }{%
+      \endMakeFramed{}\end{myquote}\vspace{0pt}%
+  }%
+}
+\ifcsdef{linelisting}{}{%
+  \newenvironment{linelisting}{%
+      \vspace{16pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy%
+      \def\FrameCommand##1{\hspace{0pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{10pt}##1}%
+      \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
+  }{%
+      \endMakeFramed{}\end{myquote}\vspace{0pt}%
+  }%
+}
 
 % === TITULNÍ STRANY A FORMÁTOVÁNÍ NADPISŮ ===
-\newcommand{\create@uthb@x}[2]{\vspace{20mm}{\Large #1}\\\vspace{5mm}{\large #2}\par}
-\newlength{\f@ntsize}\setlength{\f@ntsize}{\f@size pt}
+\providecommand{\create@uthb@x}[2]{\vspace{20mm}{\Large #1}\\\vspace{5mm}{\large #2}\par}
 
-\newcommand{\TULtitlepage}[3]{{%
+% Délka pro výpočet řádkování na titulní straně
+\ifcsdef{f@ntsize}{}{%
+  \newlength{\f@ntsize}%
+}
+\setlength{\f@ntsize}{\f@size pt}
+
+\providecommand{\TULtitlepage}[3]{{%
     \thispagestyle{TULheaderonly}\mbox{}\vfill\vfill\vfill\bgroup\raggedright%
-    \color{\tulcolor}\huge\bfseries\TULmono\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+    \color{\tulcolor}\huge\bfseries\TULmono\setlength{\baselineskip}{2.5\f@ntsize} #1\par%
     \create@uthb@x{#2}{#3}\egroup\vfill\newpage%
 }}
 
-\newcommand{\TULfancytitlepage}[3]{{%
+\providecommand{\TULfancytitlepage}[3]{{%
     \thispagestyle{TULheaderonly}\pagecolor{\tulcolor}\darkTULbg\mbox{}\vfill\vfill\vfill\bgroup\raggedright%
-    \color{white}\huge\TULFancyFont\setlength{\baselineskip}{2.5\f@ntsize} #1\par
+    \color{white}\huge\TULFancyFont\setlength{\baselineskip}{2.5\f@ntsize} #1\par%
     \create@uthb@x{#2}{#3}\egroup\vfill\newpage\pagecolor{white}%
 }}
 
-\newcommand{\setup@TUL@titleformats}{%
+% Pozn.: oprava zjevné chyby – původně se testovalo \subsection, ale formátovalo \subsubsection.
+\providecommand{\setup@TUL@titleformats}{%
     \def\setupTitleFormat##1##2##3##4{%
         \ifthenelse{\boolean{TUL@numbering}}%
         {\titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{##3}{1em}{}}%
         {\titleformat{##1}{\color{\titlecolor}\TUL@headfnt##2\raggedright}{}{0pt}{}}%
-    }
+    }%
     \ifcsname chapter\endcsname\setupTitleFormat{\chapter}{\LARGE}{\thechapter}{}\fi % chktex 1
     \ifcsname section\endcsname\setupTitleFormat{\section}{\Large}{\thesection}{}\fi % chktex 1
-    \ifcsname subsection\endcsname\setupTitleFormat{\subsubsection}{\normalsize}{\thesubsubsection}{}\fi % chktex 1
+    \ifcsname subsection\endcsname\setupTitleFormat{\subsection}{\large}{\thesubsection}{}\fi % chktex 1
     \ifcsname subsubsection\endcsname\setupTitleFormat{\subsubsection}{\normalsize}{\thesubsubsection}{}\fi % chktex 1
     \ifcsname paragraph\endcsname\titleformat{\paragraph}{\color{\titlecolor}\TUL@headfnt\normalsize\raggedright}{}{0pt}{}\fi % chktex 1
 }
