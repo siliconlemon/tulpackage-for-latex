@@ -125,26 +125,6 @@
 	\clearpage
 }
 
-% Prostředí pro seznam zkratek
-\newenvironment{abbreviations}{\phantomsection%
-	% Nadpis pro seznam zkratek (podle jazyka práce)
-	\ifthenelse{\equal{\TUL@nguage}{EN}}%
-	{\section*{\large List of abbreviations}\vspace{-1em}}
-	{\section*{\Large Seznam zkratek}\vspace{-1em}} % Same for Czech version
-	\thispagestyle{plain}
-	% Reset šablon pro tabulky (tabularray)
-	\DefTblrTemplate{contfoot-text}{default}{}
-	\DefTblrTemplate{conthead-text}{default}{}
-	\DefTblrTemplate{contfoot}{default}{}
-	\DefTblrTemplate{conthead}{default}{}
-	\DefTblrTemplate{caption}{default}{}
-	\DefTblrTemplate{capcont}{default}{}
-	% Seznam zkratek ve dvou sloupcích
-	\noindent\tblr[long]{column{2}={co=1}}}
-{\endtblr%
-	\clearpage % Nová stránka po seznamu zkratek
-}
-
 % Přiblížení následujících odstavců k popiskům obrázků apod.
 \setlength{\belowcaptionskip}{-8pt}
 
