@@ -1,7 +1,7 @@
 {
   "language": "en,cs",
   "import": [
-    "C:\\Users\\ondre\\AppData\\Roaming\\npm\\node_modules\\@cspell\\dict-cs-cz\\cspell-ext.json"
+    "C:\\Users\\ondrej.wiener\\AppData\\Roaming\\npm\\node_modules\\@cspell\\dict-cs-cz\\cspell-ext.json"
   ],
 
   "patterns": [

@@ -24,8 +24,13 @@ The **tasks.json** and **keymap.json** files define it so that shift+f5 run the 
 - **Manual Installer:**
   Download the "LTS" version (msi) from [nodejs.org](https://nodejs.org/en/download).
 
-### **Perl** (Required for latexmk automation)
+### **Cspell** (Required for the Cspell Extension)
+- **Via NPM:**
+  *npm install -g cspell@latest*
+- **Installing the CS dictionary:**
+  *npm install -g @cspell/dict-cs-cz*
 
+### **Perl** (Required for latexmk automation)
 - **Via Winget:**
   *winget install StrawberryPerl.StrawberryPerl*
 - **Manual Installer:**
