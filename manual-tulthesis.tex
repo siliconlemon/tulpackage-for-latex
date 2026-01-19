@@ -1,4 +1,4 @@
-\documentclass[fonts,numbering,twoside,margins]{./tulpackage/tulthesis}
+\documentclass[fonts,numbering,twoside,margins,captionsleft]{./tulpackage/tulthesis}
 % \documentclass[numbering,twoside,margins]{./tulpackage/tulthesis}
 % Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit
 % pouze XeLaTeXem. Pokud nemáte instalována použitá (komerční) písma, změňte
@@ -358,8 +358,9 @@ V~kódu níže jsou vynechány opakující~se~řádky pro~přehlednost.
 
 Výsledná tabulka se zobrazí takto:
 
-\vspace{-0.6em}
+% \vspace{-0.6em}
 \begin{table}[H]
+    \caption{Základní informace o~Technické univerzitě v~Liberci}\label{tab:zakladni_informace}
     \centering
     \small
     \begin{tabular}{ll}
@@ -379,7 +380,6 @@ Výsledná tabulka se zobrazí takto:
         Web                                 & https://www.tul.cz                                                  \\
         \bottomrule
     \end{tabular}
-    \caption{Základní informace o~Technické univerzitě v~Liberci}\label{tab:zakladni_informace}
 \end{table}
 \vspace{0.8em}
 
