@@ -134,6 +134,7 @@
 \fvset{breaklines=true, breakanywhere=true}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{}
 
+% --- Seznam zdrojových kódů (LOL) ---
 \providecommand{\listoflistings}{%
     \phantomsection%
     \ifthenelse{\equal{\TUL@nguage}{EN}}%
@@ -151,26 +152,54 @@
     {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lol}}\par\vspace{1em}%
 }
 
+% --- Prefix/sufix čísla v seznamu (analogicky k \cftfigpresnum apod.) ---
+% \providecommand{\TUL@lol@presnum}{}
+% \providecommand{\TUL@lol@aftersnum}{:}
+
+% \AtBeginDocument{%
+%   \ifthenelse{\equal{\TUL@nguage}{EN}}{%
+%     \renewcommand{\TUL@lol@presnum}{Listing }%
+%   }{%
+%     \renewcommand{\TUL@lol@presnum}{Zdrojový kód }%
+%   }%
+%   \renewcommand{\TUL@lol@aftersnum}{:}%
+% }
+
+% --- Formát řádku v LOL ---
+% Pozn.: \l@tullisting je "TOC handler" pro typ položky "tullisting".
+% .lol bude obsahovat \contentsline{tullisting}{\numberline{<číslo>}<text>}{<strana>}
+% \providecommand{\l@tullisting}[2]{%
+%   \@dottedtocline{0}{0pt}{8.5em}{\TUL@lol@presnum #1\TUL@lol@aftersnum}{#2}%
+% }
 \providecommand{\l@tullisting}{%
     \ifthenelse{\equal{\TUL@nguage}{EN}}%
       {\@dottedtocline{0}{0pt}{5.5em}}%
-      {\@dottedtocline{0}{0pt}{8.5em}}%
+      {\@dottedtocline{0}{0pt}{7.5em}}%
 }
 
-% Čítač je globální; pokud už existuje, znovu ho nezakládáme.
+% --- Čítač výpisů (listing) – číslování jako obrázky/tabulky ---
+% V reportu se resetuje po kapitolách => 1.1, 1.2, ...
+% V article (bez \chapter) zůstane prosté 1, 2, ...
 \ifcsdef{c@tullisting}{}{%
-  \newcounter{tullisting}%
+  \@ifundefined{chapter}{%
+    \newcounter{tullisting}%
+    \renewcommand{\thetullisting}{\arabic{tullisting}}%
+  }{%
+    \newcounter{tullisting}[chapter]%
+    \renewcommand{\thetullisting}{\thechapter.\arabic{tullisting}}%
+  }%
 }
 
+% --- "Caption" pro listingy + zápis do seznamu ---
 \providecommand{\listingcaption}[1]{%
     \par\vspace{-8pt}\refstepcounter{tullisting}%
+    % do seznamu zapisujeme čistě číslo a text, prefix řeší \l@tullisting:
+    \addcontentsline{lol}{tullisting}{\protect\numberline{\thetullisting}#1}%
     \ifthenelse{\equal{\TUL@nguage}{EN}}%
     {%
-      \addcontentsline{lol}{tullisting}{\protect\numberline{Listing \thetullisting:}#1}%
       \noindent{Listing \thetullisting:} #1%
     }%
     {%
-      \addcontentsline{lol}{tullisting}{\protect\numberline{Zdrojový kód \thetullisting:}#1}%
       \noindent{Zdrojový kód \thetullisting:} #1%
     }%
     \par\vspace{8pt}%
@@ -180,27 +209,70 @@
 \ifcsdef{myquote}{}{%
   \newenvironment{myquote}{\begin{list}{}{\setlength\leftmargin\parindent}\item[]}{\end{list}}%
 }
-\ifcsdef{listing}{}{%
-  \newenvironment{listing}{\begin{myquote}\color{\tulcolor}}{\end{myquote}}%
+
+% \newenvironment{myquote}{%
+%   \begin{list}{}{%
+%     \setlength\leftmargin{\parindent}%
+%     \setlength\topsep{0pt}%
+%     \setlength\partopsep{0pt}%
+%     \setlength\parsep{0pt}%
+%     \setlength\itemsep{0pt}%
+%   }%
+%   \item[]%
+% }{%
+%   \end{list}%
+% }
+
+\newcommand*\ListingListTight{%
+  \setlength\topsep{0pt}%
+  \setlength\partopsep{0pt}%
+  \setlength\parsep{0pt}%
+  \setlength\itemsep{0pt}%
 }
-\ifcsdef{slisting}{}{%
-  \newenvironment{slisting}{%
-      \vspace{12pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy%
-      \def\FrameCommand##1{\hspace{10pt}##1}%
-      \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
-  }{%
-      \endMakeFramed{}\end{myquote}\vspace{0pt}%
-  }%
-}
-\ifcsdef{linelisting}{}{%
-  \newenvironment{linelisting}{%
-      \vspace{16pt}\begin{myquote}\footnotesize\color{\tulcolor}\raggedright\sloppy%
-      \def\FrameCommand##1{\hspace{0pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{10pt}##1}%
-      \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
-  }{%
-      \endMakeFramed{}\end{myquote}\vspace{0pt}%
-  }%
-}
+
+\newenvironment{listing}{%
+  \par\addvspace{0pt}%
+  \begin{myquote}%
+    \ListingListTight%
+    \color{\tulcolor}%
+    \raggedright\sloppy%
+    \def\FrameCommand##1{##1}%
+    \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
+    % stabilizace: oddělí start framed od případného \begin{verbatim}
+    \leavevmode\par\nobreak%
+}{%
+    \endMakeFramed%
+  \end{myquote}%
+  \par\addvspace{6pt}%
+}%
+
+\newenvironment{slisting}{%
+  \par\addvspace{6pt}%
+  \begin{myquote}\footnotesize%
+    \ListingListTight%
+    \color{\tulcolor}\raggedright\sloppy%
+    \def\FrameCommand##1{\hspace{10pt}##1}%
+    \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
+    \leavevmode\par\nobreak%
+}{%
+    \endMakeFramed%
+  \end{myquote}%
+  \par\addvspace{6pt}%
+}%
+
+\newenvironment{linelisting}{%
+  \par\addvspace{6pt}%
+  \begin{myquote}\footnotesize%
+    \ListingListTight%
+    \color{\tulcolor}\raggedright\sloppy%
+    \def\FrameCommand##1{\hspace{0pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{10pt}##1}%
+    \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
+    \leavevmode\par\nobreak%
+}{%
+    \endMakeFramed%
+  \end{myquote}%
+  \par\addvspace{6pt}%
+}%
 
 % === TITULNÍ STRANY A FORMÁTOVÁNÍ NADPISŮ ===
 \providecommand{\create@uthb@x}[2]{\vspace{20mm}{\Large #1}\\\vspace{5mm}{\large #2}\par}
