@@ -6,8 +6,6 @@
 \setlength{\headheight}{0pt}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\newboolean{TUL@header}
-\setboolean{TUL@header}{true}
 \newlength{\logo@height}
 \newlength{\logo@shift}
 
@@ -20,21 +18,21 @@
 \newcommand{\TULheader}{\setboolean{TUL@header}{true}\render@TULheader}
 
 % Vykreslování záhlaví / žádné záhlaví
-\newcommand{\render@TULheader}{
-    \fancyhead{}
-    \ifthenelse{\boolean{TUL@header}}{
-        \settoheight{\logo@height}{\logotext}
-        \setlength{\logo@shift}{13mm}
-        \addtolength{\logo@shift}{-\logo@height}
+\newcommand{\render@TULheader}{%
+  \fancyhead{}%
+  \ifthenelse{\boolean{TUL@header}}{%
+    \settoheight{\logo@height}{\logotext}%
+    \setlength{\logo@shift}{13mm}%
+    \addtolength{\logo@shift}{-\logo@height}%
+    \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}%
+    \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}%
+    \fancyheadoffset{10mm}%
+  }{}%
+}
 
-        % \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}
-        % \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}
-
-        \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}
-        \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}
-
-        \fancyheadoffset{10mm}
-    }{}
+% Rendering až po načtení boolean vlaječek
+\AtBeginDocument{%
+  \render@TULheader%
 }
 
 % Příkaz pro tvorbu zápatí TUL s číslováním stránek, kontaktními informacemi apod.

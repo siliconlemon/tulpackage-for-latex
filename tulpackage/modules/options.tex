@@ -113,9 +113,6 @@
 \DeclareOption{CXI}{\TUL@CXI@setup}
 
 
-% Boolean definice číslování nadpisů
-\newboolean{TUL@numbering}
-\setboolean{TUL@numbering}{false}
 % Možnost zapnout číslování nadpisů
 \DeclareOption{numbering}{\setboolean{TUL@numbering}{true}}
 
@@ -194,7 +191,9 @@
 \DeclareOption{margins}{\TUL@marginstrue}
 
 % Napsání "noheader" aktivuje konfiguraci dokumentu bez záhlaví
-\DeclareOption{noheader}{\noTULheader}
+\DeclareOption{noheader}{%
+  \setboolean{TUL@header}{false}%
+}
 
 % Možnost "captionsleft" zarovnává všechny popisky obrázků apod. do leva
 \DeclareOption{captionsleft}{%
@@ -212,6 +211,19 @@
 }
 \DeclareOption{lstcapsleft}{%
   \setboolean{TUL@lstcapsleft}{true}%
+}
+
+% Možnost "singlecapnumbers" pro čísla popisků bez předčstlí kapitol
+\DeclareOption{singlecapnumbers}{%
+  \setboolean{TUL@singlecapnumbers}{true}%
+}
+\DeclareOption{nocapnumbers}{%
+  \setboolean{TUL@nocapnumbers}{true}%
+}
+
+% Možnost "nocapnumbers" pro vypnutí číslování popisků
+\DeclareOption{nocapnumbers}{%
+  \setboolean{TUL@nocapnumbers}{true}%
 }
 
 % Spouštěcí příkaz pro všechny předané možnosti

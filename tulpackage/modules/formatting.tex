@@ -54,7 +54,7 @@
   \pretocmd{\l@subsection}{\hypersetup{linkcolor=\TUL@TOCtextcolor}}{}{}%
 }{}%
 
-% === NASTAVENÍ VZHLEDU POPISKŮ ===
+% === NASTAVENÍ VZHLEDU POPISKŮ (listings jsou definované zvlášť, níže) ===
 \AtBeginDocument{%
   \ifthenelse{\boolean{TUL@figcapsleft}}{%
     \captionsetup[figure]{justification=raggedright,singlelinecheck=false}%
@@ -65,6 +65,17 @@
     \captionsetup[table]{justification=raggedright,singlelinecheck=false}%
   }{%
     \captionsetup[table]{justification=centering,singlelinecheck=false}%
+  }%
+  \ifthenelse{\boolean{TUL@nocapnumbers}}{%
+      \captionsetup{labelformat=empty}%
+    }{}%
+  \@ifundefined{chapter}{}{%
+    \ifthenelse{\boolean{TUL@singlecapnumbers}}{%
+        \@removefromreset{figure}{chapter}%
+        \renewcommand{\thefigure}{\arabic{figure}}%
+        \@removefromreset{table}{chapter}%
+        \renewcommand{\thetable}{\arabic{table}}%
+    }{}%
   }%
 }
 
@@ -176,15 +187,18 @@
 }
 
 % --- Čítač výpisů (listing) – číslování jako obrázky/tabulky ---
-% V reportu se resetuje po kapitolách => 1.1, 1.2, ...
-% V article (bez \chapter) zůstane prosté 1, 2, ...
 \ifcsdef{c@tullisting}{}{%
   \@ifundefined{chapter}{%
     \newcounter{tullisting}%
     \renewcommand{\thetullisting}{\arabic{tullisting}}%
   }{%
-    \newcounter{tullisting}[chapter]%
-    \renewcommand{\thetullisting}{\thechapter.\arabic{tullisting}}%
+    \ifthenelse{\boolean{TUL@singlecapnumbers}}{%
+      \newcounter{tullisting}% no [chapter] => no reset per chapter
+      \renewcommand{\thetullisting}{\arabic{tullisting}}%
+    }{%
+      \newcounter{tullisting}[chapter]%
+      \renewcommand{\thetullisting}{\thechapter.\arabic{tullisting}}%
+    }%
   }%
 }
 
@@ -205,15 +219,23 @@
   }%
   \ifthenelse{\boolean{TUL@lstcapsleft}}{%
     {\raggedright\noindent
-      \ifthenelse{\equal{\TUL@nguage}{EN}}%
-        {Listing \thetullisting: #1}%
-        {Zdrojový kód \thetullisting: #1}%
+      \ifthenelse{\boolean{TUL@nocapnumbers}}{%
+        #1%
+      }{%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}%
+          {Listing \thetullisting: #1}%
+          {Zdrojový kód \thetullisting: #1}%
+      }%
       \par}%
   }{%
     {\centering
-      \ifthenelse{\equal{\TUL@nguage}{EN}}%
-        {Listing \thetullisting: #1}%
-        {Zdrojový kód \thetullisting: #1}%
+      \ifthenelse{\boolean{TUL@nocapnumbers}}{%
+        #1%
+      }{%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}%
+          {Listing \thetullisting: #1}%
+          {Zdrojový kód \thetullisting: #1}%
+      }%
       \par}%
   }%
   \par\vspace{8pt}%
