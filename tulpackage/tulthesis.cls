@@ -198,11 +198,6 @@
 \RequirePackage[noheader]{tulpackage/tul}
 \noTULfooter%
 
-% Logika a formátování
-\RequirePackage{ifthen}
-\RequirePackage{tabularray}
-\RequirePackage{pdfpages}
-
 % Nastavení textů šablony tabulek v češtině
 \ifthenelse{\equal{\TUL@nguage}{EN}}{}{
 	\DefTblrTemplate{conthead-text}{default}{(pokračování)}
@@ -211,7 +206,6 @@
 
 % Hyperref (pokud není vypnut)
 \ifTUL@pdf
-	\RequirePackage{hyperref}
 	\hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
 \fi
 

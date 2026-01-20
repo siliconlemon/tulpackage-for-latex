@@ -1,230 +1,237 @@
 % tulpackage/modules/options.tex
-% Description: Logic for Faculty selection and package options.
+% Obsahuje: Logiku výběru fakult, zpracování voleb a nastavení vzhledu
+% chktex-file 1
+
+% ==========================================================================
+% Logika přepínání stylu (interní makra)
+% ==========================================================================
 
 % Přepínač stylu podle názvu fakulty/ústavu
-\newcommand{\switchTULstyle}[1]{
-    \renewcommand{\sekce@TUL}{#1}
-    \renewcommand{\tulcolor}{tul#1}
-    \renewcommand{\titlecolor}{tul#1}
-    \renewcommand{\CZlogo}{\csname logo#1\endcsname}
-    \renewcommand{\CZlogowh}{\csname logo#1wh\endcsname}
-    \renewcommand{\ENlogo}{\csname ENlogo#1\endcsname}
-    \renewcommand{\ENlogowh}{\csname ENlogo#1wh\endcsname}
-    \renewcommand{\CZlogotext}{\csname logo#1text\endcsname}
-    \renewcommand{\CZlogotextwh}{\csname logo#1textwh\endcsname}
-    \renewcommand{\ENlogotext}{\csname ENlogo#1text\endcsname}
-    \renewcommand{\ENlogotextwh}{\csname ENlogo#1textwh\endcsname}
-    \renewcommand{\symbolTUL}{\csname symbol#1\endcsname}
-}
+\newcommand{\switchTULstyle}[1]{%
+    \renewcommand{\sekce@TUL}{#1}%
+    \renewcommand{\tulcolor}{tul#1}%
+    \renewcommand{\titlecolor}{tul#1}%
+    \renewcommand{\CZlogo}{\csname logo#1\endcsname}%
+    \renewcommand{\CZlogowh}{\csname logo#1wh\endcsname}%
+    \renewcommand{\ENlogo}{\csname ENlogo#1\endcsname}%
+    \renewcommand{\ENlogowh}{\csname ENlogo#1wh\endcsname}%
+    \renewcommand{\CZlogotext}{\csname logo#1text\endcsname}%
+    \renewcommand{\CZlogotextwh}{\csname logo#1textwh\endcsname}%
+    \renewcommand{\ENlogotext}{\csname ENlogo#1text\endcsname}%
+    \renewcommand{\ENlogotextwh}{\csname ENlogo#1textwh\endcsname}%
+    \renewcommand{\symbolTUL}{\csname symbol#1\endcsname}%
+}%
 
+% ==========================================================================
+% Konfigurace jednotlivých fakult
+% ==========================================================================
 
-% Možné konfigurace fakult/ústavů: \TUL@<útvar>@setup
 % Konfigurace FS TUL
-\newcommand{\TUL@FS@setup}{
+\newcommand{\TUL@FS@setup}{%
     \switchTULstyle{FS}%
     \renewcommand{\ENTULsoucast}{Faculty of Mechanical Engineering}%
     \renewcommand{\CZTULsoucast}{Fakulta strojní}%
-    \TULphone{+420 485 353 108}
-    \renewcommand{\TUL@URL}{www.fs.tul.cz}
-}
+    \TULphone{+420 485 353 108}%
+    \renewcommand{\TUL@URL}{www.fs.tul.cz}%
+}%
+
 % Konfigurace FT TUL
-\newcommand{\TUL@FT@setup}{
+\newcommand{\TUL@FT@setup}{%
     \switchTULstyle{FT}%
     \renewcommand{\ENTULsoucast}{Faculty of Textile Engineering}%
     \renewcommand{\CZTULsoucast}{Fakulta textilní}%
-    \TULphone{+420 485 353 452}
-    \renewcommand{\TUL@URL}{www.ft.tul.cz}
-}
+    \TULphone{+420 485 353 452}%
+    \renewcommand{\TUL@URL}{www.ft.tul.cz}%
+}%
+
 % Konfigurace FP TUL
-\newcommand{\TUL@FP@setup}{
+\newcommand{\TUL@FP@setup}{%
     \switchTULstyle{FP}%
     \renewcommand{\ENTULsoucast}{Faculty of Sciences, Humanities and Education}%
-    \renewcommand{\CZTULsoucast}{Fakulta
-        přírodovědně-humanitní a pedagogická}%
-    \TULphone{+420 485 352 815}
-    \renewcommand{\TUL@URL}{www.fp.tul.cz}
-    \renewcommand{\TUL@adr}{Univerzitní náměstí 1410/1,
-        461~17 Liberec~1\add@cz}
-}
+    \renewcommand{\CZTULsoucast}{Fakulta přírodovědně-humanitní a pedagogická}%
+    \TULphone{+420 485 352 815}%
+    \renewcommand{\TUL@URL}{www.fp.tul.cz}%
+    \renewcommand{\TUL@adr}{Univerzitní náměstí 1410/1, 461~17 Liberec~1\add@cz}%
+}%
+
 % Konfigurace EF TUL
-\newcommand{\TUL@EF@setup}{
+\newcommand{\TUL@EF@setup}{%
     \switchTULstyle{EF}%
     \renewcommand{\ENTULsoucast}{Faculty of Economics}%
     \renewcommand{\CZTULsoucast}{Ekonomická fakulta}%
-    \TULphone{+420 485 352 388}
-    \renewcommand{\TUL@URL}{www.ef.tul.cz}
-    \renewcommand{\TUL@adr}{Voroněžská 1329/13, 460~02 Liberec~2\add@cz}
-}
+    \TULphone{+420 485 352 388}%
+    \renewcommand{\TUL@URL}{www.ef.tul.cz}%
+    \renewcommand{\TUL@adr}{Voroněžská 1329/13, 460~02 Liberec~2\add@cz}%
+}%
+
 % Alias pro formulaci FE TUL místo EF TUL
-\newcommand{\TUL@FE@setup}{\TUL@EF@setup}
+\newcommand{\TUL@FE@setup}{\TUL@EF@setup}%
+
 % Konfigurace FUA TUL
-\newcommand{\TUL@FUA@setup}{
+\newcommand{\TUL@FUA@setup}{%
     \switchTULstyle{FUA}%
     \renewcommand{\ENTULsoucast}{Faculty of Arts and Architecture}%
     \renewcommand{\CZTULsoucast}{Fakulta umění a architektury}%
-    \TULphone{+420 485 353 506}
-    \TULmail{fua@tul.cz}
-    \renewcommand{\TUL@URL}{www.fua.tul.cz}
-}
+    \TULphone{+420 485 353 506}%
+    \TULmail{fua@tul.cz}%
+    \renewcommand{\TUL@URL}{www.fua.tul.cz}%
+}%
+
 % Konfigurace FM TUL
-\newcommand{\TUL@FM@setup}{
+\newcommand{\TUL@FM@setup}{%
     \switchTULstyle{FM}%
-    \renewcommand{\ENTULsoucast}{Faculty of Mechatronics, Informatics
-        and Interdisciplinary Studies}%
-    \renewcommand{\CZTULsoucast}{Fakulta mechatroniky, informatiky
-        a mezioborových studií}%
-    \TULphone{+420 485 353 757}
-    \renewcommand{\TUL@URL}{www.fm.tul.cz}
-}
+    \renewcommand{\ENTULsoucast}{Faculty of Mechatronics, Informatics and Interdisciplinary Studies}%
+    \renewcommand{\CZTULsoucast}{Fakulta mechatroniky, informatiky a mezioborových studií}%
+    \TULphone{+420 485 353 757}%
+    \renewcommand{\TUL@URL}{www.fm.tul.cz}%
+}%
+
 % Konfigurace FZS TUL
-\newcommand{\TUL@FZS@setup}{
+\newcommand{\TUL@FZS@setup}{%
     \switchTULstyle{FZS}%
     \renewcommand{\ENTULsoucast}{Faculty of Health Studies}%
     \renewcommand{\CZTULsoucast}{Fakulta zdravotnických studií}%
-    \TULphone{+420 485 353 593}
-    \TULmail{fzs@tul.cz}
-    \renewcommand{\TUL@URL}{www.fzs.tul.cz}
-}
+    \TULphone{+420 485 353 593}%
+    \TULmail{fzs@tul.cz}%
+    \renewcommand{\TUL@URL}{www.fzs.tul.cz}%
+}%
+
 % Konfigurace CXI TUL
-\newcommand{\TUL@CXI@setup}{
+\newcommand{\TUL@CXI@setup}{%
     \switchTULstyle{CXI}%
-    \renewcommand{\ENTULsoucast}{Institute for Nanomaterials,
-        Advanced Technologies and Innovation}%
-    \renewcommand{\CZTULsoucast}{Ústav pro nanomateriály,
-        pokročilé technologie a inovace}%
-    \TULphone{+420 485 353 852}
-    \TULmail{cxi@tul.cz}
-    \renewcommand{\TUL@URL}{www.cxi.tul.cz}
-}
+    \renewcommand{\ENTULsoucast}{Institute for Nanomaterials, Advanced Technologies and Innovation}%
+    \renewcommand{\CZTULsoucast}{Ústav pro nanomateriály, pokročilé technologie a inovace}%
+    \TULphone{+420 485 353 852}%
+    \TULmail{cxi@tul.cz}%
+    \renewcommand{\TUL@URL}{www.cxi.tul.cz}%
+}%
 
-% Deklarace jazykového balíku EN
-\DeclareOption{EN}{\renewcommand{\TUL@nguage}{EN}}
+% ==========================================================================
+% Deklarace voleb (Options)
+% ==========================================================================
 
-% Deklarace balíků fakult/ústavů
-\DeclareOption{FS}{\TUL@FS@setup}
-\DeclareOption{FT}{\TUL@FT@setup}
-\DeclareOption{FP}{\TUL@FP@setup}
-\DeclareOption{EF}{\TUL@EF@setup}
-\DeclareOption{FE}{\TUL@EF@setup}   % Alias pro použití s databázemi obsahujícími FE
-\DeclareOption{FUA}{\TUL@FUA@setup}
-\DeclareOption{FA}{\TUL@FUA@setup}  % Pro zpětnou kompatibilitu
-\DeclareOption{FM}{\TUL@FM@setup}
-\DeclareOption{FZS}{\TUL@FZS@setup}
-\DeclareOption{CXI}{\TUL@CXI@setup}
+% --- Jazyk ---
+\DeclareOption{EN}{\renewcommand{\TUL@nguage}{EN}}%
 
+% --- Fakulty a ústavy ---
+\DeclareOption{FS}{\TUL@FS@setup}%
+\DeclareOption{FT}{\TUL@FT@setup}%
+\DeclareOption{FP}{\TUL@FP@setup}%
+\DeclareOption{EF}{\TUL@EF@setup}%
+\DeclareOption{FE}{\TUL@EF@setup}% Alias
+\DeclareOption{FUA}{\TUL@FUA@setup}%
+\DeclareOption{FA}{\TUL@FUA@setup}% Alias
+\DeclareOption{FM}{\TUL@FM@setup}%
+\DeclareOption{FZS}{\TUL@FZS@setup}%
+\DeclareOption{CXI}{\TUL@CXI@setup}%
 
-% Možnost zapnout číslování nadpisů
-\DeclareOption{numbering}{\setboolean{TUL@numbering}{true}}
+% --- Stylování a barvy ---
 
+% Zapnutí číslování nadpisů
+\DeclareOption{numbering}{\setboolean{TUL@numbering}{true}}%
 
-% Vypíná barvy nadpisů ve variantách - monochromatický režim
-\DeclareOption{bwtitles}{
-    \renewcommand{\titlecolor}{black}
-}
+% Černobílé nadpisy
+\DeclareOption{bwtitles}{%
+    \renewcommand{\titlecolor}{black}%
+}%
 
-% Vypíná barvy všech log a symbolů - monochromatický režim
-\DeclareOption{bw}{
-    \renewcommand{\tulcolor}{black!50}
-    \renewcommand{\titlecolor}{black}
-    \renewcommand{\symbolTUL}{\symbolTULbw}
-    \renewcommand{\symbolFS}{\symbolTULbw}
-    \renewcommand{\symbolFT}{\symbolTULbw}
-    \renewcommand{\symbolFP}{\symbolTULbw}
-    \renewcommand{\symbolEF}{\symbolTULbw}
-    \renewcommand{\symbolFUA}{\symbolTULbw}
-    \renewcommand{\symbolFM}{\symbolTULbw}
-    \renewcommand{\symbolFZS}{\symbolTULbw}
-    \renewcommand{\symbolCXI}{\symbolTULbw}
-    \renewcommand{\znakTUL}{\symbolTULbw}
-    \renewcommand{\logoTUL}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-bw}}
-    \renewcommand{\logoTULtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-txt-bw}}
-    \renewcommand{\logoTULalt}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-3r-bw}}
-    \renewcommand{\logoFS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-bw}}
-    \renewcommand{\logoFStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-txt-bw}}
-    \renewcommand{\logoFT}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-bw}}
-    \renewcommand{\logoFTtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-txt-bw}}
-    \renewcommand{\logoFP}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-bw}}
-    \renewcommand{\logoFPtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-txt-bw}}
-    \renewcommand{\logoEF}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-bw}}
-    \renewcommand{\logoEFtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-txt-bw}}
-    \renewcommand{\logoFUA}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-bw}}
-    \renewcommand{\logoFUAtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-txt-bw}}
-    \renewcommand{\logoFM}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-bw}}
-    \renewcommand{\logoFMtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-txt-bw}}
-    \renewcommand{\logoFZS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-bw}}
-    \renewcommand{\logoFZStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-txt-bw}}
-    \renewcommand{\logoCXI}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-bw}}
-    \renewcommand{\logoCXItext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-txt-bw}}
-    \renewcommand{\ENlogoTUL}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-bw}}
-    \renewcommand{\ENlogoTULtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-txt-en-bw}}
-    \renewcommand{\ENlogoTULalt}{\includegraphics[scale=0.3]{tulpackage/logos/logo-tul-3r-en-bw}}
-    \renewcommand{\ENlogoFS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-en-bw}}
-    \renewcommand{\ENlogoFStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fs-txt-en-bw}}
-    \renewcommand{\ENlogoFT}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-bw}}
-    \renewcommand{\ENlogoFTtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ft-txt-en-bw}}
-    \renewcommand{\ENlogoFP}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-en-bw}}
-    \renewcommand{\ENlogoFPtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fp-txt-en-bw}}
-    \renewcommand{\ENlogoEF}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-en-bw}}
-    \renewcommand{\ENlogoEFtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-ef-txt-en-bw}}
-    \renewcommand{\ENlogoFUA}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-en-bw}}
-    \renewcommand{\ENlogoFUAtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fua-txt-en-bw}}
-    \renewcommand{\ENlogoFM}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-bw}}
-    \renewcommand{\ENlogoFMtext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fm-txt-en-bw}}
-    \renewcommand{\ENlogoFZS}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-en-bw}}
-    \renewcommand{\ENlogoFZStext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-fzs-txt-en-bw}}
-    \renewcommand{\ENlogoCXI}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-bw}}
-    \renewcommand{\ENlogoCXItext}{\includegraphics[scale=0.3]{tulpackage/logos/logo-cxi-txt-en-bw}}
-}
+% Plný černobílý režim (včetně log)
+\DeclareOption{bw}{%
+    \renewcommand{\tulcolor}{black!50}%
+    \renewcommand{\titlecolor}{black}%
+    % Symboly
+    \renewcommand{\symbolTUL}{\symbolTULbw}%
+    \renewcommand{\symbolFS}{\symbolTULbw}%
+    \renewcommand{\symbolFT}{\symbolTULbw}%
+    \renewcommand{\symbolFP}{\symbolTULbw}%
+    \renewcommand{\symbolEF}{\symbolTULbw}%
+    \renewcommand{\symbolFUA}{\symbolTULbw}%
+    \renewcommand{\symbolFM}{\symbolTULbw}%
+    \renewcommand{\symbolFZS}{\symbolTULbw}%
+    \renewcommand{\symbolCXI}{\symbolTULbw}%
+    \renewcommand{\znakTUL}{\symbolTULbw}%
+    % CZ Loga
+    \renewcommand{\logoTUL}{\includegraphics[scale=0.3]{\logosPath logo-tul-bw}}%
+    \renewcommand{\logoTULtext}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt-bw}}%
+    \renewcommand{\logoTULalt}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r-bw}}%
+    \renewcommand{\logoFS}{\includegraphics[scale=0.3]{\logosPath logo-fs-bw}}%
+    \renewcommand{\logoFStext}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt-bw}}%
+    \renewcommand{\logoFT}{\includegraphics[scale=0.3]{\logosPath logo-ft-bw}}%
+    \renewcommand{\logoFTtext}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt-bw}}%
+    \renewcommand{\logoFP}{\includegraphics[scale=0.3]{\logosPath logo-fp-bw}}%
+    \renewcommand{\logoFPtext}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt-bw}}%
+    \renewcommand{\logoEF}{\includegraphics[scale=0.3]{\logosPath logo-ef-bw}}%
+    \renewcommand{\logoEFtext}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt-bw}}%
+    \renewcommand{\logoFUA}{\includegraphics[scale=0.3]{\logosPath logo-fua-bw}}%
+    \renewcommand{\logoFUAtext}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt-bw}}%
+    \renewcommand{\logoFM}{\includegraphics[scale=0.3]{\logosPath logo-fm-bw}}%
+    \renewcommand{\logoFMtext}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt-bw}}%
+    \renewcommand{\logoFZS}{\includegraphics[scale=0.3]{\logosPath logo-fzs-bw}}%
+    \renewcommand{\logoFZStext}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt-bw}}%
+    \renewcommand{\logoCXI}{\includegraphics[scale=0.3]{\logosPath logo-cxi-bw}}%
+    \renewcommand{\logoCXItext}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt-bw}}%
+    % EN Loga
+    \renewcommand{\ENlogoTUL}{\includegraphics[scale=0.3]{\logosPath logo-tul-bw}}%
+    \renewcommand{\ENlogoTULtext}{\includegraphics[scale=0.3]{\logosPath logo-tul-txt-en-bw}}%
+    \renewcommand{\ENlogoTULalt}{\includegraphics[scale=0.3]{\logosPath logo-tul-3r-en-bw}}%
+    \renewcommand{\ENlogoFS}{\includegraphics[scale=0.3]{\logosPath logo-fs-en-bw}}%
+    \renewcommand{\ENlogoFStext}{\includegraphics[scale=0.3]{\logosPath logo-fs-txt-en-bw}}%
+    \renewcommand{\ENlogoFT}{\includegraphics[scale=0.3]{\logosPath logo-ft-bw}}%
+    \renewcommand{\ENlogoFTtext}{\includegraphics[scale=0.3]{\logosPath logo-ft-txt-en-bw}}%
+    \renewcommand{\ENlogoFP}{\includegraphics[scale=0.3]{\logosPath logo-fp-en-bw}}%
+    \renewcommand{\ENlogoFPtext}{\includegraphics[scale=0.3]{\logosPath logo-fp-txt-en-bw}}%
+    \renewcommand{\ENlogoEF}{\includegraphics[scale=0.3]{\logosPath logo-ef-en-bw}}%
+    \renewcommand{\ENlogoEFtext}{\includegraphics[scale=0.3]{\logosPath logo-ef-txt-en-bw}}%
+    \renewcommand{\ENlogoFUA}{\includegraphics[scale=0.3]{\logosPath logo-fua-en-bw}}%
+    \renewcommand{\ENlogoFUAtext}{\includegraphics[scale=0.3]{\logosPath logo-fua-txt-en-bw}}%
+    \renewcommand{\ENlogoFM}{\includegraphics[scale=0.3]{\logosPath logo-fm-bw}}%
+    \renewcommand{\ENlogoFMtext}{\includegraphics[scale=0.3]{\logosPath logo-fm-txt-en-bw}}%
+    \renewcommand{\ENlogoFZS}{\includegraphics[scale=0.3]{\logosPath logo-fzs-en-bw}}%
+    \renewcommand{\ENlogoFZStext}{\includegraphics[scale=0.3]{\logosPath logo-fzs-txt-en-bw}}%
+    \renewcommand{\ENlogoCXI}{\includegraphics[scale=0.3]{\logosPath logo-cxi-bw}}%
+    \renewcommand{\ENlogoCXItext}{\includegraphics[scale=0.3]{\logosPath logo-cxi-txt-en-bw}}%
+}%
 
-% * Boolean definice booleans jsou v basics.tex kvůli správnému načítání
+% --- Fonty ---
 
-% Možnost "fonts" pro používání fontů TUL (v rámci balíku documentclass)
-\DeclareOption{fonts}{\setboolean{TULf@nts}{true}}
+% Aktivace TUL fontů
+\DeclareOption{fonts}{\setboolean{TULf@nts}{true}}%
 
-% Možnost "sfbody" pro používání patkového fontu v těle dokumentu (v rámci balíku documentclass)
-\DeclareOption{sfbody}{\setboolean{TULsfb@dy}{true}}
+% Bezpatkové písmo v těle dokumentu
+\DeclareOption{sfbody}{\setboolean{TULsfb@dy}{true}}%
 
-% Možnost "sfheadings" pro používání patkového fontu v nadpisech (v rámci balíku documentclass)
-\DeclareOption{sfheadings}{\setboolean{TULsfhe@dings}{true}}
+% Bezpatkové písmo v nadpisech
+\DeclareOption{sfheadings}{\setboolean{TULsfhe@dings}{true}}%
 
-% Možnost "margins" pro zapnutí odsazení zleva a zprava v dokumentu
-\DeclareOption{margins}{\TUL@marginstrue}
+% --- Layout a formátování ---
 
-% Napsání "noheader" aktivuje konfiguraci dokumentu bez záhlaví
+% Okraje dokumentu
+\DeclareOption{margins}{\TUL@marginstrue}%
+
+% Vypnutí záhlaví
 \DeclareOption{noheader}{%
-  \setboolean{TUL@header}{false}%
-}
+    \setboolean{TUL@header}{false}%
+}%
 
-% Možnost "captionsleft" zarovnává všechny popisky obrázků apod. do leva
+% Zarovnání popisků doleva (Figures, Tables, Listings)
 \DeclareOption{captionsleft}{%
-  \setboolean{TUL@figcapsleft}{true}%
-  \setboolean{TUL@tabcapsleft}{true}%
-  \setboolean{TUL@lstcapsleft}{true}%
-}
+    \setboolean{TUL@figcapsleft}{true}%
+    \setboolean{TUL@tabcapsleft}{true}%
+    \setboolean{TUL@lstcapsleft}{true}%
+}%
 
-% Možnosti pro zarovnání jednotlivých popisků doleva (použíbat BEZ cationsleft)
-\DeclareOption{figcapsleft}{%
-  \setboolean{TUL@figcapsleft}{true}%
-}
-\DeclareOption{tabcapsleft}{%
-  \setboolean{TUL@tabcapsleft}{true}%
-}
-\DeclareOption{lstcapsleft}{%
-  \setboolean{TUL@lstcapsleft}{true}%
-}
+\DeclareOption{figcapsleft}{\setboolean{TUL@figcapsleft}{true}}%
+\DeclareOption{tabcapsleft}{\setboolean{TUL@tabcapsleft}{true}}%
+\DeclareOption{lstcapsleft}{\setboolean{TUL@lstcapsleft}{true}}%
 
-% Možnost "singlecapnumbers" pro čísla popisků bez předčstlí kapitol
+% Číslování popisků (bez kapitol nebo vypnout)
 \DeclareOption{singlecapnumbers}{%
-  \setboolean{TUL@singlecapnumbers}{true}%
-}
-\DeclareOption{nocapnumbers}{%
-  \setboolean{TUL@nocapnumbers}{true}%
-}
+    \setboolean{TUL@singlecapnumbers}{true}%
+}%
 
-% Možnost "nocapnumbers" pro vypnutí číslování popisků
 \DeclareOption{nocapnumbers}{%
-  \setboolean{TUL@nocapnumbers}{true}%
-}
+    \setboolean{TUL@nocapnumbers}{true}%
+}%
 
-% Spouštěcí příkaz pro všechny předané možnosti
+% Zpracování všech voleb
 \ProcessOptions%

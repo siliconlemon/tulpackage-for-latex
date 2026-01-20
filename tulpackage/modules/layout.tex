@@ -1,21 +1,29 @@
 % tulpackage/modules/layout.tex
-% Description: Page layout, geometry, and post-processing of options.
+% Obsahuje: Nastavení geometrie stránky a odsazení nadpisů
+
+% ==========================================================================
+% Styl stránky a globální nastavení
+% ==========================================================================
 
 % Podmíněná konfigurace stránky podle bool hodnoty "TUL@header"
 % True -> Styl stránky = "TUL", False -> Styl stránky = "TULfooter"
-\ifthenelse{\boolean{TUL@header}}{\pagestyle{TUL}}{\pagestyle{TULfooter}}
+\ifthenelse{\boolean{TUL@header}}{\pagestyle{TUL}}{\pagestyle{TULfooter}}%
 
 % Nastavení číslování kapitol v obsahu
 \ifthenelse{\boolean{TUL@numbering}}{}{%
-    \renewcommand{\numberline}[1]{} % No numbering in TOC
-}
+    \renewcommand{\numberline}[1]{}% No numbering in TOC
+}%
 
-% Brání roztažení stránek, ze kterých odskočila ilustrace na následnující
-\AtBeginDocument{\raggedbottom}
+% Brání roztažení stránek, ze kterých odskočila ilustrace na následující
+\AtBeginDocument{\raggedbottom}%
 
-% Nastavení základního layoutu podle velikosti papíru.
+% ==========================================================================
+% Geometrie stránky
+% ==========================================================================
+
+% Nastavení základního layoutu podle velikosti papíru
 \ifthenelse{\lengthtest{\paperwidth=210mm}\AND\lengthtest{\paperheight=297mm}}{%
-    % Pro A4 papír
+    % --- Pro A4 papír ---
     \ifTUL@margins
         \setlength{\oddsidemargin}{10mm}%
         \setlength{\evensidemargin}{0mm}%
@@ -33,7 +41,7 @@
     \setlength{\footskip}{15mm}%
     \fancyfootoffset{0pt}%
 }{%
-    % Pro jiný formát papíru než A4
+    % --- Pro jiný formát papíru než A4 ---
     \ifTUL@margins
         \setlength{\oddsidemargin}{10mm}%
         \setlength{\evensidemargin}{0mm}%
@@ -49,20 +57,25 @@
     \setlength{\headsep}{10mm}%
     \addtolength{\textheight}{7.5mm}%
     \setlength{\footskip}{1.2mm}%
-}
-% Široký režim
+}%
+
+% Široký režim (přenastavení okrajů)
 \newcommand{\TULwide}{%
     \setlength{\oddsidemargin}{0mm}%
     \setlength{\evensidemargin}{0mm}%
     \setlength{\textwidth}{\dimexpr\paperwidth-50mm\relax}%
     \makeTULf@@ter%
-}
+}%
+
+% ==========================================================================
+% Aplikace stylů nadpisů
+% ==========================================================================
 
 % Aplikace formátování nadpisů (makro definováno v formatting.tex)
-\setup@TUL@titleformats
+\setup@TUL@titleformats%
 
 % Odsazení nadpisů
-\titlespacing{\chapter}{0pt}{-1.2em}{1.0em}
-\titlespacing{\section}{0pt}{1.4em}{0.8em}
-\titlespacing{\subsection}{0pt}{1.4em}{0.8em}
-\titlespacing{\subsubsection}{0pt}{1.4em}{0.8em}
+\titlespacing{\chapter}{0pt}{-1.2em}{1.0em}%
+\titlespacing{\section}{0pt}{1.4em}{0.8em}%
+\titlespacing{\subsection}{0pt}{1.4em}{0.8em}%
+\titlespacing{\subsubsection}{0pt}{1.4em}{0.8em}%

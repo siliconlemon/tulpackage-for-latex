@@ -1,39 +1,52 @@
 % tulpackage/modules/pagestyles.tex
-% Description: Header and Footer configurations using fancyhdr.
+% Obsahuje: Definice a konfigurace stylů záhlaví a zápatí
 
-% Příprava záhlaví a zápatí
-\RequirePackage{fancyhdr}
-\setlength{\headheight}{0pt}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\newlength{\logo@height}
-\newlength{\logo@shift}
+% ==========================================================================
+% Inicializace a globální nastavení
+% ==========================================================================
+
+% Příprava délek pro záhlaví a zápatí
+\setlength{\headheight}{0pt}%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}%
+\newlength{\logo@height}%
+\newlength{\logo@shift}%
 
 % Potlačení neopravitelného varování kvůli výšce vyprázdněných záhlaví
-\RequirePackage{silence}
-\WarningFilter{fancyhdr}{\headheight is too small}
+\WarningFilter{fancyhdr}{\headheight is too small}%
+
+% ==========================================================================
+% Logika záhlaví (Header)
+% ==========================================================================
 
 % Nastavení a vykreslování záhlaví / žádné záhlaví
-\newcommand{\noTULheader}{\setboolean{TUL@header}{false}\render@TULheader}
-\newcommand{\TULheader}{\setboolean{TUL@header}{true}\render@TULheader}
+\newcommand{\noTULheader}{\setboolean{TUL@header}{false}\render@TULheader}%
+\newcommand{\TULheader}{\setboolean{TUL@header}{true}\render@TULheader}%
 
-% Vykreslování záhlaví / žádné záhlaví
+% Vykreslování záhlaví
 \newcommand{\render@TULheader}{%
-  \fancyhead{}%
-  \ifthenelse{\boolean{TUL@header}}{%
-    \settoheight{\logo@height}{\logotext}%
-    \setlength{\logo@shift}{13mm}%
-    \addtolength{\logo@shift}{-\logo@height}%
-    \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}%
-    \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}%
-    \fancyheadoffset{10mm}%
-  }{}%
-}
+    \fancyhead{}%
+    \ifthenelse{\boolean{TUL@header}}{%
+        \settoheight{\logo@height}{\logotext}%
+        \setlength{\logo@shift}{13mm}%
+        \addtolength{\logo@shift}{-\logo@height}%
+        \fancyhead[L]{\raisebox{\logo@shift}[5mm]{\logotext}}%
+        \fancyhead[R]{\raisebox{-11.5mm}[5mm]{\symbolTUL}}%
+        \fancyheadoffset{10mm}%
+    }{}%
+}%
 
 % Rendering až po načtení boolean vlaječek
 \AtBeginDocument{%
-  \render@TULheader%
-}
+    \render@TULheader%
+}%
+
+% ==========================================================================
+% Logika zápatí (Footer)
+% ==========================================================================
+
+% Výchozí příkaz pro číslo stránky
+\newcommand{\TULp@ge}{\thepage}%
 
 % Příkaz pro tvorbu zápatí TUL s číslováním stránek, kontaktními informacemi apod.
 \newcommand{\makeTULf@@ter}[1]{%
@@ -41,17 +54,17 @@
     \fancyfoot[C]{}%
     % Definice formátovaných kontaktních informací
     \newcommand{\TULcontactinfo}{%
-        \color{\tulcolor}\fontsize{9pt}{12pt}\selectfont
+        \color{\tulcolor}\fontsize{9pt}{12pt}\selectfont%
         \raisebox{-7mm}[0pt]{\vbox{%
-                \ifthenelse{\equal{\TULkontakt@name}{}}{}{%
-                    \TULkontakt@name\ |%
-                    \ifthenelse{\equal{\TULkontakt@pos}{}}{\unskip}{\TULkontakt@pos\ |}%
-                }%
-                \TULkontakt@phone\ | \TULkontakt@mail\\%
-                \TUL%
-                \ifthenelse{\equal{\CZTUL}{\CZTULsoucast}}{}{ | \TULsoucast}\\%
-                \TUL@adr\ | \TUL@URL%
-            }}%
+            \ifthenelse{\equal{\TULkontakt@name}{}}{}{%
+                \TULkontakt@name\ |%
+                \ifthenelse{\equal{\TULkontakt@pos}{}}{\unskip}{\TULkontakt@pos\ |}%
+            }%
+            \TULkontakt@phone\ | \TULkontakt@mail\\%
+            \TUL%
+            \ifthenelse{\equal{\CZTUL}{\CZTULsoucast}}{}{ | \TULsoucast}\\%
+            \TUL@adr\ | \TUL@URL%
+        }}%
     }%
     \if@twoside
         % Dvoustranná verze: kontaktní info na vnitřek, číslo stránky na vnější strany
@@ -62,7 +75,7 @@
             \fancyfoot[RO,LE]{}%
         }%
     \else
-        % Jednostranná verze: původní nastavení
+        % Jednostranná verze: kontaktní info vlevo, číslo stránky vpravo
         \fancyfoot[L]{\TULcontactinfo}%
         \ifthenelse{\equal{#1}{true}}{%
             \fancyfoot[R]{\raisebox{-1.5mm}[0pt]{\TULp@ge}}%
@@ -70,24 +83,26 @@
             \fancyfoot[R]{}%
         }%
     \fi
-}
+}%
 
-% Výchozí příkaz stránky TUL
-\newcommand{\TULp@ge}{\thepage}
+% ==========================================================================
+% Aliasy a konfigurace stylů
+% ==========================================================================
 
 % Různé mutace zápatí TUL
-\newcommand{\TULfooter}{\makeTULf@@ter{true}}
-\newcommand{\TULfooternopage}{\makeTULf@@ter{false}}
-\newcommand{\noTULfooter}{\fancyfoot[L,R]{}\fancyfoot[C]{\TULp@ge}}
-\newcommand{\nofootaddress}{\fancyfoot[L,C]{}\fancyfoot[R]{\TULp@ge}}
-% Stránka TUL
-\newcommand{\TULpage}{\TULheader\TULfooter}
+\newcommand{\TULfooter}{\makeTULf@@ter{true}}%
+\newcommand{\TULfooternopage}{\makeTULf@@ter{false}}%
+\newcommand{\noTULfooter}{\fancyfoot[L,R]{}\fancyfoot[C]{\TULp@ge}}%
+\newcommand{\nofootaddress}{\fancyfoot[L,C]{}\fancyfoot[R]{\TULp@ge}}%
 
-% Styly stránek TUL
-\fancypagestyle{TUL}{\TULheader\TULfooter}
-\fancypagestyle{TULnopage}{\TULheader\TULfooternopage}
-\fancypagestyle{TULheader}{\TULheader\noTULfooter}
-\fancypagestyle{TULheaderonly}{\TULheader\fancyfoot{}}
-\fancypagestyle{TULfooter}{\fancyhead{}\TULfooter}
-\fancypagestyle{TULfooternopage}{\fancyhead{}\TULfooternopage}
-\fancypagestyle{TULfooternoaddr}{\fancyhead{}\nofootaddress}
+% Zkratka pro kompletní stránku
+\newcommand{\TULpage}{\TULheader\TULfooter}%
+
+% Definice stylů stránek (fancypagestyle)
+\fancypagestyle{TUL}{\TULheader\TULfooter}%
+\fancypagestyle{TULnopage}{\TULheader\TULfooternopage}%
+\fancypagestyle{TULheader}{\TULheader\noTULfooter}%
+\fancypagestyle{TULheaderonly}{\TULheader\fancyfoot{}}%
+\fancypagestyle{TULfooter}{\fancyhead{}\TULfooter}%
+\fancypagestyle{TULfooternopage}{\fancyhead{}\TULfooternopage}%
+\fancypagestyle{TULfooternoaddr}{\fancyhead{}\nofootaddress}%

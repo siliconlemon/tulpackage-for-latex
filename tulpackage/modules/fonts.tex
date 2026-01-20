@@ -1,104 +1,101 @@
 % tulpackage/modules/fonts.tex
-% Description: Font loading and configuration.
+% Obsahuje: Načítání rodin písem a jejich konfigurace
 
 % Aktivace TUL písem, pokud je povolena volba "fonts"
-\ifthenelse{\boolean{TULf@nts}}{
-    \RequirePackage{fontspec}
-    \newcommand{\fontsPath}{tulpackage/fonts/}
+\ifthenelse{\boolean{TULf@nts}}{%
+    \newcommand{\fontsPath}{tulpackage/fonts/}%
 
     % Hlavní font - serif nebo sans-serif podle volby
-    \ifthenelse{\boolean{TULsfb@dy}}{
+    \ifthenelse{\boolean{TULsfb@dy}}{%
         % Serif hlavní font: Merriweather
-        \setmainfont[
-            Path=\fontsPath,
-            UprightFont=Merriweather-Regular.ttf,
-            BoldFont=Merriweather-Bold.ttf,
-            ItalicFont=Merriweather-Italic.ttf,
-            BoldItalicFont=Merriweather-BoldItalic.ttf,
-            Mapping=tex-text,
-            Script=Latin,
-            Language=Czech
-        ]{Merriweather}
-        \newcommand{\TULMainFont}{\rmfamily}
-    }{
+        \setmainfont[%
+            Path=\fontsPath,%
+            UprightFont=Merriweather-Regular.ttf,%
+            BoldFont=Merriweather-Bold.ttf,%
+            ItalicFont=Merriweather-Italic.ttf,%
+            BoldItalicFont=Merriweather-BoldItalic.ttf,%
+            Mapping=tex-text,%
+            Script=Latin,%
+            Language=Czech%
+        ]{Merriweather}%
+        \newcommand{\TULMainFont}{\rmfamily}%
+    }{%
         % Sans-serif hlavní font: Inter Regular
-        \setmainfont[
-            Path=\fontsPath,
-            UprightFont=Inter-Regular.otf,
-            BoldFont=Inter-Bold.otf,
-            ItalicFont=Inter-Italic.otf,
-            BoldItalicFont=Inter-BoldItalic.otf,
-            Mapping=tex-text,
-            Script=Latin,
-            Language=Czech
-        ]{Inter}
-        \newcommand{\TULMainFont}{\sffamily}
-    }
+        \setmainfont[%
+            Path=\fontsPath,%
+            UprightFont=Inter-Regular.otf,%
+            BoldFont=Inter-Bold.otf,%
+            ItalicFont=Inter-Italic.otf,%
+            BoldItalicFont=Inter-BoldItalic.otf,%
+            Mapping=tex-text,%
+            Script=Latin,%
+            Language=Czech%
+        ]{Inter}%
+        \newcommand{\TULMainFont}{\sffamily}%
+    }%
 
     % Monospace font: Noto Sans Mono
-    \setmonofont[
-        Path=\fontsPath,
-        UprightFont=NotoSansMono-Regular.ttf,
-        BoldFont=NotoSansMono-Bold.ttf,
-        ItalicFont=NotoSansMono-Regular.ttf,
-        BoldItalicFont=NotoSansMono-Bold.ttf,
-        Mapping=tex-text
-    ]{Noto Sans Mono}
+    \setmonofont[%
+        Path=\fontsPath,%
+        UprightFont=NotoSansMono-Regular.ttf,%
+        BoldFont=NotoSansMono-Bold.ttf,%
+        ItalicFont=NotoSansMono-Regular.ttf,%
+        BoldItalicFont=NotoSansMono-Bold.ttf,%
+        Mapping=tex-text%
+    ]{Noto Sans Mono}%
 
     % Font nadpisů - serif nebo sans-serif podle volby
-    \ifthenelse{\boolean{TULsfhe@dings}}{
-        \newfontfamily\TULHeadFont[
-            Path=\fontsPath,
-            UprightFont=Merriweather-Black.ttf,
-            ItalicFont=Merriweather-BlackItalic.ttf,
-            Script=Latin
-        ]{Merriweather}
-    }{
-        \newfontfamily\TULHeadFont[
-            Path=\fontsPath,
-            UprightFont=Inter-Bold.otf,
-            ItalicFont=Inter-BoldItalic.otf,
-            Script=Latin
-        ]{Inter ExtraBold}
-    }
+    \ifthenelse{\boolean{TULsfhe@dings}}{%
+        \newfontfamily\TULHeadFont[%
+            Path=\fontsPath,%
+            UprightFont=Merriweather-Black.ttf,%
+            ItalicFont=Merriweather-BlackItalic.ttf,%
+            Script=Latin%
+        ]{Merriweather}%
+    }{%
+        \newfontfamily\TULHeadFont[%
+            Path=\fontsPath,%
+            UprightFont=Inter-Bold.otf,%
+            ItalicFont=Inter-BoldItalic.otf,%
+            Script=Latin%
+        ]{Inter ExtraBold}%
+    }%
 
     % Zdobný font nadpisů
-    \newfontfamily\TULFancyFont[
-        Path=\fontsPath,
-        UprightFont=TULMono-Regular.otf
-    ]{TUL Mono}
+    \newfontfamily\TULFancyFont[%
+        Path=\fontsPath,%
+        UprightFont=TULMono-Regular.otf%
+    ]{TUL Mono}%
 
-    \newfontfamily\TULFancyFontBold[
-        Path=\fontsPath,
-        UprightFont=TULMono-Bold.otf
-    ]{TUL Mono}
+    \newfontfamily\TULFancyFontBold[%
+        Path=\fontsPath,%
+        UprightFont=TULMono-Bold.otf%
+    ]{TUL Mono}%
 
     % Fallback definice
-    \newcommand{\TULAltMainFont}{\normalfont}
-    \newcommand{\TULAltHeadFont}{\bfseries}
-}{
-    \RequirePackage{fontspec}
-
+    \newcommand{\TULAltMainFont}{\normalfont}%
+    \newcommand{\TULAltHeadFont}{\bfseries}%
+}{%
     % Standardní fonty (Latin Modern) s podporou češtiny
-    \setmainfont[Mapping=tex-text, Script=Latin, Language=Czech]{Latin Modern Roman}
-    \setsansfont[Mapping=tex-text, Script=Latin, Language=Czech]{Latin Modern Sans}
-    \setmonofont[Mapping=tex-text]{Latin Modern Mono}
+    \setmainfont[Mapping=tex-text, Script=Latin, Language=Czech]{Latin Modern Roman}%
+    \setsansfont[Mapping=tex-text, Script=Latin, Language=Czech]{Latin Modern Sans}%
+    \setmonofont[Mapping=tex-text]{Latin Modern Mono}%
 
     % Konfigurace stylů (používáme \newcommand, protože ještě neexistují)
-    \ifthenelse{\boolean{TULsfb@dy}}{
-        \newcommand{\TULMainFont}{\rmfamily}
-    }{
-        \newcommand{\TULMainFont}{\sffamily}
-    }
+    \ifthenelse{\boolean{TULsfb@dy}}{%
+        \newcommand{\TULMainFont}{\rmfamily}%
+    }{%
+        \newcommand{\TULMainFont}{\sffamily}%
+    }%
 
-    \ifthenelse{\boolean{TULsfhe@dings}}{
-        \newcommand{\TULHeadFont}{\rmfamily\bfseries}
-    }{
-        \newcommand{\TULHeadFont}{\sffamily\bfseries}
-    }
+    \ifthenelse{\boolean{TULsfhe@dings}}{%
+        \newcommand{\TULHeadFont}{\rmfamily\bfseries}%
+    }{%
+        \newcommand{\TULHeadFont}{\sffamily\bfseries}%
+    }%
 
-    \newcommand{\TULAltMainFont}{\rmfamily}
-    \newcommand{\TULAltHeadFont}{\bfseries}
-    \newcommand{\TULFancyFont}{\ttfamily}
-    \newcommand{\TULFancyFontBold}{\ttfamily\bfseries}
-}
+    \newcommand{\TULAltMainFont}{\rmfamily}%
+    \newcommand{\TULAltHeadFont}{\bfseries}%
+    \newcommand{\TULFancyFont}{\ttfamily}%
+    \newcommand{\TULFancyFontBold}{\ttfamily\bfseries}%
+}%

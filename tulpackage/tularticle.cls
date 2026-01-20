@@ -88,26 +88,10 @@
 % Načtení základní třídy dokumentu s výchozím nastavením
 \LoadClass[a4paper,12pt]{\TUL@baseclass}
 
-% Základní balíčky pro logiku a tabulky
-\RequirePackage{ifthen}
-\RequirePackage{tabularray}
-
-% Balík pro vkládání PDF souborů
-\RequirePackage{pdfpages}
-
 % Aktivace balíku hyperref (pouze pokud je povolen PDF režim)
 \ifTUL@pdf
-	\RequirePackage{hyperref}
 	\hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
 \fi
-
-% Načtení potřebných balíčků pro tul.sty
-\RequirePackage{polyglossia}
-\RequirePackage{fontspec}
-\RequirePackage{tabularx}
-\RequirePackage{makeidx}
-\RequirePackage{tocloft}
-\RequirePackage{float}
 
 % Načtení balíčku s předanými možnostmi
 \RequirePackage{tulpackage/tul}

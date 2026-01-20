@@ -1,85 +1,99 @@
 % tulpackage/modules/basics.tex
-% Description: Core packages, colors, and global variables.
+% Obsahuje: Definice barev, kontaktních údajů a inicializace přepínačů (booleans)
 
-% Základní if/then podmínky
-\RequirePackage{ifthen}
+% ==========================================================================
+% Identita a jazyk
+% ==========================================================================
 
-% Podpora fontů, jazyků a speciálních textových log jako XeLaTeX
-\RequirePackage{fontspec}
-\RequirePackage{polyglossia}
-\RequirePackage{metalogo}
+% Indikátor aktivní fakulty/ústavu
+\newcommand{\sekce@TUL}{TUL}%
 
-% Indikátor aktivní fakulty/ústavu podle volby balíku
-\newcommand{\sekce@TUL}{TUL}
+% Jazykové verze a názvy
+\newcommand{\TUL@nguage}{CZ}%
+\newcommand{\CZTUL}{Technická univerzita v Liberci}%
+\newcommand{\ENTUL}{Technical University of Liberec}%
+\newcommand{\TUL}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTUL}{\CZTUL}}%
+\newcommand{\CZTULsoucast}{\CZTUL}%
+\newcommand{\ENTULsoucast}{\ENTUL}%
+\newcommand{\TULsoucast}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTULsoucast}{\CZTULsoucast}}%
 
-% Jazykové verze
-\newcommand{\TUL@nguage}{CZ}
-\newcommand{\CZTUL}{Technická univerzita v Liberci}
-\newcommand{\ENTUL}{Technical University of Liberec}
-\newcommand{\TUL}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTUL}{\CZTUL}}
-\newcommand{\CZTULsoucast}{\CZTUL}
-\newcommand{\ENTULsoucast}{\ENTUL}
-\newcommand{\TULsoucast}{\ifthenelse{\equal{\TUL@nguage}{EN}}{\ENTULsoucast}{\CZTULsoucast}}
+% ==========================================================================
+% Barvy
+% ==========================================================================
 
 % Barvy TUL a jednotlivých fakult
-\RequirePackage{graphicx}
-\RequirePackage{xcolor}
-\definecolor{tul}{HTML}{5948AD}
-\definecolor{tulgray}{cmyk}{0, 0, 0, 0.8}
-\definecolor{tulFS}{HTML}{888B95}
-\definecolor{tulFT}{HTML}{924C14}
-\definecolor{tulFP}{HTML}{0076D5}
-\definecolor{tulEF}{HTML}{65A812}
-\definecolor{tulFUA}{HTML}{006443}
-\definecolor{tulFM}{HTML}{EA7603}
-\definecolor{tulFZS}{HTML}{00B0BE}
-\definecolor{tulCXI}{HTML}{C20019}
-\newcommand{\tulcolor}{tul}
-\newcommand{\titlecolor}{tul}
+\definecolor{tul}{HTML}{5948AD}%
+\definecolor{tulgray}{cmyk}{0, 0, 0, 0.8}%
+\definecolor{tulFS}{HTML}{888B95}%
+\definecolor{tulFT}{HTML}{924C14}%
+\definecolor{tulFP}{HTML}{0076D5}%
+\definecolor{tulEF}{HTML}{65A812}%
+\definecolor{tulFUA}{HTML}{006443}%
+\definecolor{tulFM}{HTML}{EA7603}%
+\definecolor{tulFZS}{HTML}{00B0BE}%
+\definecolor{tulCXI}{HTML}{C20019}%
 
-% Nastavení jednotky délky = 1 mm
-\setlength{\unitlength}{1mm}
+% Výchozí barvy
+\newcommand{\tulcolor}{tul}%
+\newcommand{\titlecolor}{tul}%
 
-% Kontaktní informace
-\newcommand{\TULkontakt@name}{}
-\newcommand{\TULname}[1]{\renewcommand{\TULkontakt@name}{#1}}
-\newcommand{\TULkontakt@pos}{}
-\newcommand{\TULposition}[1]{\renewcommand{\TULkontakt@pos}{#1}}
-\newcommand{\TULkontakt@mail}{info@tul.cz}
-\newcommand{\TULmail}[1]{\renewcommand{\TULkontakt@mail}{#1}}
-\newcommand{\TULkontakt@phone}{+420 485 351 111}
-\newcommand{\TULphone}[1]{\renewcommand{\TULkontakt@phone}{#1}}
-\newcommand{\TUL@URL}{www.tul.cz}
-\newcommand{\TUL@adr}{{Studentská 1402/2, 461~17 Liberec~1\add@cz}}
-\newcommand{\add@cz}{\ifthenelse{\equal{\TUL@nguage}{EN}}{, Czech Republic}{}}
-\newcommand{\TULsekce@adr}{}
+% ==========================================================================
+% Kontaktní informace a nastavení
+% ==========================================================================
 
-% Předdefinice přepínačů voleb
-\newboolean{TULf@nts}
-\setboolean{TULf@nts}{false}
-\newboolean{TULsfb@dy}
-\setboolean{TULsfb@dy}{false}
-\newboolean{TULsfhe@dings}
-\setboolean{TULsfhe@dings}{false}
+% Nastavení jednotky délky
+\setlength{\unitlength}{1mm}%
 
-\newboolean{TUL@figcapsleft}
-\newboolean{TUL@tabcapsleft}
-\newboolean{TUL@lstcapsleft}
+% Kontaktní údaje
+\newcommand{\TULkontakt@name}{}%
+\newcommand{\TULname}[1]{\renewcommand{\TULkontakt@name}{#1}}%
 
-\setboolean{TUL@figcapsleft}{false}
-\setboolean{TUL@tabcapsleft}{false}
-\setboolean{TUL@lstcapsleft}{false}
+\newcommand{\TULkontakt@pos}{}%
+\newcommand{\TULposition}[1]{\renewcommand{\TULkontakt@pos}{#1}}%
 
-\newboolean{TUL@singlecapnumbers}
-\newboolean{TUL@nocapnumbers}
-\setboolean{TUL@singlecapnumbers}{false}
-\setboolean{TUL@nocapnumbers}{false}
+\newcommand{\TULkontakt@mail}{info@tul.cz}%
+\newcommand{\TULmail}[1]{\renewcommand{\TULkontakt@mail}{#1}}%
 
-\newboolean{TUL@header}
-\setboolean{TUL@header}{true}
+\newcommand{\TULkontakt@phone}{+420 485 351 111}%
+\newcommand{\TULphone}[1]{\renewcommand{\TULkontakt@phone}{#1}}%
 
-\newboolean{TUL@numbering}
-\setboolean{TUL@numbering}{false}
+% Adresa a web
+\newcommand{\TUL@URL}{www.tul.cz}%
+\newcommand{\add@cz}{\ifthenelse{\equal{\TUL@nguage}{EN}}{, Czech Republic}{}}%
+\newcommand{\TUL@adr}{{Studentská 1402/2, 461~17 Liberec~1\add@cz}}%
+\newcommand{\TULsekce@adr}{}%
 
-\newif\ifTUL@margins
-\TUL@marginsfalse
+% ==========================================================================
+% Přepínače (Booleans)
+% ==========================================================================
+
+% Nastavení fontů
+\newboolean{TULf@nts}%
+\setboolean{TULf@nts}{false}%
+\newboolean{TULsfb@dy}%
+\setboolean{TULsfb@dy}{false}%
+\newboolean{TULsfhe@dings}%
+\setboolean{TULsfhe@dings}{false}%
+
+% Zarovnání popisků (floats)
+\newboolean{TUL@figcapsleft}%
+\newboolean{TUL@tabcapsleft}%
+\newboolean{TUL@lstcapsleft}%
+\setboolean{TUL@figcapsleft}{false}%
+\setboolean{TUL@tabcapsleft}{false}%
+\setboolean{TUL@lstcapsleft}{false}%
+
+% Číslování a formát popisků
+\newboolean{TUL@singlecapnumbers}%
+\newboolean{TUL@nocapnumbers}%
+\setboolean{TUL@singlecapnumbers}{false}%
+\setboolean{TUL@nocapnumbers}{false}%
+
+% Layout a struktura
+\newboolean{TUL@header}%
+\setboolean{TUL@header}{true}%
+\newboolean{TUL@numbering}%
+\setboolean{TUL@numbering}{false}%
+
+\newif\ifTUL@margins%
+\TUL@marginsfalse%

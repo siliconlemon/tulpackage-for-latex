@@ -5,23 +5,26 @@
 % Modulární importy balíčku TUL
 % ==========================================================================
 
-% 1. Základní definice: Balíčky, barvy, kontaktní informace
+% 1. Import balíčů pro celý zbytek tulpackage
+\input{tulpackage/modules/packages.tex}
+
+% 2. Základní definice: Barvy, kontaktní informace, definice boolean vlaječek
 \input{tulpackage/modules/basics.tex}
 
-% 2. Konfigurace: Nastavení fakult, deklarace a zpracování voleb
+% 3. Konfigurace: Nastavení fakult, deklarace a zpracování voleb na bázi boolean vlaječek
 \input{tulpackage/modules/options.tex}
 
-% 3. Grafické prvky: Loga a symboly
+% 4. Grafické prvky: Loga a symboly
 \input{tulpackage/modules/logos.tex}
 
-% 4. Styly stránek: Definice záhlaví a zápatí
+% 5. Styly stránek: Definice záhlaví a zápatí
 \input{tulpackage/modules/pagestyles.tex}
 
-% 5. Formátování: Obsah, titulní strana, výpisy kódu, makra nadpisů
+% 6. Formátování: Obsah, titulní strana, výpisy kódu, makra nadpisů
 \input{tulpackage/modules/formatting.tex}
 
-% 6. Rozvržení: Geometrie stránky, okraje, aplikace formátů nadpisů
+% 7. Rozvržení: Geometrie stránky, okraje, aplikace formátů nadpisů
 \input{tulpackage/modules/layout.tex}
 
-% 7. Písma: Načítání balíčku fontspec na základě voleb
+% 8. Písma: Načítání balíčku fontspec na základě voleb
 \input{tulpackage/modules/fonts.tex}
