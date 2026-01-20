@@ -10,7 +10,8 @@
     \renewcommand{\numberline}[1]{} % No numbering in TOC
 }
 
-% Velikost a rozložení stránky
+% Brání roztažení stránek, ze kterých odskočila ilustrace na následnující
+\AtBeginDocument{\raggedbottom}
 
 % Nastavení základního layoutu podle velikosti papíru.
 \ifthenelse{\lengthtest{\paperwidth=210mm}\AND\lengthtest{\paperheight=297mm}}{%
