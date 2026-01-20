@@ -2,7 +2,6 @@
 % Obsahuje: Návod pro základní používání vizuální identity TUL a balíku tulpackage
 
 \documentclass[a4paper,12pt,fonts,numbering]{./tulpackage/tularticle}
-\newcommand{\verze}{v3.0.0}
 
 % Zvetseni radkovani
 \linespread{1.2}
@@ -51,64 +50,64 @@
 
 \TULfancytitlepage{Návod k~použití balíku tul pro \LaTeX\ (\verze)}
 {Pavel Satrapa}
-{Liberec 2024}
+{Liberec~2024}
 
 \section{Úvodem}
 
 Cílem balíku \cmdfont{tul} je usnadnit vytváření dokumentů odpovídajících
-vizuálnímu stylu Technické univerzity v~Liberci a jejích součástí
+vizuálnímu stylu Technické univerzity v~Liberci a~jejích součástí
 v~typografickém programu \LaTeX.
 
 Balík definuje:
 
 \begin{itemize*}
-	\item univerzitní barvy
-	\item grafické prvky (loga, symbol)
-	\item záhlaví a zápatí stránek
-	\item vzhled nadpisů pro strukturování textu
-	\item písma (pokud jsou v~systému k~dispozici)
+    \item univerzitní barvy
+    \item grafické prvky (loga, symbol)
+    \item záhlaví a~zápatí stránek
+    \item vzhled nadpisů pro~strukturování textu
+    \item písma (pokud jsou v~systému k~dispozici)
 \end{itemize*}
 
 \clearpage
 
 \section{Předpoklady}
 
-Balík \cmdfont{tul} ke své činnosti využívá sadu standardních balíků, které jsou
-běžnou součástí distribucí \TeX{}Live či MiK\TeX. Vzhledem k~využití moderních
-nástrojů pro správu fontů a jazyků je vyžadován překlad pomocí \XeLaTeX{}u nebo \LuaLaTeX{}u
-(klasický pdf\LaTeX{} není podporován).
+Balík \cmdfont{tul} ke~své činnosti využívá sadu standardních balíků, které jsou
+běžnou součástí distribucí \TeX{}Live či~MiK\TeX. Vzhledem k~využití moderních
+nástrojů pro~správu fontů a~jazyků je vyžadován překlad pomocí \XeLaTeX{}u nebo\linebreak
+\LuaLaTeX{}u (klasický pdf\LaTeX{} není podporován).
 
 Seznam využitých balíků:
 
 \begin{itemize}
-    \item \textbf{caption}~-- formátování popisků obrázků a tabulek
-    \item \textbf{etoolbox}~-- programátorské nástroje a patchování maker
-    \item \textbf{fancyhdr}~-- nastavení záhlaví a zápatí stránky
-    \item \textbf{float}~-- definice a umístění plovoucích objektů
-    \item \textbf{fontspec}~-- načítání a správa systémových fontů
-    \item \textbf{framed}~-- tvorba orámovaných a podbarvených bloků
+    \item \textbf{caption}~-- formátování popisků obrázků a~tabulek
+    \item \textbf{etoolbox}~-- programátorské nástroje a~patchování maker
+    \item \textbf{fancyhdr}~-- nastavení záhlaví a~zápatí stránky
+    \item \textbf{float}~-- definice a~umístění plovoucích objektů
+    \item \textbf{fontspec}~-- načítání a~správa systémových fontů
+    \item \textbf{framed}~-- tvorba orámovaných a~podbarvených bloků
     \item \textbf{fvextra}~-- pokročilé formátování verbatim textu
     \item \textbf{parskip}~-- nastavení výchozího odstupu mezi odstavci
-    \item \textbf{graphicx}~-- vkládání a manipulace s~obrázky
-    \item \textbf{hyperref}~-- podpora interaktivních odkazů a metadat
-    \item \textbf{ifthen}~-- podmíněné příkazy a logické struktury
-    \item \textbf{makeidx}~-- nástroje pro tvorbu rejstříku
-    \item \textbf{metalogo}~-- loga \TeX{}ových systémů a maker
+    \item \textbf{graphicx}~-- vkládání a~manipulace s~obrázky
+    \item \textbf{hyperref}~-- podpora interaktivních odkazů a~metadat
+    \item \textbf{ifthen}~-- podmíněné příkazy a~logické struktury
+    \item \textbf{makeidx}~-- nástroje pro~tvorbu rejstříku
+    \item \textbf{metalogo}~-- loga \TeX{}ových systémů a~maker
     \item \textbf{pdfpages}~-- vkládání externích PDF dokumentů
-    \item \textbf{polyglossia}~-- moderní podpora jazyků a dělení slov
-    \item \textbf{silence}~-- filtrování a potlačení varovných hlášení
+    \item \textbf{polyglossia}~-- moderní podpora jazyků a~dělení slov
+    \item \textbf{silence}~-- filtrování a~potlačení varovných hlášení
     \item \textbf{tabularray}~-- sazba komplexních tabulek s~lepším rozhraním
     \item \textbf{tabularx}~-- tabulky s~automatickým zalamováním sloupců
-    \item \textbf{booktabs}~-- stylizace tabulek pro lepší čitelnost
+    \item \textbf{booktabs}~-- stylizace tabulek pro~lepší čitelnost
     \item \textbf{titlesec}~-- úprava vzhledu nadpisů sekcí
     \item \textbf{enumitem}~-- úprava vzhledu číslovaných seznamů
-    \item \textbf{tocloft}~-- formátování obsahu a seznamů obrázků
-    \item \textbf{xcolor}~-- definice a míchání barev
+    \item \textbf{tocloft}~-- formátování obsahu a~seznamů obrázků
+    \item \textbf{xcolor}~-- definice a~míchání barev
 \end{itemize}
 
-Jelikož loga jsou reprezentována obrázky ve formátu PDF, je třeba, aby použitá
+Jelikož loga jsou reprezentována obrázky ve~formátu PDF, je třeba, aby použitá
 implementace \TeX{}u podporovala tento grafický formát. Ideální je implementace,
-která přímo vytváří PDF výstup, jako je například pdf\LaTeX\ nebo \XeLaTeX.
+která přímo vytváří PDF výstup, jako je~například \XeLaTeX\ nebo Lua\LaTeX.
 
 
 \section{Použití}
@@ -117,10 +116,10 @@ Balík je organizován v~adresářové struktuře \cmdfont{tulpackage}. Jádro t
 hlavní soubor \cmdfont{tul.sty}, který automaticky načítá funkční moduly
 z~podsložky \cmdfont{modules}. Grafické prvky a~loga se nacházejí v~podsložce
 \cmdfont{logos}. Součástí balíku jsou dvě připravené dokumentové třídy:
-\cmdfont{tulthesis.cls} pro sazbu absolventských prací a~\cmdfont{tularticle.cls}
-pro běžné dokumenty.
+\cmdfont{tulthesis.cls} pro~sazbu absolventských prací a~\cmdfont{tularticle.cls}
+pro~běžné dokumenty.
 
-Pro instalaci stačí celý adresář \cmdfont{tulpackage} umístit do~kořenového
+Pro~instalaci stačí celý adresář \cmdfont{tulpackage} umístit do~kořenového
 adresáře vašeho projektu (tam, kde se nachází váš hlavní \texttt{.tex} soubor).
 
 Vlastní použití je pak přímočaré~-- v~preambuli načtěte požadovanou třídu
@@ -150,9 +149,9 @@ v~prezentaci \cmdfont{beamer}), můžete balík načíst ručně:
 Základní sada voleb slouží k~přepínání mezi vizuálními styly jednotlivých
 součástí TUL\@. Pokud nepoužijete žádnou z~nich, bude dokument sázen ve
 vizuálním stylu celé univerzity. Jsou k~dispozici tyto \textbf{volby součástí
-	TUL}: \cmdfont{FS}, \cmdfont{FT}, \cmdfont{FP}, \cmdfont{EF}, \cmdfont{FUA},
+    TUL}: \cmdfont{FS}, \cmdfont{FT}, \cmdfont{FP}, \cmdfont{EF}, \cmdfont{FUA},
 \cmdfont{FM}, \cmdfont{FZS}, \cmdfont{CXI}. Použití některé z~nich změní
-výchozí barvu, logo a styl zápatí stránek. Používejte vždy nanejvýš jednu
+výchozí barvu, logo a~styl zápatí stránek. Používejte vždy nanejvýš jednu
 z~těchto voleb.
 
 Kromě přepínání součástí TUL jsou k~dispozici následující volby:
@@ -160,58 +159,58 @@ Kromě přepínání součástí TUL jsou k~dispozici následující volby:
 \medskip
 
 \begin{tabularx}{\textwidth}{@{}lX}
-	\cmdfont{EN}         & přepne na anglickou verzi~-- týká se generických příkazů
-	(např.~\cmd{logo}) a nápisů v~zápatí,                                                   \\
-	\cmdfont{bw}         & sází se černobíle~-- změní loga na černobílá, nadpisy největších
-	částí textu budou černé a univerzitní či fakultní barva je nahrazena šedou,             \\
-	\cmdfont{bwtitles}   & nadpisy největších částí textu budou černé, jinde barva
-	zůstane,                                                                                \\
-	\cmdfont{noheader}   & neumisťovat logo do záhlaví stránek,                             \\
-	\cmdfont{fonts}      & text dokumentu má být sázen písmem podle vizuálního stylu,
-	více v části~\ref{pisma} na straně~\pageref{pisma},                                     \\
-	\cmdfont{sfheadings} & pro nadpisy kapitol a sekcí nepoužívat TUL Mono.                 \\
+    \cmdfont{EN}         & přepne na~anglickou verzi~-- týká se generických příkazů
+    (např.~\cmd{logo}) a~nápisů v~zápatí,                                                       \\
+    \cmdfont{bw}         & sází se~černobíle~-- změní loga na~černobílá, nadpisy největších
+    částí textu budou černé a~univerzitní či~fakultní barva je nahrazena šedou,             \\
+    \cmdfont{bwtitles}   & nadpisy největších částí textu budou černé, jinde barva
+    zůstane,                                                                                \\
+    \cmdfont{noheader}   & neumisťovat logo do~záhlaví stránek,                               \\
+    \cmdfont{fonts}      & text dokumentu má být sázen písmem podle vizuálního stylu,
+    více~v~části~\ref{pisma} na~straně~\pageref{pisma},                                     \\
+    \cmdfont{sfheadings} & pro~nadpisy kapitol a~sekcí nepoužívat TUL Mono.                  \\
 \end{tabularx}
 
 \medskip
 
-Například dokument ve stylu Fakulty mechatroniky bude v~preambuli obsahovat:
+Například dokument ve~stylu Fakulty mechatroniky bude v~preambuli obsahovat:
 
 \begin{listing}
-	\cmdnoindex{usepackage[FM]\{tul\}}
+    \cmdnoindex{usepackage[FM]\{tulpackage/tul\}}
 \end{listing}
 
 Jestliže je navíc cílem černobílý dokument, změní se použití balíku na:
 
 \begin{listing}
-	\cmdnoindex{usepackage[FM,bw]\{tul\}}
+    \cmdnoindex{usepackage[FM,bw]\{tulpackage/tul\}}
 \end{listing}
 
 \clearpage
 
 \section{Barvy}
 
-Balík definuje sadu barev pro TUL a její jednotlivé součásti, které odpovídají
-vizuálnímu stylu TUL\@. Lze je používat v~příkazech \cmdnoindex{color} a podobných,
+Balík definuje sadu barev pro~TUL a~její jednotlivé součásti, které odpovídají
+vizuálnímu stylu TUL\@. Lze je používat v~příkazech \cmdnoindex{color} a~podobných,
 stejně jako standardní předdefinované barvy. Jsou k~dispozici následující
 \textbf{názvy barev}:
 
 \begin{center}
-	\begin{tabular}{l@{\qquad}l@{\qquad}l@{\qquad}l@{\qquad}l}
-		{\color{tul}\demobox}\ \cmdfont{tul}       &
-		{\color{tulFS}\demobox}\ \cmdfont{tulFS}   &
-		{\color{tulFT}\demobox}\ \cmdfont{tulFT}   &
-		{\color{tulFP}\demobox}\ \cmdfont{tulFP}     \\
-		{\color{tulEF}\demobox}\ \cmdfont{tulEF}   &
-		{\color{tulFUA}\demobox}\ \cmdfont{tulFUA} &
-		{\color{tulFM}\demobox}\ \cmdfont{tulFM}   &
-		{\color{tulFZS}\demobox}\ \cmdfont{tulFZS} &
-		{\color{tulCXI}\demobox}\ \cmdfont{tulCXI}
-	\end{tabular}
+    \begin{tabular}{l@{\qquad}l@{\qquad}l@{\qquad}l@{\qquad}l}
+        {\color{tul}\demobox}\ \cmdfont{tul}       &
+        {\color{tulFS}\demobox}\ \cmdfont{tulFS}   &
+        {\color{tulFT}\demobox}\ \cmdfont{tulFT}   &
+        {\color{tulFP}\demobox}\ \cmdfont{tulFP}     \\
+        {\color{tulEF}\demobox}\ \cmdfont{tulEF}   &
+        {\color{tulFUA}\demobox}\ \cmdfont{tulFUA} &
+        {\color{tulFM}\demobox}\ \cmdfont{tulFM}   &
+        {\color{tulFZS}\demobox}\ \cmdfont{tulFZS} &
+        {\color{tulCXI}\demobox}\ \cmdfont{tulCXI}
+    \end{tabular}
 \end{center}
 
-Kromě těchto pevně daných názvů barev je k~dispozici i příkaz \cmd{\tulcolor},
+Kromě těchto pevně daných názvů barev je k~dispozici i~příkaz \cmd{\tulcolor},
 který obsahuje název barvy té součásti univerzity, v~jejímž stylu je dokument
-sázen. Hodnota \cmd{\tulcolor} závisí na volbě součásti při použití balíku.
+sázen. Hodnota \cmd{\tulcolor} závisí na~volbě součásti při použití balíku.
 Například barva nadpisů v~tomto dokumentu byla vytvořena pomocí
 \cmdnoindex{color\{\textbackslash{}\tulcolor\}}.
 
@@ -219,24 +218,24 @@ Například barva nadpisů v~tomto dokumentu byla vytvořena pomocí
 
 \section{Grafické prvky}
 
-Sada příkazů umožňuje vkládat do textu \textbf{loga} a podobné grafické prvky. Pro
-úpravu jejich velikosti použijte příkazy \cmdnoindex{scalebox} nebo
+Sada příkazů umožňuje vkládat do~textu \textbf{loga} a~podobné grafické prvky.
+Pro~úpravu jejich velikosti použijte příkazy \cmdnoindex{scalebox} nebo
 \cmdnoindex{resizebox}. Loga neobsahují ochrannou zónu, příslušné volné místo
 kolem nich musí zajistit autor dokumentu.
 
-Pro obecné konstrukce je k~dispozici několik příkazů, jejichž funkce závisí na
-volbách balíku. Vysází aktuální krátké či dlouhé logo a symbol TUL nebo té její
+Pro~obecné konstrukce je k~dispozici několik příkazů, jejichž funkce závisí
+na~volbách balíku. Vysází aktuální krátké či~dlouhé logo a~symbol TUL nebo té~její
 součásti, kterou jste vybrali. Pokud jste například balík vložili s~volbami
-\cmdfont{FS} a \cmdfont{EN}, příkaz \cmd{logo} vysází anglickou verzi loga
-Fakulty strojní. Jedná se o tyto příkazy:
+\cmdfont{FS} a~\cmdfont{EN}, příkaz \cmd{logo} vysází anglickou verzi loga
+Fakulty strojní. Jedná se o~tyto příkazy:
 
 \begin{itemize*}
-	\item \cmd{logo}~-- základní (krátké) logo,
-	\item \cmd{logotext}~-- plná textová verze loga,
-	\item \cmd{CZlogo}, \cmd{CZlogotext}, \cmd{ENlogo}, \cmd{ENlogotext}~--
-	      analogie předchozích, ale logo je vždy ve zvolené jazykové verzi, bez ohledu
-	      na volby balíku,
-	\item \cmd{symbolTUL}~-- symbol v barvě součásti.
+    \item \cmd{logo}~-- základní (krátké) logo,
+    \item \cmd{logotext}~-- plná textová verze loga,
+    \item \cmd{CZlogo}, \cmd{CZlogotext}, \cmd{ENlogo}, \cmd{ENlogotext}~--
+          analogie předchozích, ale logo je vždy ve~zvolené jazykové verzi, bez~ohledu
+          na~volby balíku,
+    \item \cmd{symbolTUL}~-- symbol v~barvě součásti.
 \end{itemize*}
 
 Jejich aktuální podoba vypadá takto:
@@ -258,13 +257,13 @@ Jejich aktuální podoba vypadá takto:
 \cmddemo{symbolTUL}
 
 Příbuzný je příkaz \cmd{TULsoucast}, který vloží název aktuální součásti
-univerzity v~aktuální jazykové verzi. Při volbách \cmdfont{FS} a \cmdfont{EN}
-tedy vysází „Faculty of Mechanical Engineering“. Pomocí \cmd{CZTULsoucast} a
-\cmd{ENTULsoucast} lze vysázet název aktuální části v~požadovaném jazyce.
-Nejedná se o~grafické prvky, ale o~běžná textová makra. Do této kapitoly jsem
-je zařadil vzhledem k~příbuznosti s~předchozími příkazy.
+univerzity v~aktuální jazykové verzi. Při volbách \cmdfont{FS} a~\cmdfont{EN}
+tedy vysází „Faculty~of~Mechanical~Engineering“. Pomocí \cmd{CZTULsoucast}
+a \cmd{ENTULsoucast} lze vysázet název aktuální části v~požadovaném jazyce.
+Nejedná se o~grafické prvky,\linebreak ale o~běžná textová makra.
+Do~této kapitoly jsem je zařadil vzhledem k~příbuznosti s~předchozími příkazy.
 
-Následující příkazy sází konkrétní loga TUL a jednotlivých součástí:
+Následující příkazy sází konkrétní loga TUL a~jednotlivých součástí:
 
 \cmddemo{logoTUL}
 \cmddemo{logoTULtext}
@@ -289,15 +288,15 @@ Následující příkazy sází konkrétní loga TUL a jednotlivých součástí
 \clearpage
 
 Symbol TUL je jako jediný grafický prvek přístupný v~černobílé variantě, i
-pokud se sází barevně. Slouží k~tomu příkaz \cmd{symbolTULbw}. Loga univerzity
-a jednotlivých součástí jsou k~dispozici pouze v~jedné variantě~-- bez volby
+pokud se~sází barevně. Slouží k~tomu příkaz \cmd{symbolTULbw}. Loga univerzity
+a~jednotlivých součástí jsou k~dispozici pouze v~jedné variantě~-- bez volby
 \cmdfont{bw} se jedná o~verzi barevnou, pokud ale použijete balík s~volbou
 \cmdfont{bw}, jsou všechna loga (včetně \cmd{symbolTUL}) černobílá.
 
 \cmddemo{symbolTULbw}
 
-Veškerá loga jsou k dispozici i v anglické verzi, jednotlivé příkazy mají
-předponu \cmdfont{EN} (a to i v případě, že se anglické logo neliší od českého).
+Veškerá loga jsou k~dispozici i~v~anglické verzi, jednotlivé příkazy mají
+předponu \cmdfont{EN} (a~to i~v~případě, že se anglické logo neliší od~českého).
 
 \cmddemo{ENlogoTUL}
 \cmddemo{ENlogoTULtext}
@@ -319,29 +318,29 @@ předponu \cmdfont{EN} (a to i v případě, že se anglické logo neliší od �
 \cmddemo{ENlogoCXI}
 \cmddemo{ENlogoCXItext}
 
-Pro použití na tmavém pozadí jsou dále k dispozici všechna loga v bílém provedení.
+Pro~použití na~tmavém pozadí jsou dále k~dispozici všechna loga v~bílém provedení.
 Názvy jejich příkazů mají příponu \cmdfont{wh}~-- například
 \cmdnoindex{logowh}, \cmdnoindex{logoFPwh}, \cmdnoindex{ENlogoFStextwh} atd.
 
 Je také definován příkaz \cmd{darkTULbg}, který změní příkazy \cmd{logo},
-\cmd{logotext}, \cmd{symbolTUL} a \cmd{logoTULalt} tak, aby sázely bílé verze
+\cmd{logotext}, \cmd{symbolTUL} a~\cmd{logoTULalt} tak, aby sázely bílé verze
 příslušných log.
 
 \clearpage
 
-\section{Záhlaví a zápatí stránky}
+\section{Záhlaví a~zápatí stránky}
 
 Použití stylu automaticky nastaví styl stránky \cmdfont{TUL}, který v~levém
-horním rohu nese logo, vpravo symbol, ve spodní části jsou kontaktní informace,
-na vnějším okraji pak číslo stránky.
+horním rohu nese logo, vpravo~symbol, ve~spodní části jsou kontaktní informace,
+na~vnějším okraji pak číslo stránky.
 
-Tento formát je vhodný pro krátké dokumenty (např.~dopisy). V~případě delších
+Tento formát je vhodný pro~krátké dokumenty (např.~dopisy). V~případě delších
 textů může přemíra prvků „dekorujících“ stránku škodit. Proto je k~dispozici
 několik alternativ, jimiž lze doprovodné prvky stránek měnit.
 
-Způsob úpravy záhlaví a zápatí byl proti verzi~1 upraven, nyní balík definuje
+Způsob úpravy záhlaví a~zápatí byl proti~verzi~1 upraven, nyní balík definuje
 několik stránkových stylů, které lze aktivovat standardními příkazy
-\cmdfont{\textbackslash{}pagestyle} a \cmdfont{\textbackslash{}thispagestyle}.
+\cmdfont{\textbackslash{}pagestyle} a~\cmdfont{\textbackslash{}thispagestyle}.
 Dostupné možnosti shrnuje tabulka~\ref{styly-stranek}.
 
 \begin{table}[htp]
@@ -351,91 +350,91 @@ Dostupné možnosti shrnuje tabulka~\ref{styly-stranek}.
     \newcommand{\ano}{\mbox{}\qquad ✓\qquad\mbox{}}
     \begin{tabular}{l@{}c@{}c@{}c}
         \toprule
-        \emph{styl}                           & \emph{záhlaví} & \emph{zápatí} & \emph{číslo strany} \\
+        \emph{styl}                   & \emph{záhlaví} & \emph{zápatí} & \emph{číslo strany} \\
         \midrule
-        \cmdfont{TUL}                         & \ano{}         & \ano{}        & \ano{}              \\
-        \cmdfont{TULnopage}                   & \ano{}         & \ano{}        &                     \\
-        \cmdfont{TULheader}                   & \ano{}         &               & \ano{}              \\
-        \cmdfont{TULheaderonly}               & \ano{}         &               &                     \\
-        \cmdfont{TULfooter}                   &                & \ano{}        & \ano{}              \\
-        \cmdfont{TULfooternopage}             &                & \ano{}        &                     \\
-        \cmdfont{TULfooternoaddr}             &                &               & \ano{}              \\
+        \cmdfont{TUL}                 & \ano{}         & \ano{}        & \ano{}              \\
+        \cmdfont{TULnopage}           & \ano{}         & \ano{}        &                     \\
+        \cmdfont{TULheader}           & \ano{}         &               & \ano{}              \\
+        \cmdfont{TULheaderonly}       & \ano{}         &               &                     \\
+        \cmdfont{TULfooter}           &                & \ano{}        & \ano{}              \\
+        \cmdfont{TULfooternopage}     &                & \ano{}        &                     \\
+        \cmdfont{TULfooternoaddr}     &                &               & \ano{}              \\
         \bottomrule
     \end{tabular}
     \vspace{0.5\baselineskip}
 \end{table}
 
-Liší se přítomností tří prvků: loga a symbolu v záhlaví, kontaktních informací
-v zápatí a čísla stránky. Například pro jednostránkový dokument je vhodný styl
-\cmdfont{TULnopage}. Naopak pro rozsáhlejší vícestránkové texty kdy chcete
-umístit logo jen na titulní stránku, je vhodnější použít volbu balíku
-\cmdfont{noheader}, která záhlaví s~logem zcela odstraní. Na začátku titulní
+Liší se přítomností tří prvků: loga a~symbolu v~záhlaví, kontaktních informací
+v~zápatí a~čísla stránky. Například pro~jednostránkový dokument je vhodný styl
+\cmdfont{TULnopage}. Naopak pro~rozsáhlejší vícestránkové texty kdy chcete
+umístit logo jen na~titulní stránku, je vhodnější použít volbu balíku
+\cmdfont{noheader}, která záhlaví s~logem zcela odstraní. Na~začátku titulní
 stránky pak můžete použít například příkazy:
 
 \begin{listing}
-	\cmdnoindex{logo} \cmdnoindex{vspace\{1cm\}}
+    \cmdnoindex{logo} \cmdnoindex{vspace\{1cm\}}
 \end{listing}
 
-nebo sáhnout po připravené titulní stránce, kterou balík také nabízí (viz
+nebo sáhnout po~připravené titulní stránce, kterou balík také nabízí (viz
 dále). Tímto způsobem byl sázen tento dokument.
 
-Pro zachování zpětné kompatibility jsou nadále k dispozici původní příkazy
+Pro~zachování zpětné kompatibility jsou nadále k~dispozici původní příkazy
 \cmd{TULheader}, \cmd{noTULheader}, \cmd{TULfooter}, \cmd{TULfooternopage},
-\cmd{footaddress} a \cmd{nofootaddress}.
+\cmd{footaddress} a~\cmd{nofootaddress}.
 
 \clearpage
 
-V~adrese je možné \textbf{změnit osobní a kontaktní údaje}, pokud autor
+V~adrese je možné \textbf{změnit osobní a~kontaktní údaje}, pokud autor
 dokumentu chce vložit své vlastní. Slouží k~tomu příkazy:
 
 \begin{itemize*}
-	\item \cmd{TULname}~-- jméno,
-	\item \cmd{TULposition}~-- funkce,
-	\item \cmd{TULphone}~-- telefonní číslo; uvádějte celé, trojice číslic oddělujte
-	      tenkými mezerami~(\cmdnoindex{,}),
-	\item \cmd{TULmail}~-- e-mail.
+    \item \cmd{TULname}~-- jméno,
+    \item \cmd{TULposition}~-- funkce,
+    \item \cmd{TULphone}~-- telefonní číslo; uvádějte celé, trojice číslic oddělujte
+          tenkými mezerami~(\cmdnoindex{,}),
+    \item \cmd{TULmail}~-- e-mail.
 \end{itemize*}
 
 Jejich argumentem je nová hodnota. Příkazy jsou nepovinné. Pokud je neuvedete,
-jméno a funkce se vynechá, za telefonní číslo a e-mail se dosadí obecné
-hodnoty. Příkazy fungují jako přepínače~-- od okamžiku jejich použití bude
-nadále platit zadaná hodnota. Doporučuji použít je v~preambuli a v~těle
+jméno a~funkce se vynechá, za~telefonní číslo a~e-mail se dosadí obecné
+hodnoty. Příkazy fungují jako přepínače~-- od~okamžiku jejich použití bude
+nadále platit zadaná hodnota. Doporučuji použít je v~preambuli a~v~těle
 dokumentu již údaje neměnit. Příklad použití:
 
 \begin{listing}
-	\cmdnoindex{TULname\{Pavel Satrapa\}}\\
-	\cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
-	\cmdnoindex{TULphone\{+420\textbackslash{},485\textbackslash{},351\textbackslash{},234\}}
+    \cmdnoindex{TULname\{Pavel Satrapa\}}\\
+    \cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
+    \cmdnoindex{TULphone\{+420\textbackslash{},485\textbackslash{},351\textbackslash{},234\}}
 \end{listing}
 
-Balík se snaží při výpočtu rozměrů tiskového zrcadla a okrajů přizpůsobit
-použitému formátu papíru (volby \cmdfont{a4paper} a další pro třídu dokumentu).
-Pro formát~A4 balík nastaví rozměry po svém, aby byla zachována zpětná
-kompatibilita s předchozími verzemi. Pokud vám výsledky nevyhovují, je třeba po
+Balík se snaží při výpočtu rozměrů tiskového zrcadla a~okrajů přizpůsobit
+použitému formátu papíru (volby \cmdfont{a4paper} a~další pro~třídu dokumentu).
+Pro~formát~A4 balík nastaví rozměry po~svém, aby byla zachována zpětná
+kompatibilita s~předchozími verzemi. Pokud vám výsledky nevyhovují, je třeba po
 použití balíku upravit příslušné parametry.
 
-Záhlaví a zápatí je realizováno balíkem \cmdfont{fancyhdr}. Pro případné zásahy
-do podoby těchto částí stránky použijte příkazy tohoto balíku.
+Záhlaví a~zápatí je realizováno balíkem \cmdfont{fancyhdr}. Pro~případné zásahy
+do~podoby těchto částí stránky použijte příkazy tohoto balíku.
 
 \clearpage
 
 \section{Nadpisy částí textu}
 
 Balík automaticky aktivuje sazbu nadpisů všech částí textu tučným bezserifovým
-písmem. U~dvou nejvyšších úrovní (\cmdnoindex{section} a \cmdnoindex{chapter},
+písmem. U~dvou nejvyšších úrovní (\cmdnoindex{section} a~\cmdnoindex{chapter},
 pokud použitá třída tuto úroveň definuje) zároveň sází nadpis barvou součásti a
-při použití volby \cmdfont{fonts} písmem TUL Mono. Ukázku vidíte v tomto
+při použití volby \cmdfont{fonts} písmem TUL Mono. Ukázku vidíte v~tomto
 dokumentu.
 
-Na vzhled nadpisů nejvyšších úrovní mají vliv následující volby balíku:
+Na~vzhled nadpisů nejvyšších úrovní mají vliv následující volby balíku:
 
 \begin{tabularx}{\textwidth}{@{}lX}
-	\cmdfont{bw}         & nadpisy budou černé,                      \\
-	\cmdfont{sfheadings} & místo TUL Mono použije bezserifové písmo. \\
+    \cmdfont{bw}         & nadpisy budou černé,                      \\
+    \cmdfont{sfheadings} & místo TUL Mono použije bezserifové písmo. \\
 \end{tabularx}
 
-Úpravy nadpisů jsou implementovány pomocí balíku \cmdfont{titlesec}. Pro větší
-zásahy do nich použijte jeho rozhraní, konkrétně příkaz
+Úpravy nadpisů jsou implementovány pomocí balíku \cmdfont{titlesec}. Pro~větší
+zásahy do~nich použijte jeho rozhraní, konkrétně příkaz
 \cmdnoindex{titleformat*}.
 
 \clearpage
@@ -443,104 +442,109 @@ zásahy do nich použijte jeho rozhraní, konkrétně příkaz
 \section{Písma}\label{pisma}
 
 Součástí grafické identity TUL je písmo \textbf{TUL Mono}. Jedná se o
-neproporcionální písmo, které tvarově vychází z šablon, jimiž se
+neproporcionální písmo, které tvarově vychází ze~šablon, jimiž se
 popisovaly technické výkresy.
 
+\vspace{0.4\baselineskip}
 {\TULFancyFont{}Ukázka písma TUL Mono.}
-Písmo obsahuje pouze verzálky a celkově je vzhledem ke svému charakteru určeno
-pro nadpisy a krátké nápisy. Pro delší texty se nehodí. Existuje ve čtyřech
-tučnostech, obvykle se používají jen Regular a Bold:
+\vspace{0.1\baselineskip}
+
+Písmo obsahuje pouze verzálky a~celkově je~vzhledem ke~svému charakteru určeno
+pro~nadpisy a~krátké nápisy. Pro~delší texty se nehodí. Existuje ve~čtyřech
+tučnostech, obvykle se používají jen Regular a~Bold:
 
 \begin{itemize}\setlength{\itemsep}{0pt}
-	\item Regular~-- základní řez
-	\item Bold~-- tučné
-	\item Hairline~-- velmi tenké
-	\item SingleLine~-- s nulovou tloušťkou, určeno pro vyřezávání
+    \item Regular~-- základní řez
+    \item Bold~-- tučné
+    \item Hairline~-- velmi tenké
+    \item SingleLine~-- s~nulovou tloušťkou, určeno pro~vyřezávání
 \end{itemize}
 
-Pro běžné texty předepisuje grafická identita TUL bezserifové písmo
+Pro~běžné texty předepisuje grafická identita TUL bezserifové písmo
 \textbf{Inter}, případně serifové \textbf{Merriweather}.
-Jako jejich doplněk pro ukázky kódu či konfiguračních souborů
-neproporcionální písmo \textbf{Noto Sans Mono}.
+Jako jejich doplněk pro~ukázky kódu či~konfiguračních souborů
+neproporcionální písmo \textbf{Noto Sans Mono}. To~je taky lepší volbou
+pro~vypisování kódu (použito jako mono font v balíku \cmdfont{tulpackage/tul}).
 
 \subsection{Instalace písem}
 
-Všechna zmiňovaná písma jsou volně šiřitelná a jsou zahrnuta do distribuce
-tohoto balíku. Najdete je v adresáři \cmdfont{pisma}. Jsou ve formátu OpenType,
+Všechna zmiňovaná písma jsou volně šiřitelná a~jsou zahrnuta do~distribuce
+tohoto balíku. Najdete je v~adresáři \cmdfont{tulpackage/fonts}. Jsou ve~formátu OpenType,
 který podporují jen novější implementace \LaTeX{}u: \XeLaTeX\ nebo Lua\LaTeX.
 Starší pdf\LaTeX\ tento formát písem neumí.
 
-Zmiňované implementace pracují se systémovými písmy. Abyste zde uvedená písma
-mohli používat, musíte je nejprve instalovat do svého operačního systému. V
-grafických systémech je obvykle nejjednodušší klepnout na soubor písma pravým
-tlačítkem myši a z menu vybrat instalaci.
+Zmiňované implementace by s~moderními instalacemi \LaTeX{}u (pro~Windows doporučuji Mik\TeX)
+měly fungovat tak~jak~jsou, bez~instalace na~vašem~počítači.
 
-V Linuxu můžete soubory zkopírovat do adresáře se systémovými písmy (obvykle
-\cmdfont{/usr/share/fonts/opentype}), ve kterém si pro ně nejlépe vytvořte
+V~Linuxu můžete soubory zkopírovat do~adresáře se~systémovými písmy (obvykle
+\cmdfont{/usr/share/fonts/opentype}), ve~kterém si pro~ně nejlépe vytvořte
 podadresář. Následně aktualizujte seznam systémových písem příkazem
-\cmdfont{fc-cache}.
+\cmdfont{fc-cache}. Přístup bez~instalace by~zde mohl také fungovat,
+není to ale zatím otestováno.
 
 \clearpage
 
-\subsection{Použití}
+\subsection{Použití písem}
 
-Vzhledem k tomu, že písma vyžadují překlad \XeLaTeX{}em nebo Lua\LaTeX{}em, balík
-\cmdfont{tul} standardně do písem nijak nezasahuje. Jejich použití je potřeba
-aktivovat volbou \cmdfont{fonts} při vložení balíku. Tato volba má následující
-účinky:
+Vzhledem k~tomu, že písma vyžadují překlad \XeLaTeX{}em nebo Lua\LaTeX{}em, balík
+\cmdfont{tulpackage/tul} standardně do~písem nezasahuje bez vyžádání.
+Jejich použití je potřeba aktivovat volbou \cmdfont{fonts} při vložení balíku.
+Tato volba má následující účinky:
 
 \begin{itemize*}
-	\item Upraví příkaz \cmd{TULmono}.
-	\item Změní standardní rodiny písem následovně:\\
-	      \begin{tabular}{@{}ll}
-		      \cmdfont{\textbackslash{}rmfamily} & Inter,          \\
-		      \cmdfont{\textbackslash{}sffamily} & Inter,          \\
-		      \cmdfont{\textbackslash{}ttfamily} & Noto Sans Mono.
-	      \end{tabular}
+    \item Upraví příkaz \cmd{TULmono}.
+    \item Změní standardní rodiny písem následovně:\\
+          \begin{tabular}{@{}ll}
+              \cmdfont{\textbackslash{}rmfamily} & Inter,          \\
+              \cmdfont{\textbackslash{}sffamily} & Inter,          \\
+              \cmdfont{\textbackslash{}ttfamily} & Noto Sans Mono.
+          \end{tabular}
 \end{itemize*}
 
 Písmo Merriweather není standardně aktivováno, preferováno je používání
 bezserifového písma Inter.
 
-Příkaz \cmd{TULmono} přepne na písmo TUL Mono (bez volby \cmdfont{fonts} přepne
-na tučné bezserifové písmo). Chová se podobně jako například standardní
-\cmdfont{\textbackslash{}sffamily}. Na tučný řez se lze přepnout standardními
-příkazy pro tučné písmo, např.~\cmdfont{\textbackslash{}textbf}. S využitím
-Hairline a SingleLine se v \LaTeX{}u nepočítá.
+Příkaz \cmd{TULmono} přepne na~písmo TUL Mono (bez volby \cmdfont{fonts} přepne
+na~tučné bezserifové písmo). Chová se podobně jako například standardní
+\cmdfont{\textbackslash{}sffamily}. Na~tučný řez se lze přepnout standardními
+příkazy pro~tučné písmo, např.~\cmdfont{\textbackslash{}textbf}. S~využitím
+Hairline a~SingleLine se v~\LaTeX{}u nepočítá.
 \enlargethispage{-\baselineskip}
 
 Specialitou písma TUL Mono jsou kontextové slitky, kterými lze připojením znaku
-„\&“ vytvořit podtržené nápisy TUL a Liberec (jen tyto dva). Ve zdrojovém kódu pište
+„\&“ vytvořit podtržené nápisy TUL a~Liberec (jen tyto dva). Ve~zdrojovém kódu pište
 \cmdfont{TUL\textbackslash{}\&}, resp.~\cmdfont{Liberec\textbackslash{}\&} nebo
 \cmdfont{Liberci\textbackslash{}\&}.
 
+\vspace{0.3\baselineskip}
 \begin{center}
-	{\TULFancyFont{}Máme rádi Liberec\&.}
+    {\TULFancyFont{}Máme rádi Liberec\&.}
 \end{center}
+\vspace{0.2\baselineskip}
 
 \clearpage
 
 \section{Titulní stránka}
 
-Součástí balíku jsou i příkazy pro vysázení titulní strany v~příslušném stylu.
-K~dispozici jsou dvě alternativy: \cmd{TULtitlepage} pro umírněnou verzi
-s~bílým pozadím a \cmd{TULfancytitlepage} pro verzi s pozadím v barvě
-univerzity či její součásti. Až na název příkazu mají oba shodný tvar použití:
+Součástí balíku jsou i~příkazy pro~vysázení titulní strany v~příslušném stylu.
+K~dispozici jsou dvě alternativy: \cmd{TULtitlepage} pro~umírněnou verzi
+s~bílým pozadím a~\cmd{TULfancytitlepage} pro~verzi s~pozadím v~barvě
+univerzity či~její součásti. Až na~název příkazu mají oba shodný tvar použití:
 
 \begin{listing}
-	\cmdnoindex{TULtitlepage\{\emph{název}\}\{\emph{autor}\}\{\emph{datum}\}}
+    \cmdnoindex{TULtitlepage\{\emph{název}\}\{\emph{autor}\}\{\emph{datum}\}}
 \end{listing}
 
 V~argumentech lze používat jednoduché formátovací příkazy, nicméně
-doporučuji omezit se na případné rozdělování do více řádků pomocí
+doporučuji omezit se na~případné rozdělování do~více řádků pomocí
 \cmdnoindex{\textbackslash}~-- obvykle k~oddělení několika autorů nebo rozdělení
-názvu do více řádků. Například titulní strana tohoto dokumentu vznikla
+názvu do~více řádků. Například titulní strana tohoto dokumentu vznikla
 příkazem
 
 \begin{listing}\begin{flushleft}
-		\cmdnoindex{TULfancytitlepage\{Návod k~použití balíku tul pro \LaTeX\
-			(verze\textasciitilde\textbackslash{}verze)\}\{Pavel Satrapa\}\{Liberec 2022\}}
-	\end{flushleft}\end{listing}
+        \cmdnoindex{TULfancytitlepage\{Návod k~použití balíku tul pro \LaTeX\
+            (verze\textasciitilde\textbackslash{}verze)\}\{Pavel Satrapa\}\{Liberec~2022\}}
+    \end{flushleft}\end{listing}
 
 
 \section{Příklad}
@@ -550,10 +554,10 @@ standardní zdrojový text třídy \cmdfont{article}, jehož jedinou úpravou by
 použití příkazů
 
 \begin{listing}
-	\cmdnoindex{usepackage[fonts,noheader]\{tul\}}\\
-	\cmdnoindex{TULname\{Pavel Satrapa\}}\\
-	\cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
-	\cmdnoindex{TULphone\{+420\,485\,351\,234\}}
+    \cmdnoindex{usepackage[fonts,noheader]\{tulpackage/tul\}}\\
+    \cmdnoindex{TULname\{Pavel Satrapa\}}\\
+    \cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
+    \cmdnoindex{TULphone\{+420\,485\,351\,234\}}
 \end{listing}
 
 v~preambuli.
