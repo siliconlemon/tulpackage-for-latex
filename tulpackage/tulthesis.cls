@@ -1,77 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{./tulpackage/tulthesis}[2026/01/20 v1.0.0]
 % Licence: CC BY
-%
-% % Používané balíčky:
-% ==========================================================================
-% ifthen        % Podmíněné příkazy
-% tabularray    % Moderní tvorba tabulek
-% pdfpages      % Vkládání PDF souborů
-% hyperref      % Vytváření hypertextových odkazů v PDF dokumentu
-% polyglossia   % Podpora různých jazyků
-% fontspec      % Práce s OpenType fonty
-% tabularx      % Tabulky s proměnnou šířkou sloupců
-% makeidx       % Pro vytváření rejstříků
-% tocloft       % Pro úpravu obsahu, seznamu obrázků a tabulek
-% float         % Pro lepší kontrolu nad obrázky, tabulkami apod.
-% graphicx      % Vkládání obrázků
-% xcolor        % Definice a použití barev
-% fancyhdr      % Vlastní záhlaví a zápatí
-% silence       % Potlačení varování
-% etoolbox      % Úprava existujících příkazů
-
-% Možnosti nastavení:
-% ==========================================================================
-% article:  Přepne základní třídu na article (výchozí je report)
-% EN:  Přepíná dokument do angličtiny
-% BP, DP, Dis, Hab, Teze, Autoref, Proj, SP:  Nastavení typu práce
-% FS, FT, FP, EF, FA, FM, FZS, UZS, CXI:  Styl dokumentu podle fakulty
-% bwtitles:  Vypíná barevné nadpisy
-% bw:  Vypíná všechny barevné prvky, monochromatický režim
-% fonts:  Používání lokálně uložených fontů TUL
-% sfbody:  Patkový font v těle dokumentu
-% sfheadings:  Patkový font v nadpisech
-% nopdf:  Deaktivace PDF metadat a podmíněné nenačítání hyperref
-
-% Vlastní možnosti a příkazy třídy tulthesis.cls:
-% ==========================================================================
-% \TUL@baseclass:  Makro pro uložení názvu základní třídy
-% \TUL@levelCZ, \TUL@levelEN:  Text typu práce v češtině a angličtině
-% \TUL@kat:  Zkratka kategorie práce (např. BP)
-% \TULpraceou, \TULpracee:  Skloňování názvu práce
-% \TULpracerod:  Přepínač rodu pro název práce
-% \TULthesisType:  Příkaz pro nastavení typu práce
-% \TUL@nazevCZ, \TUL@nazevEN:  Makra pro název práce v CZ a EN
-% \TULtitle:  Příkaz pro nastavení názvu práce
-% \TUL@autor:  Makro pro jméno autora
-% \TULauthor:  Příkaz pro nastavení jména autora
-% \TUL@vedouci:  Makro pro jméno vedoucího práce
-% \TULsupervisor:  Příkaz pro nastavení jména vedoucího práce
-% \TULconsultant:  Příkaz pro přidání konzultanta
-% \TUL@programCZ, \TUL@programEN:  Makra pro studijní program
-% \TULprogramme:  Příkaz pro nastavení studijního programu
-% \TULbranch:  Příkaz pro nastavení studijního oboru
-% \TUL@rok:  Makro pro rok práce
-% \TULyear:  Příkaz pro nastavení roku práce
-% \TULid:  Příkaz pro nastavení identifikačního čísla práce
-% \@ddel:  Pomocný příkaz
-% \begin{uzky@text} ... \end{uzky@text}:  Prostředí pro úzký text
-% \ThesisTitle:  Příkaz pro vytvoření titulní strany
-% \Assignment:  Příkaz pro vložení stránky se zadáním
-% \TULfem:  Příkaz pro ženský rod v češtině
-% \TULpraceCZ:  Název práce v malých písmenech (česky)
-% \DeclarationCZ:  Prohlášení autora v češtině
-% \ThesisType@EN:  Typ práce v malých písmenech (anglicky)
-% \DeclarationEN:  Prohlášení autora v angličtině
-% \Declaration:  Příkaz pro vložení prohlášení (automaticky podle jazyka)
-% \ThesisStart:  Příkaz pro zahájení práce
-% \begin{abstractCZ} ... :  Prostředí pro abstrakt v češtině
-% \begin{abstractEN} ... :  Prostředí pro abstrakt v angličtině
-% \begin{keywordsCZ} ... :  Prostředí pro klíčová slova v češtině
-% \begin{keywordsEN} ... :  Prostředí pro klíčová slova v angličtině
-% \begin{acknowledgement} ... :  Prostředí pro poděkování
-% \begin{abbreviations} ... :  Prostředí pro seznam zkratek
-% \TULthesisTOC:  Předdefinovaný obsah
 
 % ==========================================================================
 % 1. Výchozí nastavení a proměnné
@@ -93,97 +22,103 @@
 % 2. Možnosti (Options)
 % ==========================================================================
 
-% Základní třída
+% --- Základní třída ---
 \DeclareOption{article}{\renewcommand{\TUL@baseclass}{article}}
 \DeclareOption{report}{}
 
-% Jazyk
-\DeclareOption{EN}{\PassOptionsToPackage{\CurrentOption}{EN}}
+% --- Jazyk ---
+\DeclareOption{EN}{\PassOptionsToPackage{EN}{tulpackage/tul}}
 
-% Typy prací
-\DeclareOption{BP}{} % Výchozí (již nastaveno výše)
+% --- Typy prací ---
+\DeclareOption{BP}{} % Výchozí
 
-\DeclareOption{DP}{
-	\renewcommand{\TUL@levelCZ}{Diplomová práce}
-	\renewcommand{\TUL@levelEN}{Master thesis}
-	\renewcommand{\TULpraceou}{diplomovou práci}
-	\renewcommand{\TULpracee}{diplomové práce}
-	\renewcommand{\TULpracerod}[3]{#2}
-	\renewcommand{\TUL@kat}{DP}
-}
-\DeclareOption{Dis}{
-	\renewcommand{\TUL@levelCZ}{Disertační práce}
-	\renewcommand{\TUL@levelEN}{Dissertation}
-	\renewcommand{\TULpraceou}{disertační práci}
-	\renewcommand{\TULpracee}{disertační práce}
-	\renewcommand{\TULpracerod}[3]{#2}
-	\renewcommand{\TUL@kat}{Dis}
-}
-\DeclareOption{Hab}{
-	\renewcommand{\TUL@levelCZ}{Habilitační práce}
-	\renewcommand{\TUL@levelEN}{Habilitation thesis}
-	\renewcommand{\TULpraceou}{habilitační práci}
-	\renewcommand{\TULpracee}{habilitační práce}
-	\renewcommand{\TULpracerod}[3]{#2}
-	\renewcommand{\TUL@kat}{Hab}
-}
-\DeclareOption{Teze}{
-	\renewcommand{\TUL@levelCZ}{Teze disertační práce}
-	\renewcommand{\TUL@levelEN}{Dissertation thesis draft}
-	\renewcommand{\TULpraceou}{teze disertační práce}
-	\renewcommand{\TULpracee}{tezí disertační práce}
-	\renewcommand{\TULpracerod}[3]{#3}
-	\renewcommand{\TUL@kat}{Teze}
-}
-\DeclareOption{Autoref}{
-	\renewcommand{\TUL@levelCZ}{Autoreferát disertační práce}
-	\renewcommand{\TUL@levelEN}{Dissertation thesis summary}
-	\renewcommand{\TULpraceou}{autoreferát disertační práce}
-	\renewcommand{\TULpracee}{autoreferátu disertační práce}
-	\renewcommand{\TULpracerod}[3]{#1}
-	\renewcommand{\TUL@kat}{Autoref}
-}
-\DeclareOption{Proj}{
-	\renewcommand{\TUL@levelCZ}{Projekt}
-	\renewcommand{\TUL@levelEN}{Project report}
-	\renewcommand{\TULpraceou}{projekt}
-	\renewcommand{\TULpracee}{projektu}
-	\renewcommand{\TULpracerod}[3]{#1}
-	\renewcommand{\TUL@kat}{RP}
-}
-\DeclareOption{SP}{
-	\renewcommand{\TUL@levelCZ}{Semestrální práce}
-	\renewcommand{\TUL@levelEN}{Semestral work}
-	\renewcommand{\TULpraceou}{semestrální práci}
-	\renewcommand{\TULpracee}{semestrální práce}
-	\renewcommand{\TULpracerod}[3]{#2}
-	\renewcommand{\TUL@kat}{SP}
+\DeclareOption{DP}{%
+    \renewcommand{\TUL@levelCZ}{Diplomová práce}%
+    \renewcommand{\TUL@levelEN}{Master thesis}%
+    \renewcommand{\TULpraceou}{diplomovou práci}%
+    \renewcommand{\TULpracee}{diplomové práce}%
+    \renewcommand{\TULpracerod}[3]{#2}%
+    \renewcommand{\TUL@kat}{DP}%
 }
 
-% Fakultní přepínače – předání volby do balíku "tul"
-\DeclareOption{FS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FT}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FP}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{EF}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FA}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FM}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FZS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{UZS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{CXI}{\PassOptionsToPackage{\CurrentOption}{tul}}
+\DeclareOption{Dis}{%
+    \renewcommand{\TUL@levelCZ}{Disertační práce}%
+    \renewcommand{\TUL@levelEN}{Dissertation}%
+    \renewcommand{\TULpraceou}{disertační práci}%
+    \renewcommand{\TULpracee}{disertační práce}%
+    \renewcommand{\TULpracerod}[3]{#2}%
+    \renewcommand{\TUL@kat}{Dis}%
+}
 
-% Vzhled (Barvy, Fonty)
-\DeclareOption{bwtitles}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{bw}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{fonts}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{sfbody}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{sfheadings}{\PassOptionsToPackage{\CurrentOption}{tul}}
+\DeclareOption{Hab}{%
+    \renewcommand{\TUL@levelCZ}{Habilitační práce}%
+    \renewcommand{\TUL@levelEN}{Habilitation thesis}%
+    \renewcommand{\TULpraceou}{habilitační práci}%
+    \renewcommand{\TULpracee}{habilitační práce}%
+    \renewcommand{\TULpracerod}[3]{#2}%
+    \renewcommand{\TUL@kat}{Hab}%
+}
 
-% PDF Metadata
+\DeclareOption{Teze}{%
+    \renewcommand{\TUL@levelCZ}{Teze disertační práce}%
+    \renewcommand{\TUL@levelEN}{Dissertation thesis draft}%
+    \renewcommand{\TULpraceou}{teze disertační práce}%
+    \renewcommand{\TULpracee}{tezí disertační práce}%
+    \renewcommand{\TULpracerod}[3]{#3}%
+    \renewcommand{\TUL@kat}{Teze}%
+}
+
+\DeclareOption{Autoref}{%
+    \renewcommand{\TUL@levelCZ}{Autoreferát disertační práce}%
+    \renewcommand{\TUL@levelEN}{Dissertation thesis summary}%
+    \renewcommand{\TULpraceou}{autoreferát disertační práce}%
+    \renewcommand{\TULpracee}{autoreferátu disertační práce}%
+    \renewcommand{\TULpracerod}[3]{#1}%
+    \renewcommand{\TUL@kat}{Autoref}%
+}
+
+\DeclareOption{Proj}{%
+    \renewcommand{\TUL@levelCZ}{Projekt}%
+    \renewcommand{\TUL@levelEN}{Project report}%
+    \renewcommand{\TULpraceou}{projekt}%
+    \renewcommand{\TULpracee}{projektu}%
+    \renewcommand{\TULpracerod}[3]{#1}%
+    \renewcommand{\TUL@kat}{RP}%
+}
+
+\DeclareOption{SP}{%
+    \renewcommand{\TUL@levelCZ}{Semestrální práce}%
+    \renewcommand{\TUL@levelEN}{Semestral work}%
+    \renewcommand{\TULpraceou}{semestrální práci}%
+    \renewcommand{\TULpracee}{semestrální práce}%
+    \renewcommand{\TULpracerod}[3]{#2}%
+    \renewcommand{\TUL@kat}{SP}%
+}
+
+% --- Fakulty (předání do tulpackage/tul) ---
+\DeclareOption{FS}{\PassOptionsToPackage{FS}{tulpackage/tul}}
+\DeclareOption{FT}{\PassOptionsToPackage{FT}{tulpackage/tul}}
+\DeclareOption{FP}{\PassOptionsToPackage{FP}{tulpackage/tul}}
+\DeclareOption{EF}{\PassOptionsToPackage{EF}{tulpackage/tul}}
+\DeclareOption{FA}{\PassOptionsToPackage{FA}{tulpackage/tul}}
+\DeclareOption{FM}{\PassOptionsToPackage{FM}{tulpackage/tul}}
+\DeclareOption{FZS}{\PassOptionsToPackage{FZS}{tulpackage/tul}}
+\DeclareOption{UZS}{\PassOptionsToPackage{UZS}{tulpackage/tul}}
+\DeclareOption{CXI}{\PassOptionsToPackage{CXI}{tulpackage/tul}}
+
+% --- Vzhled (Barvy, Fonty) ---
+\DeclareOption{bwtitles}{\PassOptionsToPackage{bwtitles}{tulpackage/tul}}
+\DeclareOption{bw}{\PassOptionsToPackage{bw}{tulpackage/tul}}
+\DeclareOption{fonts}{\PassOptionsToPackage{fonts}{tulpackage/tul}}
+\DeclareOption{sfbody}{\PassOptionsToPackage{sfbody}{tulpackage/tul}}
+\DeclareOption{sfheadings}{\PassOptionsToPackage{sfheadings}{tulpackage/tul}}
+
+% --- PDF Metadata ---
 \newif\ifTUL@pdf
 \TUL@pdftrue
 \DeclareOption{nopdf}{\TUL@pdffalse}
 
-% Ostatní volby předat základní třídě
+% --- Ostatní volby ---
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\TUL@baseclass}}
 
 \ProcessOptions\relax
@@ -199,14 +134,14 @@
 \noTULfooter%
 
 % Nastavení textů šablony tabulek v češtině
-\ifthenelse{\equal{\TUL@nguage}{EN}}{}{
-	\DefTblrTemplate{conthead-text}{default}{(pokračování)}
-	\DefTblrTemplate{contfoot-text}{default}{pokračuje na další straně\,\ldots}
+\ifthenelse{\equal{\TUL@nguage}{EN}}{}{%
+    \DefTblrTemplate{conthead-text}{default}{(pokračování)}%
+    \DefTblrTemplate{contfoot-text}{default}{pokračuje na další straně\,\ldots}%
 }
 
 % Hyperref (pokud není vypnut)
 \ifTUL@pdf
-	\hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
+    \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}%
 \fi
 
 % Pomocné
@@ -217,31 +152,31 @@
 % ==========================================================================
 
 % Definice typu práce (ruční přepsání)
-\newcommand{\TULthesisType}[2]{
-	\renewcommand{\TUL@levelCZ}{#1}
-	\renewcommand{\TUL@levelEN}{#2}
+\newcommand{\TULthesisType}[2]{%
+    \renewcommand{\TUL@levelCZ}{#1}%
+    \renewcommand{\TUL@levelEN}{#2}%
 }
 
 % Název práce
 \newcommand{\TUL@nazevCZ}{Chybí \textbackslash{}TULtitle\{česky\}\{anglicky\}}
 \newcommand{\TUL@nazevEN}{English title}
-\newcommand{\TULtitle}[2]{
-	\renewcommand{\TUL@nazevCZ}{#1}
-	\renewcommand{\TUL@nazevEN}{#2}
-	\ifTUL@pdf
-		\ifthenelse{\equal{\TUL@nguage}{EN}}
-		{\hypersetup{pdftitle={#2}}}
-		{\hypersetup{pdftitle={#1}}}
-	\fi
+\newcommand{\TULtitle}[2]{%
+    \renewcommand{\TUL@nazevCZ}{#1}%
+    \renewcommand{\TUL@nazevEN}{#2}%
+    \ifTUL@pdf
+        \ifthenelse{\equal{\TUL@nguage}{EN}}%
+        {\hypersetup{pdftitle={#2}}}%
+        {\hypersetup{pdftitle={#1}}}%
+    \fi
 }
 
 % Autor
 \newcommand{\TUL@autor}{Chybí \textbackslash{}TULauthor\{jméno\}}
-\newcommand{\TULauthor}[1]{
-	\renewcommand{\TUL@autor}{#1}
-	\ifTUL@pdf
-		\hypersetup{pdfauthor={#1}}
-	\fi
+\newcommand{\TULauthor}[1]{%
+    \renewcommand{\TUL@autor}{#1}%
+    \ifTUL@pdf
+        \hypersetup{pdfauthor={#1}}%
+    \fi
 }
 
 % Vedoucí práce
@@ -251,17 +186,17 @@
 % Konzultanti
 \newcounter{TULk@nzult}
 \setcounter{TULk@nzult}{0}
-\newcommand{\TULconsultant}[1]{
-	\stepcounter{TULk@nzult}
-	\@namedef{\roman{TULk@nzult}@TULkonzultant}{#1}
+\newcommand{\TULconsultant}[1]{%
+    \stepcounter{TULk@nzult}%
+    \@namedef{\roman{TULk@nzult}@TULkonzultant}{#1}%
 }
 
 % Studijní program
 \newcommand{\TUL@programCZ}{Chybí \textbackslash{}TULprogramme\{kód\}\{česky\}\{anglicky\}}
 \newcommand{\TUL@programEN}{Study Programme}
-\newcommand{\TULprogramme}[3]{
-	\renewcommand{\TUL@programCZ}{#1~-- #2}
-	\renewcommand{\TUL@programEN}{#1~-- #3}
+\newcommand{\TULprogramme}[3]{%
+    \renewcommand{\TUL@programCZ}{#1~-- #2}%
+    \renewcommand{\TUL@programEN}{#1~-- #3}%
 }
 
 % Studijní obory
@@ -269,15 +204,15 @@
 \setcounter{TUL@bor}{0}
 \newcommand{\i@TULoborCZ}{Chybí \textbackslash{}TULbranch\{kód\}\{česky\}\{anglicky\}}
 \newcommand{\i@TULoborEN}{Study Branches}
-\newcommand{\TULbranch}[3]{
-	\stepcounter{TUL@bor}
-	\ifthenelse{\equal{#1}{}}{
-		\@namedef{\roman{TUL@bor}@TULoborCZ}{#2}
-		\@namedef{\roman{TUL@bor}@TULoborEN}{#3}
-	}{
-		\@namedef{\roman{TUL@bor}@TULoborCZ}{#1~-- #2}
-		\@namedef{\roman{TUL@bor}@TULoborEN}{#1~-- #3}
-	}
+\newcommand{\TULbranch}[3]{%
+    \stepcounter{TUL@bor}%
+    \ifthenelse{\equal{#1}{}}{%
+        \@namedef{\roman{TUL@bor}@TULoborCZ}{#2}%
+        \@namedef{\roman{TUL@bor}@TULoborEN}{#3}%
+    }{%
+        \@namedef{\roman{TUL@bor}@TULoborCZ}{#1~-- #2}%
+        \@namedef{\roman{TUL@bor}@TULoborEN}{#1~-- #3}%
+    }%
 }
 
 % Rok a ID
@@ -293,29 +228,29 @@
 % ==========================================================================
 
 % Prostředí pro úzký text (zarovnaný na střed)
-\newenvironment{uzky@text}{
-	\begin{center}
-		\begin{minipage}{0.80\textwidth}
-			\setlength{\parskip}{0.5\baselineskip}
-			}{
-		\end{minipage}
-	\end{center}
+\newenvironment{uzky@text}{%
+    \begin{center}
+        \begin{minipage}{0.80\textwidth}
+            \setlength{\parskip}{0.5\baselineskip}
+}{%
+        \end{minipage}
+    \end{center}
 }
 
-\AtBeginDocument{
-	\pagestyle{empty}
+\AtBeginDocument{%
+    \pagestyle{empty}%
 }
 
 % Číslování stránek
-\fancypagestyle{plain}{
-	\fancyhf{}
-	\if@twoside
-		\fancyfoot[RO,LE]{\thepage}
-	\else
-		\fancyfoot[C]{\thepage}
-	\fi
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}%
+    \if@twoside
+        \fancyfoot[RO,LE]{\thepage}%
+    \else
+        \fancyfoot[C]{\thepage}%
+    \fi
+    \renewcommand{\headrulewidth}{0pt}%
+    \renewcommand{\footrulewidth}{0pt}%
 }
 
 % Rozměry pro titulní stranu
@@ -328,96 +263,97 @@
 % ==========================================================================
 % 6. Titulní strana (\ThesisTitle)
 % ==========================================================================
-\newcommand{\ThesisTitle}[1]{{
-			\thispagestyle{TULheaderonly}
-			\addtolength{\voffset}{2mm}
-			\sffamily
 
-			\mbox{}\vfill
+\newcommand{\ThesisTitle}[1]{{%
+    \thispagestyle{TULheaderonly}%
+    \addtolength{\voffset}{2mm}%
+    \sffamily
 
-			% Nadpis
-			\begin{minipage}{\textwidth}
-				\noindent\large\TULHeadFont%
-				\ifthenelse{\equal{#1}{EN}}{\TUL@levelEN}{\TUL@levelCZ}\\[\bigskipamount]
-				\raggedright\fontsize{18pt}{22pt}\selectfont\color{\tulcolor}\TULHeadFont%
-				\ifthenelse{\equal{#1}{EN}}{\TUL@nazevEN}{\TUL@nazevCZ}\par
-			\end{minipage}
+    \mbox{}\vfill
 
-			\bigskip\bigskip
+    % Nadpis
+    \begin{minipage}{\textwidth}
+        \noindent\large\TULHeadFont%
+        \ifthenelse{\equal{#1}{EN}}{\TUL@levelEN}{\TUL@levelCZ}\\[\bigskipamount]%
+        \raggedright\fontsize{18pt}{22pt}\selectfont\color{\tulcolor}\TULHeadFont%
+        \ifthenelse{\equal{#1}{EN}}{\TUL@nazevEN}{\TUL@nazevCZ}\par
+    \end{minipage}
 
-			% Tabulka s informacemi
-			\newcommand{\t@nd}{&}
-			\newcommand{\n@dpis}{\itshape}%
-			\newdimen{\TUL@hodnoty}
-			\newcounter{TULc@unter}
+    \bigskip\bigskip
 
-			\setlength{\TUL@hodnoty}{\linewidth}
-			\addtolength{\TUL@hodnoty}{-15em}
+    % Tabulka s informacemi
+    \newcommand{\t@nd}{&}%
+    \newcommand{\n@dpis}{\itshape}%
+    \newdimen{\TUL@hodnoty}%
+    \newcounter{TULc@unter}%
 
-			\noindent
-			\begin{tabular}{@{}p{14em}p{\TUL@hodnoty}@{}}
-				\ifthenelse{\equal{\TUL@kat}{Hab}}{
-					% Habilitační práce
-				\ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:                       & \bfseries\TUL@autor                                         \\
-				\ifthenelse{\equal{#1}{EN}}{Field}{Obor}:                               & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ}     \\
-				}{
-					% Ostatní práce
-				\n@dpis \ifthenelse{\equal{#1}{EN}}{Study programme}{Studijní program}: & \ifthenelse{\equal{#1}{EN}}{\TUL@programEN}{\TUL@programCZ} \\
-					% Studijní obory
-					\ifthenelse{\value{TUL@bor}=0}{}{
-						\n@dpis
-						\ifthenelse{\equal{#1}{EN}}
-						{Study branch\ifnum\theTUL@bor>1\relax es\fi}
-						{Studijní obor\ifnum\theTUL@bor>1\relax y\fi}:
-				                                                                        & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ}     \\
-						\setcounter{TULc@unter}{1}
-						\whiledo{\value{TULc@unter} < \value{TUL@bor}}{
-							\stepcounter{TULc@unter}\t@nd
-							\ifthenelse{\equal{#1}{EN}}
-							{\@nameuse{\roman{TULc@unter}@TULoborEN}}
-				{\@nameuse{\roman{TULc@unter}@TULoborCZ}}                                                                                             \\
-						}
-					}
-					% Autor a vedoucí
-				\n@dpis \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:               & \bfseries\TUL@autor                                         \\
-				\n@dpis \ifthenelse{\equal{#1}{EN}}{Supervisor}{Vedoucí práce}:         & \TUL@vedouci                                                \\
-					% Konzultanti
-					\@ifundefined{i@TULkonzultant}{}{
-						\n@dpis
-						\ifthenelse{\equal{#1}{EN}}
-						{Consultant\@ifundefined{ii@TULkonzultant}{}{s}}
-						{Konzultant\@ifundefined{ii@TULkonzultant}{}{i}}:
-				                                                                        & \i@TULkonzultant                                            \\
-					}
-					\setcounter{TULc@unter}{1}
-					\whiledo{\value{TULc@unter} < \value{TULk@nzult}}{
-						\stepcounter{TULc@unter}\t@nd
-				\@nameuse{\roman{TULc@unter}@TULkonzultant}                                                                                           \\
-					}
-				}
-				% Rok a místo
-				\rule{0pt}{10mm}                                                        & Liberec \TUL@rok                                            \\
-			\end{tabular}
+    \setlength{\TUL@hodnoty}{\linewidth}%
+    \addtolength{\TUL@hodnoty}{-15em}%
 
-			\cleardoublepage%
-		}}
+    \noindent
+    \begin{tabular}{@{}p{14em}p{\TUL@hodnoty}@{}}
+        \ifthenelse{\equal{\TUL@kat}{Hab}}{%
+            % Habilitační práce
+            \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}: & \bfseries\TUL@autor \\
+            \ifthenelse{\equal{#1}{EN}}{Field}{Obor}:         & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ} \\
+        }{%
+            % Ostatní práce
+            \n@dpis \ifthenelse{\equal{#1}{EN}}{Study programme}{Studijní program}: & \ifthenelse{\equal{#1}{EN}}{\TUL@programEN}{\TUL@programCZ} \\
+            % Studijní obory
+            \ifthenelse{\value{TUL@bor}=0}{}{%
+                \n@dpis
+                \ifthenelse{\equal{#1}{EN}}
+                {Study branch\ifnum\theTUL@bor>1\relax es\fi}
+                {Studijní obor\ifnum\theTUL@bor>1\relax y\fi}:
+                & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ} \\
+                \setcounter{TULc@unter}{1}%
+                \whiledo{\value{TULc@unter} < \value{TUL@bor}}{%
+                    \stepcounter{TULc@unter}\t@nd
+                    \ifthenelse{\equal{#1}{EN}}
+                    {\@nameuse{\roman{TULc@unter}@TULoborEN}}
+                    {\@nameuse{\roman{TULc@unter}@TULoborCZ}} \\
+                }%
+            }%
+            % Autor a vedoucí
+            \n@dpis \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:     & \bfseries\TUL@autor \\
+            \n@dpis \ifthenelse{\equal{#1}{EN}}{Supervisor}{Vedoucí práce}: & \TUL@vedouci \\
+            % Konzultanti
+            \@ifundefined{i@TULkonzultant}{}{%
+                \n@dpis
+                \ifthenelse{\equal{#1}{EN}}
+                {Consultant\@ifundefined{ii@TULkonzultant}{}{s}}
+                {Konzultant\@ifundefined{ii@TULkonzultant}{}{i}}:
+                & \i@TULkonzultant \\
+                \setcounter{TULc@unter}{1}%
+                \whiledo{\value{TULc@unter} < \value{TULk@nzult}}{%
+                    \stepcounter{TULc@unter}\t@nd
+                    \@nameuse{\roman{TULc@unter}@TULkonzultant} \\
+                }%
+            }%
+        }%
+        % Rok a místo
+        \rule{0pt}{10mm} & Liberec \TUL@rok \\
+    \end{tabular}
+
+    \cleardoublepage%
+}}
 
 % ==========================================================================
 % 7. Zadání a Prohlášení
 % ==========================================================================
 
 % Stránka pro nahrazení zadáním
-\newcommand{\Assignment}{
-	\mbox{}\vfill
-	\begin{center}
-		\LARGE
-		\ifthenelse{\equal{\TUL@nguage}{EN}}
-		{This page has to be replaced\\[0.5em]by original of an assignment.}
-		{Tento list nahraďte\\[0.5em]originálem zadání.}
-		\thispagestyle{empty}
-	\end{center}
-	\vfill
-	\cleardoublepage%
+\newcommand{\Assignment}{%
+    \mbox{}\vfill
+    \begin{center}
+        \LARGE
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {Replace this page\\[0.5em]with the original assignment.}
+        {Tento list nahraďte\\[0.5em]originálem zadání.}
+        \thispagestyle{empty}%
+    \end{center}
+    \vfill
+    \cleardoublepage%
 }
 
 % Pomocné pro prohlášení
@@ -426,171 +362,171 @@
 \newcommand{\ThesisType@EN}{\lowercase\expandafter{\TUL@levelEN}}
 
 % Prohlášení CZ
-\newcommand{\DeclarationCZ}[1]{
-	\vspace{2em}
-	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Prohlášení}
-	\vspace{1.5em}
+\newcommand{\DeclarationCZ}[1]{%
+    \vspace{2em}
+    \section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Prohlášení}
+    \vspace{1.5em}
 
-	Prohlašuji, že \TULpracerod{svůj}{svou}{své} \TULpraceou\ jsem vypracoval\TULfem{#1}
-	samostatně jako původní dílo s použitím uvedené literatury
-	\ifthenelse{\equal{\TUL@kat}{Hab}}{}{ a na základě konzultací s vedoucím
-		\TULpracerod{mého}{mé}{mých} \TULpracee\ a konzultantem}.
+    Prohlašuji, že \TULpracerod{svůj}{svou}{své} \TULpraceou\ jsem vypracoval\TULfem{#1}
+    samostatně jako původní dílo s použitím uvedené literatury
+    \ifthenelse{\equal{\TUL@kat}{Hab}}{}{ a na základě konzultací s vedoucím
+        \TULpracerod{mého}{mé}{mých} \TULpracee\ a konzultantem}.
 
-	\ifthenelse{\equal{\TUL@kat}{Hab}}{}{
-		Jsem si vědom\TULfem{#1} toho, že na \TULpracerod{můj}{mou}{mé} \TULpraceou\ se plně
-		vztahuje zákon č.~121/2000 Sb., o~právu autorském, zejména \S~60~-- školní dílo.
+    \ifthenelse{\equal{\TUL@kat}{Hab}}{}{%
+        Jsem si vědom\TULfem{#1} toho, že na \TULpracerod{můj}{mou}{mé} \TULpraceou\ se plně
+        vztahuje zákon č.~121/2000 Sb., o~právu autorském, zejména \S~60~-- školní dílo.
 
-		Beru na vědomí, že Technická univerzita v~Liberci nezasahuje do mých autorských
-		práv užitím \TULpracerod{mého}{mé}{mých} \TULpracee\ pro vnitřní potřebu
-		Technické univerzity v~Liberci.
+        Beru na vědomí, že Technická univerzita v~Liberci nezasahuje do mých autorských
+        práv užitím \TULpracerod{mého}{mé}{mých} \TULpracee\ pro vnitřní potřebu
+        Technické univerzity v~Liberci.
 
-		Užiji-li \TULpraceou\ nebo poskytnu-li licenci k~\TULpracerod{jeho}{jejímu}{jejich}
-		využití, jsem si vědom\TULfem{#1} povinnosti informovat o~této skutečnosti
-		Technickou univerzitu v~Liberci; v~tomto případě má Technická univerzita v~Liberci
-		právo ode mne požadovat úhradu nákladů, které vynaložila na vytvoření díla,
-		až do jejich skutečné výše.
+        Užiji-li \TULpraceou\ nebo poskytnu-li licenci k~\TULpracerod{jeho}{jejímu}{jejich}
+        využití, jsem si vědom\TULfem{#1} povinnosti informovat o~této skutečnosti
+        Technickou univerzitu v~Liberci; v~tomto případě má Technická univerzita v~Liberci
+        právo ode mne požadovat úhradu nákladů, které vynaložila na vytvoření díla,
+        až do jejich skutečné výše.
 
-		\ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
-		{Současně čestně prohlašuji, že text elektronické podoby práce vložený do IS STAG
-			se shoduje s textem tištěné podoby práce.}{}
-	}
+        \ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
+        {Současně čestně prohlašuji, že text elektronické podoby práce vložený do IS STAG
+            se shoduje s textem tištěné podoby práce.}{}
+    }
 
-	Beru na vědomí, že \TULpracerod{můj}{má}{mé} \TULpraceCZ\
-	\TULpracerod{bude zveřejněn}{bude zveřejněna}{budou zveřejněny}
-	Technickou univerzitou v~Liberci v souladu s~\S~47b zákona č.~111/1998 Sb.,
-	o~vysokých školách a o~změně a doplnění dalších zákonů (zákon o~vysokých školách),
-	ve znění pozdějších předpisů.
+    Beru na vědomí, že \TULpracerod{můj}{má}{mé} \TULpraceCZ\
+    \TULpracerod{bude zveřejněn}{bude zveřejněna}{budou zveřejněny}
+    Technickou univerzitou v~Liberci v souladu s~\S~47b zákona č.~111/1998 Sb.,
+    o~vysokých školách a o~změně a doplnění dalších zákonů (zákon o~vysokých školách),
+    ve znění pozdějších předpisů.
 
-	Jsem si vědom\TULfem{#1} následků, které podle zákona o~vysokých školách mohou
-	vyplývat z porušení tohoto prohlášení.
+    Jsem si vědom\TULfem{#1} následků, které podle zákona o~vysokých školách mohou
+    vyplývat z porušení tohoto prohlášení.
 
-	\vspace{3em}
-	\noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
+    \vspace{3em}
+    \noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
 }
 
 % Prohlášení EN
-\newcommand{\DeclarationEN}{
-	\vspace{2em}
-	\section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Declaration}
-	\vspace{1.5em}
+\newcommand{\DeclarationEN}{%
+    \vspace{2em}
+    \section*{\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright{}Declaration}
+    \vspace{1.5em}
 
-	I hereby certify, I, myself, have written my \ThesisType@EN\ as an original and
-	primary work using the literature listed below
-	\ifthenelse{\equal{\TUL@kat}{Hab}}{}{ and consulting it with my thesis
-		supervisor and my thesis counsellor}.
+    I hereby certify, I, myself, have written my \ThesisType@EN\ as an original and
+    primary work using the literature listed below
+    \ifthenelse{\equal{\TUL@kat}{Hab}}{}{ and consulting it with my thesis
+        supervisor and my thesis counsellor}.
 
-	\ifthenelse{\equal{\TUL@kat}{Hab}}{}{
-		I acknowledge that my \ThesisType@EN\ is fully governed by Act No.~121/2000 Coll.,
-		the Copyright Act, in particular Article~60!-- School Work.
+    \ifthenelse{\equal{\TUL@kat}{Hab}}{}{%
+        I acknowledge that my \ThesisType@EN\ is fully governed by Act No.~121/2000 Coll.,
+        the Copyright Act, in particular Article~60!-- School Work.
 
-		I acknowledge that the Technical University of Liberec does not infringe my
-		copyrights by using my \ThesisType@EN\ for internal purposes of the Technical
-		University of Liberec.
+        I acknowledge that the Technical University of Liberec does not infringe my
+        copyrights by using my \ThesisType@EN\ for internal purposes of the Technical
+        University of Liberec.
 
-		I am aware of my obligation to inform the Technical University of Liberec on
-		having used or granted license to use the results of my \ThesisType@EN\@; in
-		such a case the Technical University of Liberec may require reimbursement of
-		the costs incurred for creating the result up to their actual amount.
+        I am aware of my obligation to inform the Technical University of Liberec on
+        having used or granted license to use the results of my \ThesisType@EN\@; in
+        such a case the Technical University of Liberec may require reimbursement of
+        the costs incurred for creating the result up to their actual amount.
 
-		\ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
-		{At the same time, I honestly declare that the text of the printed version of my
-			\ThesisType@EN\ is identical with the text of the electronic version uploaded
-			into the IS STAG.}{}
-	}
+        \ifthenelse{\equal{\TUL@kat}{BP} \OR\equal{\TUL@kat}{DP} \OR\equal{\TUL@kat}{Dis}}
+        {At the same time, I honestly declare that the text of the printed version of my
+            \ThesisType@EN\ is identical with the text of the electronic version uploaded
+            into the IS STAG.}{}
+    }
 
-	I acknowledge that the Technical University of Liberec will make my
-	\ThesisType@EN\ public in accordance with paragraph~47b of Act No.~111/1998
-	Coll., on Higher Education Institutions and on Amendment to Other Acts (the
-	Higher Education Act), as amended.
+    I acknowledge that the Technical University of Liberec will make my
+    \ThesisType@EN\ public in accordance with paragraph~47b of Act No.~111/1998
+    Coll., on Higher Education Institutions and on Amendment to Other Acts (the
+    Higher Education Act), as amended.
 
-	I am aware of the consequences which may under the Higher Education Act result
-	from a breach of this declaration.
+    I am aware of the consequences which may under the Higher Education Act result
+    from a breach of this declaration.
 
-	\vspace{3em}
-	\noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
+    \vspace{3em}
+    \noindent \the\day. \the\month. \the\year\hfill \noindent \TUL@autor
 }
 
 % Automatický výběr prohlášení
-\newcommand{\Declaration}[1]{
-	\thispagestyle{empty}
-	\begin{uzky@text}
-		\ifthenelse{\equal{\TUL@nguage}{EN}}{\DeclarationEN{#1}}{\DeclarationCZ{#1}}
-	\end{uzky@text}
-	\cleardoublepage%
+\newcommand{\Declaration}[1]{%
+    \thispagestyle{empty}%
+    \begin{uzky@text}
+        \ifthenelse{\equal{\TUL@nguage}{EN}}{\DeclarationEN}{\DeclarationCZ{#1}}
+    \end{uzky@text}
+    \cleardoublepage%
 }
 
 % Hlavní příkaz pro zahájení práce
-\newcommand{\ThesisStart}[1]{
-	\ifthenelse{\equal{#1}{female} \OR\equal{#1}{male}}{
-		\ifthenelse{\equal{\TUL@nguage}{EN}}{\ThesisTitle{EN}}{\ThesisTitle{CZ}}
-		% Vložení zadání (pouze BP, DP, RP, MP)
-		\ifthenelse{\equal{\TUL@kat}{BP}
-			\OR\equal{\TUL@kat}{DP}
-			\OR\equal{\TUL@kat}{RP}
-			\OR\equal{\TUL@kat}{MP}}{\Assignment}{}
-		\Declaration{#1}
-	}{
-		\includepdf[pages=-]{#1}
-	}
+\newcommand{\ThesisStart}[1]{%
+    \ifthenelse{\equal{#1}{female} \OR\equal{#1}{male}}{%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}{\ThesisTitle{EN}}{\ThesisTitle{CZ}}
+        % Vložení zadání (pouze BP, DP, RP, MP)
+        \ifthenelse{\equal{\TUL@kat}{BP}
+            \OR\equal{\TUL@kat}{DP}
+            \OR\equal{\TUL@kat}{RP}
+            \OR\equal{\TUL@kat}{MP}}{\Assignment}{}
+        \Declaration{#1}
+    }{%
+        \includepdf[pages=-]{#1}%
+    }%
 }
 
 % ==========================================================================
 % 8. Abstrakty, Klíčová slova, Poděkování
 % ==========================================================================
 
-\newenvironment{abstractCZ}[1][narrow]{
-	\vspace*{0.8em}
-	\ifthenelse{\equal{#1}{wide}}
-	{\renewcommand{\endabstractCZ}{\par}}
-	{\begin{uzky@text}\renewcommand{\endabstractCZ}{\end{uzky@text}}}
-\chapter*{\TUL@nazevCZ}\section*{Abstrakt}
-\vspace{0.8em}
+\newenvironment{abstractCZ}[1][narrow]{%
+    \vspace*{0.8em}
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endabstractCZ}{\par}}
+    {\begin{uzky@text}\renewcommand{\endabstractCZ}{\end{uzky@text}}}
+    \chapter*{\TUL@nazevCZ}\section*{Abstrakt}
+    \vspace{0.8em}
 }{}
 
-\newenvironment{abstractEN}[1][narrow]{
-	\vspace*{0.8em}
-	\ifthenelse{\equal{#1}{wide}}
-	{\renewcommand{\endabstractEN}{\par}}
-	{\begin{uzky@text}\renewcommand{\endabstractEN}{\end{uzky@text}}}
-\chapter*{\TUL@nazevEN}\section*{Abstract}
-\vspace{0.8em}
+\newenvironment{abstractEN}[1][narrow]{%
+    \vspace*{0.8em}
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endabstractEN}{\par}}
+    {\begin{uzky@text}\renewcommand{\endabstractEN}{\end{uzky@text}}}
+    \chapter*{\TUL@nazevEN}\section*{Abstract}
+    \vspace{0.8em}
 }{}
 
-\newenvironment{keywordsCZ}[1][narrow]{
-	\ifthenelse{\equal{#1}{wide}}
-	{\renewcommand{\endkeywordsCZ}{\par}}
-	{\begin{uzky@text}\renewcommand{\endkeywordsCZ}{\end{uzky@text}}}
-\vspace{1.0em}
-\section*{Klíčová slova}
-\vspace{0.8em}
+\newenvironment{keywordsCZ}[1][narrow]{%
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endkeywordsCZ}{\par}}
+    {\begin{uzky@text}\renewcommand{\endkeywordsCZ}{\end{uzky@text}}}
+    \vspace{1.0em}
+    \section*{Klíčová slova}
+    \vspace{0.8em}
 }{}
 
-\newenvironment{keywordsEN}[1][narrow]{
-	\ifthenelse{\equal{#1}{wide}}
-	{\renewcommand{\endkeywordsEN}{\par}}
-	{\begin{uzky@text}\renewcommand{\endkeywordsEN}{\end{uzky@text}}}
-\vspace{1.0em}
-\section*{Keywords}
-\vspace{0.8em}
+\newenvironment{keywordsEN}[1][narrow]{%
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endkeywordsEN}{\par}}
+    {\begin{uzky@text}\renewcommand{\endkeywordsEN}{\end{uzky@text}}}
+    \vspace{1.0em}
+    \section*{Keywords}
+    \vspace{0.8em}
 }{}
 
-\newenvironment{acknowledgement}[1][narrow]{
-	\ifthenelse{\equal{#1}{wide}}
-	{\renewcommand{\endacknowledgement}{\clearpage}}
-	{\begin{uzky@text}\renewcommand{\endacknowledgement}{\end{uzky@text}\clearpage}}
-\ifthenelse{\equal{\TUL@nguage}{EN}}
-{\vspace{2em}\chapter*{Acknowledgements}\vspace{0.6em}}
-{\vspace{2em}\chapter*{Poděkování}\vspace{0.6em}}
+\newenvironment{acknowledgement}[1][narrow]{%
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endacknowledgement}{\clearpage}}
+    {\begin{uzky@text}\renewcommand{\endacknowledgement}{\end{uzky@text}\clearpage}}
+    \ifthenelse{\equal{\TUL@nguage}{EN}}
+    {\vspace{2em}\chapter*{Acknowledgements}\vspace{0.6em}}
+    {\vspace{2em}\chapter*{Poděkování}\vspace{0.6em}}
 }{}
 
 % ==========================================================================
 % 9. Obsah a Seznamy
 % ==========================================================================
 
-\newcommand{\TULthesisTOC}{
-	\tableofcontents
-	\pagestyle{plain}
-	\clearpage
+\newcommand{\TULthesisTOC}{%
+    \tableofcontents
+    \pagestyle{plain}
+    \clearpage
 }
 
 % Formátování nadpisů

@@ -1,35 +1,21 @@
-\documentclass[fonts,numbering,twoside,margins,lstcapsleft]{./tulpackage/tulthesis}
-% \documentclass[numbering,twoside,margins]{./tulpackage/tulthesis}
-% Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit
-% pouze XeLaTeXem. Pokud nemáte instalována použitá (komerční) písma, změňte
-% nebo odstraňte příkazy \set...font na následujících řádcích
+% tulpackage/example/manual-tulthesis.tex
+% Obsahuje: Příklad použití třídy tulthesis z balíku tulpackage, návod ke psaní prací
+% Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit pouze XeLaTeXem
 
-\newcommand{\verze}{2.1}
+\documentclass[fonts,numbering,twoside,margins,lstcapsleft]{./tulpackage/tulthesis}
+\newcommand{\verze}{v1.0.0}
 
 % Nastavení jazyka dokumentu na češtinu
-\usepackage{polyglossia}
 \setdefaultlanguage{czech}
 
 % Vytvoření indexu dokumentu
-\usepackage{makeidx}
 \makeindex
 
-% Doplňující balíčky pro tabulky a obrázky (PŘIDÁNO)
-\usepackage{float}    % Umožňuje použití [H]
-\usepackage{booktabs} % Umožňuje \midrule, \bottomrule
+% Vlastní seznamy s enumitem
+\newlist{itemize*}{itemize}{2}
+\setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
+\setlist[itemize*,2]{label={--}}
 
-% Nastavení písma (náhrada noto sans mono kvůli nedostupnosti kurzivy)
-\setmonofont{RobotoMono}[
-    Path = ./tulpackage/fonts/, % chktex 26
-    Extension = .ttf, % chktex 26
-    UprightFont = *-Regular,
-    BoldFont = *-Bold,
-    ItalicFont = *-Italic,
-    BoldItalicFont = *-BoldItalic
-]
-
-% Mezery mezi odstavci místo odsazení prvních řádků
-\usepackage{parskip}
 % Nastavení sazby a zalamování textu
 \sloppy
 \lefthyphenmin=2
@@ -41,6 +27,7 @@
 % Penalizace osamocených řádků
 \widowpenalty=10000
 \clubpenalty=10000
+
 % Definice pomocného příkazu pro ukázky
 \newcommand{\cmddemo}[1]{\bigskip\parbox[c]{3.9cm}{\cmd{#1}}\parbox[c]{10cm}{\csname #1\endcsname}\bigskip}
 
@@ -53,14 +40,8 @@
 \newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
 \newcommand{\polozka}[1]{\item[#1]\mbox{}\\}
 
-% Zvýšení řádkování
+% Zvýšení řádkování pro lepší čitelnost návodu
 \linespread{1.3}
-
-% Vlastní seznamy s enumitem
-\usepackage{enumitem}
-\newlist{itemize*}{itemize}{2}
-\setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
-\setlist[itemize*,2]{label={--}}
 
 % Deklarace pro titulní stránku
 \TULtitle{Třída tulthesis, verze~\verze}{tulthesis class, version~\verze}
@@ -71,9 +52,7 @@
 \TULbranch{1802T007}{Informační technologie}{Information technology}
 %\TULbranch{1802T008}{Nějaký jiný obor}{Some other branch}
 \TULsupervisor{doc. RNDr. Pavel Satrapa, Ph.D.}
-%\TULconsultant{doc. RNDr. Pavel Satrapa, Ph.D.}
 %\TULconsultant{doc. RNDr. Druhý Konzultant, Ph.D.}
-%\TULconsultant{doc. RNDr. Třetí Konzultant, Ph.D.}
 \TULyear{2024}
 
 % Nastavení pro habilitační práce (odkomentováno pouze při potřebě)
@@ -81,7 +60,6 @@
 %\TULyear{2021}
 
 \begin{document}
-
 
 \ThesisStart{male}
 %\ThesisStart{zadani-a-prohlaseni.pdf}
@@ -115,23 +93,17 @@
 
 \clearpage
 
-% Změňte nebo zakomentujte vspace podle toho, kolik položek bude v seznamech
+% Seznamy obrázků a tabulek
 \listoffigures%
-
 \vspace{10em}
-
 \listoftables%
-
 \clearpage
-
 \listoflistings%
-
 \clearpage
 
 \begin{abbreviations}
     \textbf{TUL} & Technická univerzita v~Liberci \\
-    \textbf{FM} & Fakulta mechatroniky, informatiky a mezioborových studií
-    Technické univerzity v~Liberci \\
+    \textbf{FM} & Fakulta mechatroniky, informatiky a mezioborových studií Technické univerzity v~Liberci \\
 \end{abbreviations}
 
 
@@ -143,9 +115,9 @@ předpokládat, že jste v~otázkách \LaTeX{}u dostatečně zorientováni. Poku
 to není pravda, snad vám pomůže můj \emph{\LaTeX\ pro pragmatiky}, který
 najdete na adrese:
 
-\begin{myquote}
+\begin{tulquote}
     \href{https://www.nti.tul.cz/~satrapa/docs/latex/}{\emph{https://www.nti.tul.cz/\textasciitilde satrapa/docs/latex/}}
-\end{myquote}
+\end{tulquote}
 
 Třída \argumentindex{tulthesis} pro typografický systém \LaTeX\ slouží pro sazbu
 absolventských prací Technické univerzity v~Liberci. Jedná se o~modifikaci
@@ -184,12 +156,14 @@ nepovinným údajem je identifikační kód práce, pokud je práci přidělen. 
 k~tomu příkazy:
 
 \begin{slisting}
-    \prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}\\
-    \prikaz{TULprogramme}\argumentprom{kód studijního programu}\argumentprom{název česky}\argumentprom{anglicky}\\
-    \prikaz{TULbranch}\argumentprom{kód studijního oboru}\argumentprom{název česky}\argumentprom{anglicky}\\
-    \prikaz{TULauthor}\argumentprom{jméno autora}\\
-    \prikaz{TULsupervisor}\argumentprom{jméno vedoucího}\\
-    \prikaz{TULyear}\argumentprom{rok}
+\begin{verbatim}
+\prikaz{TULtitle}\argumentprom{název práce česky}\argumentprom{anglicky}\\
+\prikaz{TULprogramme}\argumentprom{kód studijního programu}\argumentprom{název česky}\argumentprom{anglicky}\\
+\prikaz{TULbranch}\argumentprom{kód studijního oboru}\argumentprom{název česky}\argumentprom{anglicky}\\
+\prikaz{TULauthor}\argumentprom{jméno autora}\\
+\prikaz{TULsupervisor}\argumentprom{jméno vedoucího}\\
+\prikaz{TULyear}\argumentprom{rok}
+\end{verbatim}
 \end{slisting}
 \listingcaption{Příkazy pro nastavení metadat práce}
 
@@ -284,7 +258,7 @@ Ve své diplomové práci...
 
 
 Dáváte-li přednost pdf\LaTeX{}u (což byste rozhodně neměli dělat, používejte raději
-moderní implementace \XeLaTeX\ nebo Lua\LaTeX), změní se úvodní skupina příkazů na:
+moderní implementace \XeLaTeX{} nebo \LuaLaTeX{}), změní se úvodní skupina příkazů na:
 
 \begin{slisting}
 \begin{verbatim}
@@ -521,7 +495,7 @@ Cílem této skupiny příkazů je definovat důležité popisné informace o~pr
     \polozka{\prikaz{TULyear}\argumentprom{rok vytvoření práce}} definuje rok, ve kterém
     práce vznikla. Příkaz je nepovinný, pokud jej vynecháte, doplní se při překladu
     automaticky aktuální rok. Přesto doporučuji jej použít, jinak by při případném
-    pozdějším překladu mohla vzniknout iluze, že práce vznikla v~pozdějším roce,
+    pozdější překladu mohla vzniknout iluze, že práce vznikla v~pozdějším roce,
     než ve skutečnosti.
 
     \polozka{\prikaz{TULthesisType}\argumentprom{typ práce česky}\argumentprom{anglicky}}
@@ -531,7 +505,7 @@ Cílem této skupiny příkazů je definovat důležité popisné informace o~pr
     zprávu by preambule obsahovala:
 
     \begin{listing}
-        \begin{verbatim}
+\begin{verbatim}
 \TULthesisType{Výzkumná zpráva}{Research report}
 \end{verbatim}
     \end{listing}
@@ -588,7 +562,7 @@ součásti, především pro úvodní partie práce.
     který vynechá zúžení a sází abstrakt na celou šířku řádku:
 
     \begin{slisting}
-        \begin{verbatim}
+\begin{verbatim}
 \begin{abstractCZ}[wide]
 Široký text abstraktu.
 \end{abstractCZ}
@@ -635,7 +609,7 @@ W3C  & World Wide Web Consortium \\
 \endgroup
 \listingcaption{Ukázka sazby seznamu zkratek}
 
-    Komentář k seznamu zkratek najdete v~části~\ref{zkratky}.
+Komentář k seznamu zkratek najdete v~části~\ref{zkratky}.
 
 \end{description}
 
@@ -691,7 +665,7 @@ uvedeny, i když jsou prázdné.
 Zahájení habilitační práce může vypadat například nějak takto:
 
 \begin{slisting}
-    \begin{verbatim}
+\begin{verbatim}
 \documentclass[FM,Hab]{tulpackage/tulthesis}
 \TULtitle{Stochastické řízení}{Stochastic control}
 \TULbranch{}{Technická kybernetika}{Technical cybernetics}
@@ -730,7 +704,7 @@ protože písmo a způsob jeho volby závisí jak na písmech dostupných ve va�
 systému, tak na konkrétní variantě \LaTeX{}u, kterou používáte. Pokud používáte
 \XeLaTeX, máte k~dispozici balík \argument{fontspec}. Sázíte-li pdf\-\LaTeX\-em
 (což byste už dělat neměli, připravujete se o vymoženosti moderních
-implementací, jako jsou \XeLaTeX{} nebo Lua\LaTeX), můžete sáhnout po některém ze
+implementací, jako jsou \XeLaTeX{} nebo \LuaLaTeX{}), můžete sáhnout po některém ze
 standardních balíků typu \argument{palatino} či \argument{newcent}.
 
 \clearpage
@@ -751,7 +725,7 @@ způsobem, například prostřednictvím standardního prostředí
 \argument{description}. Tedy něco jako:
 
 \begin{slisting}
-    \begin{verbatim}
+\begin{verbatim}
 \section*{Seznam zkratek}\phantomsection
 \addcontentsline{toc}{chapter}{Seznam zkratek}
 
@@ -765,15 +739,11 @@ způsobem, například prostřednictvím standardního prostředí
 
 \clearpage
 
-% \renewcommand{\indexname}{Přehled příkazů, prostředí a voleb}
-% \phantomsection\addcontentsline{toc}{chapter}{\indexname}
-
 \begingroup
 \titlespacing{\chapter}{0pt}{10pt}{*4} % Adjust only for the index
 \renewcommand{\indexname}{Přehled příkazů, prostředí a voleb}
 \phantomsection\addcontentsline{toc}{chapter}{\indexname}
 \printindex
-\endgroup % Restore chapter spacing to what it was before
-
+\endgroup
 
 \end{document}

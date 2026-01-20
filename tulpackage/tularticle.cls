@@ -1,115 +1,85 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{./tulpackage/tularticle}[2026/01/20 v1.0.0]
+\ProvidesClass{tulpackage/tularticle}[2026/01/20 v1.0.0]
 % Licence: CC BY
-
-% Používané balíčky:
-% ==========================================================================
-% ifthen        % Podmíněné příkazy
-% tabularray    % Moderní tvorba tabulek
-% pdfpages      % Vkládání PDF souborů
-% hyperref      % Vytváření hypertextových odkazů v PDF dokumentu
-% polyglossia   % Podpora různých jazyků
-% fontspec      % Práce s OpenType fonty
-% xunicode      % Lepší práci s Unicode znaky
-% xltxtra       % Doplňkové funkce pro XeLaTeX
-% tabularx      % Tabulky s proměnnou šířkou sloupců
-% makeidx       % Pro vytváření rejstříků
-% tocloft       % Pro úpravu obsahu, seznamu obrázků a tabulek
-% float         % Pro lepší kontrolu nad obrázky, tabulkami apod.
-% graphicx      % Vkládání obrázků
-% xcolor        % Definice a použití barev
-% fancyhdr      % Vlastní záhlaví a zápatí
-% silence       % Potlačení varování
-% etoolbox      % Úprava existujících příkazů
-
-% Možnosti nastavení:
-% ==========================================================================
-% EN:  Přepíná dokument do angličtiny
-% FS, FT, FP, EF, FA, FM, FZS, UZS, CXI:  Styl dokumentu podle fakulty
-% bwtitles:  Vypíná barevné nadpisy
-% bw:  Vypíná všechny barevné prvky, monochromatický režim
-% fonts:  Používání lokálně uložených fontů TUL
-% sfbody:  Patkový font v těle dokumentu
-% sfheadings:  Patkový font v nadpisech.
-% numbering:  Číslování nadpisů v dokumentu
-% nonumbering:  Vypnutí číslování nadpisů (předáno explicitně dvakrát)
-% margins:  Odsazená zleva/zprava, i pro jednostranný tisk
-
-% Vlastní možnosti a příkazy třídy tularticle.cls:
-% ==========================================================================
-% nopdf:  Deaktivace PDF metadat a podmíněné nenačítání hyperref
-% \TULarticleTOC:  Předdefinovaný obsah
-% \noTULheader:  Vypnutí výchozího záhlaví TUL
 
 % Základní třída
 \newcommand{\TUL@baseclass}{article}
 
-% Přepnutí na anglickou verzi (předává volbu balíku EN)
-\DeclareOption{EN}{\PassOptionsToPackage{\CurrentOption}{EN}}
+% ==========================================================================
+% Zpracování voleb (Options)
+% ==========================================================================
 
-% Fakultní přepínače – předání volby do balíku "tul"
-\DeclareOption{FS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FT}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FP}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{EF}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FA}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FM}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{FZS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{UZS}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{CXI}{\PassOptionsToPackage{\CurrentOption}{tul}}
-
-% Dále volby pro barvy, fonty a nadpisy
-\DeclareOption{bwtitles}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{bw}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{fonts}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{sfbody}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{sfheadings}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{numbering}{\PassOptionsToPackage{\CurrentOption}{tul}}
-\DeclareOption{nonumbering}{\PassOptionsToPackage{\CurrentOption}{tul}}
-
-% Aktivace nebo deaktivace PDF metadat
+% 1. Volba pro vypnutí PDF metadat a odkazů
 \newif\ifTUL@pdf
 \TUL@pdftrue
 \DeclareOption{nopdf}{\TUL@pdffalse}
 
-% Aktivace a deaktivace odsazení okrajů stránky
-\DeclareOption{margins}{\PassOptionsToPackage{\CurrentOption}{tul}}
+% 2. Předání voleb do balíčku tulpackage/tul
+% Jazyk
+\DeclareOption{EN}{\PassOptionsToPackage{EN}{tulpackage/tul}}
 
-% Předání neznámých voleb základní třídě dokumentu
+% Fakulty
+\DeclareOption{FS}{\PassOptionsToPackage{FS}{tulpackage/tul}}
+\DeclareOption{FT}{\PassOptionsToPackage{FT}{tulpackage/tul}}
+\DeclareOption{FP}{\PassOptionsToPackage{FP}{tulpackage/tul}}
+\DeclareOption{EF}{\PassOptionsToPackage{EF}{tulpackage/tul}}
+\DeclareOption{FA}{\PassOptionsToPackage{FA}{tulpackage/tul}}
+\DeclareOption{FM}{\PassOptionsToPackage{FM}{tulpackage/tul}}
+\DeclareOption{FZS}{\PassOptionsToPackage{FZS}{tulpackage/tul}}
+\DeclareOption{UZS}{\PassOptionsToPackage{UZS}{tulpackage/tul}}
+\DeclareOption{CXI}{\PassOptionsToPackage{CXI}{tulpackage/tul}}
+
+% Vzhled a funkce
+\DeclareOption{bwtitles}{\PassOptionsToPackage{bwtitles}{tulpackage/tul}}
+\DeclareOption{bw}{\PassOptionsToPackage{bw}{tulpackage/tul}}
+\DeclareOption{fonts}{\PassOptionsToPackage{fonts}{tulpackage/tul}}
+\DeclareOption{sfbody}{\PassOptionsToPackage{sfbody}{tulpackage/tul}}
+\DeclareOption{sfheadings}{\PassOptionsToPackage{sfheadings}{tulpackage/tul}}
+\DeclareOption{numbering}{\PassOptionsToPackage{numbering}{tulpackage/tul}}
+\DeclareOption{nonumbering}{\PassOptionsToPackage{nonumbering}{tulpackage/tul}}
+\DeclareOption{margins}{\PassOptionsToPackage{margins}{tulpackage/tul}}
+\DeclareOption{captionsleft}{\PassOptionsToPackage{captionsleft}{tulpackage/tul}}
+\DeclareOption{nocapnumbers}{\PassOptionsToPackage{nocapnumbers}{tulpackage/tul}}
+
+% 3. Všechny ostatní volby (a4paper, 12pt atd.) předej základní třídě article
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\TUL@baseclass}}
 
-% Předání tul-specific options to tulpackage/tul
-\DeclareOption{fonts}{\PassOptionsToPackage{fonts}{tulpackage/tul}}
-\DeclareOption{nonumbering}{\PassOptionsToPackage{nonumbering}{tulpackage/tul}}
-
-% Zpracování možností
+% Zpracování všech voleb
 \ProcessOptions\relax
 
-% Načtení základní třídy dokumentu s výchozím nastavením
+% ==========================================================================
+% Načtení třídy a balíčků (POZOR NA POŘADÍ)
+% ==========================================================================
+
+% 1. Načtení základní třídy (article)
 \LoadClass[a4paper,12pt]{\TUL@baseclass}
 
-% Aktivace balíku hyperref (pouze pokud je povolen PDF režim)
-\ifTUL@pdf
-	\hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
-\fi
-
-% Načtení balíčku s předanými možnostmi
+% 2. Načtení hlavního TUL balíku (obsahuje hyperref, barvy, fonty...)
 \RequirePackage{tulpackage/tul}
 
-% Implementace příkazu \uv pro čeké uvozovky (chybí v polyglossia)
+% 3. Konfigurace hyperref (musí být až po načtení tul, aby existoval \hypersetup a barva tul)
+\ifTUL@pdf
+    \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
+\fi
+
+% ==========================================================================
+% Specifická makra pro třídu tularticle
+% ==========================================================================
+
+% Implementace příkazu \uv pro české uvozovky (pokud chybí)
 \providecommand{\uv}[1]{„#1“}
 
-% noTULheader jako fixní možnost
-\noTULheader{}
-
-% Předdefinovaný obsah
+% Předdefinovaný obsah (TOC) na samostatné stránce bez čísla
 \newcommand{\TULarticleTOC}{%
-	\tableofcontents
-	\thispagestyle{empty}
-	\clearpage
+    \tableofcontents
+    \thispagestyle{empty}
+    \clearpage
 }
 
-% Přiblížení následujících odstavců k popiskům obrázků apod.
+% Přiblížení následujících odstavců k popiskům obrázků
 \setlength{\belowcaptionskip}{-8pt}
+
+% Výchozí stav: vypnuté grafické záhlaví pro články (lze zapnout v dokumentu)
+\noTULheader{}
 
 \endinput

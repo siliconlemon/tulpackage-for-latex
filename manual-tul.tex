@@ -1,8 +1,10 @@
+% tulpackage/example/manual-tul.tex
+% Obsahuje: Návod pro základní používání vizuální identity TUL a balíku tulpackage
+
 \documentclass[a4paper,12pt,fonts,numbering]{./tulpackage/tularticle}
-\newcommand{\verze}{2.1}
+\newcommand{\verze}{v1.0.0}
 
 % Nastavení jazyka, odkazů a načtení indexu
-\usepackage{polyglossia}
 \setdefaultlanguage{czech}
 \hypersetup{pdftitle={Návod k použití balíku tul pro LaTeX verze \verze}}
 \makeindex
@@ -19,13 +21,10 @@
 \newcommand{\demobox}{\raisebox{-.20ex}{\rule{1em}{1em}}}
 
 % Vlastní seznamy s enumitem
-\usepackage{enumitem}
 \newlist{itemize*}{itemize}{2}
 \setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
 \setlist[itemize*,2]{label={--}}
 
-% Mezery mezi odstavci místo odrazení prvních řádků
-\usepackage{parskip}
 % Nastavení sazby a zalamování textu
 \sloppy
 \lefthyphenmin=2
@@ -51,33 +50,58 @@
 {Pavel Satrapa}
 {Liberec 2024}
 
+\section{Úvodem}
 
 Cílem balíku \cmdfont{tul} je usnadnit vytváření dokumentů odpovídajících
 vizuálnímu stylu Technické univerzity v~Liberci a jejích součástí
-v~typografickém programu \LaTeX. Balík definuje:
+v~typografickém programu \LaTeX.
+
+Balík definuje:
 
 \begin{itemize*}
-	\item univerzitní barvy,
-	\item grafické prvky (loga, symbol),
-	\item záhlaví a zápatí stránek,
-	\item vzhled nadpisů pro strukturování textu,
-	\item písma (pokud jsou v~systému k~dispozici).
+	\item univerzitní barvy
+	\item grafické prvky (loga, symbol)
+	\item záhlaví a zápatí stránek
+	\item vzhled nadpisů pro strukturování textu
+	\item písma (pokud jsou v~systému k~dispozici)
 \end{itemize*}
 
+\clearpage
 
 \section{Předpoklady}
 
-Balík \cmdfont{tul} ke své činnosti potřebuje několik dalších balíků. Jedná
-se o~běžně dostupné balíky, které bývají obvyklou součástí instalací (jako je
-například \TeX{}Live):
+Balík \cmdfont{tul} ke své činnosti využívá sadu standardních balíků, které jsou
+běžnou součástí distribucí \TeX{}Live či MiK\TeX. Vzhledem k~využití moderních
+nástrojů pro správu fontů a jazyků je vyžadován překlad pomocí \XeLaTeX{}u nebo \LuaLaTeX{}u
+(klasický pdf\LaTeX{} není podporován).
 
-\begin{itemize*}
-	\item fancyhdr,
-	\item graphicx,
-	\item ifthen,
-	\item titlesec,
-	\item xcolor.
-\end{itemize*}
+Seznam využitých balíků:
+
+\begin{itemize}
+    \item \textbf{caption}~-- formátování popisků obrázků a tabulek
+    \item \textbf{etoolbox}~-- programátorské nástroje a patchování maker
+    \item \textbf{fancyhdr}~-- nastavení záhlaví a zápatí stránky
+    \item \textbf{float}~-- definice a umístění plovoucích objektů
+    \item \textbf{fontspec}~-- načítání a správa systémových fontů
+    \item \textbf{framed}~-- tvorba orámovaných a podbarvených bloků
+    \item \textbf{fvextra}~-- pokročilé formátování verbatim textu
+    \item \textbf{parskip}~-- nastavení výchozího odstupu mezi odstavci
+    \item \textbf{graphicx}~-- vkládání a manipulace s~obrázky
+    \item \textbf{hyperref}~-- podpora interaktivních odkazů a metadat
+    \item \textbf{ifthen}~-- podmíněné příkazy a logické struktury
+    \item \textbf{makeidx}~-- nástroje pro tvorbu rejstříku
+    \item \textbf{metalogo}~-- loga \TeX{}ových systémů a maker
+    \item \textbf{pdfpages}~-- vkládání externích PDF dokumentů
+    \item \textbf{polyglossia}~-- moderní podpora jazyků a dělení slov
+    \item \textbf{silence}~-- filtrování a potlačení varovných hlášení
+    \item \textbf{tabularray}~-- sazba komplexních tabulek s~lepším rozhraním
+    \item \textbf{tabularx}~-- tabulky s~automatickým zalamováním sloupců
+    \item \textbf{booktabs}~-- stylizace tabulek pro lepší čitelnost
+    \item \textbf{titlesec}~-- úprava vzhledu nadpisů sekcí
+    \item \textbf{enumitem}~-- úprava vzhledu číslovaných seznamů
+    \item \textbf{tocloft}~-- formátování obsahu a seznamů obrázků
+    \item \textbf{xcolor}~-- definice a míchání barev
+\end{itemize}
 
 Jelikož loga jsou reprezentována obrázky ve formátu PDF, je třeba, aby použitá
 implementace \TeX{}u podporovala tento grafický formát. Ideální je implementace,
@@ -86,22 +110,37 @@ která přímo vytváří PDF výstup, jako je například pdf\LaTeX\ nebo \XeLa
 
 \section{Použití}
 
-Balík je tvořen několika soubory: základ tvoří soubor \cmdfont{tul.sty}
-obsahující vlastní příkazy. Doprovází jej jednotlivé grafické prvky
-s~příslušnými logy~-- soubory \cmdfont{logo-*.pdf} a \cmdfont{symbol-*.pdf}.
-Balík doplňuje soubor \cmdfont{tulthesis.cls} definující třídu pro sazbu
-absolventských prací TUL\@. Umístěte tyto soubory do vhodné složky, kde je vaše
-instalace \LaTeX{}u najde. Doporučujeme zřídit pro balík samostatný adresář ve
-složce, kde se nacházejí ostatní balíky vaší instalace. Nezapomeňte
-aktualizovat databázi souborů, aby \LaTeX\ soubory skutečně našel (příkazem
-\cmdfont{texhash}, \cmdfont{mktexlsr} nebo jeho ekvivalentem).
+Balík je organizován v~adresářové struktuře \cmdfont{tulpackage}. Jádro tvoří
+hlavní soubor \cmdfont{tul.sty}, který automaticky načítá funkční moduly
+z~podsložky \cmdfont{modules}. Grafické prvky a~loga se nacházejí v~podsložce
+\cmdfont{logos}. Součástí balíku jsou dvě připravené dokumentové třídy:
+\cmdfont{tulthesis.cls} pro sazbu absolventských prací a~\cmdfont{tularticle.cls}
+pro běžné dokumenty.
 
-Vlastní použití v~dokumentech je zcela standardní~-- v~preambuli uveďte:
+Pro instalaci stačí celý adresář \cmdfont{tulpackage} umístit do~kořenového
+adresáře vašeho projektu (tam, kde se nachází váš hlavní \texttt{.tex} soubor).
 
-\begin{quote}
-	\cmdnoindex{usepackage\{tul\}}
-\end{quote}
+Vlastní použití je pak přímočaré~-- v~preambuli načtěte požadovanou třídu
+s~uvedením relativní cesty:
 
+\begin{listing}
+    \cmdnoindex{documentclass}\cmdfont{[\ldots]\{tulpackage/tulthesis\}}
+\end{listing}
+
+případně pro běžné dokumenty:
+
+\begin{listing}
+    \cmdnoindex{documentclass}\cmdfont{[\ldots]\{tulpackage/tularticle\}}
+\end{listing}
+
+Pokud potřebujete využít grafické prvky nebo barvy TUL v~jiné třídě (například
+v~prezentaci \cmdfont{beamer}), můžete balík načíst ručně:
+
+\begin{listing}
+    \cmdnoindex{usepackage}\cmdfont{\{tulpackage/tul\}}
+\end{listing}
+
+\clearpage
 
 \subsection*{Volby balíku}
 
@@ -134,15 +173,17 @@ Kromě přepínání součástí TUL jsou k~dispozici následující volby:
 
 Například dokument ve stylu Fakulty mechatroniky bude v~preambuli obsahovat:
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{usepackage[FM]\{tul\}}
-\end{quote}
+\end{listing}
 
 Jestliže je navíc cílem černobílý dokument, změní se použití balíku na:
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{usepackage[FM,bw]\{tul\}}
-\end{quote}
+\end{listing}
+
+\clearpage
 
 \section{Barvy}
 
@@ -324,10 +365,10 @@ umístit logo jen na titulní stránku, je vhodnější použít volbu balíku
 \cmdfont{noheader}, která záhlaví s~logem zcela odstraní. Na začátku titulní
 stránky pak můžete použít například příkazy:
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{logo}\\
 	\cmdnoindex{vspace\{1cm\}}
-\end{quote}
+\end{listing}
 
 nebo sáhnout po připravené titulní stránce, kterou balík také nabízí (viz
 dále). Tímto způsobem byl sázen tento dokument.
@@ -355,11 +396,11 @@ hodnoty. Příkazy fungují jako přepínače~-- od okamžiku jejich použití b
 nadále platit zadaná hodnota. Doporučuji použít je v~preambuli a v~těle
 dokumentu již údaje neměnit. Příklad použití:
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{TULname\{Pavel Satrapa\}}\\
 	\cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
 	\cmdnoindex{TULphone\{+420\textbackslash{},485\textbackslash{},351\textbackslash{},234\}}
-\end{quote}
+\end{listing}
 
 Balík se snaží při výpočtu rozměrů tiskového zrcadla a okrajů přizpůsobit
 použitému formátu papíru (volby \cmdfont{a4paper} a další pro třídu dokumentu).
@@ -391,6 +432,7 @@ Na vzhled nadpisů nejvyšších úrovní mají vliv následující volby balík
 zásahy do nich použijte jeho rozhraní, konkrétně příkaz
 \cmdnoindex{titleformat*}.
 
+\clearpage
 
 \section{Písma}\label{pisma}
 
@@ -410,21 +452,10 @@ tučnostech, obvykle se používají jen Regular a Bold:
 	\item SingleLine~-- s nulovou tloušťkou, určeno pro vyřezávání
 \end{itemize}
 
-% \begin{figure}[htp]
-% \begin{center}
-% {\TULmono Regular \textbf{Bold} \fontspec{TUL Mono Hairline}Hairline
-% \fontspec{TUL Mono SingleLine}SingleLine}\\
-% \end{center}
-% \caption{Verze písma TUL Mono}
-% \label{tul-mono}
-% \end{figure}
-
 Pro běžné texty předepisuje grafická identita TUL bezserifové písmo
-\textbf{Inter}, případně serifové \textbf{Merriweather}. Jako jejich doplněk
-pro ukázky kódu či konfiguračních souborů neproporcionální písmo \textbf{Noto
-	Sans Mono}.
-
-\clearpage
+\textbf{Inter}, případně serifové \textbf{Merriweather}.
+Jako jejich doplněk pro ukázky kódu či konfiguračních souborů
+neproporcionální písmo \textbf{Noto Sans Mono}.
 
 \subsection{Instalace písem}
 
@@ -443,6 +474,7 @@ V Linuxu můžete soubory zkopírovat do adresáře se systémovými písmy (obv
 podadresář. Následně aktualizujte seznam systémových písem příkazem
 \cmdfont{fc-cache}.
 
+\clearpage
 
 \subsection{Použití}
 
@@ -489,9 +521,9 @@ K~dispozici jsou dvě alternativy: \cmd{TULtitlepage} pro umírněnou verzi
 s~bílým pozadím a \cmd{TULfancytitlepage} pro verzi s pozadím v barvě
 univerzity či její součásti. Až na název příkazu mají oba shodný tvar použití:
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{TULtitlepage\{\emph{název}\}\{\emph{autor}\}\{\emph{datum}\}}
-\end{quote}
+\end{listing}
 
 V~argumentech lze používat jednoduché formátovací příkazy, nicméně
 doporučuji omezit se na případné rozdělování do více řádků pomocí
@@ -499,10 +531,10 @@ doporučuji omezit se na případné rozdělování do více řádků pomocí
 názvu do více řádků. Například titulní strana tohoto dokumentu vznikla
 příkazem
 
-\begin{quote}\begin{flushleft}
+\begin{listing}\begin{flushleft}
 		\cmdnoindex{TULfancytitlepage\{Návod k~použití balíku tul pro \LaTeX\
 			(verze\textasciitilde\textbackslash{}verze)\}\{Pavel Satrapa\}\{Liberec 2022\}}
-	\end{flushleft}\end{quote}
+	\end{flushleft}\end{listing}
 
 
 \section{Příklad}
@@ -511,12 +543,12 @@ Tento text je příkladem použití balíku \cmdfont{tul}. Jedná se o~celkem
 standardní zdrojový text třídy \cmdfont{article}, jehož jedinou úpravou bylo
 použití příkazů
 
-\begin{quote}
+\begin{listing}
 	\cmdnoindex{usepackage[fonts,noheader]\{tul\}}\\
 	\cmdnoindex{TULname\{Pavel Satrapa\}}\\
 	\cmdnoindex{TULmail\{Pavel.Satrapa@tul.cz\}}\\
 	\cmdnoindex{TULphone\{+420\,485\,351\,234\}}
-\end{quote}
+\end{listing}
 
 v~preambuli.
 

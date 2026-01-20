@@ -1,16 +1,17 @@
+% tulpackage/example/example-tularticle.tex
+% Obsahuje: Příklad použití třídy tularticle z balíku tulpackage
+
 \documentclass[a4paper,12pt,fonts,nocapnumbers]{./tulpackage/tularticle}
+\newcommand{\verze}{v1.0.0}
 
 % Zvetseni radkovani
 \linespread{1.3}
 
 % Vlastní seznamy s enumitem
-\usepackage{enumitem}
 \newlist{itemize*}{itemize}{2}
 \setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
 \setlist[itemize*,2]{label={--}}
 
-% Mezery mezi odstavci misto odrazeni prvnich radku
-\usepackage{parskip}
 % Nastaveni sazby a zalamovani textu
 \sloppy
 \lefthyphenmin=2
@@ -25,15 +26,11 @@
 % Definice pomocneho prikazu pro ukazky
 \newcommand{\cmddemo}[1]{\bigskip\parbox[c]{3.9cm}{\cmd{#1}}\parbox[c]{10cm}{\csname #1\endcsname}\bigskip}
 
-% Lepší tabulky
-\usepackage{booktabs}
-
 % Správa bibliografie s biber
 \usepackage[backend=biber]{biblatex}
 \addbibresource{bibliography/example-tularticle-references.bib}
 
 % Nastavení jazyka dokumentu na cestinu
-\usepackage{polyglossia}
 \setdefaultlanguage{czech}
 
 % Nazev PDF v ramci metadat
