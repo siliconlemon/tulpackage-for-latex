@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{./tulpackage/tulthesis}[2026/01/20 v1.0.0]
+\ProvidesClass{./tulpackage/tulthesis}[2026/01/20 v3.0.0]
 % Licence: CC BY
 
 % ==========================================================================
