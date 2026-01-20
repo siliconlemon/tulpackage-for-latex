@@ -4,6 +4,9 @@
 \documentclass[a4paper,12pt,fonts,numbering]{./tulpackage/tularticle}
 \newcommand{\verze}{v1.0.0}
 
+% Zvetseni radkovani
+\linespread{1.2}
+
 % Nastavení jazyka, odkazů a načtení indexu
 \setdefaultlanguage{czech}
 \hypersetup{pdftitle={Návod k použití balíku tul pro LaTeX verze \verze}}
@@ -250,9 +253,9 @@ Jejich aktuální podoba vypadá takto:
 
 \cmddemo{ENlogotext}
 
-\cmddemo{symbolTUL}
-
 \clearpage
+
+\cmddemo{symbolTUL}
 
 Příbuzný je příkaz \cmd{TULsoucast}, který vloží název aktuální součásti
 univerzity v~aktuální jazykové verzi. Při volbách \cmdfont{FS} a \cmdfont{EN}
@@ -342,20 +345,24 @@ několik stránkových stylů, které lze aktivovat standardními příkazy
 Dostupné možnosti shrnuje tabulka~\ref{styly-stranek}.
 
 \begin{table}[htp]
-	\begin{center}
-		\newcommand{\ano}{\mbox{}\qquad +\qquad\mbox{}}
-		\begin{tabular}{l@{}c@{}c@{}c}
-			\emph{styl}               & \emph{záhlaví} & \emph{zápatí} & \emph{číslo strany} \\
-			\cmdfont{TUL}             & \ano{}         & \ano{}        & \ano{}              \\
-			\cmdfont{TULnopage}       & \ano{}         & \ano{}        &                     \\
-			\cmdfont{TULheader}       & \ano{}         &               & \ano{}              \\
-			\cmdfont{TULheaderonly}   & \ano{}         &               &                     \\
-			\cmdfont{TULfooter}       &                & \ano{}        & \ano{}              \\
-			\cmdfont{TULfooternopage} &                & \ano{}        &                     \\
-			\cmdfont{TULfooternoaddr} &                &               & \ano{}              \\
-		\end{tabular}
-	\end{center}
-	\caption{Styly stránek}\label{styly-stranek}
+    \vspace{0.5\baselineskip}
+    \caption{Styly stránek}\label{styly-stranek}
+    \centering
+    \newcommand{\ano}{\mbox{}\qquad ✓\qquad\mbox{}}
+    \begin{tabular}{l@{}c@{}c@{}c}
+        \toprule
+        \emph{styl}                           & \emph{záhlaví} & \emph{zápatí} & \emph{číslo strany} \\
+        \midrule
+        \cmdfont{TUL}                         & \ano{}         & \ano{}        & \ano{}              \\
+        \cmdfont{TULnopage}                   & \ano{}         & \ano{}        &                     \\
+        \cmdfont{TULheader}                   & \ano{}         &               & \ano{}              \\
+        \cmdfont{TULheaderonly}               & \ano{}         &               &                     \\
+        \cmdfont{TULfooter}                   &                & \ano{}        & \ano{}              \\
+        \cmdfont{TULfooternopage}             &                & \ano{}        &                     \\
+        \cmdfont{TULfooternoaddr}             &                &               & \ano{}              \\
+        \bottomrule
+    \end{tabular}
+    \vspace{0.5\baselineskip}
 \end{table}
 
 Liší se přítomností tří prvků: loga a symbolu v záhlaví, kontaktních informací
@@ -366,8 +373,7 @@ umístit logo jen na titulní stránku, je vhodnější použít volbu balíku
 stránky pak můžete použít například příkazy:
 
 \begin{listing}
-	\cmdnoindex{logo}\\
-	\cmdnoindex{vspace\{1cm\}}
+	\cmdnoindex{logo} \cmdnoindex{vspace\{1cm\}}
 \end{listing}
 
 nebo sáhnout po připravené titulní stránce, kterou balík také nabízí (viz

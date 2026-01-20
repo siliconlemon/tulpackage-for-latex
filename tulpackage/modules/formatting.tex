@@ -158,7 +158,13 @@
 % Výpisy kódů (Listings)
 % ==========================================================================
 
-\fvset{breaklines=true, breakanywhere=true}%
+\fvset{
+    breaklines=true,
+    breakanywhere=false,
+    breakafter={,./-\_},
+    breakbefore={},
+    breakautoindent=true
+}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{}%
 
 % --- Seznam zdrojových kódů (LOL) ---
