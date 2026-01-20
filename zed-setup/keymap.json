@@ -20,14 +20,16 @@
     }
   },
   {
-    "context": "Workspace",
+    "context": "Editor",
     "bindings": {
-      "shift-f3": ["task::Spawn", { "task_name": "cspell-tex-current-file" }]
+      "shift-f3": ["task::Spawn", { "task_name": "cspell-tex-current-file" }],
+      "shift-f4": ["task::Spawn", { "task_name": "latexmk-build" }]
     }
   },
   {
     "context": "Workspace",
     "bindings": {
+      "shift-f3": ["task::Spawn", { "task_name": "cspell-tex-current-file" }],
       "shift-f4": ["task::Spawn", { "task_name": "latexmk-build" }]
     }
   }

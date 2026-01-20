@@ -2,7 +2,7 @@
 % Obsahuje: Příklad použití třídy tulthesis z balíku tulpackage, návod ke psaní prací
 % Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit pouze XeLaTeXem
 
-\documentclass[fonts,numbering,twoside,margins,lstcapsleft]{./tulpackage/tulthesis}
+\documentclass[fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
 
 % Nastavení jazyka dokumentu na češtinu
 \setdefaultlanguage{czech}
@@ -288,7 +288,7 @@ Níže uvádíme příklad vložení obrázku.
 \begin{slisting}
 \begin{verbatim}
 \begin{figure}[H]
-    \centering
+    % \centering % (není nutné, řešeno možností balíku)
     \includegraphics[width=0.5\linewidth]
     {pictures/Liberec-TUL-Rektorat-1.jpg}
     \caption{Nový rektorát a~informační centrum}
@@ -302,7 +302,6 @@ Výsledek sazby tohoto kódu bude vypadat následovně:
 
 \vspace{0em}
 \begin{figure}[H]
-    \centering
     \includegraphics[width=0.65\linewidth]{pictures/Liberec-TUL-Rektorat-1.jpg}
     \caption{Nový rektorát a~informační centrum}\label{fig:tul-rekt}
 \end{figure}
@@ -314,7 +313,7 @@ V~kódu níže jsou vynechány opakující~se~řádky pro~přehlednost.
 \begin{slisting}
 \begin{verbatim}
 \begin{table}[H]
-    \centering
+    % \centering % (není nutné, řešeno možností balíku)
     \small
     \begin{tabular}{ll}
         \midrule
@@ -334,7 +333,6 @@ Výsledná tabulka se zobrazí takto:
 % \vspace{-0.6em}
 \begin{table}[H]
     \caption{Základní informace o~Technické univerzitě v~Liberci}\label{tab:zakladni_informace}
-    \centering
     \small
     \begin{tabular}{ll}
         \midrule

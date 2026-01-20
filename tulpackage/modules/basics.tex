@@ -75,7 +75,19 @@
 \newboolean{TULsfhe@dings}%
 \setboolean{TULsfhe@dings}{false}%
 
-% Zarovnání popisků (floats)
+% Zarovnání obsahu plovoucích objektů (figures / tables / listings)
+% FALSE = styl automaticky centruje obsah
+% TRUE = styl nechá obsah vlevo a zároveň vynutí zarovnání popisků doleva
+% POZNÁMKA: U TUL@listingsleft bloky kódu zůstávají zarovnané vlevo,
+% jde tu jen o alias lstcapsleft
+\newboolean{TUL@figuresleft}%
+\newboolean{TUL@tablesleft}%
+\newboolean{TUL@listingsleft}%
+\setboolean{TUL@figuresleft}{false}%
+\setboolean{TUL@tablesleft}{false}%
+\setboolean{TUL@listingsleft}{false}%
+
+% Zarovnání popisků (captions)
 \newboolean{TUL@figcapsleft}%
 \newboolean{TUL@tabcapsleft}%
 \newboolean{TUL@lstcapsleft}%

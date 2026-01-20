@@ -219,10 +219,27 @@
     \setboolean{TUL@tabcapsleft}{true}%
     \setboolean{TUL@lstcapsleft}{true}%
 }%
-
 \DeclareOption{figcapsleft}{\setboolean{TUL@figcapsleft}{true}}%
 \DeclareOption{tabcapsleft}{\setboolean{TUL@tabcapsleft}{true}}%
 \DeclareOption{lstcapsleft}{\setboolean{TUL@lstcapsleft}{true}}%
+
+% Volby zarovnání plovoucích objektů doleva
+% POZNÁMKA: Pokud TRUE, zarovnávají automaticky i popisky na levou stranu
+% POZNÁMKA: Po změně těchto nastavení může být potřeba kompilovat dvakrát za sebou
+% POZNÁMKA: TUL@listingsleft momentálně neovlivňuje vůbec nic, mění se zde jen
+% zarovnání popisků - kód nemá smysl centrovat
+\DeclareOption{figuresleft}{%
+    \setboolean{TUL@figuresleft}{true}%
+    \setboolean{TUL@figcapsleft}{true}%
+}%
+\DeclareOption{tablesleft}{%
+    \setboolean{TUL@tablesleft}{true}%
+    \setboolean{TUL@tabcapsleft}{true}%
+}%
+\DeclareOption{listingsleft}{%
+    \setboolean{TUL@listingsleft}{true}%
+    \setboolean{TUL@lstcapsleft}{true}%
+}%
 
 % Číslování popisků (bez kapitol nebo vypnout)
 \DeclareOption{singlecapnumbers}{%

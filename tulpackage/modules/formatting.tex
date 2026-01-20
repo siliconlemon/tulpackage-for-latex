@@ -81,6 +81,28 @@
 }%
 
 % ==========================================================================
+% Nastavení zarovnání obrázků / tabulek (včetně popisků)
+% POZNÁMKA: Bloky kódu mají také svoji option, ta ale mění jen boolean
+% pro jejich popisky (kód nemá cenu centrovat)
+% ==========================================================================
+
+% Hook do kernelu LaTeXu - robustní řešení pro všechny plovoucí objekty
+\g@addto@macro\@floatboxreset{%
+  % Kontrola, zda jsme uvnitř plovoucího objektu s definovaným typem
+  \ifx\@captype\undefined%
+  \else
+    % Zarovnání obrázků (figure)
+    \ifthenelse{\equal{\@captype}{figure}}{%
+      \ifthenelse{\boolean{TUL@figuresleft}}{}{\centering}%
+    }{}%
+    % Zarovnání tabulek (table)
+    \ifthenelse{\equal{\@captype}{table}}{%
+      \ifthenelse{\boolean{TUL@tablesleft}}{}{\centering}%
+    }{}%
+  \fi
+}
+
+% ==========================================================================
 % Definice seznamů obrázků a tabulek
 % ==========================================================================
 

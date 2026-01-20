@@ -1,7 +1,7 @@
 % tulpackage/example/manual-tul.tex
 % Obsahuje: Návod pro základní používání vizuální identity TUL a balíku tulpackage
 
-\documentclass[a4paper,12pt,fonts,numbering]{./tulpackage/tularticle}
+\documentclass[a4paper,12pt,fonts,numbering,listingsleft]{./tulpackage/tularticle}
 
 % Zvetseni radkovani
 \linespread{1.2}
@@ -79,30 +79,30 @@ nástrojů pro~správu fontů a~jazyků je vyžadován překlad pomocí \XeLaTeX
 
 Seznam využitých balíků:
 
-\begin{itemize}
-    \item \textbf{caption}~-- formátování popisků obrázků a~tabulek
-    \item \textbf{etoolbox}~-- programátorské nástroje a~patchování maker
-    \item \textbf{fancyhdr}~-- nastavení záhlaví a~zápatí stránky
-    \item \textbf{float}~-- definice a~umístění plovoucích objektů
-    \item \textbf{fontspec}~-- načítání a~správa systémových fontů
-    \item \textbf{framed}~-- tvorba orámovaných a~podbarvených bloků
-    \item \textbf{fvextra}~-- pokročilé formátování verbatim textu
-    \item \textbf{parskip}~-- nastavení výchozího odstupu mezi odstavci
-    \item \textbf{graphicx}~-- vkládání a~manipulace s~obrázky
-    \item \textbf{hyperref}~-- podpora interaktivních odkazů a~metadat
-    \item \textbf{ifthen}~-- podmíněné příkazy a~logické struktury
-    \item \textbf{makeidx}~-- nástroje pro~tvorbu rejstříku
-    \item \textbf{metalogo}~-- loga \TeX{}ových systémů a~maker
-    \item \textbf{pdfpages}~-- vkládání externích PDF dokumentů
-    \item \textbf{polyglossia}~-- moderní podpora jazyků a~dělení slov
-    \item \textbf{silence}~-- filtrování a~potlačení varovných hlášení
-    \item \textbf{tabularray}~-- sazba komplexních tabulek s~lepším rozhraním
-    \item \textbf{tabularx}~-- tabulky s~automatickým zalamováním sloupců
-    \item \textbf{booktabs}~-- stylizace tabulek pro~lepší čitelnost
-    \item \textbf{titlesec}~-- úprava vzhledu nadpisů sekcí
-    \item \textbf{enumitem}~-- úprava vzhledu číslovaných seznamů
-    \item \textbf{tocloft}~-- formátování obsahu a~seznamů obrázků
-    \item \textbf{xcolor}~-- definice a~míchání barev
+\begin{itemize}[label={}]
+    \item \cmdfont{caption}~-- formátování popisků obrázků a~tabulek
+    \item \cmdfont{etoolbox}~-- programátorské nástroje a~patchování maker
+    \item \cmdfont{fancyhdr}~-- nastavení záhlaví a~zápatí stránky
+    \item \cmdfont{float}~-- definice a~umístění plovoucích objektů
+    \item \cmdfont{fontspec}~-- načítání a~správa systémových fontů
+    \item \cmdfont{framed}~-- tvorba orámovaných a~podbarvených bloků
+    \item \cmdfont{fvextra}~-- pokročilé formátování verbatim textu
+    \item \cmdfont{parskip}~-- nastavení výchozího odstupu mezi odstavci
+    \item \cmdfont{graphicx}~-- vkládání a~manipulace s~obrázky
+    \item \cmdfont{hyperref}~-- podpora interaktivních odkazů a~metadat
+    \item \cmdfont{ifthen}~-- podmíněné příkazy a~logické struktury
+    \item \cmdfont{makeidx}~-- nástroje pro~tvorbu rejstříku
+    \item \cmdfont{metalogo}~-- loga \TeX{}ových systémů a~maker
+    \item \cmdfont{pdfpages}~-- vkládání externích PDF dokumentů
+    \item \cmdfont{polyglossia}~-- moderní podpora jazyků a~dělení slov
+    \item \cmdfont{silence}~-- filtrování a~potlačení varovných hlášení
+    \item \cmdfont{tabularray}~-- sazba komplexních tabulek s~lepším rozhraním
+    \item \cmdfont{tabularx}~-- tabulky s~automatickým zalamováním sloupců
+    \item \cmdfont{booktabs}~-- stylizace tabulek pro~lepší čitelnost
+    \item \cmdfont{titlesec}~-- úprava vzhledu nadpisů sekcí
+    \item \cmdfont{enumitem}~-- úprava vzhledu číslovaných seznamů
+    \item \cmdfont{tocloft}~-- formátování obsahu a~seznamů obrázků
+    \item \cmdfont{xcolor}~-- definice a~míchání barev
 \end{itemize}
 
 Jelikož loga jsou reprezentována obrázky ve~formátu PDF, je třeba, aby použitá
@@ -148,42 +148,76 @@ v~prezentaci \cmdfont{beamer}), můžete balík načíst ručně:
 
 Základní sada voleb slouží k~přepínání mezi vizuálními styly jednotlivých
 součástí TUL\@. Pokud nepoužijete žádnou z~nich, bude dokument sázen ve
-vizuálním stylu celé univerzity. Jsou k~dispozici tyto \textbf{volby součástí
-    TUL}: \cmdfont{FS}, \cmdfont{FT}, \cmdfont{FP}, \cmdfont{EF}, \cmdfont{FUA},
-\cmdfont{FM}, \cmdfont{FZS}, \cmdfont{CXI}. Použití některé z~nich změní
-výchozí barvu, logo a~styl zápatí stránek. Používejte vždy nanejvýš jednu
-z~těchto voleb.
+vizuálním stylu celé univerzity. Jsou k~dispozici tyto
+\textbf{volby součástí TUL}: \cmdfont{FS}, \cmdfont{FT}, \cmdfont{FP},
+\cmdfont{EF}, \cmdfont{FUA}, \cmdfont{FM}, \cmdfont{FZS}, \cmdfont{CXI}.
+Použití některé z~nich změní výchozí barvu, logo a~styl zápatí stránek.
+Používejte vždy nanejvýš jednu z~těchto voleb.
 
 Kromě přepínání součástí TUL jsou k~dispozici následující volby:
 
+\bigskip
+
+\begin{itemize}[label={}, leftmargin=0pt]
+    \raggedright%
+    \item \cmdfont{EN}~-- je aktivována anglická verze, což se týká generických příkazů
+          (např.~\cmd{logo}) a~nápisů v~zápatí
+    \item \cmdfont{twoside}~-- je zapnut oboustranný tisk, je nastaveno střídání
+    okrajů a~umístění čísel stránek
+    \item \cmdfont{draft}~-- je aktivován režim konceptu, jsou vyznačena místa
+    s~přetečením textu (overfull boxes) a~je urychlen překlad
+    \item \cmdfont{print}~-- je aktivován režim pro~tisk, jsou vynuceny černé odkazy
+    v~textu (aby nesvítily modře), ale jsou ponechána barevná loga
+    \item \cmdfont{bw}~-- dokument je sázen kompletně černobíle, loga jsou změněna
+    na~černobílá, nadpisy i~odkazy jsou černé a~fakultní barva je nahrazena šedou
+    \item \cmdfont{bwtitles}~-- nadpisy největších částí textu jsou sázeny černě,
+    jinde je barva ponechána
+    \item \cmdfont{noheader}~-- logo není umisťováno do~záhlaví stránek
+    \item \cmdfont{margins}~-- okraje stránky jsou nastaveny podle normy~TUL
+    \item \cmdfont{numbering}~-- je zapnuto číslování nadpisů (1., 1.1\dots)
+    \item \cmdfont{fonts}~-- text dokumentu je sázen oficiálním písmem~TUL,
+          více~v~části~\ref{pisma}
+    \item \cmdfont{sfheadings}~-- pro~nadpisy kapitol a~sekcí není použito TUL~Mono,
+    ale standardní bezpatkové písmo
+\end{itemize}
+
+\clearpage
+
+Mimo~to je~možné ovládat zarovnání plovoucích prvků v~rámci dokumentu
+(obrázky, tabulky, zdrojový kód).
+Výchozím stavem balíku je~centrování obsahu i~popisků.
+Následující~volby umožňují zarovnání doleva:
+
+\bigskip
+
+\begin{itemize}[label={}, leftmargin=0pt]
+    \raggedright%
+    \item \cmdfont{figuresleft}~-- obrázky i~jejich popisky jsou zarovnány doleva
+    \item \cmdfont{tablesleft}~-- tabulky i~jejich popisky jsou zarovnány doleva
+    \item \cmdfont{listingsleft}~-- popisky výpisů kódu jsou zarovnány doleva,
+    zarovnání kódu se~naschvál nemění kvůli~čitelnosti
+    \item \cmdfont{captionsleft}~-- popisky všech typů (obrázky, tabulky, kód)
+    jsou hromadně zarovnány doleva, ale obsah je ponechán vycentrovaný
+    \item \cmdfont{figcapsleft}~-- pouze popisky obrázků jsou zarovnány doleva
+    \item \cmdfont{tabcapsleft}~-- pouze popisky tabulek jsou zarovnány doleva
+    \item \cmdfont{lstcapsleft}~-- pouze popisky kódu jsou zarovnány doleva
+\end{itemize}
+
+\bigskip
 \medskip
 
-\begin{tabularx}{\textwidth}{@{}lX}
-    \cmdfont{EN}         & přepne na~anglickou verzi~-- týká se generických příkazů
-    (např.~\cmd{logo}) a~nápisů v~zápatí,                                                       \\
-    \cmdfont{bw}         & sází se~černobíle~-- změní loga na~černobílá, nadpisy největších
-    částí textu budou černé a~univerzitní či~fakultní barva je nahrazena šedou,             \\
-    \cmdfont{bwtitles}   & nadpisy největších částí textu budou černé, jinde barva
-    zůstane,                                                                                \\
-    \cmdfont{noheader}   & neumisťovat logo do~záhlaví stránek,                               \\
-    \cmdfont{fonts}      & text dokumentu má být sázen písmem podle vizuálního stylu,
-    více~v~části~\ref{pisma} na~straně~\pageref{pisma},                                     \\
-    \cmdfont{sfheadings} & pro~nadpisy kapitol a~sekcí nepoužívat TUL Mono.                  \\
-\end{tabularx}
+Dále lze nastavit různé~formy průběžného číslování~popisků. Je~možné je~buď přepnout
+do stavu, kdy v číslování nezobrazují
 
-\medskip
+\bigskip
 
-Například dokument ve~stylu Fakulty mechatroniky bude v~preambuli obsahovat:
-
-\begin{listing}
-    \cmdnoindex{usepackage[FM]\{tulpackage/tul\}}
-\end{listing}
-
-Jestliže je navíc cílem černobílý dokument, změní se použití balíku na:
-
-\begin{listing}
-    \cmdnoindex{usepackage[FM,bw]\{tulpackage/tul\}}
-\end{listing}
+\begin{itemize}[label={}, leftmargin=0pt]
+    \raggedright%
+    \item \cmdfont{singlecapnumbers}~-- je použito průběžné číslování v~celém dokumentu
+    namísto číslování po~kapitolách
+    \item \cmdfont{nocapnumbers}~-- je skryto označení typu a~čísla, je zobrazen pouze
+    samotný text popisku
+\end{itemize}
 
 \clearpage
 
@@ -346,7 +380,6 @@ Dostupné možnosti shrnuje tabulka~\ref{styly-stranek}.
 \begin{table}[htp]
     \vspace{0.5\baselineskip}
     \caption{Styly stránek}\label{styly-stranek}
-    \centering
     \newcommand{\ano}{\mbox{}\qquad ✓\qquad\mbox{}}
     \begin{tabular}{l@{}c@{}c@{}c}
         \toprule
