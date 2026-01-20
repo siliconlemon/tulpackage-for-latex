@@ -147,6 +147,13 @@
 % Pomocné
 \providecommand{\uv}[1]{„#1“}
 
+% Vypnutí číslování vakátů vytvořených použitím \cleardoublepage
+\AtBeginDocument{%
+  \makeatletter
+  \patchcmd{\cleardoublepage}{\hbox{}}{\hbox{}\thispagestyle{empty}}{}{}
+  \makeatother
+}
+
 % ==========================================================================
 % 4. Definice příkazů pro metadata práce
 % ==========================================================================
