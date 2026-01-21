@@ -1,0 +1,39 @@
+name: Build zip and create release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set version from tag
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+
+      - name: Create zip (no wrapping directory)
+        run: |
+          zip -r "tulpackage-${VERSION}.zip" . \
+            -x ".git/*" ".github/*"
+
+      - name: Upload workflow artifact (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tulpackage-${{ env.VERSION }}
+          path: tulpackage-${{ env.VERSION }}.zip
+
+      - name: Create/Update GitHub Release and upload asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: tulpackage ${{ env.VERSION }}
+          generate_release_notes: true
+          make_latest: false
+          files: tulpackage-${{ env.VERSION }}.zip
