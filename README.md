@@ -185,6 +185,14 @@ V repositáři jsou dále i ukázkové dokumenty uvnitř složky `example/`:
 
 Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a použití tříd **tulthesis** a **tularticle**.
 
+> Poznámka k literatuře: Šablony počítají s použitím `biblatex` (backend `biber`), ale balík/třídy ho záměrně nenačítají natvrdo, aby si uživatel mohl zvolit vlastní styl citací a další volby.  
+> Pokud chcete literaturu, přidejte si do preambule svého `.tex` souboru např.:
+> ```latex
+> \usepackage[backend=biber]{biblatex}
+> \addbibresource{<váš soubor s bibliografií>.bib}
+> ```
+> a překládejte přes **biber** (Overleaf to umí, lokálně je potřeba mít biber nainstalovaný a zapnutý v toolchainu).
+
 ## Možnosti přizpůsobení
 
 Balík `tulpackage-for-latex` poskytuje několik způsobů, jak upravit vzhled dokumentů.
@@ -390,7 +398,7 @@ are described in [SETUP.md](./SETUP.md).
 - `\TULarticleTOC`: Predefined TOC
 - `\noTULheader`: Disables the default TUL header
 
-### How to start
+### Getting started
 
 In the root directory, you can find `thesis-template.tex` and `article-template.tex`.
 These are blank templates you can copy/rename and start working with immediately.
@@ -403,6 +411,14 @@ Additionally, the repository contains example documents in the `example/` direct
 - `example-tularticle.tex` – minimal example for `tularticle`
 
 You can use the files above as inspiration for configuring and using **tulthesis** and **tularticle**.
+
+> Note on references: The templates assume `biblatex` (with the `biber` backend), but the package/classes intentionally do not load it automatically, so users can choose their own citation style and options.  
+> If you want a bibliography, add e.g.:
+> ```latex
+> \usepackage[backend=biber]{biblatex}
+> \addbibresource{<your references file>.bib}
+> ```
+> and compile using **biber** (Overleaf supports this; locally you need biber installed and enabled in your toolchain).
 
 ## Customization options
 
