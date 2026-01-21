@@ -1,35 +1,56 @@
 <a name="czech"></a>
+
 # tulpackage-for-latex
 
-[English version below.](#english)
+[English version below](#english)
 
-LaTeX balík připravený k okamžitému použití na platformě Overleaf, případně v textových editorech (uveden setup pro Zed editor). Obsahuje styly a třídy nezbytné pro psaní prací v souladu se směrnicemi Technické univerzity v Liberci (TUL). Jedná se o upravenou verzi původního balíku `tulthesis 2.1`, u které se předpokládá vyšší přístupnost a jednodušší používání, a to i za cenu většího počtu importovaných balíčků a po provedení změn ve struktuře repositáře.
+LaTeX balík připravený k okamžitému použití na platformě Overleaf i lokálně 
+v desktop editorech (k dispozici je setup pro Zed). Obsahuje styly a třídy 
+pro psaní dokumentů v souladu se směrnicemi Technické univerzity v Liberci (TUL). 
+Projekt navazuje na původní balík `tulthesis v2.1` z dílny FM TUL, 
+jde ale cestou uživatelské příjemnosti na úkor používání více balíků a nastavení.
 
-**Důležité:** Přestože je s tímto balíkem možné psát i v anglickém jazyce, veškeré komentáře a dokumentace jsou v současné době vedeny pouze v češtině.
+> **Důležité:** Dokumentace je aktuálně primárně v češtině; návody v EN zatím neexistují.
 
-## Co tento balík obsahuje?
+## Co repo obsahuje
 
-Balík poskytuje veškeré potřebné nástroje pro vytváření dokumentů odpovídajících stylu Technické univerzity v Liberci:
-
-- **`tul.sty`:** Základní kámen celého balíku. Definuje hlavní styly a pravidla formátování pro všechny dokumenty TUL.
-
-- **`tulthesis`:** Specializovaná třída určená pro diplomové a podobné rozsáhlejší práce. Vychází z `tul.sty` a vyznačuje se několika vylepšeními pro dosažení lepšího vzhledu.
-
-- **`tularticle`:** Třída určená pro tvorbu článků ve stylu TUL. Její použití zjednodušuje nastavování preambule, čímž se umožňuje rovnou se pustit do psaní bez nutnosti provádět složité konfigurace.
+- **Balík `tul` (`tul.sty`)**: hlavní část balíku (styl). Definuje barvy, loga, nadpisy, 
+  záhlaví/zápatí, možnosti nastavení nebo pravidla formátování.
+- **Třída `tulthesis` (`tulthesis.cls`)**: třída pro závěrečné práce a podobné rozsáhlejší dokumenty.
+- **Třída `tularticle` (`tularticle.cls`)**: třída pro běžné dokumenty/články ve stylu TUL, 
+  s jednodušším startem bez složité preambule.
 
 ## Instalace a použití
+
 ### Overleaf
 
-Pro použití tohoto `tulpackage-for-latex` na platformě Overleaf se doporučuje postupovat následovně:
+Doporučený postup je stáhnout připravený ZIP 
+z [RELEASES](https://github.com/siliconlemon/tulpackage-for-latex/releases) 
+a nahrát ho do projektu:
 
-1. **Stažení repositáře:** Na stránce repositáře na GitHubu je třeba kliknout na tlačítko "Code" a následně vybrat možnost "Download ZIP".
-2. **Nahrání souboru do Overleafu:** Ve vlastním projektu na Overleafu je nutné kliknout na tlačítko "Add Files" a poté na "Upload". Následně se vybere stažený ZIP soubor, který Overleaf automaticky rozbalí.
+1. Stáhněte aktuální [RELEASE (verzi)](https://github.com/siliconlemon/tulpackage-for-latex/releases) ve formátu zip.
+2. V Overleaf projektu klikněte na **Add files → Upload** a nahrajte ZIP.
+3. Repo obsahuje šablonové soubory `thesis-template.tex` a `article-template.tex`, 
+   které si můžete zkopírovat nebo přejmenovat a rovnou používat.
 
-### Lokální distribuce LaTeXu (TeXworks, TeXstudio apod.)
+Kompletní seznam možností nastavení tříd/balíku, které můžete použít při inicializaci, 
+najdete v [OPTIONS.md](./OPTIONS.md). Jako příklad níže uvádím inicializaci dokumentu
+bakalářky/diplomky v barvách fakulty mechatroniky, v anglickém jazyce, dvoustranném tisku, s předdefinovanými okraji a číslováním podle zásad TUL.
 
-Balík by měl být použitelný i na lokálních zařízení (v TeXworks nebo TeXstudio) – měla by stačit kontrola instalace všech potřebných LaTeX balíků, na kterých `tulpackage-for-latex` závisí.
+```latex
+\documentclass[FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
+```
 
-#### Třída `tulthesis`
+### Lokální distribuce LaTeXu (TeXworks, TeXstudio, Zed Editor, VS Code)
+
+Balík vyžaduje překlad pomocí **XeLaTeX nebo LuaLaTeX** (pdfLaTeX není podporován).
+Jako externí distribuci **LaTeXu** s podporou pro **XeLaTeX** na zařízeních Windows 
+doporučuji [MiKTeX](https://miktex.org/download) (všechno uvnitř repa je v něm otestováno).
+
+Postup nastavení pro desktop editory (aktuálně cílený na Zed; 
+VS Code bude fungovat podobně) najdete v souboru [SETUP.md](./SETUP.md). 
+
+#### Třída tulthesis
 
 **Požadované balíky:**
 
@@ -53,22 +74,20 @@ Balík by měl být použitelný i na lokálních zařízení (v TeXworks nebo T
 | `silence`     | Potlačení varování                              |
 | `etoolbox`    | Úprava existujících příkazů                     |
 
-**Dostupné možnosti nastavení:**
+**Dostupné možnosti nastavení (`tulthesis`):**
 
-| Možnost                                                   | Popis                                                                                                                                       |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `article`                                                 | Základní třída je přepnuta na article (výchozí je report)                                                                                   |
-| `EN`                                                      | Dokument je přepnut do anglického jazyka                                                                                                    |
-| `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` | Je nastaven typ práce (Bakalářská práce, Diplomová práce, Disertační práce, Habilitační práce, Teze, Autoreferát, Projekt, Seminární práce) |
-| `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI`   | Je nastaven styl dokumentu podle fakulty                                                                                                    |
-| `bwtitles`                                                | Barevné nadpisy jsou vypnuty                                                                                                                |
-| `bw`                                                      | Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim                                                                            |
-| `fonts`                                                   | Budou používány lokálně uložené fonty TUL                                                                                                   |
-| `sfbody`                                                  | V těle dokumentu bude použit bezpatkový font                                                                                                |
-| `sfheadings`                                              | V nadpisech bude použit bezpatkový font                                                                                                     |
-| `nopdf`                                                   | Metadata PDF souboru budou deaktivována a podmíněně nebude načten balík `hyperref`                                                          |
+- `article` – Základní třída je přepnuta na `article` (výchozí je `report`).
+- `EN` – Dokument je přepnut do anglického jazyka.
+- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Je nastaven typ práce (BP, DP, Disertační, Habilitační, Teze, Autoreferát, Projekt, Seminárka).
+- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Je nastaven styl dokumentu podle fakulty.
+- `bwtitles` – Barevné nadpisy jsou vypnuty.
+- `bw` – Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim.
+- `fonts` – Budou používány lokálně uložené fonty TUL.
+- `sfbody` – V těle dokumentu bude použit bezpatkový font.
+- `sfheadings` – V nadpisech bude použit bezpatkový font.
+- `nopdf` – Metadata PDF souboru budou deaktivována a podmíněně nebude načten balík `hyperref`.
 
-**Funkcionality třídy `tulthesis.cls`:**
+**Speciální příkazy třídy `tulthesis.cls`:**
 
 - `\TUL@baseclass`: Makro, do kterého je uložen název základní třídy
 - `\TUL@levelCZ`, `\TUL@levelEN`: Text označující typ práce v českém a anglickém jazyce
@@ -108,7 +127,7 @@ Balík by měl být použitelný i na lokálních zařízení (v TeXworks nebo T
 - `\begin{abbreviations} ...`: Prostředí pro vložení seznamu zkratek
 - `\TULthesisTOC`: Předdefinovaný obsah
 
-#### Třída `tularticle`
+#### Třída tularticle
 
 **Požadované balíky:**
 
@@ -132,144 +151,172 @@ Balík by měl být použitelný i na lokálních zařízení (v TeXworks nebo T
 | `silence`     | Potlačení varování                              |
 | `etoolbox`    | Úprava existujících příkazů                     |
 
-**Dostupné možnosti nastavení:**
+**Dostupné možnosti nastavení (`tularticle`):**
 
-| Možnost                                                 | Popis                                                            |
-|---------------------------------------------------------|------------------------------------------------------------------|
-| `EN`                                                    | Dokument je přepnut do anglického jazyka                         |
-| `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` | Je nastaven styl dokumentu podle fakulty                         |
-| `bwtitles`                                              | Barevné nadpisy jsou vypnuty                                     |
-| `bw`                                                    | Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim |
-| `fonts`                                                 | Budou používány lokálně uložené fonty TUL                        |
-| `sfbody`                                                | V těle dokumentu bude použit bezpatkový font                     |
-| `sfheadings`                                            | V nadpisech bude použit bezpatkový font                          |
-| `numbering`                                             | Nadpisy budou číslovány                                          |
-| `nonumbering`                                           | Číslování nadpisů bude vypnuto (pro jistotu dvakrát)             |
-| `margins`                                               | Text bude odsazen zleva/zprava, a to i pro jednostranný tisk     |
+- `EN` – Dokument je přepnut do anglického jazyka.
+- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Je nastaven styl dokumentu podle fakulty.
+- `bwtitles` – Barevné nadpisy jsou vypnuty.
+- `bw` – Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim.
+- `fonts` – Budou používány lokálně uložené fonty TUL.
+- `sfbody` – V těle dokumentu bude použit bezpatkový font.
+- `sfheadings` – V nadpisech bude použit bezpatkový font.
+- `numbering` – Nadpisy budou číslovány.
+- `nonumbering` – Číslování nadpisů bude vypnuto (pro jistotu dvakrát).
+- `margins` – Text bude odsazen zleva/zprava, a to i pro jednostranný tisk.
 
-**Další funkce třídy `tularticle.cls`:**
+**Další příkazy třídy `tularticle.cls`:**
 
 - `nopdf`: Deaktivuje metadata PDF souboru a podmíněně nenačítá balík `hyperref`
 - `\TULarticleTOC`: Předdefinovaný obsah
 - `\noTULheader`: Vypne výchozí záhlaví TUL
 
-### Jak začít s používáním?
+### Jak začít
 
-V balíku se nachází i několik ukázkových dokumentů, které ilustrují jeho funkčnost:
+V root directory najdete soubory `thesis-template.tex` a `article-template.tex`. 
+Jedná se o prázdné šablony, které si můžete zkopírovat nebo přejmenovat a rovnou začít pracovat. 
 
-- `manual-tul.tex`: Ukazuje, jak používat základní styl `tul.sty` se standardní třídou dokumentu.
-- `manual-tulthesis.tex`: Zde je uveden příklad nastavení preambule a použití třídy `tulthesis` pro diplomové a podobné práce.
-- `example-tularticle.tex`: Tento soubor demonstruje použití třídy `tularticle` pro tvorbu článků.
+Více o používání balíku najdete v přiloženém souboru `manual-tul.pdf`.
 
-V těchto souborech je možné si prohlédnout, jak se nastavuje preambule a jak se strukturují LaTeXové dokumenty. Kromě toho jsou k dispozici i manuály ve formátu PDF (`manual-tul.pdf`, `manual-tulthesis.pdf`, `example-tularticle.pdf`), ve kterých je vše podrobněji vysvětleno, včetně všech dostupných funkcí a možností. Doporučuje se jejich prostudování.
+V repositáři jsou dále i ukázkové dokumenty uvnitř složky `example/`:
+
+- `manual-tul.tex` – použití balíku `tul` / třídy `tularticle`
+- `manual-tulthesis.tex` – příklad použití třídy `tulthesis`
+- `example-tularticle.tex` – jednoduchý příklad pro `tularticle`
+
+Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a použití tříd **tulthesis** a **tularticle**.
 
 ## Možnosti přizpůsobení
 
 Balík `tulpackage-for-latex` poskytuje několik způsobů, jak upravit vzhled dokumentů.
 
-**Možnosti třídy dokumentu:** Jak již bylo zmíněno v sekci "Instalace a použití", jak třída `tulthesis`, tak `tularticle` disponují řadou možností, které lze nastavit při deklaraci třídy dokumentu v LaTeXovém souboru. Díky nim je možné:
+**Možnosti třídy dokumentu:** Jak již bylo zmíněno v sekci "Instalace a použití", 
+jak třída `tulthesis`, tak `tularticle` disponují řadou možností, které lze nastavit 
+při deklaraci třídy dokumentu v LaTeXovém souboru. Díky nim je možné:
 
 - Změnit styl dokumentu podle konkrétní fakulty (například `FM`, `EF`, `FS`).
 - Aktivovat či deaktivovat barevné nadpisy (`bwtitles`) nebo přepnout do zcela černobílého režimu (`bw`).
 - Nastavit, jaké fonty se budou používat (`fonts`, `sfbody`, `sfheadings`).
-- A mnoho dalšího. Doporučuje se prozkoumat všechny dostupné možnosti.
+- A mnoho dalšího. Doporučuje se prozkoumat všechny dostupné možnosti 
+  uvnitř [OPTIONS.md](./OPTIONS.md).
 
-**Úpravy v preambuli:** Pokud by tyto možnosti nepostačovaly, je možné dokument dále přizpůsobit přidáním standardních příkazů a balíků LaTeXu do preambule daného `.tex` souboru. V ukázkových souborech (`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex`) je ilustrováno, jak se preambule nastavuje. Pokud jsou příkazy používány/definovány přímo v preambulích, znamená to, že je na uživateli, jak si je nastaví.
+**Úpravy v preambuli:** Pokud by tyto možnosti nepostačovaly, je možné dokument dále přizpůsobit 
+přidáním standardních příkazů a balíků LaTeXu do preambule daného `.tex` souboru. V ukázkových souborech 
+(`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex`) je ilustrováno, 
+jak se preambule nastavuje - ale pouze v minimální míře. Narozdíl od vzorové verze **v2.1** 
+je verze **v3.0.0** (a všechny následující) stavěna tak, aby uživatele vedla co nejrychleji 
+k výsledkům, které respektují školní guidelines ohledně vzhledu dokumentů.
 
 ## Licence
 
-`tulpackage-for-latex` je šířen pod licencí Creative Commons Attribution (CC BY). Podrobnosti jsou uvedeny v licenčních informacích obsažených v souborech.
+`tulpackage-for-latex` je šířen pod licencí Creative Commons Attribution (CC BY). 
+Podrobnosti jsou uvedeny v souboru [LICENSE](./LICENSE).
 
-## Poděkování
+## Zásluhy (původní šablona)
 
-Autorství základu tohoto balíku (`tulthesis 2.1`) a tím pádem i všechny zásluhy za jeho fungování patří doktoru Pavlu Satrapovi z FM TUL. Celý `tulpackage-for-latex` je více méně jen usmolený pokus o fork.
+Repo `tulpackage-for-latex` navazuje na původní šablonu `tulthesis v2.1` (autor: doc. RNDr. Pavel Satrapa, Ph.D.), 
+na které byly postavené první verze tohoto projektu. V současnosti se projekt originálu příliš nepodobá, 
+ale stále funguje v duchu stejných designových principů.
 
-**doc. RNDr. Pavel Satrapa, Ph.D.** – E-mail: Pavel.Satrapa@tul.cz, Webová stránka: [www.root.cz/autori/pavel-satrapa/](https://www.root.cz/autori/pavel-satrapa/)
-
-
---- 
 
 <a name="english"></a>
+
 # tulpackage-for-latex (en)
 
-[Česká verze výše.](#czech)
+[Česká verze výše](#czech)
 
-This LaTeX package is prepared for immediate use on the Overleaf platform (or desktop text editors - a setup example for Zed editor is shown). It includes styles and classes necessary for writing theses and other academic works in accordance with the guidelines of the Technical University of Liberec (TUL). This package represents a modified version of the original `tulthesis 2.1` package, with the aim of providing increased accessibility and ease of use, potentially at the cost of a larger number of imported packages and following structural changes in the repository.
+This LaTeX package is prepared for immediate use on Overleaf as well as locally 
+in desktop editors (a Zed setup is included). It provides styles and classes for writing documents in line with 
+the guidelines of the Technical University of Liberec (TUL).
 
-**Important Note:** Although writing in English is possible with this package, all comments and documentation are currently provided only in Czech.
+The project builds on the original `tulthesis v2.1` package (FM TUL), but focuses on ease of use even if 
+it means relying on more packages and defaults.
+> **Important:** Documentation is currently primarily in Czech; English guides do not exist yet.
 
-## Package Contents
+## What this repo contains
 
-The package provides all the necessary tools for creating documents that comply with the style of the Technical University of Liberec:
+- **Package `tul` (`tul.sty`)**: the main style package. Defines colors, logos, headings, headers/footers, 
+  configuration options, and formatting rules.
+- **Class `tulthesis` (`tulthesis.cls`)**: a class for theses and other larger academic documents.
+- **Class `tularticle` (`tularticle.cls`)**: a class for general documents/articles in the TUL style, 
+  with a simpler start (minimal preamble work).
 
-- **`tul.sty`:** This is the cornerstone of the entire package. It defines the main styles and formatting rules for all TUL documents.
-
-- **`tulthesis`:** A specialized class intended for diploma theses and similar extensive works. It is based on `tul.sty` and features several enhancements for improved visual appearance.
-
-- **`tularticle`:** A class designed for writing articles in the TUL style. Its use simplifies the preamble setup, allowing users to start writing directly without the need for complex configurations.
-
-## Installation and Usage
+## Installation and usage
 
 ### Overleaf
 
-For the utilization of this `tulpackage-for-latex` on the Overleaf platform, the following procedure is recommended:
+The recommended approach is to download the prepared ZIP
+from [RELEASES](https://github.com/siliconlemon/tulpackage-for-latex/releases)
+and upload it into your project:
 
-1.  **Repository Download:** On the repository page on GitHub, it is necessary to click the "Code" button and subsequently select the "Download ZIP" option.
-2.  **File Upload to Overleaf:** Within the user's project on Overleaf, it is necessary to click the "Add Files" button and then "Upload". Subsequently, the downloaded ZIP file is selected, which Overleaf will automatically unpack.
+1. Download the latest [RELEASE (version)](https://github.com/siliconlemon/tulpackage-for-latex/releases) as a ZIP.
+2. In your Overleaf project, click **Add files → Upload** and upload the ZIP.
+3. The repo includes template files `thesis-template.tex` and `article-template.tex`
+   which you can copy/rename and start using immediately.
 
-### Local LaTeX Distribution (TeXworks, TeXstudio, etc.)
+A complete list of class/package initialization options is available in [OPTIONS.md](./OPTIONS.md).  
+As an example, below is a thesis setup for the Faculty of Mechatronics, in English, with two-sided printing, 
+predefined margins, and section numbering:
 
-The package should also be usable on local devices (in TeXworks or TeXstudio) – a check of the installation of all necessary LaTeX packages on which `tulpackage-for-latex` depends should suffice.
+```latex
+\documentclass[FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
+```
 
-#### `tulthesis` Class
+### Local LaTeX distribution (TeXworks, TeXstudio, Zed Editor, VS Code)
 
-**Required Packages:**
+This package requires compilation using **XeLaTeX or LuaLaTeX** (pdfLaTeX is not supported).  
+On Windows, I recommend **MiKTeX** with XeLaTeX support: https://miktex.org/download 
+(everything in this repo has been tested with it).
 
-| Package       | Description                                                              |
-|---------------|--------------------------------------------------------------------------|
-| `ifthen`      | Conditional commands                                                     |
-| `tabularray`  | Modern table creation                                                    |
-| `pdfpages`    | Inclusion of PDF files                                                   |
-| `hyperref`    | Creation of hyperlinks in PDF documents                                  |
-| `polyglossia` | Support for various languages                                            |
-| `fontspec`    | Working with OpenType fonts                                              |
-| `xunicode`    | Improved handling of Unicode characters                                  |
-| `xltxtra`     | Additional functions for XeLaTeX                                         |
-| `tabularx`    | Tables with variable column widths                                       |
-| `makeidx`     | For creating indexes                                                     |
-| `tocloft`     | For adjusting the table of contents, list of figures, and list of tables |
-| `float`       | For better control over figures, tables, etc.                            |
-| `graphicx`    | Inclusion of images                                                      |
-| `xcolor`      | Definition and use of colors                                             |
-| `fancyhdr`    | Custom headers and footers                                               |
-| `silence`     | Suppressing warnings                                                     |
-| `etoolbox`    | Modification of existing commands                                        |
+Setup steps for desktop editors (currently tailored to Zed; VS Code should work similarly) 
+are described in [SETUP.md](./SETUP.md).
 
-**Available Configuration Options:**
+#### tulthesis class
 
-| Option                                                    | Description                                                                                                                                            |
-|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `article`                                                 | Switches the base class to article (default is report)                                                                                                 |
-| `EN`                                                      | Switches the document to the English language                                                                                                          |
-| `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` | Sets the type of work (Bachelor's thesis, Diploma thesis, Dissertation thesis, Habilitation thesis, Thesis, Author's abstract, Project, Seminar paper) |
-| `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI`   | Sets the document style according to the faculty                                                                                                       |
-| `bwtitles`                                                | Disables colored headings                                                                                                                              |
-| `bw`                                                      | Disables all colored elements, activates black and white mode                                                                                          |
-| `fonts`                                                   | Locally stored TUL fonts will be used                                                                                                                  |
-| `sfbody`                                                  | A sans-serif font will be used in the document body                                                                                                    |
-| `sfheadings`                                              | A sans-serif font will be used in headings                                                                                                             |
-| `nopdf`                                                   | PDF metadata will be deactivated, and the `hyperref` package will not be loaded conditionally                                                          |
+**Required packages:**
 
-**Functionalities of the `tulthesis.cls` Class:**
+| Package      | Description                                       |
+|--------------|---------------------------------------------------|
+| `ifthen`     | Conditional commands                              |
+| `tabularray` | Modern table creation                             |
+| `pdfpages`   | Inclusion of PDF files                            |
+| `hyperref`   | Hyperlinks in PDF documents                       |
+| `polyglossia`| Language support                                  |
+| `fontspec`   | OpenType font support                             |
+| `xunicode`   | Improved Unicode handling                         |
+| `xltxtra`    | Additional functions for XeLaTeX                  |
+| `tabularx`   | Tables with flexible column widths                |
+| `makeidx`    | Index creation                                    |
+| `tocloft`    | TOC / list of figures / list of tables formatting |
+| `float`      | Improved float placement control                  |
+| `graphicx`   | Image inclusion                                   |
+| `xcolor`     | Color definition and usage                        |
+| `fancyhdr`   | Custom headers and footers                        |
+| `silence`    | Warning suppression                               |
+| `etoolbox`   | Patching / modification of existing commands      |
+
+**Available options (`tulthesis`):**
+
+- `article` – Switch the base class to `article` (default is `report`).
+- `EN` – Switch the document to English.
+- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the thesis/work type (Bachelor, Master, Dissertation, Habilitation, Thesis, Autoref, Project…).
+- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Set the faculty/institute styling.
+- `bwtitles` – Disable colored headings.
+- `bw` – Full black & white mode.
+- `fonts` – Use the bundled TUL fonts.
+- `sfbody` – Use a sans-serif font for the body.
+- `sfheadings` – Use a sans-serif font in headings.
+- `nopdf` – Disable PDF metadata and conditionally skip loading `hyperref`.
+
+**Special commands in `tulthesis.cls`:**
 
 - `\TUL@baseclass`: Macro storing the name of the base class
-- `\TUL@levelCZ`, `\TUL@levelEN`: Text indicating the type of work in Czech and English
-- `\TUL@kat`: Abbreviation of the work category (e.g., BP)
-- `\TULpraceou`, `\TULpracee`: Declension of the work title
+- `\TUL@levelCZ`, `\TUL@levelEN`: Work type label in Czech/English
+- `\TUL@kat`: Work type shorthand (e.g. BP)
+- `\TULpraceou`, `\TULpracee`: Declension helpers for the work title
 - `\TULpracerod`: Switch for determining the gender of the work title
-- `\TULthesisType`: Command for setting the type of work
-- `\TUL@nazevCZ`, `\TUL@nazevEN`: Macros for the work title in Czech and English
-- `\TULtitle`: Command for setting the work title
+- `\TULthesisType`: Command for setting the work type
+- `\TUL@nazevCZ`, `\TUL@nazevEN`: Macros for the thesis title in Czech/English
+- `\TULtitle`: Command for setting the thesis title
 - `\TUL@autor`: Macro for the author's name
 - `\TULauthor`: Command for setting the author's name
 - `\TUL@vedouci`: Macro for the supervisor's name
@@ -278,102 +325,110 @@ The package should also be usable on local devices (in TeXworks or TeXstudio) �
 - `\TUL@programCZ`, `\TUL@programEN`: Macros for the study program
 - `\TULprogramme`: Command for setting the study program
 - `\TULbranch`: Command for setting the field of study
-- `\TUL@rok`: Macro for the year of submission
-- `\TULyear`: Command for setting the year of submission
-- `\TULid`: Command for setting the identification number of the work
-- `\@ddel`: Auxiliary command
-- `\begin{uzky@text} ... \end{uzky@text}`: Environment for inserting narrow text
+- `\TUL@rok`: Macro for the submission year
+- `\TULyear`: Command for setting the submission year
+- `\TULid`: Command for setting the thesis ID
+- `\@ddel`: Helper command
+- `\begin{uzky@text} ... \end{uzky@text}`: Environment for narrow text blocks
 - `\ThesisTitle`: Command for creating the title page
 - `\Assignment`: Command for inserting the assignment page
-- `\TULfem`: Command for indicating the feminine gender in Czech
-- `\TULpraceCZ`: Work title in lowercase (Czech)
-- `\DeclarationCZ`: Author's declaration in Czech
-- `\ThesisType@EN`: Type of work in lowercase (English)
-- `\DeclarationEN`: Author's declaration in English
-- `\Declaration`: Command for inserting the declaration (automatically depending on the language)
-- `\ThesisStart`: Command to begin the main body of the thesis
-- `\begin{abstractCZ} ...`: Environment for inserting the abstract in Czech
-- `\begin{abstractEN} ...`: Environment for inserting the abstract in English
-- `\begin{keywordsCZ} ...`: Environment for inserting keywords in Czech
-- `\begin{keywordsEN} ...`: Environment for inserting keywords in English
-- `\begin{acknowledgement} ...`: Environment for inserting acknowledgements
-- `\begin{abbreviations} ...`: Environment for inserting the list of abbreviations
-- `\TULthesisTOC`: Predefined table of contents
+- `\TULfem`: Command for selecting feminine gender in Czech
+- `\TULpraceCZ`: Thesis/work title in lowercase (Czech)
+- `\DeclarationCZ`: Author declaration in Czech
+- `\ThesisType@EN`: Work type in lowercase (English)
+- `\DeclarationEN`: Author declaration in English
+- `\Declaration`: Insert the declaration (automatic depending on language)
+- `\ThesisStart`: Start the thesis (front matter)
+- `\begin{abstractCZ} ...`: Czech abstract environment
+- `\begin{abstractEN} ...`: English abstract environment
+- `\begin{keywordsCZ} ...`: Czech keywords environment
+- `\begin{keywordsEN} ...`: English keywords environment
+- `\begin{acknowledgement} ...`: Acknowledgement environment
+- `\begin{abbreviations} ...`: Abbreviations environment
+- `\TULthesisTOC`: Predefined TOC
 
-#### `tularticle` Class
+#### tularticle class
 
-**Required Packages:**
+**Required packages:**
 
-| Package       | Description                                                              |
-|---------------|--------------------------------------------------------------------------|
-| `ifthen`      | Conditional commands                                                     |
-| `tabularray`  | Modern table creation                                                    |
-| `pdfpages`    | Inclusion of PDF files                                                   |
-| `hyperref`    | Creation of hyperlinks in PDF documents                                  |
-| `polyglossia` | Support for various languages                                            |
-| `fontspec`    | Working with OpenType fonts                                              |
-| `xunicode`    | Improved handling of Unicode characters                                  |
-| `xltxtra`     | Additional functions for XeLaTeX                                         |
-| `tabularx`    | Tables with variable column widths                                       |
-| `makeidx`     | For creating indexes                                                     |
-| `tocloft`     | For adjusting the table of contents, list of figures, and list of tables |
-| `float`       | For better control over figures, tables, etc.                            |
-| `graphicx`    | Inclusion of images                                                      |
-| `xcolor`      | Definition and use of colors                                             |
-| `fancyhdr`    | Custom headers and footers                                               |
-| `silence`     | Suppressing warnings                                                     |
-| `etoolbox`    | Modification of existing commands                                        |
+| Package      | Description                                       |
+|--------------|---------------------------------------------------|
+| `ifthen`     | Conditional commands                              |
+| `tabularray` | Modern table creation                             |
+| `pdfpages`   | Inclusion of PDF files                            |
+| `hyperref`   | Hyperlinks in PDF documents                       |
+| `polyglossia`| Language support                                  |
+| `fontspec`   | OpenType font support                             |
+| `xunicode`   | Improved Unicode handling                         |
+| `xltxtra`    | Additional functions for XeLaTeX                  |
+| `tabularx`   | Tables with flexible column widths                |
+| `makeidx`    | Index creation                                    |
+| `tocloft`    | TOC / list of figures / list of tables formatting |
+| `float`      | Improved float placement control                  |
+| `graphicx`   | Image inclusion                                   |
+| `xcolor`     | Color definition and usage                        |
+| `fancyhdr`   | Custom headers and footers                        |
+| `silence`    | Warning suppression                               |
+| `etoolbox`   | Patching / modification of existing commands      |
 
-**Available Configuration Options:**
+**Available options (`tularticle`):**
 
-| Option                                                  | Description                                                               |
-|---------------------------------------------------------|---------------------------------------------------------------------------|
-| `EN`                                                    | Switches the document to the English language                             |
-| `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` | Sets the document style according to the faculty                          |
-| `bwtitles`                                              | Disables colored headings                                                 |
-| `bw`                                                    | Disables all colored elements, activates black and white mode             |
-| `fonts`                                                 | Locally stored TUL fonts will be used                                     |
-| `sfbody`                                                | A sans-serif font will be used in the document body                       |
-| `sfheadings`                                            | A sans-serif font will be used in headings                                |
-| `numbering`                                             | Headings will be numbered                                                 |
-| `nonumbering`                                           | Heading numbering will be disabled (as a double precaution)               |
-| `margins`                                               | Text will be indented from the left/right, even for single-sided printing |
+- `EN` – Switches the document to English.
+- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Sets the faculty/institute styling.
+- `bwtitles` – Disables colored headings.
+- `bw` – Full black & white mode.
+- `fonts` – Uses the bundled TUL fonts.
+- `sfbody` – Uses a sans-serif font in the body.
+- `sfheadings` – Uses a sans-serif font in headings.
+- `numbering` – Enables section numbering.
+- `nonumbering` – Disables section numbering (double precaution).
+- `margins` – Applies TUL-like margins (also for single-sided printing).
 
-**Additional Functionalities of the `tularticle.cls` Class:**
+**Additional commands in `tularticle.cls`:**
 
-- `nopdf`: Deactivates PDF metadata and conditionally does not load the `hyperref` package
-- `\TULarticleTOC`: Predefined table of contents
+- `nopdf`: Disables PDF metadata and conditionally does not load `hyperref`
+- `\TULarticleTOC`: Predefined TOC
 - `\noTULheader`: Disables the default TUL header
 
-### Getting Started
+### How to start
 
-Several example documents illustrating the functionality of the package are included:
+In the root directory, you can find `thesis-template.tex` and `article-template.tex`.
+These are blank templates you can copy/rename and start working with immediately.
 
-- `manual-tul.tex`: Shows how to use the basic `tul.sty` style with a standard document class.
-- `manual-tulthesis.tex`: Provides an example of setting up the preamble and using the `tulthesis` class for diploma theses and similar works.
-- `example-tularticle.tex`: This file demonstrates the use of the `tularticle` class for writing articles.
+More info on using the package can be found in the included `manual-tul.pdf`.
+Additionally, the repository contains example documents in the `example/` directory:
 
-These files allow for examination of preamble setup and the structuring of LaTeX documents. Additionally, manuals in PDF format (`manual-tul.pdf`, `manual-tulthesis.pdf`, `example-tularticle.pdf`) are available, providing a more detailed explanation of all available functions and options. Their review is recommended.
+- `manual-tul.tex` – using the `tul` package / `tularticle` class
+- `manual-tulthesis.tex` – example usage of the `tulthesis` class
+- `example-tularticle.tex` – minimal example for `tularticle`
 
-## Customization Options
+You can use the files above as inspiration for configuring and using **tulthesis** and **tularticle**.
 
-The `tulpackage-for-latex` package offers several ways to customize the appearance of documents.
+## Customization options
 
-**Document Class Options:** As mentioned in the "Installation and Usage" section, both the `tulthesis` and `tularticle` classes have a number of options that can be set when declaring the document class in the LaTeX file. These options allow for:
+The `tulpackage-for-latex` package provides multiple ways to customize document appearance.
 
-- Changing the document style according to the specific faculty (e.g., `FM`, `EF`, `FS`).
-- Enabling or disabling colored headings (`bwtitles`) or switching to a completely black and white mode (`bw`).
-- Setting which fonts will be used (`fonts`, `sfbody`, `sfheadings`).
-- And much more. Exploration of all available options is recommended.
+**Document class options:** As mentioned in the "Installation and usage" section, 
+both `tulthesis` and `tularticle` provide many initialization options. With these, you can:
 
-**Preamble Modifications:** If these options are insufficient, the document can be further customized by adding standard LaTeX commands and packages to the preamble of the `.tex` file. The example files (`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex`) illustrate how the preamble is set up. If commands are used/defined directly in the preambles, it signifies that their configuration is left to the user.
+- Switch styling based on faculty (e.g. `FM`, `EF`, `FS`)
+- Enable/disable colored headings (`bwtitles`) or switch to full black-and-white mode (`bw`)
+- Configure fonts (`fonts`, `sfbody`, `sfheadings`)
+- And much more (see [OPTIONS.md](./OPTIONS.md))
+
+**Preamble changes:** If the built-in options are not enough, you can further customize the document 
+using standard LaTeX packages/commands in your `.tex` preamble. The sample files 
+`manual-tul.tex`, `manual-tulthesis.tex`, `example-tularticle.tex` illustrate how the preamble 
+can be configured (in a minimal way). Unlike the original **v2.1** template, version **v3.0.0** 
+(and all following releases) aims to get users to results quickly while still respecting TUL styling guidelines.
 
 ## License
 
-`tulpackage-for-latex` is distributed under the Creative Commons Attribution (CC BY) license. Details are provided in the license information contained within the files.
+`tulpackage-for-latex` is distributed under the Creative Commons Attribution (CC BY) license. 
+Details are available in [LICENSE](./LICENSE).
 
-## Acknowledgements
+## Special credit (original template)
 
-The authorship of the foundation of this package (`tulthesis 2.1`) and therefore all credit for its functionality belongs to Dr. Pavel Satrapa from FM TUL. The entire `tulpackage-for-latex` is more or less just a hastily put-together attempt at a fork.
-
-**doc. RNDr. Pavel Satrapa, Ph.D.** – E-mail: Pavel.Satrapa@tul.cz, Website: [www.root.cz/autori/pavel-satrapa/](https://www.root.cz/autori/pavel-satrapa/)
+The `tulpackage-for-latex` repo builds on the original `tulthesis v2.1` template 
+(author: doc. RNDr. Pavel Satrapa, Ph.D.), which served as the foundation for the first versions of this project. 
+The project does not resemble the original too much, but it still follows the same design principles.
