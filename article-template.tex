@@ -1,0 +1,100 @@
+% tulpackage/example/article-template.tex
+% Kostra: tularticle, vykuchané z example-tularticle.tex
+
+\documentclass[a4paper,12pt,fonts,nocapnumbers,listingsleft]{./tulpackage/tularticle}
+
+% Zvětšení řádkování
+\linespread{1.3}
+
+% Vlastní seznamy s enumitem
+\newlist{itemize*}{itemize}{2}
+\setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
+\setlist[itemize*,2]{label={--}}
+
+% Nastavení sazby a zalamování textu
+\sloppy
+\lefthyphenmin=2
+\righthyphenmin=3
+\hyphenpenalty=5000
+\tolerance=1500
+\emergencystretch=3.5em
+\hbadness=2000
+
+% Penalizace osamocených řádků
+\widowpenalty=10000
+\clubpenalty=10000
+
+% Definice pomocného příkazu pro ukázky (ponecháno)
+\newcommand{\cmddemo}[1]{\bigskip\parbox[c]{3.9cm}{\cmd{#1}}\parbox[c]{10cm}{\csname #1\endcsname}\bigskip}
+
+% Nastavení jazyka dokumentu na češtinu
+\setdefaultlanguage{czech}
+
+% Název PDF v rámci metadat
+\hypersetup{pdftitle={název článku}}
+
+% Uživatelské informace (doplň)
+\newcommand{\doctitle}{název článku}
+\newcommand{\name}{jméno příjmení}
+\newcommand{\phone}{tel: neuvedeno}
+\newcommand{\mail}{mail: neuvedeno}
+\newcommand{\location}{liberec \the\year}
+
+% Předání informací šabloně
+\TULname{\name}
+\TULphone{\phone}
+\TULmail{\mail}
+
+% Příkazy specifické pro dokument (ponecháno)
+\newcommand{\cmdfont}[1]{\texttt{\color{\tulcolor}#1}}
+\newcommand{\cmdnoindex}[1]{\cmdfont{\textbackslash{}#1}\index{#1@\textbackslash #1}}
+\newcommand{\cmd}[1]{\cmdnoindex{#1}\index{#1@\textbackslash #1}}
+\newcommand{\demobox}{\raisebox{-.20ex}{\rule{1em}{1em}}}
+
+\begin{document}
+
+\title{\doctitle}
+\author{\name}
+\date{\today}
+
+\TULfancytitlepage{\doctitle}{\name}{\location}
+
+% Předdefinovaný obsah
+\TULarticleTOC{}
+
+\clearpage%
+
+\section{Úvod}
+text úvodu
+
+\clearpage%
+
+\section{Kontext}
+text teorie
+
+\clearpage%
+
+\subsection{Podsekce}
+text podsekce
+
+\clearpage%
+
+\section{Metodika}
+text metodiky
+
+\clearpage%
+
+\section{Výsledky}
+text výsledků
+
+\clearpage%
+
+\section{Diskuse}
+text diskuse
+
+\clearpage%
+
+\section{Závěr}
+text závěru
+
+\end{document}

@@ -1,0 +1,174 @@
+\documentclass[fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
+
+% Nastavení jazyka dokumentu na češtinu
+\setdefaultlanguage{czech}
+
+% Vytvoření indexu dokumentu
+\makeindex
+
+% Vlastní seznamy s enumitem
+\newlist{itemize*}{itemize}{2}
+\setlist[itemize*]{itemsep=3pt, parsep=3pt, label=$\bullet$}
+\setlist[itemize*,2]{label={--}}
+
+% Nastavení sazby a zalamování textu
+\sloppy
+\lefthyphenmin=2
+\righthyphenmin=3
+\hyphenpenalty=5000
+\tolerance=1500
+\emergencystretch=3.5em
+\hbadness=2000
+
+% Penalizace osamocených řádků
+\widowpenalty=10000
+\clubpenalty=10000
+
+% Definice pomocného příkazu pro ukázky
+\newcommand{\cmddemo}[1]{\bigskip\parbox[c]{3.9cm}{\cmd{#1}}\parbox[c]{10cm}{\csname #1\endcsname}\bigskip}
+
+% Příkazy specifické pro tento dokument
+\newcommand{\argument}[1]{{\ttfamily\color{\tulcolor}#1}}
+\newcommand{\argumentprom}[1]{\argument{\{\emph{#1}\}}}
+\newcommand{\argumentindex}[1]{\argument{#1}\index{#1}}
+\newcommand{\prostredi}[1]{\argumentindex{#1}}
+\newcommand{\prikazneindex}[1]{\argument{\textbackslash{}#1}}
+\newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
+\newcommand{\polozka}[1]{\item[#1]\mbox{}\\}
+
+% Zvýšení řádkování pro lepší čitelnost návodu
+\linespread{1.3}
+
+% Deklarace pro titulní stránku (DOPLŇ)
+\TULtitle{Název práce česky}{Thesis title in English}
+\TULauthor{Jméno Příjmení}
+
+% Nastavení pro bakalářské, diplomové a disertační práce (DOPLŇ)
+\TULprogramme{KÓD}{Studijní program česky}{Study programme in English}
+\TULbranch{KÓD}{Studijní obor/specializace česky}{Study branch/specialization in English}
+\TULsupervisor{Titul Jméno Příjmení}
+% \TULconsultant{Titul Jméno Příjmení} % pokud máš
+\TULyear{2026}
+
+% Nastavení pro habilitační práce (odkomentováno pouze při potřebě)
+% \TULbranch{}{Technická kybernetika}{Technical cybernetics}
+% \TULyear{2021}
+
+\begin{document}
+
+% Úvodní stránky (titulní list, zadání, prohlášení) – generované třídou
+\ThesisStart{male} % nebo female
+% \ThesisStart{zahajeni.pdf} % pokud vkládáš STAG PDF
+
+% CZ anotace + klíčová slova
+\begin{abstractCZ}
+text českého abstraktu
+\end{abstractCZ}
+
+\begin{keywordsCZ}
+klíčová slova v češtině
+\end{keywordsCZ}
+
+% EN anotace + klíčová slova
+\vspace{2cm}
+
+\begin{abstractEN}
+text anglického abstraktu
+\end{abstractEN}
+
+\begin{keywordsEN}
+keywords in english
+\end{keywordsEN}
+
+% Poděkování (volitelné)
+\begin{acknowledgement}
+text poděkování (volitelné)
+\end{acknowledgement}
+
+% Obsah (odtud se zobrazují čísla stránek)
+\TULthesisTOC{}
+
+% Seznam ilustrací / tabulek (volitelné dle obsahu práce)
+\listoffigures%
+\vspace{10em}
+\listoftables%
+\clearpage
+\listoflistings%
+\clearpage
+
+% Seznam zkratek, značek a symbolů
+\begin{abbreviations}
+\textbf{TUL} & Technická univerzita v~Liberci \\
+\end{abbreviations}
+
+\cleardoublepage%
+
+% ==========================================================================
+% VLASTNÍ PRÁCE (kapitoly)
+% ==========================================================================
+
+\chapter{Úvod}
+text úvodu
+
+\cleardoublepage%
+
+\chapter{Teoretická část}
+text teoretické části
+
+\section{Analýza a zhodnocení současného stavu}
+text analýzy a zhodnocení současného stavu
+
+\section{Literární rešerše}
+text literární rešerše
+
+\cleardoublepage%
+
+\chapter{Praktická část}
+text praktické části
+
+\section{Návrh řešení}
+text návrhu řešení
+
+\section{Ekonomické zhodnocení}
+text ekonomického zhodnocení
+
+\section{Implementace / Realizace}
+text implementace / realizace
+
+\cleardoublepage%
+
+\chapter{Závěr}
+text závěru
+
+\cleardoublepage%
+
+% ==========================================================================
+% LITERATURA + PŘÍLOHY
+% ==========================================================================
+
+\chapter*{Seznam použité literatury}
+\addcontentsline{toc}{chapter}{Seznam použité literatury}
+text seznamu použité literatury
+
+\cleardoublepage%
+
+\chapter*{Seznam příloh}
+\addcontentsline{toc}{chapter}{Seznam příloh}
+text seznamu příloh
+
+\cleardoublepage%
+
+\appendix
+
+\chapter{Název přílohy}
+text přílohy a
+
+\section{Dílčí část přílohy}
+text dílčí části přílohy
+
+\cleardoublepage%
+
+\chapter{Název přílohy}
+text přílohy b
+
+\end{document}

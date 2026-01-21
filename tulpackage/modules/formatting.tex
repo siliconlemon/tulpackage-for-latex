@@ -160,9 +160,13 @@
 \ifcsdef{abbreviations}{}{%
     \newenvironment{abbreviations}{%
         \phantomsection%
-        \ifthenelse{\equal{\TUL@nguage}{EN}}%
-            {\section*{\LARGE List of abbreviations}}%
-            {\section*{\LARGE Seznam zkratek}}%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}{%
+            \section*{\LARGE List of abbreviations}%
+            \addcontentsline{toc}{chapter}{List of abbreviations}%
+        }{%
+            \section*{\LARGE Seznam zkratek}%
+            \addcontentsline{toc}{chapter}{Seznam zkratek}%
+        }%
         \vspace{-1em}\thispagestyle{plain}%
         \DefTblrTemplate{contfoot-text}{default}{}%
         \DefTblrTemplate{conthead-text}{default}{}%
