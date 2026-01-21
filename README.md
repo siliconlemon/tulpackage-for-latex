@@ -50,29 +50,36 @@ doporučuji [MiKTeX](https://miktex.org/download) (všechno uvnitř repa je v n�
 Postup nastavení pro desktop editory (aktuálně cílený na Zed; 
 VS Code bude fungovat podobně) najdete v souboru [SETUP.md](./SETUP.md). 
 
-#### Třída tulthesis
-
-**Požadované balíky:**
+#### Požadované balíky (společné pro `tul`, `tulthesis` i `tularticle`)
+Importy jsou centralizované v souboru `tulpackage/modules/packages.tex`.
 
 | Balík         | Popis                                           |
 |---------------|-------------------------------------------------|
-| `ifthen`      | Podmíněné příkazy                               |
-| `tabularray`  | Moderní tvorba tabulek                          |
-| `pdfpages`    | Vkládání PDF souborů                            |
-| `hyperref`    | Vytváření hypertextových odkazů v PDF dokumentu |
-| `polyglossia` | Podpora různých jazyků                          |
-| `fontspec`    | Práce s OpenType fonty                          |
-| `xunicode`    | Lepší práce s Unicode znaky                     |
-| `xltxtra`     | Doplňkové funkce pro XeLaTeX                    |
-| `tabularx`    | Tabulky s proměnnou šířkou sloupců              |
-| `makeidx`     | Pro vytváření rejstříků                         |
-| `tocloft`     | Pro úpravu obsahu, seznamu obrázků a tabulek    |
-| `float`       | Pro lepší kontrolu nad obrázky, tabulkami apod. |
-| `graphicx`    | Vkládání obrázků                                |
-| `xcolor`      | Definice a použití barev                        |
+| `booktabs`    | Kvalitnější sazba tabulek                       |
+| `caption`     | Úpravy popisků (obrázky/tabulky)                |
+| `enumitem`    | Pokročilé nastavení seznamů                     |
+| `etoolbox`    | Úprava/patchování existujících příkazů          |
 | `fancyhdr`    | Vlastní záhlaví a zápatí                        |
+| `float`       | Lepší kontrola nad plovoucími objekty           |
+| `fontspec`    | Práce s OpenType fonty                          |
+| `framed`      | Rámečky a orámované bloky                       |
+| `fvextra`     | Rozšíření práce s verbatim / kódem              |
+| `graphicx`    | Vkládání obrázků                                |
+| `hyperref`    | Vytváření hypertextových odkazů v PDF dokumentu |
+| `ifthen`      | Podmíněné příkazy                               |
+| `makeidx`     | Pro vytváření rejstříků                         |
+| `metalogo`    | Sazba log typů enginů (XeLaTeX/LuaLaTeX apod.)  |
+| `parskip`     | Mezery mezi odstavci (místo odstavcové zarážky) |
+| `pdfpages`    | Vkládání PDF souborů                            |
+| `polyglossia` | Podpora různých jazyků                          |
 | `silence`     | Potlačení varování                              |
-| `etoolbox`    | Úprava existujících příkazů                     |
+| `tabularray`  | Moderní tvorba tabulek                          |
+| `tabularx`    | Tabulky s proměnnou šířkou sloupců              |
+| `titlesec`    | Úprava nadpisů                                  |
+| `tocloft`     | Úprava obsahu, seznamu obrázků a tabulek        |
+| `xcolor`      | Definice a použití barev                        |
+
+#### Třída tulthesis
 
 **Dostupné možnosti nastavení (`tulthesis`):**
 
@@ -128,28 +135,6 @@ VS Code bude fungovat podobně) najdete v souboru [SETUP.md](./SETUP.md).
 - `\TULthesisTOC`: Předdefinovaný obsah
 
 #### Třída tularticle
-
-**Požadované balíky:**
-
-| Balík         | Popis                                           |
-|---------------|-------------------------------------------------|
-| `ifthen`      | Podmíněné příkazy                               |
-| `tabularray`  | Moderní tvorba tabulek                          |
-| `pdfpages`    | Vkládání PDF souborů                            |
-| `hyperref`    | Vytváření hypertextových odkazů v PDF dokumentu |
-| `polyglossia` | Podpora různých jazyků                          |
-| `fontspec`    | Práce s OpenType fonty                          |
-| `xunicode`    | Lepší práce s Unicode znaky                     |
-| `xltxtra`     | Doplňkové funkce pro XeLaTeX                    |
-| `tabularx`    | Tabulky s proměnnou šířkou sloupců              |
-| `makeidx`     | Pro vytváření rejstříků                         |
-| `tocloft`     | Pro úpravu obsahu, seznamu obrázků a tabulek    |
-| `float`       | Pro lepší kontrolu nad obrázky, tabulkami apod. |
-| `graphicx`    | Vkládání obrázků                                |
-| `xcolor`      | Definice a použití barev                        |
-| `fancyhdr`    | Vlastní záhlaví a zápatí                        |
-| `silence`     | Potlačení varování                              |
-| `etoolbox`    | Úprava existujících příkazů                     |
 
 **Dostupné možnosti nastavení (`tularticle`):**
 
@@ -278,29 +263,36 @@ On Windows, I recommend **MiKTeX** with XeLaTeX support: https://miktex.org/down
 Setup steps for desktop editors (currently tailored to Zed; VS Code should work similarly) 
 are described in [SETUP.md](./SETUP.md).
 
+#### Required packages (shared for `tul`, `tulthesis`, and `tularticle`)
+Imports are centralized in `tulpackage/modules/packages.tex`.
+
+| Package       | Description                                        |
+|---------------|----------------------------------------------------|
+| `booktabs`    | Improved table typesetting                         |
+| `caption`     | Caption customization (figures/tables)             |
+| `enumitem`    | Advanced list customization                        |
+| `etoolbox`    | Patching/modifying existing commands               |
+| `fancyhdr`    | Custom headers and footers                         |
+| `float`       | Better control over floats                         |
+| `fontspec`    | OpenType font support                              |
+| `framed`      | Framed / boxed blocks                              |
+| `fvextra`     | Extensions for verbatim / code blocks              |
+| `graphicx`    | Image inclusion                                    |
+| `hyperref`    | Hyperlinks in PDF documents                        |
+| `ifthen`      | Conditional commands                               |
+| `makeidx`     | Index creation                                     |
+| `metalogo`    | Typesetting engine logos (XeLaTeX/LuaLaTeX, etc.)  |
+| `parskip`     | Paragraph spacing (instead of first-line indent)   |
+| `pdfpages`    | Inclusion of PDF files                             |
+| `polyglossia` | Language support                                   |
+| `silence`     | Warning suppression                                |
+| `tabularray`  | Modern table creation                              |
+| `tabularx`    | Tables with flexible column widths                 |
+| `titlesec`    | Section heading customization                      |
+| `tocloft`     | TOC / list of figures / list of tables formatting  |
+| `xcolor`      | Color definition and usage                         |
+
 #### tulthesis class
-
-**Required packages:**
-
-| Package      | Description                                       |
-|--------------|---------------------------------------------------|
-| `ifthen`     | Conditional commands                              |
-| `tabularray` | Modern table creation                             |
-| `pdfpages`   | Inclusion of PDF files                            |
-| `hyperref`   | Hyperlinks in PDF documents                       |
-| `polyglossia`| Language support                                  |
-| `fontspec`   | OpenType font support                             |
-| `xunicode`   | Improved Unicode handling                         |
-| `xltxtra`    | Additional functions for XeLaTeX                  |
-| `tabularx`   | Tables with flexible column widths                |
-| `makeidx`    | Index creation                                    |
-| `tocloft`    | TOC / list of figures / list of tables formatting |
-| `float`      | Improved float placement control                  |
-| `graphicx`   | Image inclusion                                   |
-| `xcolor`     | Color definition and usage                        |
-| `fancyhdr`   | Custom headers and footers                        |
-| `silence`    | Warning suppression                               |
-| `etoolbox`   | Patching / modification of existing commands      |
 
 **Available options (`tulthesis`):**
 
@@ -356,28 +348,6 @@ are described in [SETUP.md](./SETUP.md).
 - `\TULthesisTOC`: Predefined TOC
 
 #### tularticle class
-
-**Required packages:**
-
-| Package      | Description                                       |
-|--------------|---------------------------------------------------|
-| `ifthen`     | Conditional commands                              |
-| `tabularray` | Modern table creation                             |
-| `pdfpages`   | Inclusion of PDF files                            |
-| `hyperref`   | Hyperlinks in PDF documents                       |
-| `polyglossia`| Language support                                  |
-| `fontspec`   | OpenType font support                             |
-| `xunicode`   | Improved Unicode handling                         |
-| `xltxtra`    | Additional functions for XeLaTeX                  |
-| `tabularx`   | Tables with flexible column widths                |
-| `makeidx`    | Index creation                                    |
-| `tocloft`    | TOC / list of figures / list of tables formatting |
-| `float`      | Improved float placement control                  |
-| `graphicx`   | Image inclusion                                   |
-| `xcolor`     | Color definition and usage                        |
-| `fancyhdr`   | Custom headers and footers                        |
-| `silence`    | Warning suppression                               |
-| `etoolbox`   | Patching / modification of existing commands      |
 
 **Available options (`tularticle`):**
 
