@@ -8,51 +8,47 @@
 % ==========================================================================
 % Zpracování voleb (Options)
 % ==========================================================================
+\RequirePackage{ifthen}%
 
-% 1. Volba pro vypnutí PDF metadat a odkazů
+% 1. Volba pro vypnutí PDF metadat a odkazů (třída)
 \newif\ifTUL@pdf
 \TUL@pdftrue
 \DeclareOption{nopdf}{\TUL@pdffalse}
 
-% 2. Předání voleb do balíčku tulpackage/tul
-% Jazyk
-\DeclareOption{EN}{\PassOptionsToPackage{EN}{tulpackage/tul}}
+% 2. Ostatní volby: whitelist -> base class, jinak -> balík tul
+\newcommand{\TUL@opt}{}
+\DeclareOption*{%
+    \edef\TUL@opt{\CurrentOption}%
+    \ifthenelse{%
+        \equal{\TUL@opt}{a4paper} \OR%
+        \equal{\TUL@opt}{a5paper} \OR%
+        \equal{\TUL@opt}{b5paper} \OR%
+        \equal{\TUL@opt}{letterpaper} \OR%
+        \equal{\TUL@opt}{legalpaper} \OR%
+        \equal{\TUL@opt}{executivepaper} \OR%
+        \equal{\TUL@opt}{10pt} \OR%
+        \equal{\TUL@opt}{11pt} \OR%
+        \equal{\TUL@opt}{12pt} \OR%
+        \equal{\TUL@opt}{oneside} \OR%
+        \equal{\TUL@opt}{twoside} \OR%
+        \equal{\TUL@opt}{onecolumn} \OR%
+        \equal{\TUL@opt}{twocolumn} \OR%
+        \equal{\TUL@opt}{final} \OR%
+        \equal{\TUL@opt}{draft}%
+    }{%
+        \PassOptionsToClass{\CurrentOption}{\TUL@baseclass}%
+    }{%
+        \PassOptionsToPackage{\CurrentOption}{tulpackage/tul}%
+    }%
+}
 
-% Fakulty
-\DeclareOption{FS}{\PassOptionsToPackage{FS}{tulpackage/tul}}
-\DeclareOption{FT}{\PassOptionsToPackage{FT}{tulpackage/tul}}
-\DeclareOption{FP}{\PassOptionsToPackage{FP}{tulpackage/tul}}
-\DeclareOption{EF}{\PassOptionsToPackage{EF}{tulpackage/tul}}
-\DeclareOption{FA}{\PassOptionsToPackage{FA}{tulpackage/tul}}
-\DeclareOption{FM}{\PassOptionsToPackage{FM}{tulpackage/tul}}
-\DeclareOption{FZS}{\PassOptionsToPackage{FZS}{tulpackage/tul}}
-\DeclareOption{UZS}{\PassOptionsToPackage{UZS}{tulpackage/tul}}
-\DeclareOption{CXI}{\PassOptionsToPackage{CXI}{tulpackage/tul}}
-
-% Vzhled a funkce
-\DeclareOption{bwtitles}{\PassOptionsToPackage{bwtitles}{tulpackage/tul}}
-\DeclareOption{bw}{\PassOptionsToPackage{bw}{tulpackage/tul}}
-\DeclareOption{fonts}{\PassOptionsToPackage{fonts}{tulpackage/tul}}
-\DeclareOption{sfbody}{\PassOptionsToPackage{sfbody}{tulpackage/tul}}
-\DeclareOption{sfheadings}{\PassOptionsToPackage{sfheadings}{tulpackage/tul}}
-\DeclareOption{numbering}{\PassOptionsToPackage{numbering}{tulpackage/tul}}
-\DeclareOption{nonumbering}{\PassOptionsToPackage{nonumbering}{tulpackage/tul}}
-\DeclareOption{margins}{\PassOptionsToPackage{margins}{tulpackage/tul}}
-\DeclareOption{captionsleft}{\PassOptionsToPackage{captionsleft}{tulpackage/tul}}
-\DeclareOption{nocapnumbers}{\PassOptionsToPackage{nocapnumbers}{tulpackage/tul}}
-
-% 3. Všechny ostatní volby (a4paper, 12pt atd.) předej základní třídě article
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{\TUL@baseclass}}
-
-% Zpracování všech voleb
 \ProcessOptions\relax
 
 % ==========================================================================
 % Načtení třídy a balíčků (POZOR NA POŘADÍ)
 % ==========================================================================
-
-% 1. Načtení základní třídy (article)
-\LoadClass[a4paper,12pt]{\TUL@baseclass}
+% 1. Načtení základní třídy (article) – options (a4paper/12pt/...) přijdou z \documentclass
+\LoadClass{\TUL@baseclass}
 
 % 2. Načtení hlavního TUL balíku (obsahuje hyperref, barvy, fonty...)
 \RequirePackage{tulpackage/tul}

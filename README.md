@@ -38,7 +38,7 @@ najdete v [OPTIONS.md](./OPTIONS.md). Jako příklad níže uvádím inicializac
 bakalářky/diplomky v barvách fakulty mechatroniky, v anglickém jazyce, dvoustranném tisku, s předdefinovanými okraji a číslováním podle zásad TUL.
 
 ```latex
-\documentclass[FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
+\documentclass[a4paper,12pt,FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
 ```
 
 ### Lokální distribuce LaTeXu (TeXworks, TeXstudio, Zed Editor, VS Code)
@@ -81,79 +81,51 @@ Importy jsou centralizované v souboru `tulpackage/modules/packages.tex`.
 
 #### Třída tulthesis
 
-**Dostupné možnosti nastavení (`tulthesis`):**
+**Možnosti nastavení specifické pro třídu `tulthesis`:**
 
 - `article` – Základní třída je přepnuta na `article` (výchozí je `report`).
-- `EN` – Dokument je přepnut do anglického jazyka.
 - `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Je nastaven typ práce (BP, DP, Disertační, Habilitační, Teze, Autoreferát, Projekt, Seminárka).
-- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Je nastaven styl dokumentu podle fakulty.
-- `bwtitles` – Barevné nadpisy jsou vypnuty.
-- `bw` – Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim.
-- `fonts` – Budou používány lokálně uložené fonty TUL.
-- `sfbody` – V těle dokumentu bude použit bezpatkový font.
-- `sfheadings` – V nadpisech bude použit bezpatkový font.
 - `nopdf` – Metadata PDF souboru budou deaktivována a podmíněně nebude načten balík `hyperref`.
+- *(Ostatní volby jako `EN`, `FM`...`CXI`, `bw` apod. jsou předávány balíku `tul`)*
 
-**Speciální příkazy třídy `tulthesis.cls`:**
+Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.md](./OPTIONS.md)
 
-- `\TUL@baseclass`: Makro, do kterého je uložen název základní třídy
-- `\TUL@levelCZ`, `\TUL@levelEN`: Text označující typ práce v českém a anglickém jazyce
-- `\TUL@kat`: Zkratka kategorie práce (například BP)
-- `\TULpraceou`, `\TULpracee`: Deklinace názvu práce
-- `\TULpracerod`: Přepínač pro určení rodu názvu práce
-- `\TULthesisType`: Příkaz pro nastavení typu práce
-- `\TUL@nazevCZ`, `\TUL@nazevEN`: Makra pro název práce v českém a anglickém jazyce
-- `\TULtitle`: Příkaz pro nastavení názvu práce
-- `\TUL@autor`: Makro pro jméno autora
-- `\TULauthor`: Příkaz pro nastavení jména autora
-- `\TUL@vedouci`: Makro pro jméno vedoucího práce
-- `\TULsupervisor`: Příkaz pro nastavení jména vedoucího práce
-- `\TULconsultant`: Příkaz pro přidání konzultanta
-- `\TUL@programCZ`, `\TUL@programEN`: Makra pro studijní program
-- `\TULprogramme`: Příkaz pro nastavení studijního programu
-- `\TULbranch`: Příkaz pro nastavení studijního oboru
-- `\TUL@rok`: Makro pro rok odevzdání práce
-- `\TULyear`: Příkaz pro nastavení roku odevzdání práce
-- `\TULid`: Příkaz pro nastavení identifikačního čísla práce
-- `\@ddel`: Pomocný příkaz
-- `\begin{uzky@text} ... \end{uzky@text}`: Prostředí pro vložení úzkého textu
-- `\ThesisTitle`: Příkaz pro vytvoření titulní strany
-- `\Assignment`: Příkaz pro vložení stránky se zadáním
-- `\TULfem`: Příkaz pro označení ženského rodu v češtině
-- `\TULpraceCZ`: Název práce malými písmeny (česky)
-- `\DeclarationCZ`: Prohlášení autora v českém jazyce
-- `\ThesisType@EN`: Typ práce malými písmeny (anglicky)
-- `\DeclarationEN`: Prohlášení autora v anglickém jazyce
-- `\Declaration`: Příkaz pro vložení prohlášení (automaticky v závislosti na jazyce)
-- `\ThesisStart`: Příkaz pro zahájení práce
-- `\begin{abstractCZ} ...`: Prostředí pro vložení abstraktu v češtině
-- `\begin{abstractEN} ...`: Prostředí pro vložení abstraktu v angličtině
-- `\begin{keywordsCZ} ...`: Prostředí pro vložení klíčových slov v češtině
-- `\begin{keywordsEN} ...`: Prostředí pro vložení klíčových slov v angličtině
-- `\begin{acknowledgement} ...`: Prostředí pro vložení poděkování
-- `\begin{abbreviations} ...`: Prostředí pro vložení seznamu zkratek
-- `\TULthesisTOC`: Předdefinovaný obsah
+**Příkazy a prostředí třídy `tulthesis.cls`:**
+
+- `\TULthesisType{<cz>}{<en>}`: Ruční nastavení textu typu práce (pokud nevyhovují předdefinované).
+- `\TULtitle{<cz>}{<en>}`: Nastavení názvu práce v češtině a angličtině.
+- `\TULauthor{<jméno>}`: Nastavení jména autora.
+- `\TULsupervisor{<jméno>}`: Nastavení jména vedoucího práce.
+- `\TULconsultant{<jméno>}`: Přidání konzultanta (lze použít opakovaně).
+- `\TULprogramme{<kód>}{<cz>}{<en>}`: Nastavení studijního programu (kód + názvy).
+- `\TULbranch{<kód>}{<cz>}{<en>}`: Nastavení studijního oboru (kód + názvy, lze použít opakovaně).
+- `\TULyear{<rok>}`: Nastavení roku odevzdání (výchozí je aktuální kalendářní rok).
+- `\TULid{<číslo>}`: Nastavení ID práce.
+- `\ThesisTitle{<CZ|EN>}`: Vygeneruje samostatnou titulní stranu v daném jazyce.
+- `\Assignment`: Vloží list s instrukcí pro nahrazení zadáním (neplatí pro Hab/Teze/Autoref).
+- `\Declaration{<male|female>}`: Vloží prohlášení autora se správným rodováním (jazyk dle nastavení dokumentu).
+- `\ThesisStart{<male|female|soubor.pdf>}`: Hlavní příkaz pro úvod práce. Buď vygeneruje kompletní úvodní stránky (titulka, zadání, prohlášení) pro zadaný rod, nebo vloží již hotové PDF.
+- `\TULthesisTOC`: Vygeneruje obsah a nastaví číslování stránek.
+- `\begin{abstractCZ}[<wide|narrow>] ...`: Prostředí pro český abstrakt (volitelně široký/úzký).
+- `\begin{abstractEN}[<wide|narrow>] ...`: Prostředí pro anglický abstrakt.
+- `\begin{keywordsCZ}[<wide|narrow>] ...`: Prostředí pro česká klíčová slova.
+- `\begin{keywordsEN}[<wide|narrow>] ...`: Prostředí pro anglická klíčová slova.
+- `\begin{acknowledgement}[<wide|narrow>] ...`: Prostředí pro poděkování.
 
 #### Třída tularticle
 
-**Dostupné možnosti nastavení (`tularticle`):**
+**Možnosti nastavení specifické pro třídu `tularticle`:**
 
-- `EN` – Dokument je přepnut do anglického jazyka.
-- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Je nastaven styl dokumentu podle fakulty.
-- `bwtitles` – Barevné nadpisy jsou vypnuty.
-- `bw` – Všechny barevné prvky jsou vypnuty, aktivován je černobílý režim.
-- `fonts` – Budou používány lokálně uložené fonty TUL.
-- `sfbody` – V těle dokumentu bude použit bezpatkový font.
-- `sfheadings` – V nadpisech bude použit bezpatkový font.
-- `numbering` – Nadpisy budou číslovány.
-- `nonumbering` – Číslování nadpisů bude vypnuto (pro jistotu dvakrát).
-- `margins` – Text bude odsazen zleva/zprava, a to i pro jednostranný tisk.
+- `nopdf` – Metadata PDF souboru budou deaktivována a podmíněně nebude načten balík `hyperref`.
+- *(Ostatní volby jako `EN`, `FM`...`CXI`, `bw`, `margins`, `numbering` apod. jsou předávány balíku `tul`)*
 
-**Další příkazy třídy `tularticle.cls`:**
+Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.md](./OPTIONS.md)
 
-- `nopdf`: Deaktivuje metadata PDF souboru a podmíněně nenačítá balík `hyperref`
-- `\TULarticleTOC`: Předdefinovaný obsah
-- `\noTULheader`: Vypne výchozí záhlaví TUL
+**Příkazy a prostředí třídy `tularticle.cls`:**
+
+- `\TULarticleTOC`: Vygeneruje obsah na samostatné stránce bez čísla stránky.
+- `\noTULheader`: Příkaz pro vypnutí grafického záhlaví (třída jej volá automaticky jako výchozí stav).
+- `\uv{<text>}`: Pomocný příkaz pro sazbu českých uvozovek.
 
 ### Jak začít
 
@@ -170,7 +142,11 @@ V repositáři jsou dále i ukázkové dokumenty uvnitř složky `example/`:
 
 Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a použití tříd **tulthesis** a **tularticle**.
 
-> Poznámka k literatuře: Šablony počítají s použitím `biblatex` (backend `biber`), ale balík/třídy ho záměrně nenačítají natvrdo, aby si uživatel mohl zvolit vlastní styl citací a další volby.  
+> **POZOR:** Soubory ve složce `example/` používají relativní cesty k souborům z root directory (např. `tulpackage/...`, obrázky apod.).  
+> Pokud je spustíte přímo z `example/`, překlad může selhat s chybou „file not found“.  
+> Doporučení: kompilujte je **z root directory repozitáře** a pouze pokud opravdu musíte.
+
+> **POZNÁMKA:** Šablony počítají s použitím `biblatex` (backend `biber`), ale balík/třídy ho záměrně nenačítají natvrdo, aby si uživatel mohl zvolit vlastní styl citací a další volby.  
 > Pokud chcete literaturu, přidejte si do preambule svého `.tex` souboru např.:
 > ```latex
 > \usepackage[backend=biber]{biblatex}
@@ -225,7 +201,7 @@ The project builds on the original `tulthesis v2.1` package (FM TUL), but focuse
 it means relying on more packages and defaults.
 > **Important:** Documentation is currently primarily in Czech; English guides do not exist yet.
 
-## What this repo contains
+## What this Repo Contains
 
 - **Package `tul` (`tul.sty`)**: the main style package. Defines colors, logos, headings, headers/footers, 
   configuration options, and formatting rules.
@@ -233,7 +209,7 @@ it means relying on more packages and defaults.
 - **Class `tularticle` (`tularticle.cls`)**: a class for general documents/articles in the TUL style, 
   with a simpler start (minimal preamble work).
 
-## Installation and usage
+## Installation and Usage
 
 ### Overleaf
 
@@ -251,10 +227,10 @@ As an example, below is a thesis setup for the Faculty of Mechatronics, in Engli
 predefined margins, and section numbering:
 
 ```latex
-\documentclass[FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
+\documentclass[a4paper,12pt,FM,EN,twoside,margins,numbering]{tulpackage/tulthesis}
 ```
 
-### Local LaTeX distribution (TeXworks, TeXstudio, Zed Editor, VS Code)
+### Local LaTeX Distribution (TeXworks, TeXstudio, Zed Editor, VS Code)
 
 This package requires compilation using **XeLaTeX or LuaLaTeX** (pdfLaTeX is not supported).  
 On Windows, I recommend **MiKTeX** with XeLaTeX support: https://miktex.org/download 
@@ -263,7 +239,7 @@ On Windows, I recommend **MiKTeX** with XeLaTeX support: https://miktex.org/down
 Setup steps for desktop editors (currently tailored to Zed; VS Code should work similarly) 
 are described in [SETUP.md](./SETUP.md).
 
-#### Required packages (shared for `tul`, `tulthesis`, and `tularticle`)
+#### Required Packages (Shared for `tul`, `tulthesis`, and `tularticle`)
 Imports are centralized in `tulpackage/modules/packages.tex`.
 
 | Package       | Description                                        |
@@ -292,75 +268,53 @@ Imports are centralized in `tulpackage/modules/packages.tex`.
 | `tocloft`     | TOC / list of figures / list of tables formatting  |
 | `xcolor`      | Color definition and usage                         |
 
-#### tulthesis class
+#### The Tulthesis Class
 
-**Available options (`tulthesis`):**
+**Options Specific to the `tulthesis` Class:**
 
 - `article` – Switch the base class to `article` (default is `report`).
-- `EN` – Switch the document to English.
-- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the thesis/work type (Bachelor, Master, Dissertation, Habilitation, Thesis, Autoref, Project…).
-- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Set the faculty/institute styling.
-- `bwtitles` – Disable colored headings.
-- `bw` – Full black & white mode.
-- `fonts` – Use the bundled TUL fonts.
-- `sfbody` – Use a sans-serif font for the body.
-- `sfheadings` – Use a sans-serif font in headings.
+- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the thesis/work type.
 - `nopdf` – Disable PDF metadata and conditionally skip loading `hyperref`.
+- *(Other options like `EN`, `FM`...`CXI`, `bw`, etc. are handled by the `tul` package)*
 
-**Special commands in `tulthesis.cls`:**
+See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
 
-- `\TUL@baseclass`: Macro storing the name of the base class
-- `\TUL@levelCZ`, `\TUL@levelEN`: Work type label in Czech/English
-- `\TUL@kat`: Work type shorthand (e.g. BP)
-- `\TULpraceou`, `\TULpracee`: Declension helpers for the work title
-- `\TULpracerod`: Switch for determining the gender of the work title
-- `\TULthesisType`: Command for setting the work type
-- `\TUL@nazevCZ`, `\TUL@nazevEN`: Macros for the thesis title in Czech/English
-- `\TULtitle`: Command for setting the thesis title
-- `\TUL@autor`: Macro for the author's name
-- `\TULauthor`: Command for setting the author's name
-- `\TUL@vedouci`: Macro for the supervisor's name
-- `\TULsupervisor`: Command for setting the supervisor's name
-- `\TULconsultant`: Command for adding a consultant
-- `\TUL@programCZ`, `\TUL@programEN`: Macros for the study program
-- `\TULprogramme`: Command for setting the study program
-- `\TULbranch`: Command for setting the field of study
-- `\TUL@rok`: Macro for the submission year
-- `\TULyear`: Command for setting the submission year
-- `\TULid`: Command for setting the thesis ID
-- `\@ddel`: Helper command
-- `\begin{uzky@text} ... \end{uzky@text}`: Environment for narrow text blocks
-- `\ThesisTitle`: Command for creating the title page
-- `\Assignment`: Command for inserting the assignment page
-- `\TULfem`: Command for selecting feminine gender in Czech
-- `\TULpraceCZ`: Thesis/work title in lowercase (Czech)
-- `\DeclarationCZ`: Author declaration in Czech
-- `\ThesisType@EN`: Work type in lowercase (English)
-- `\DeclarationEN`: Author declaration in English
-- `\Declaration`: Insert the declaration (automatic depending on language)
-- `\ThesisStart`: Start the thesis (front matter)
-- `\begin{abstractCZ} ...`: Czech abstract environment
-- `\begin{abstractEN} ...`: English abstract environment
-- `\begin{keywordsCZ} ...`: Czech keywords environment
-- `\begin{keywordsEN} ...`: English keywords environment
-- `\begin{acknowledgement} ...`: Acknowledgement environment
-- `\begin{abbreviations} ...`: Abbreviations environment
-- `\TULthesisTOC`: Predefined TOC
+**Commands and environments in `tulthesis.cls`:**
 
-#### tularticle class
+- `\TULthesisType{<cz>}{<en>}`: Manually set the work type texts.
+- `\TULtitle{<cz>}{<en>}`: Set the thesis title in Czech and English.
+- `\TULauthor{<name>}`: Set the author's name.
+- `\TULsupervisor{<name>}`: Set the supervisor's name.
+- `\TULconsultant{<name>}`: Add a consultant (can be used multiple times).
+- `\TULprogramme{<code>}{<cz>}{<en>}`: Set the study program details.
+- `\TULbranch{<code>}{<cz>}{<en>}`: Set the field of study details (can be used multiple times).
+- `\TULyear{<year>}`: Set the submission year (defaults to current year).
+- `\TULid{<number>}`: Set the thesis ID.
+- `\ThesisTitle{<CZ|EN>}`: Generates the title page in the specified language.
+- `\Assignment`: Inserts a placeholder page for the official assignment.
+- `\Declaration{<male|female>}`: Inserts the author's declaration (language matches document settings).
+- `\ThesisStart{<male|female|file.pdf>}`: Main start command. Either generates front matter (title, assignment, declaration) for the given gender, or includes a pre-generated PDF file.
+- `\TULthesisTOC`: Generates the Table of Contents and sets pagination.
+- `\begin{abstractCZ}[<wide|narrow>] ...`: Czech abstract environment (optional width).
+- `\begin{abstractEN}[<wide|narrow>] ...`: English abstract environment.
+- `\begin{keywordsCZ}[<wide|narrow>] ...`: Czech keywords environment.
+- `\begin{keywordsEN}[<wide|narrow>] ...`: English keywords environment.
+- `\begin{acknowledgement}[<wide|narrow>] ...`: Acknowledgement environment.
 
-**Available options (`tularticle`):**
+#### The Tularticle Class
 
-- `EN` – Switches the document to English.
-- `FS`, `FT`, `FP`, `EF`, `FA`, `FM`, `FZS`, `UZS`, `CXI` – Sets the faculty/institute styling.
-- `bwtitles` – Disables colored headings.
-- `bw` – Full black & white mode.
-- `fonts` – Uses the bundled TUL fonts.
-- `sfbody` – Uses a sans-serif font in the body.
-- `sfheadings` – Uses a sans-serif font in headings.
-- `numbering` – Enables section numbering.
-- `nonumbering` – Disables section numbering (double precaution).
-- `margins` – Applies TUL-like margins (also for single-sided printing).
+**Options Specific to the `tularticle` Class:**
+
+- `nopdf` – Disable PDF metadata and conditionally skip loading `hyperref`.
+- *(Other options like `EN`, `FM`...`CXI`, `bw`, `margins`, `numbering`, etc. are handled by the `tul` package)*
+
+See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
+
+**Commands and environments in `tularticle.cls`:**
+
+- `\TULarticleTOC`: Generates the Table of Contents on a separate page without a page number.
+- `\noTULheader`: Disables the graphic header (the class calls this automatically by default).
+- `\uv{<text>}`: Helper command for typesetting Czech-style quotes.
 
 **Additional commands in `tularticle.cls`:**
 
@@ -368,7 +322,7 @@ Imports are centralized in `tulpackage/modules/packages.tex`.
 - `\TULarticleTOC`: Predefined TOC
 - `\noTULheader`: Disables the default TUL header
 
-### Getting started
+### Getting Started
 
 In the root directory, you can find `thesis-template.tex` and `article-template.tex`.
 These are blank templates you can copy/rename and start working with immediately.
@@ -382,7 +336,11 @@ Additionally, the repository contains example documents in the `example/` direct
 
 You can use the files above as inspiration for configuring and using **tulthesis** and **tularticle**.
 
-> Note on references: The templates assume `biblatex` (with the `biber` backend), but the package/classes intentionally do not load it automatically, so users can choose their own citation style and options.  
+> **WARNING:** Files in the `example/` directory use relative paths that assume the repository root as the working directory (e.g., `tulpackage/...`, images, etc.).  
+> If you compile them directly from `example/`, compilation may fail with a “file not found” error.  
+> Recommendation: compile them **from the repository root** (and only deviate from that if you absolutely have to).
+
+> **NOTE:** The templates assume `biblatex` (with the `biber` backend), but the package/classes intentionally do not load it automatically, so users can choose their own citation style and options.  
 > If you want a bibliography, add e.g.:
 > ```latex
 > \usepackage[backend=biber]{biblatex}
@@ -390,7 +348,7 @@ You can use the files above as inspiration for configuring and using **tulthesis
 > ```
 > and compile using **biber** (Overleaf supports this; locally you need biber installed and enabled in your toolchain).
 
-## Customization options
+## Customization Options
 
 The `tulpackage-for-latex` package provides multiple ways to customize document appearance.
 
