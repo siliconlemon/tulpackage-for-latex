@@ -498,7 +498,8 @@
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endabstractCZ}{\par}}
     {\begin{uzky@text}\renewcommand{\endabstractCZ}{\end{uzky@text}}}
-    \chapter*{\TUL@nazevCZ}\section*{Abstrakt}
+    % ADDED \thispagestyle{empty} below
+    \chapter*{\TUL@nazevCZ}\thispagestyle{empty}\section*{Abstrakt}
     \vspace{0.8em}
 }{}
 
@@ -507,7 +508,8 @@
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endabstractEN}{\par}}
     {\begin{uzky@text}\renewcommand{\endabstractEN}{\end{uzky@text}}}
-    \chapter*{\TUL@nazevEN}\section*{Abstract}
+    % ADDED \thispagestyle{empty} below
+    \chapter*{\TUL@nazevEN}\thispagestyle{empty}\section*{Abstract}
     \vspace{0.8em}
 }{}
 
@@ -534,8 +536,8 @@
     {\renewcommand{\endacknowledgement}{\clearpage}}
     {\begin{uzky@text}\renewcommand{\endacknowledgement}{\end{uzky@text}\clearpage}}
     \ifthenelse{\equal{\TUL@nguage}{EN}}
-    {\vspace{2em}\chapter*{Acknowledgements}\vspace{0.6em}}
-    {\vspace{2em}\chapter*{Poděkování}\vspace{0.6em}}
+    {\vspace{2em}\chapter*{Acknowledgements}\thispagestyle{empty}\vspace{0.6em}}
+    {\vspace{2em}\chapter*{Poděkování}\thispagestyle{empty}\vspace{0.6em}}
 }{}
 
 % ==========================================================================
