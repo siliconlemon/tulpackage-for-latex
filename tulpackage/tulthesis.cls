@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{./tulpackage/tulthesis}[2026/01/21 v3.0.0]
+\ProvidesClass{./tulpackage/tulthesis}[2026/01/24 v3.0.0]
 % Licence: CC BY
 
 % ==========================================================================
@@ -22,6 +22,7 @@
 % 2. Možnosti (Options)
 % ==========================================================================
 
+% Základní když/pak vazby (přednačtení)
 \RequirePackage{ifthen}%
 
 % --- Základní třída ---
@@ -544,13 +545,75 @@
 % 9. Obsah a Seznamy
 % ==========================================================================
 
-\newcommand{\TULthesisTOC}{%
-    \tableofcontents
-    \pagestyle{plain}
-    \clearpage
-}
+% Balík pro flexibilní seznamy/obsahy
+\RequirePackage{etoc}
 
 % Formátování nadpisů
 \titleformat{\chapter}
 {\normalfont\color{\titlecolor}\TUL@headfnt\LARGE\raggedright}
 {\thechapter}{1em}{}
+
+% Příkaz pro skrytí individuálních příloh, pokud je definovaný seznam příloh (interní)
+\newcommand{\TUL@HideAppendicies}{}
+
+% Příkaz definující hlavní obsah
+\newcommand{\TULthesisTOC}{%
+    \etocdepthtag.toc{TOC}%
+    \etocsettagdepth{TOC}{subsection}%
+    \etocsettagdepth{LOA}{subsection}%
+    % Mechanismus skrytí individuálních příloh, pokud je definovaný seznam příloh (interní)
+    \def\TUL@HideAppendicies{\etocsettagdepth{LOA}{none}}%
+    \etocsettocstyle{\chapter*{\contentsname}}{}%
+    \tableofcontents
+    \pagestyle{plain}
+    \clearpage
+}
+
+% Definice přepínače pro prostředí s přílohami
+\newif\if@inTULappendix
+
+% Prostředí pro přílohy v rámci práce
+\newenvironment{TULthesisAppendix}{%
+    \cleardoublepage%
+    \phantomsection%
+    \@inTULappendixtrue%
+    \appendix%
+    \etocdepthtag.toc{LOA}%
+}{%
+    % Konec prostředí
+}
+
+% Příkaz generující seznam příloh (LOA = List of Appendicies)
+\newcommand{\TULthesisLOA}{%
+    \if@inTULappendix
+        \phantomsection%
+        % Přepnutí tagu pro zápis do TOC (hlavního obsahu)
+        \etocdepthtag.toc{TOC}%
+        % Zápis do obsahu
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {\addcontentsline{toc}{chapter}{List of Appendices}}
+        {\addcontentsline{toc}{chapter}{Seznam příloh}}
+        % Aktivace mechanismu pro skrytí individuálních příloh v hlavním obsahu
+        \addtocontents{toc}{\protect\TUL@HideAppendicies}%
+        % Přechod do seznamu příloh pomocí tagu
+        \etocdepthtag.toc{LOA}%
+        % Nadpis na stránce
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {\chapter*{List of Appendices}}
+        {\chapter*{Seznam příloh}}
+        % Nastavení viditelnosti pro tag LOA
+        \etocsettagdepth{TOC}{none}%
+        \etocsettagdepth{LOA}{subsection}%
+        % Anulování funkcionality skrývající individuální přílohy v hlavním obsahu
+        \def\TUL@HideAppendicies{}%
+        % Styl bez nadpisu - nadpis byl definován ručně
+        \etocsettocstyle{}{}%
+        \tableofcontents
+    \else
+        \ClassError{tulthesis}{%
+            Command \protect\TULthesisLOA\space used outside the TULthesisAppendix environment.%
+        }{%
+            This command can only be used when wrapped with TULthesisAppendix.%
+        }%
+    \fi
+}

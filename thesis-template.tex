@@ -154,7 +154,7 @@ text závěru
 \cleardoublepage%
 
 % ==========================================================================
-% LITERATURA + PŘÍLOHY
+% BIBLIOGRAFIE
 % ==========================================================================
 
 \chapter*{Seznam použité literatury}
@@ -163,23 +163,26 @@ text seznamu použité literatury
 
 \cleardoublepage%
 
-\chapter*{Seznam příloh}
-\addcontentsline{toc}{chapter}{Seznam příloh}
-text seznamu příloh
+% ==========================================================================
+% PŘÍLOHY
+% ==========================================================================
+
+\begin{TULthesisAppendix}
+
+% LOA = list of appendicies (seznam příloh)
+\TULthesisLOA%
+
+\chapter{Název první přílohy}
+text první přílohy
+
+\section{Sekce v příloze}
+detailní text
 
 \cleardoublepage%
 
-\appendix
+\chapter{Název druhé přílohy}
+text druhé přílohy
 
-\chapter{Název přílohy}
-text přílohy a
-
-\section{Dílčí část přílohy}
-text dílčí části přílohy
-
-\cleardoublepage%
-
-\chapter{Název přílohy}
-text přílohy b
+\end{TULthesisAppendix}
 
 \end{document}

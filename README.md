@@ -1,6 +1,5 @@
 <a name="czech"></a>
-
-# tulpackage-for-latex
+# tulpackage-for-latex (CS)
 
 [English version below](#english)
 
@@ -90,6 +89,9 @@ Importy jsou centralizované v souboru `tulpackage/modules/packages.tex`.
 
 Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.md](./OPTIONS.md)
 
+**Balíky specifické pro třídu `tulthesis`:**
+- `etoc`: Pokročilejší balík pro generování více než jednoho obsahu (hlavní obsah a seznam příloh).
+
 **Příkazy a prostředí třídy `tulthesis.cls`:**
 
 - `\TULthesisType{<cz>}{<en>}`: Ruční nastavení textu typu práce (pokud nevyhovují předdefinované).
@@ -106,11 +108,13 @@ Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.
 - `\Declaration{<male|female>}`: Vloží prohlášení autora se správným rodováním (jazyk dle nastavení dokumentu).
 - `\ThesisStart{<male|female|soubor.pdf>}`: Hlavní příkaz pro úvod práce. Buď vygeneruje kompletní úvodní stránky (titulka, zadání, prohlášení) pro zadaný rod, nebo vloží již hotové PDF.
 - `\TULthesisTOC`: Vygeneruje obsah a nastaví číslování stránek.
+- `\TULthesisLOA`: Vygeneruje seznam příloh (List of Appendices). Příkaz musí být použit uvnitř prostředí `TULthesisAppendix`. Pokud je použit, jednotlivé přílohy se skryjí v hlavním obsahu.
 - `\begin{abstractCZ}[<wide|narrow>] ...`: Prostředí pro český abstrakt (volitelně široký/úzký).
 - `\begin{abstractEN}[<wide|narrow>] ...`: Prostředí pro anglický abstrakt.
 - `\begin{keywordsCZ}[<wide|narrow>] ...`: Prostředí pro česká klíčová slova.
 - `\begin{keywordsEN}[<wide|narrow>] ...`: Prostředí pro anglická klíčová slova.
 - `\begin{acknowledgement}[<wide|narrow>] ...`: Prostředí pro poděkování.
+- `\begin{TULthesisAppendix} ...`: Prostředí pro vložení příloh. Odděluje přílohy od hlavního obsahu a mění jejich formátování v obsahu.
 
 #### Třída tularticle
 
@@ -188,8 +192,7 @@ ale stále funguje v duchu stejných designových principů.
 
 
 <a name="english"></a>
-
-# tulpackage-for-latex (en)
+# tulpackage-for-latex (EN)
 
 [Česká verze výše](#czech)
 
@@ -273,33 +276,38 @@ Imports are centralized in `tulpackage/modules/packages.tex`.
 **Options Specific to the `tulthesis` Class:**
 
 - `article` – Switch the base class to `article` (default is `report`).
-- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the thesis/work type.
+- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the work type (Bachelor, Master, Dissertation, Habilitation, Dissertation Draft, Dissertation Summary, Project, Semestral Work).
 - `nopdf` – Disable PDF metadata and conditionally skip loading `hyperref`.
 - *(Other options like `EN`, `FM`...`CXI`, `bw`, etc. are handled by the `tul` package)*
 
 See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
 
+**Packages specific to the `tulthesis` class:**
+- `etoc`: Advanced package for generating more than one table of contents (main TOC and List of Appendices).
+
 **Commands and environments in `tulthesis.cls`:**
 
-- `\TULthesisType{<cz>}{<en>}`: Manually set the work type texts.
+- `\TULthesisType{<cz>}{<en>}`: Manually set the work type texts (if predefined ones don't suit).
 - `\TULtitle{<cz>}{<en>}`: Set the thesis title in Czech and English.
 - `\TULauthor{<name>}`: Set the author's name.
 - `\TULsupervisor{<name>}`: Set the supervisor's name.
 - `\TULconsultant{<name>}`: Add a consultant (can be used multiple times).
-- `\TULprogramme{<code>}{<cz>}{<en>}`: Set the study program details.
-- `\TULbranch{<code>}{<cz>}{<en>}`: Set the field of study details (can be used multiple times).
-- `\TULyear{<year>}`: Set the submission year (defaults to current year).
+- `\TULprogramme{<code>}{<cz>}{<en>}`: Set the study program details (code + names).
+- `\TULbranch{<code>}{<cz>}{<en>}`: Set the field of study details (code + names, can be used multiple times).
+- `\TULyear{<year>}`: Set the submission year (defaults to current calendar year).
 - `\TULid{<number>}`: Set the thesis ID.
-- `\ThesisTitle{<CZ|EN>}`: Generates the title page in the specified language.
-- `\Assignment`: Inserts a placeholder page for the official assignment.
-- `\Declaration{<male|female>}`: Inserts the author's declaration (language matches document settings).
-- `\ThesisStart{<male|female|file.pdf>}`: Main start command. Either generates front matter (title, assignment, declaration) for the given gender, or includes a pre-generated PDF file.
+- `\ThesisTitle{<CZ|EN>}`: Generates the separate title page in the specified language.
+- `\Assignment`: Inserts a placeholder page for the official assignment (not applicable for Hab/Teze/Autoref).
+- `\Declaration{<male|female>}`: Inserts the author's declaration with correct gender wording (language according to document settings).
+- `\ThesisStart{<male|female|file.pdf>}`: Main start command. Either generates complete front matter (title, assignment, declaration) for the given gender, or inserts a ready-made PDF.
 - `\TULthesisTOC`: Generates the Table of Contents and sets pagination.
-- `\begin{abstractCZ}[<wide|narrow>] ...`: Czech abstract environment (optional width).
-- `\begin{abstractEN}[<wide|narrow>] ...`: English abstract environment.
-- `\begin{keywordsCZ}[<wide|narrow>] ...`: Czech keywords environment.
-- `\begin{keywordsEN}[<wide|narrow>] ...`: English keywords environment.
-- `\begin{acknowledgement}[<wide|narrow>] ...`: Acknowledgement environment.
+- `\TULthesisLOA`: Generates the List of Appendices. The command must be used inside the `TULthesisAppendix` environment. If used, individual appendices are hidden from the main table of contents.
+- `\begin{abstractCZ}[<wide|narrow>] ...`: An environment for Czech abstract (optionally wide/narrow).
+- `\begin{abstractEN}[<wide|narrow>] ...`: An environment for English abstract.
+- `\begin{keywordsCZ}[<wide|narrow>] ...`: An environment for Czech keywords.
+- `\begin{keywordsEN}[<wide|narrow>] ...`: An environment for English keywords.
+- `\begin{acknowledgement}[<wide|narrow>] ...`: An environment for acknowledgements.
+- `\begin{TULthesisAppendix} ...`: An environment for inserting appendices. Separates appendices from the main content and changes their formatting in the table of contents.
 
 #### The Tularticle Class
 
