@@ -67,6 +67,9 @@
 % ==========================================================================
 
 \AtBeginDocument{%
+    \ifthenelse{\boolean{TUL@italiccaps}}{%
+        \captionsetup{font={it}}%
+    }{}%
     \ifthenelse{\boolean{TUL@figcapsleft}}{%
         \captionsetup[figure]{justification=raggedright,singlelinecheck=false}%
     }{%
@@ -277,6 +280,7 @@
     }%
     \ifthenelse{\boolean{TUL@lstcapsleft}}{%
         {\raggedright\noindent%
+            \ifthenelse{\boolean{TUL@italiccaps}}{\itshape}{}% % chktex 6
             \ifthenelse{\boolean{TUL@nocapnumbers}}{%
                 #1%
             }{%
@@ -285,6 +289,7 @@
         \par}%
     }{%
         {\centering%
+            \ifthenelse{\boolean{TUL@italiccaps}}{\itshape}{}% % chktex 6
             \ifthenelse{\boolean{TUL@nocapnumbers}}{%
                 #1%
             }{%
