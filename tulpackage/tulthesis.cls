@@ -159,7 +159,7 @@
 
 % Hyperref (pokud není vypnut)
 \ifTUL@pdf
-    \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}%
+    \hypersetup{colorlinks=true, linkcolor=\tulcolor, urlcolor=\tulcolor, citecolor=\tulcolor}%
 \fi
 
 % Pomocné
