@@ -82,6 +82,7 @@ Importy jsou centralizované v souboru `tulpackage/modules/packages.tex`.
 
 **Možnosti nastavení specifické pro třídu `tulthesis`:**
 
+- `longappendices` – Formát nadpisu příloh je změněn na "Příloha A" (místo výchozího "A").
 - `article` – Základní třída je přepnuta na `article` (výchozí je `report`).
 - `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Je nastaven typ práce (BP, DP, Disertační, Habilitační, Teze, Autoreferát, Projekt, Seminárka).
 - `nopdf` – Metadata PDF souboru budou deaktivována a podmíněně nebude načten balík `hyperref`.
@@ -116,6 +117,8 @@ Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.
 - `\begin{acknowledgement}[<wide|narrow>] ...`: Prostředí pro poděkování.
 - `\begin{TULthesisAppendix} ...`: Prostředí pro vložení příloh. Odděluje přílohy od hlavního obsahu a mění jejich formátování v obsahu.
 
+Další příkazy a prostředí pocházející z hlavního balíku najdete v souboru [COMMANDS.md](./COMMANDS.md)
+
 #### Třída tularticle
 
 **Možnosti nastavení specifické pro třídu `tularticle`:**
@@ -130,6 +133,8 @@ Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.
 - `\TULarticleTOC`: Vygeneruje obsah na samostatné stránce bez čísla stránky.
 - `\noTULheader`: Příkaz pro vypnutí grafického záhlaví (třída jej volá automaticky jako výchozí stav).
 - `\uv{<text>}`: Pomocný příkaz pro sazbu českých uvozovek.
+
+Další příkazy a prostředí pocházející z hlavního balíku najdete v souboru [COMMANDS.md](./COMMANDS.md)
 
 ### Jak začít
 
@@ -184,12 +189,14 @@ k výsledkům, které respektují školní guidelines ohledně vzhledu dokument�
 `tulpackage-for-latex` je šířen pod licencí Creative Commons Attribution (CC BY). 
 Podrobnosti jsou uvedeny v souboru [LICENSE](./LICENSE).
 
-## Zásluhy (původní šablona)
+## Zvláštní zásluhy
 
-Repo `tulpackage-for-latex` navazuje na původní šablonu `tulthesis v2.1` (autor: doc. RNDr. Pavel Satrapa, Ph.D.), 
+Repo `tulpackage-for-latex` navazuje na původní šablonu `tulthesis v2.1` 
+(autor: doc. RNDr. Pavel Satrapa, Ph.D.), 
 na které byly postavené první verze tohoto projektu. V současnosti se projekt originálu příliš nepodobá, 
 ale stále funguje v duchu stejných designových principů.
 
+---
 
 <a name="english"></a>
 # tulpackage-for-latex (EN)
@@ -275,8 +282,9 @@ Imports are centralized in `tulpackage/modules/packages.tex`.
 
 **Options Specific to the `tulthesis` Class:**
 
+- `longappendices` – Changes the appendix heading format to "Appendix A" (instead of default "A").
 - `article` – Switch the base class to `article` (default is `report`).
-- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the work type (Bachelor, Master, Dissertation, Habilitation, Dissertation Draft, Dissertation Summary, Project, Semestral Work).
+- `BP`, `DP`, `Dis`, `Hab`, `Teze`, `Autoref`, `Proj`, `SP` – Set the work type (Bachelor, Master, Dissertation, Habilitation, Thesis Proposal, Dissertation Summary, Project, Semestral Work).
 - `nopdf` – Disable PDF metadata and conditionally skip loading `hyperref`.
 - *(Other options like `EN`, `FM`...`CXI`, `bw`, etc. are handled by the `tul` package)*
 
@@ -309,6 +317,8 @@ See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
 - `\begin{acknowledgement}[<wide|narrow>] ...`: An environment for acknowledgements.
 - `\begin{TULthesisAppendix} ...`: An environment for inserting appendices. Separates appendices from the main content and changes their formatting in the table of contents.
 
+Further commands and environments from the main package can be found in the file [COMMANDS.md](./COMMANDS.md).
+
 #### The Tularticle Class
 
 **Options Specific to the `tularticle` Class:**
@@ -322,13 +332,9 @@ See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
 
 - `\TULarticleTOC`: Generates the Table of Contents on a separate page without a page number.
 - `\noTULheader`: Disables the graphic header (the class calls this automatically by default).
-- `\uv{<text>}`: Helper command for typesetting Czech-style quotes.
+- `\uv{<text>}`: Helper command for typesetting Czech-style quotes (not recommended in english).
 
-**Additional commands in `tularticle.cls`:**
-
-- `nopdf`: Disables PDF metadata and conditionally does not load `hyperref`
-- `\TULarticleTOC`: Predefined TOC
-- `\noTULheader`: Disables the default TUL header
+Further commands and environments from the main package can be found in the file [COMMANDS.md](./COMMANDS.md).
 
 ### Getting Started
 
@@ -379,7 +385,7 @@ can be configured (in a minimal way). Unlike the original **v2.1** template, ver
 `tulpackage-for-latex` is distributed under the Creative Commons Attribution (CC BY) license. 
 Details are available in [LICENSE](./LICENSE).
 
-## Special credit (original template)
+## Special Credit
 
 The `tulpackage-for-latex` repo builds on the original `tulthesis v2.1` template 
 (author: doc. RNDr. Pavel Satrapa, Ph.D.), which served as the foundation for the first versions of this project. 

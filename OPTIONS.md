@@ -1,4 +1,4 @@
-# Možnosti balíčku TUL (Options)
+# Možnosti balíku TUL (CS)
 
 Tento dokument popisuje všechny dostupné volby (options), které lze použít 
 při načítání tříd **tulthesis** a **tularticle**.
@@ -7,8 +7,6 @@ při načítání tříd **tulthesis** a **tularticle**.
 ```latex
 \documentclass[FM, EN, twoside, margins, numbering]{tulpackage/tulthesis}
 ```
-
----
 
 ## 1. Výběr fakulty / ústavu
 
@@ -63,6 +61,9 @@ Tyto volby zarovnají samotný objekt (obrázek/tabulku) **doleva** a zároveň 
 - **figuresleft** – Zarovná obrázky a jejich popisky doleva.
 - **tablesleft** – Zarovná tabulky a jejich popisky doleva.
 - **listingsleft** – Zarovná popisky výpisů kódu doleva (samotný kód je vlevo vždy).
+- **everythingleft** – **Globální přepínač** pro levé zarovnání.
+    - Aktivuje zarovnání doleva pro obrázky, tabulky, rovnice i výpisy kódu.
+    - Zároveň zarovná doleva všechny popisky.
 
 ### Zarovnání pouze popisků
 
@@ -87,7 +88,105 @@ nainstalované fonty ve vašem systému).
 - **numbering** – Zapne číslování sekcí a nadpisů (1., 1.1, ...).
 - Bez této volby jsou nadpisy nečíslované (vhodné pro jednoduché články).
 
-## 7. Číslování popisků
+## 7. Vzhled a číslování popisků
 
 - **singlecapnumbers** – Průběžné číslování v celém dokumentu (Obrázek 1, Obrázek 2...) namísto číslování po kapitolách (Obrázek 1.1, 1.2...).
 - **nocapnumbers** – Skryje označení typu a čísla (např. zmizí "Obrázek 1:"), zůstane pouze samotný text popisku.
+- **italiccaptions** – Nastaví text popisků **kurzívou**.
+
+
+---
+
+# TUL Package Options (EN)
+
+This document describes all available options that can be used when loading the **tulthesis** and **tularticle** classes.
+
+**Example usage:**
+```latex
+\documentclass[FM, EN, twoside, margins, numbering]{tulpackage/tulthesis}
+```
+
+## 1. Faculty / Institute Selection
+
+Select exactly one of the following options to set the appropriate colors, logos, and contact details.
+
+- **FS** – Faculty of Mechanical Engineering
+- **FT** – Faculty of Textile Engineering
+- **FP** – Faculty of Science, Humanities and Education
+- **EF** (or **FE**) – Faculty of Economics
+- **FUA** (or **FA**) – Faculty of Art and Architecture
+- **FM** – Faculty of Mechatronics, Informatics and Interdisciplinary Studies
+- **FZS** – Faculty of Health Studies
+- **CXI** – Institute for Nanomaterials, Advanced Technologies and Innovation
+
+## 2. Language
+
+- **EN** – Switches the document to English.
+- Logos change (English variants).
+- Automatic texts change (Figure, Table, Listing).
+- The default state (without this option) is Czech.
+
+## 3. Document Modes and Printing
+
+These options affect the overall appearance and behavior during compilation.
+
+- **twoside** – Enables **double-sided printing**.
+- Sets alternating inner/outer margins.
+- Places page numbers alternately on the outer edge.
+
+- **draft** – **Draft** mode.
+- Shows black rectangles where text overflows the line (overfull hbox).
+- Speeds up compilation (often skips loading full graphics).
+
+- **print** – Mode for **color printing**.
+- Keeps colored logos and images.
+- **Forces black links** in text and content (so blue hyperlinks do not appear in print).
+
+- **bw** – Full **black and white mode**.
+- Converts everything to grayscale (including logos, headings, and links).
+
+- **bwtitles** – Only **black headings**.
+- Logos remain colored, but chapter and section headings will be black (instead of the faculty color).
+
+## 4. Alignment (Figures and Tables)
+
+The default style behavior is: **Content centered, caption centered.**
+
+### Complete Alignment (Content and Caption)
+
+These options align the object itself (figure/table) **to the left** and simultaneously align its caption **to the left**.
+
+- **figuresleft** – Aligns figures and their captions to the left.
+- **tablesleft** – Aligns tables and their captions to the left.
+- **listingsleft** – Aligns code listing captions to the left (the code itself is always left-aligned).
+- **everythingleft** – **Global switch** for left alignment.
+    - Activates left alignment for figures, tables, equations, and code listings.
+    - Simultaneously aligns all captions to the left.
+
+### Alignment of Captions Only
+
+These options leave the content centered (unless an option above is active), but align the caption text ("Figure 1: ...") to the left.
+
+- **captionsleft** – Bulk option for all types (figures, tables, code).
+- **figcapsleft** – Only figure captions to the left.
+- **tabcapsleft** – Only table captions to the left.
+- **lstcapsleft** – Only code captions to the left.
+
+## 5. Fonts
+
+- **fonts** – Activates loading of official TUL fonts (may or may not require fonts installed on your system).
+- **sfbody** – Sets sans-serif font for the main text (document body).
+- **sfheadings** – Sets sans-serif font for headings (if the *fonts* option is not selected, standard Sans Serif is used).
+
+## 6. Layout and Formatting
+
+- **margins** – Applies defined page margins according to the TUL standard (recommended).
+- **noheader** – Completely disables the page header (only the page number remains in the footer, if set).
+- **numbering** – Enables numbering of sections and headings (1., 1.1, ...).
+- Without this option, headings are unnumbered (suitable for simple articles).
+
+## 7. Caption Appearance and Numbering
+
+- **singlecapnumbers** – Continuous numbering throughout the document (Figure 1, Figure 2...) instead of numbering by chapters (Figure 1.1, 1.2...).
+- **nocapnumbers** – Hides the label and number (e.g., "Figure 1:" disappears), only the caption text remains.
+- **italiccaptions** – Sets caption text to **italics**.
