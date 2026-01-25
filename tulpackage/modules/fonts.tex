@@ -34,6 +34,18 @@
         \newcommand{\TULMainFont}{\sffamily}%
     }%
 
+    % Explicitní definice bezpatkového písma (aby \sffamily na titulní straně používalo Inter)
+    \setsansfont[%
+        Path=\fontsPath,%
+        UprightFont=Inter-Regular.otf,%
+        BoldFont=Inter-Bold.otf,%
+        ItalicFont=Inter-Italic.otf,%
+        BoldItalicFont=Inter-BoldItalic.otf,%
+        Mapping=tex-text,%
+        Script=Latin,%
+        Language=Czech%
+    ]{Inter}%
+
     % Monospace font: Noto Sans Mono
     \setmonofont[%
         Path=\fontsPath,%
