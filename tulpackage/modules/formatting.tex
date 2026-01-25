@@ -113,6 +113,24 @@
 }
 
 % ==========================================================================
+% Menší popisek pro uvádění zdrojů pod ilustracemi (Source Caption)
+% ==========================================================================
+\newcommand{\sourcecaption}[1]{%
+    \par\vspace{2pt}%
+    {%
+        \footnotesize%
+        \ifthenelse{\boolean{TUL@srccapsleft}}{%
+            \raggedright%
+        }{%
+            \centering%
+        }%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}{Source: }{Zdroj: }%
+        #1%
+        \par%
+    }%
+}%
+
+% ==========================================================================
 % Definice seznamů obrázků a tabulek
 % ==========================================================================
 

@@ -218,10 +218,12 @@
     \setboolean{TUL@figcapsleft}{true}%
     \setboolean{TUL@tabcapsleft}{true}%
     \setboolean{TUL@lstcapsleft}{true}%
+    \setboolean{TUL@srccapsleft}{true}%
 }%
 \DeclareOption{figcapsleft}{\setboolean{TUL@figcapsleft}{true}}%
 \DeclareOption{tabcapsleft}{\setboolean{TUL@tabcapsleft}{true}}%
 \DeclareOption{lstcapsleft}{\setboolean{TUL@lstcapsleft}{true}}%
+\DeclareOption{srccapsleft}{\setboolean{TUL@srccapsleft}{true}}%
 
 % Volby zarovnání plovoucích objektů doleva
 % POZNÁMKA: Pokud TRUE, zarovnávají automaticky i popisky na levou stranu
@@ -239,6 +241,17 @@
 \DeclareOption{listingsleft}{%
     \setboolean{TUL@listingsleft}{true}%
     \setboolean{TUL@lstcapsleft}{true}%
+}%
+
+% Meta volba zarovnání ÚPLNĚ VŠEHO doleva (ilustrace, popisky, zdrojové titulky)
+\DeclareOption{everythingleft}{%
+    \setboolean{TUL@figuresleft}{true}%
+    \setboolean{TUL@tablesleft}{true}%
+    \setboolean{TUL@listingsleft}{true}%
+    \setboolean{TUL@figcapsleft}{true}%
+    \setboolean{TUL@tabcapsleft}{true}%
+    \setboolean{TUL@lstcapsleft}{true}%
+    \setboolean{TUL@srccapsleft}{true}%
 }%
 
 % Číslování popisků (bez kapitol nebo vypnout)
