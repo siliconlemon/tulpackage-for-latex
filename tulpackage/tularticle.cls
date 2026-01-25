@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tulpackage/tularticle}[2026/01/24 v3.0.0]
+\ProvidesClass{tulpackage/tularticle}[2026/01/25 v3.0.0]
 % Licence: CC BY
 
 % Základní třída
