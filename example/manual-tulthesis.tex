@@ -2,10 +2,13 @@
 % Obsahuje: Příklad použití třídy tulthesis z balíku tulpackage, návod ke psaní prací
 % Tento dokument používá balíčky specifické pro XeLaTeX a lze jej přeložit pouze XeLaTeXem
 
-\documentclass[a4paper,12pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
+\documentclass[a4paper,11pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
 
 % Nastavení jazyka dokumentu na češtinu
 \setdefaultlanguage{czech}
+
+% Zvýšení řádkování pro lepší čitelnost návodu
+\linespread{1.5}
 
 % Vytvoření indexu dokumentu
 \makeindex
@@ -38,9 +41,6 @@
 \newcommand{\prikazneindex}[1]{\argument{\textbackslash{}#1}}
 \newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
 \newcommand{\polozka}[1]{\item[#1]\mbox{}\\}
-
-% Zvýšení řádkování pro lepší čitelnost návodu
-\linespread{1.3}
 
 % Deklarace pro titulní stránku
 \TULtitle{Třída tulthesis (\verze)}{tulthesis class (\verze)}
@@ -303,7 +303,7 @@ Výsledek sazby tohoto kódu bude vypadat následovně:
 
 \vspace{0em}
 \begin{figure}[H]
-    \includegraphics[width=0.65\linewidth]{pictures/Liberec-TUL-Rektorat-1.jpg}
+    \includegraphics[width=0.6\linewidth]{pictures/Liberec-TUL-Rektorat-1.jpg}
     \caption{Nový rektorát a~informační centrum}\label{fig:tul-rekt}
 \end{figure}
 
@@ -385,36 +385,34 @@ skupin:
 
 \begin{description}
     \item[Vlastní volby] určují zejména typ práce:
-
-          \begin{itemize}
-              \item \argumentindex{DP}~-- diplomová práce,
-              \item \argumentindex{BP}~-- bakalářská práce (nedělá nic, bakalářská
-                    práce je implicitní hodnotou, je zařazena jen pro~zachování symetrie voleb),
-              \item \argumentindex{Dis}~-- disertační práce,
-              \item \argumentindex{Teze}~-- teze disertační práce,
-              \item \argumentindex{Autoref}~-- autoreferát disertační práce,
-              \item \argumentindex{Hab}~-- habilitační práce,
-              \item \argumentindex{SP}~-- semestrální práce,
-              \item \argumentindex{Proj}~-- projekt.
+        \begin{itemize}
+            \setlength{\itemsep}{-5pt}
+            \item \argumentindex{DP}~-- diplomová práce
+            \item \argumentindex{BP}~-- bakalářská práce (nedělá nic, bakalářská
+                práce je implicitní hodnotou, je zařazena jen pro~zachování symetrie voleb)
+            \item \argumentindex{Dis}~-- disertační práce
+            \item \argumentindex{Teze}~-- teze disertační práce,
+            \item \argumentindex{Autoref}~-- autoreferát disertační práce
+            \item \argumentindex{Hab}~-- habilitační práce
+            \item \argumentindex{SP}~-- semestrální práce
+            \item \argumentindex{Proj}~-- projekt
           \end{itemize}
 
           Kromě~nastavení typu práce jsou k~dispozici ještě následující volby:
 
           \begin{itemize}
-
+          \setlength{\itemsep}{-5pt}
               \item \argumentindex{article}~-- použít pro~dokument základní třídu \LaTeX{}u
                     \argument{article}. Je vhodná pro~kratší dokumenty (např.~autoreferát nebo
                     teze).
-
               \item \argumentindex{report}~-- použít pro~dokument základní třídu \LaTeX{}u
                     \argument{report} (nedělá nic, toto je výchozí nastavení).
-
           \end{itemize}
 
     \item[Volby balíku \argument{tul}] jsou předány tomuto balíku. Zde uvedu jen
           ty, které mají na~vzhled práce přímý dopad:
-
           \begin{itemize}
+          \setlength{\itemsep}{-5pt}
               \item \argumentindex{FS},
                     \argumentindex{FT},
                     \argumentindex{FP},
@@ -425,20 +423,15 @@ skupin:
                     \argumentindex{CXI}~-- určují součást, na~které práce vzniká; mají dopad jednak
                     na~titulní stránku, jednak na~volbu základní barvy. Neuvedete-li žádnou volbu
                     součásti, použije se styl celé univerzity.
-
               \item \argumentindex{EN}~-- práce je v~angličtině. Projeví se na~jazyku titulní
                     stránky a~prohlášení v~\prikaz{ThesisStart}.
-
               \item \argumentindex{bw}~-- sází se černobíle, titulní stránka a~nadpisy částí
                     textu nebudou používat barvy. Lze předpokládat, že tato volba bude
                     u~absolventských prací dost obvyklá.
-
               \item \argumentindex{fonts}~-- použít písma podle vizuální identity TUL\@. Bez
                     této volby ponechá výchozí písma \LaTeX{}u.
-
               \item \argumentindex{sfheadings}~-- nadpisy nejvyšších úrovní sázet
                     bezserifovým písmem, nikoli písmem TUL Mono.
-
           \end{itemize}
 
     \item[Volby třídy \argument{report} (resp.~\argument{article})] se předají této
