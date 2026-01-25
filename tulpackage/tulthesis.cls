@@ -257,6 +257,7 @@
     \begin{center}
         \begin{minipage}{0.80\textwidth}
             \setlength{\parskip}{0.5\baselineskip}
+            \titlespacing*{\section}{0pt}{1.4em}{1.5em}
 }{%
         \end{minipage}
     \end{center}
@@ -500,41 +501,37 @@
 % ==========================================================================
 
 \newenvironment{abstractCZ}[1][narrow]{%
-    \vspace*{0.8em}
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endabstractCZ}{\par}}
     {\begin{uzky@text}\renewcommand{\endabstractCZ}{\end{uzky@text}}}
-    % ADDED \thispagestyle{empty} below
-    \chapter*{\TUL@nazevCZ}\thispagestyle{empty}\section*{Abstrakt}
-    \vspace{0.8em}
+    \section*{\LARGE\TUL@nazevCZ}
+    \thispagestyle{empty}
+    \section*{Abstrakt}
 }{}
 
 \newenvironment{abstractEN}[1][narrow]{%
-    \vspace*{0.8em}
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endabstractEN}{\par}}
     {\begin{uzky@text}\renewcommand{\endabstractEN}{\end{uzky@text}}}
-    % ADDED \thispagestyle{empty} below
-    \chapter*{\TUL@nazevEN}\thispagestyle{empty}\section*{Abstract}
-    \vspace{0.8em}
+    \section*{\LARGE\TUL@nazevEN}
+    \thispagestyle{empty}
+    \section*{Abstract}
 }{}
 
 \newenvironment{keywordsCZ}[1][narrow]{%
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endkeywordsCZ}{\par}}
     {\begin{uzky@text}\renewcommand{\endkeywordsCZ}{\end{uzky@text}}}
-    \vspace{1.0em}
+    \vspace{0.4em}
     \section*{Klíčová slova}
-    \vspace{0.8em}
 }{}
 
 \newenvironment{keywordsEN}[1][narrow]{%
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endkeywordsEN}{\par}}
     {\begin{uzky@text}\renewcommand{\endkeywordsEN}{\end{uzky@text}}}
-    \vspace{1.0em}
+    \vspace{0.4em}
     \section*{Keywords}
-    \vspace{0.8em}
 }{}
 
 \newenvironment{acknowledgement}[1][narrow]{%
