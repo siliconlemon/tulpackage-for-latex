@@ -97,8 +97,13 @@
 
 % --- PDF Metadata ---
 \newif\ifTUL@pdf
-\TUL@pdftrue
+\TUL@pdftrue%
 \DeclareOption{nopdf}{\TUL@pdffalse}
+
+% --- Dlouhé indikátory příloh ---
+\newif\ifTUL@longappendices%
+\TUL@longappendicesfalse%
+\DeclareOption{longappendices}{\TUL@longappendicestrue}
 
 % --- Ostatní volby ---
 % Všechno neznámé posíláme primárně do balíku tul (ten řeší EN, fakulty, vzhled, layout...).
@@ -554,7 +559,7 @@
 {\thechapter}{1em}{}
 
 % Příkaz pro skrytí individuálních příloh, pokud je definovaný seznam příloh (interní)
-\newcommand{\TUL@HideAppendicies}{}
+\newcommand{\TUL@HideAppendices}{}
 
 % Příkaz definující hlavní obsah
 \newcommand{\TULthesisTOC}{%
@@ -562,7 +567,7 @@
     \etocsettagdepth{TOC}{subsection}%
     \etocsettagdepth{LOA}{subsection}%
     % Mechanismus skrytí individuálních příloh, pokud je definovaný seznam příloh (interní)
-    \def\TUL@HideAppendicies{\etocsettagdepth{LOA}{none}}%
+    \def\TUL@HideAppendices{\etocsettagdepth{LOA}{none}}%
     \etocsettocstyle{\chapter*{\contentsname}}{}%
     \tableofcontents
     \pagestyle{plain}
@@ -579,34 +584,46 @@
     \@inTULappendixtrue%
     \appendix%
     \etocdepthtag.toc{LOA}%
+    \ifTUL@longappendices%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}%
+            {\renewcommand{\appendixname}{Appendix}}%
+            {\renewcommand{\appendixname}{Příloha}}%
+        \titleformat{\chapter}
+            {\color{\titlecolor}\TUL@headfnt\LARGE\raggedright}
+            {\appendixname~\thechapter}
+            {1em}
+            {}%
+        \ifthenelse{\equal{\TUL@nguage}{EN}}%
+            {%
+             \addtocontents{toc}{%
+                \protect\renewcommand{\protect\cftchappresnum}{\appendixname~}%
+                \protect\setlength{\protect\cftchapnumwidth}{6.4em}}%
+            }{%
+             \addtocontents{toc}{%
+                \protect\renewcommand{\protect\cftchappresnum}{\appendixname~}%
+                \protect\setlength{\protect\cftchapnumwidth}{5.3em}}%
+            }%
+    \fi%
 }{%
     % Konec prostředí
 }
 
-% Příkaz generující seznam příloh (LOA = List of Appendicies)
+% Příkaz generující seznam příloh (LOA = List of Appendices)
 \newcommand{\TULthesisLOA}{%
     \if@inTULappendix
         \phantomsection%
-        % Přepnutí tagu pro zápis do TOC (hlavního obsahu)
         \etocdepthtag.toc{TOC}%
-        % Zápis do obsahu
         \ifthenelse{\equal{\TUL@nguage}{EN}}
         {\addcontentsline{toc}{chapter}{List of Appendices}}
         {\addcontentsline{toc}{chapter}{Seznam příloh}}
-        % Aktivace mechanismu pro skrytí individuálních příloh v hlavním obsahu
-        \addtocontents{toc}{\protect\TUL@HideAppendicies}%
-        % Přechod do seznamu příloh pomocí tagu
+        \addtocontents{toc}{\protect\TUL@HideAppendices}%
         \etocdepthtag.toc{LOA}%
-        % Nadpis na stránce
         \ifthenelse{\equal{\TUL@nguage}{EN}}
         {\chapter*{List of Appendices}}
         {\chapter*{Seznam příloh}}
-        % Nastavení viditelnosti pro tag LOA
         \etocsettagdepth{TOC}{none}%
         \etocsettagdepth{LOA}{subsection}%
-        % Anulování funkcionality skrývající individuální přílohy v hlavním obsahu
-        \def\TUL@HideAppendicies{}%
-        % Styl bez nadpisu - nadpis byl definován ručně
+        \def\TUL@HideAppendices{}%
         \etocsettocstyle{}{}%
         \tableofcontents
     \else

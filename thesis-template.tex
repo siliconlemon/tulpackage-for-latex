@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
+\documentclass[a4paper,11pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
 
 % Správa bibliografie s biblatex-biber
 \usepackage[backend=biber]{biblatex}
@@ -7,6 +7,9 @@
 
 % Nastavení jazyka dokumentu na češtinu
 \setdefaultlanguage{czech}
+
+% Zvýšení řádkování pro lepší čitelnost návodu
+\linespread{1.5}
 
 % Vytvoření indexu dokumentu
 \makeindex
@@ -40,9 +43,6 @@
 \newcommand{\prikazneindex}[1]{\argument{\textbackslash{}#1}}
 \newcommand{\prikaz}[1]{\prikazneindex{#1}\index{#1@\textbackslash #1}}
 \newcommand{\polozka}[1]{\item[#1]\mbox{}\\}
-
-% Zvýšení řádkování pro lepší čitelnost návodu
-\linespread{1.3}
 
 % Deklarace pro titulní stránku (DOPLŇ)
 \TULtitle{Název práce česky}{Thesis title in English}
@@ -157,9 +157,13 @@ text závěru
 % BIBLIOGRAFIE
 % ==========================================================================
 
-\chapter*{Seznam použité literatury}
-\addcontentsline{toc}{chapter}{Seznam použité literatury}
-text seznamu použité literatury
+% VARIANTA A: Automaticky pomocí biblatex (doporučeno, skryto dokud nejsou citace)
+\printbibliography[heading=bibintoc, title=\TULbibname]
+
+% VARIANTA B: Ruční sázení (pokud nepoužíváte biblatex)
+% \chapter*{\TULbibname}
+% \addcontentsline{toc}{chapter}{\TULbibname}
+% text ručně vloženého seznamu literatury
 
 \cleardoublepage%
 
@@ -169,7 +173,7 @@ text seznamu použité literatury
 
 \begin{TULthesisAppendix}
 
-% LOA = list of appendicies (seznam příloh)
+% LOA = list of appendices (seznam příloh)
 \TULthesisLOA%
 
 \chapter{Název první přílohy}
