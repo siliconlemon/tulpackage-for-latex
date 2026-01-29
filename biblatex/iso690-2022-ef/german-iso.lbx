@@ -1,0 +1,47 @@
+\ProvidesFile{german-iso.lbx}
+  [2022/03/20 v0.4.1 ISO 690 extended biblatex localization]
+
+\InheritBibliographyExtras{german}
+\InheritBibliographyStrings{german}
+
+\DeclareBibliographyStrings{%
+  at           = {{Standort}
+                  {Standort}},
+  bysupervisor = {{betreut von}% maybe Betreuer, but gender-dependent then, female: Betreuerin
+                  {betreut von}},
+  urlalso      = {{auch verf\"{u}gbar unter}
+                  {auch verf\"{u}gbar unter}},
+  director     = {{Regisseur}
+                  {Regisseur}},
+  bydirector   = {{Regie}
+                  {Regie}},
+  inventor     = {{Erfinder}
+                  {Erfinder}},
+  byinventor   = {{erfunden von}
+                  {erfunden von}},
+  online       = {{online}
+                  {online}},
+  film         = {{Film}
+                  {Film}},
+  application  = {{Anmeldung}
+                  {Anmeldung}},
+  publication  = {{Veröffentlichungstag}
+                  {Veröffentlichungstag}},
+% ISO690-TUL: 7 new strings for legislation, datasets, software, and movies
+  jourvol      = {{Jg\adddot}%
+                  {Jg\adddot}},
+  urlfrom      = {{verf\"{u}gbar unter}%
+                  {verf\"{u}gbar unter}},
+  legislationpart = {{Teil}%
+                     {Teil}},
+  dataset         = {{Datensatz}%
+                     {Datensatz}},
+  software        = {{Programm}%
+                     {Programm}},
+  systemreq       = {{Systemanforderungen\addcolon}%
+                     {Systemanforderungen\addcolon}},
+  recordedby      = {{aufgenommen von\addcolon}%
+                     {aufgenommen von\addcolon}},
+}
+
+\endinput

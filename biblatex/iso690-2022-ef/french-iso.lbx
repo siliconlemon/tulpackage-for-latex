@@ -1,0 +1,54 @@
+\ProvidesFile{french-iso.lbx}
+  [2022/03/20 v0.4.1 ISO 690 extended biblatex localization]
+
+\InheritBibliographyExtras{french}
+\InheritBibliographyStrings{french}
+
+% `french.lbx` overrides the family name format to \textsc
+% that is against the consistency rule since we use uppercase
+% as default.
+\DeclareBibliographyExtras{%
+  \restorecommand\mkbibnamefamily
+}
+
+\DeclareBibliographyStrings{%
+  at           = {{à}%
+                  {à}},
+  bysupervisor = {{supervisé par}%
+                  {supervisé par}},
+  urlalso      = {{aussi disponible à l'adresse}%
+                  {aussi disponible à l'adresse}},
+  director     = {{réalisateur}%
+                  {réalisateur}},
+  bydirector   = {{réalisé par}%
+                  {réalisé par}},
+  inventor     = {{inventeur}%
+                  {inventeur}},
+  byinventor   = {{inventé par}%
+                  {inventé par}},
+  online       = {{en ligne}%
+                  {en ligne}},
+  film         = {{film}%
+                  {film}},
+% ISO690-TUL: 9 new strings for legislation, datasets, software, and movies
+  jourvol      = {{Vol\adddot}%
+                  {Vol\adddot}},
+  urlfrom      = {{disponible sur}%
+                  {disponible sur}},
+  application  = {{demande}%
+                  {demande}},
+  publication  = {{publication}%
+                  {publ\adddot}},
+  legislationpart = {{Partie}%
+                     {Partie}},
+  dataset         = {{jeu de données}%
+                     {jeu de données}},
+  software        = {{programme}%
+                     {programme}},
+  systemreq       = {{configuration requise\addcolon}%
+                     {configuration requise\addcolon}},
+  recordedby      = {{enregistré par\addcolon}%
+                     {enregistré par\addcolon}},
+}
+
+\endinput

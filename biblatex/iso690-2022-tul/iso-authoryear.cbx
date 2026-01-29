@@ -1,0 +1,23 @@
+\ProvidesFile{iso-authoryear.cbx}
+  [2022/03/20 v0.4.1 ISO 690 biblatex citation style]
+
+% Use only one name in citation to be consistent
+\ExecuteBibliographyOptions{%
+% ISO690-TUL: et-al-min="3" (show up to 2 authors; if 3+, truncate to 1)
+%   maxcitenames=1,
+   maxcitenames=2,
+   mincitenames=1,
+}
+
+\RequireCitationStyle{authoryear}
+\RequireCitationStyle{iso-fullcite}
+
+% Delimiter between creator name and year in citation
+% ISO690-ZOTERO: Changed delimiter from comma+space to just space to match Zotero CSL
+% \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+\DeclareDelimFormat{nameyeardelim}{\addspace}
+% Delimiter between substitution of creator name (if any)
+% and year in citation
+\DeclareDelimFormat{nonameyeardelim}{\addcomma\space}
+
+\endinput

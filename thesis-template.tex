@@ -1,8 +1,19 @@
 \documentclass[a4paper,11pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
 
-% Správa bibliografie s biblatex-biber
-\usepackage[backend=biber]{biblatex}
-% Cesta k bibliografii
+% POZNÁMKA: Balík polyglossia je součástí tul.sty, zde s ním nastavujeme jazyk
+\setdefaultlanguage{czech}
+% Podpora českých uvozovek v citacích
+\usepackage{csquotes}
+% Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
+% Konfiguraci můžete změnit v hlavičce tohoto souboru (tul / ef / zotero)
+\usepackage[
+  backend=biber,
+  style=iso-authoryear,
+  sortlocale=cs_CZ,
+  autolang=other,
+  bibencoding=utf8
+]{biblatex}
+% Nalinkování cesty k souboru bibliografie
 \addbibresource{./bibliography/references.bib}
 
 % Nastavení jazyka dokumentu na češtinu
