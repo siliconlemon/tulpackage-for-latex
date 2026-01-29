@@ -163,6 +163,13 @@ Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a
 > ```
 > a překládejte přes **biber** (Overleaf to umí, lokálně je potřeba mít biber nainstalovaný a zapnutý v toolchainu).
 
+### Bibliografie a citace (ISO 690)
+
+Tento balík obsahuje pokročilou, automatizovanou konfiguraci pro citování 
+dle normy **ISO 690** (včetně specifik pro TUL a EF).
+Podrobné instrukce, jak tuto konfiguraci aktivovat a přepínat styly, najdete v souboru 
+[BIBLATEX.md](./BIBLATEX.md).
+
 ## Možnosti přizpůsobení
 
 Balík `tulpackage-for-latex` poskytuje několik způsobů, jak upravit vzhled dokumentů.
@@ -361,6 +368,12 @@ You can use the files above as inspiration for configuring and using **tulthesis
 > \addbibresource{<your references file>.bib}
 > ```
 > and compile using **biber** (Overleaf supports this; locally you need biber installed and enabled in your toolchain).
+
+### Bibliography and Citations (ISO 690)
+
+This package includes an advanced, automated configuration for **ISO 690** citations 
+(including TUL and EF specifics). For detailed instructions on how to activate this configuration 
+and switch styles, please refer to [BIBLATEX.md](./BIBLATEX.md).
 
 ## Customization Options
 
