@@ -153,22 +153,15 @@ Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a
 
 > **POZOR:** Soubory ve složce `example/` používají relativní cesty k souborům z root directory (např. `tulpackage/...`, obrázky apod.).  
 > Pokud je spustíte přímo z `example/`, překlad může selhat s chybou „file not found“.  
-> Doporučení: kompilujte je **z root directory repozitáře** a pouze pokud opravdu musíte.
+> Doporučení: kompilujte je **z root directory repositáře** a pouze pokud opravdu musíte.
 
 > **POZNÁMKA:** Šablony počítají s použitím `biblatex` (backend `biber`), ale balík/třídy ho záměrně nenačítají natvrdo, aby si uživatel mohl zvolit vlastní styl citací a další volby.  
-> Pokud chcete literaturu, přidejte si do preambule svého `.tex` souboru např.:
-> ```latex
-> \usepackage[backend=biber]{biblatex}
-> \addbibresource{<váš soubor s bibliografií>.bib}
-> ```
-> a překládejte přes **biber** (Overleaf to umí, lokálně je potřeba mít biber nainstalovaný a zapnutý v toolchainu).
 
 ### Bibliografie a citace (ISO 690)
 
-Tento balík obsahuje pokročilou, automatizovanou konfiguraci pro citování 
-dle normy **ISO 690** (včetně specifik pro TUL a EF).
-Podrobné instrukce, jak tuto konfiguraci aktivovat a přepínat styly, najdete v souboru 
-[BIBLATEX.md](./BIBLATEX.md).
+Tento balík obsahuje speciální konfiguraci pro citování dle normy **ISO 690** 
+(včetně specifik pro TUL a EF). Podrobné instrukce, jak tuto konfiguraci aktivovat 
+a přepínat styly, najdete v souboru [BIBLATEX.md](./BIBLATEX.md).
 
 ## Možnosti přizpůsobení
 
@@ -361,17 +354,11 @@ You can use the files above as inspiration for configuring and using **tulthesis
 > If you compile them directly from `example/`, compilation may fail with a “file not found” error.  
 > Recommendation: compile them **from the repository root** (and only deviate from that if you absolutely have to).
 
-> **NOTE:** The templates assume `biblatex` (with the `biber` backend), but the package/classes intentionally do not load it automatically, so users can choose their own citation style and options.  
-> If you want a bibliography, add e.g.:
-> ```latex
-> \usepackage[backend=biber]{biblatex}
-> \addbibresource{<your references file>.bib}
-> ```
-> and compile using **biber** (Overleaf supports this; locally you need biber installed and enabled in your toolchain).
+> **NOTE:** The templates assume `biblatex` (with the `biber` backend), but the package/classes intentionally do not load it automatically, so users can choose their own citation style and options.
 
 ### Bibliography and Citations (ISO 690)
 
-This package includes an advanced, automated configuration for **ISO 690** citations 
+This package includes a customized configuration for **ISO 690** citations 
 (including TUL and EF specifics). For detailed instructions on how to activate this configuration 
 and switch styles, please refer to [BIBLATEX.md](./BIBLATEX.md).
 
