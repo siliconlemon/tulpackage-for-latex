@@ -7,7 +7,7 @@ LaTeX balík připravený k okamžitému použití na platformě Overleaf i lok�
 v desktop editorech (k dispozici je setup pro Zed). Obsahuje styly a třídy 
 pro psaní dokumentů v souladu se směrnicemi Technické univerzity v Liberci (TUL). 
 Projekt navazuje na původní balík `tulthesis v2.1` z dílny FM TUL, 
-jde ale cestou uživatelské příjemnosti na úkor používání více balíků a nastavení.
+jde ale cestou uživatelské přívětivosti za cenu používání více balíků, skriptů a konfigurací.
 
 > **Důležité:** Dokumentace je aktuálně primárně v češtině; návody v EN zatím neexistují.
 
@@ -213,10 +213,10 @@ ale stále funguje v duchu stejných designových principů.
 This LaTeX package is prepared for immediate use on Overleaf as well as locally 
 in desktop editors (a Zed setup is included). It provides styles and classes for writing documents in line with 
 the guidelines of the Technical University of Liberec (TUL).
+The project builds on the original `tulthesis v2.1` package (FM TUL), placing significantly more focus 
+on ease of use, at the cost of relying on more packages, scripts and configurations.
 
-The project builds on the original `tulthesis v2.1` package (FM TUL), but focuses on ease of use even if 
-it means relying on more packages and defaults.
-> **Important:** Documentation is currently primarily in Czech; English guides do not exist yet.
+> **Important:** Most of the documentation is currently in Czech; Proper English guides do not exist just yet.
 
 ## What this Repo Contains
 
