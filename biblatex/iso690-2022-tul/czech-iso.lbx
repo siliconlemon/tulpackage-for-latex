@@ -5,6 +5,9 @@
 \InheritBibliographyStrings{czech}
 
 \DeclareBibliographyStrings{%
+% ISO690-TUL: Force "et al." instead of "a kol." in Czech
+  andothers      = {{et al\adddot}%
+                    {et al\adddot}},
   at           = {{v}%
                   {v}},
   bysupervisor = {{vedouc\'{i} pr\'{a}ce}%
@@ -34,10 +37,10 @@
 % ISO690-TUL: Patent "issued" -> "Uděl."
   publication  = {{ud\v{e}leno}%
                   {ud\v{e}l\adddot}},
-% ISO690-TUL: "s.n." (sine nomine) instead of "b. nakl."
-  nopublisher  = {{s\adddot n\adddot}%
-                  {s\adddot n\adddot}},
-% ISO690-TUL: "s. a." (sine anno) instead of "b.r."
+% ISO690-TUL: "s. n." (sine nomine) instead of "b. nakl."
+  nopublisher  = {{s\adddot\addspace n\adddot}%
+                  {s\adddot\addspace n\adddot}},
+% ISO690-TUL: "s. a." (sine anno) instead of "b. r."
   nodate       = {{s\adddot\addspace a\adddot}%
                   {s\adddot\addspace a\adddot}},
 % ISO690-TUL: "citováno" instead of "cit."

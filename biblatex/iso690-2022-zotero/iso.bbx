@@ -151,7 +151,9 @@
 
 % The delimiter before the final name
 % Use consistent name format for all creators
-\DeclareDelimAlias{finalnamedelim}{multinamedelim}
+% ISO690-ZOTERO: Changed final delimiter from semicolon alias to "and" string to match CSL logic
+% \DeclareDelimAlias{finalnamedelim}{multinamedelim}
+\DeclareDelimFormat{finalnamedelim}{\addspace\bibstring{and}\addspace}
 
 % Thanks Moewew for sugesting this. Make uppercase names only in bibliography.
 % Default name format is ALL-CAPS

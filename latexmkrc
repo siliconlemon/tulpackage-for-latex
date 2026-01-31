@@ -5,7 +5,7 @@
 
 # CHOOSE YOUR VARIANT
 # Options: 'ef', 'tul', 'zotero'
-$variant = 'ef';
+$variant = 'tul';
 
 %paths = (
     'ef'     => 'biblatex/iso690-2022-ef',

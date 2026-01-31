@@ -3,7 +3,7 @@
 
 % Use only one name in citation to be consistent
 \ExecuteBibliographyOptions{%
-% ISO690-TUL: et-al-min="3" (show up to 2 authors; if 3+, truncate to 1)
+% ISO690-TUL: Override global limit for CITATIONS only.
 %   maxcitenames=1,
    maxcitenames=2,
    mincitenames=1,
@@ -13,9 +13,7 @@
 \RequireCitationStyle{iso-fullcite}
 
 % Delimiter between creator name and year in citation
-% ISO690-ZOTERO: Changed delimiter from comma+space to just space to match Zotero CSL
-% \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
-\DeclareDelimFormat{nameyeardelim}{\addspace}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 % Delimiter between substitution of creator name (if any)
 % and year in citation
 \DeclareDelimFormat{nonameyeardelim}{\addcomma\space}

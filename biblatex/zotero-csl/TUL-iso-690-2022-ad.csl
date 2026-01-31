@@ -385,7 +385,7 @@
             <text variable="publisher"/>
           </if>
           <else>
-            <text value="s.n."/>
+            <text value="s. n."/>
           </else>
         </choose>
       </else>

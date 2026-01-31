@@ -167,7 +167,9 @@
 
 % The delimiter before the final name
 % Use consistent name format for all creators
-\DeclareDelimAlias{finalnamedelim}{multinamedelim}
+% ISO690-TUL: Put an "and" before the last name, instead of the standard semicolon.
+% \DeclareDelimAlias{finalnamedelim}{multinamedelim}
+\DeclareDelimFormat{finalnamedelim}{\space\bibstring{and}\addspace}
 
 % ISO690-TUL: delimiter-precedes-et-al="never" (ensure space, not comma)
 \DeclareDelimFormat{andothersdelim}{\addspace}
