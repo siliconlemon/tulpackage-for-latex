@@ -11,7 +11,8 @@
 \NewBibliographyString{at,bysupervisor,urlalso,
   director,bydirector,inventor,byinventor,online,film,application,publication}
 
-% PACKAGE OPTIONS
+% ISO690-ZOTERO: Rendering all URL links in the default font, as opposed to monospaced
+\urlstyle{same}
 
 % Define new package options
 % These toggle names are internal
@@ -26,6 +27,8 @@
 \newtoggle{bbx:articlepubinfo}
 \newtoggle{bbx:currentlang}
 \newtoggle{bbx:noenddot}
+
+% PACKAGE OPTIONS
 
 % Print info about package options into .log file
 \protected\def\isoblx@info@noline#1{%
