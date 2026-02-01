@@ -11,8 +11,19 @@
 \NewBibliographyString{at,bysupervisor,urlalso,
   director,bydirector,inventor,byinventor,online,film,application,publication}
 
-% ISO690-ZOTERO: Rendering all URL links in the default font, as opposed to monospaced
-\urlstyle{same}
+% ISO690-ZOTERO: Scoped URL styling and breaking
+\AtBeginBibliography{%
+  \let\SavedUrlFont\UrlFont
+  \urlstyle{same}%
+  \setcounter{biburllcpenalty}{7000}
+  \setcounter{biburlucpenalty}{8000}
+  \setcounter{biburlnumpenalty}{9000}
+}
+\ifdef{\AtEndBibliography}{%
+  \AtEndBibliography{\ifdefined\SavedUrlFont\let\UrlFont\SavedUrlFont\fi}%
+}{%
+  \AtEndEnvironment{bibliography}{\ifdefined\SavedUrlFont\let\UrlFont\SavedUrlFont\fi}%
+}
 
 % Define new package options
 % These toggle names are internal
