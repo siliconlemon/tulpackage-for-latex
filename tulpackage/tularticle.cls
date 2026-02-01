@@ -55,7 +55,9 @@
 
 % 3. Konfigurace hyperref (musí být až po načtení tul, aby existoval \hypersetup a barva tul)
 \ifTUL@pdf
-    \hypersetup{colorlinks=true, linkcolor=tul, urlcolor=tul, citecolor=tul}
+    \hypersetup{colorlinks=true, linkcolor=\tulcolor, urlcolor=\tulcolor,
+    citecolor=\tulcolor, filecolor=\tulcolor, menucolor=\tulcolor,
+    runcolor=\tulcolor, anchorcolor=\tulcolor}%
 \fi
 
 % ==========================================================================
