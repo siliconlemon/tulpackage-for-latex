@@ -135,6 +135,17 @@
     \renewcommand{\titlecolor}{black}%
 }%
 
+% Tiskový režim - ruší všechny barevné dekorace hypertextu
+\DeclareOption{print}{%
+    \AtBeginDocument{%
+        \hypersetup{
+            hidelinks,
+            % Zákaz okrajů kolem odkazů pro některé PDF čtečky
+            pdfborder={0 0 0}
+        }%
+    }%
+}
+
 % Plný černobílý režim (včetně log)
 \DeclareOption{bw}{%
     \renewcommand{\tulcolor}{black!70}%
