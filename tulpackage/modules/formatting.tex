@@ -156,7 +156,7 @@
             \addcontentsline{toc}{chapter}{Seznam obrázků}%
         }%
         \vspace{0.35em}\thispagestyle{plain}%
-        {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lof}}\par\vspace{1em}%
+        {\hypersetup{linkcolor=\TUL@TOCtextcolor}\def\addvspace##1{}\@starttoc{lof}}\par\vspace{1em}%
     }%
     \renewcommand{\listoftables}{%
         \phantomsection%
@@ -170,7 +170,7 @@
             \addcontentsline{toc}{chapter}{Seznam tabulek}%
         }%
         \vspace{0.35em}\thispagestyle{plain}%
-        {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lot}}\par\vspace{1em}%
+        {\hypersetup{linkcolor=\TUL@TOCtextcolor}\def\addvspace##1{}\@starttoc{lot}}\par\vspace{1em}%
     }%
 }%
 
@@ -227,7 +227,7 @@
         \addcontentsline{toc}{chapter}{Seznam zdrojových kódů}%
     }%
     \vspace{0.85em}\thispagestyle{plain}%
-    {\hypersetup{linkcolor=\TUL@TOCtextcolor}\@starttoc{lol}}\par\vspace{1em}%
+    {\hypersetup{linkcolor=\TUL@TOCtextcolor}\def\addvspace##1{}\@starttoc{lol}}\par\vspace{1em}%
 }%
 
 % --- Formát řádku v LOL ---
