@@ -288,7 +288,10 @@
         \par}%
     }%
     \par
-    \@ifnextchar\sourcecaption{\vspace{-6pt}}{\vspace{8pt}}%
+    \def\@sourceafterlabel\label##1{\label{##1}
+        \@ifnextchar\sourcecaption{\vspace{-6pt}}{\vspace{8pt}}
+    }%
+    \@ifnextchar\label{\@sourceafterlabel}{\@ifnextchar\sourcecaption{\vspace{-6pt}}{\vspace{8pt}}}%
 }%
 
 % --- Prostředí pro výpisy ---
