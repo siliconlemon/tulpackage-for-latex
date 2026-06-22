@@ -309,7 +309,7 @@
 }%
 
 \newenvironment{listing}{%
-    \par\addvspace{0pt}%
+    \par\addvspace{16pt}%
     \begin{tulquote}%
         \linespread{1.0}\selectfont
         \color{\tulcolor}%
@@ -324,7 +324,7 @@
 }%
 
 \newenvironment{slisting}{%
-    \par\addvspace{6pt}%
+    \par\addvspace{16pt}%
     \begin{tulquote}\footnotesize%
         \linespread{1.0}\selectfont
         \color{\tulcolor}\raggedright\sloppy%
@@ -338,11 +338,11 @@
 }%
 
 \newenvironment{linelisting}{%
-    \par\addvspace{6pt}%
+    \par\addvspace{16pt}%
     \begin{tulquote}\footnotesize%
         \linespread{1.0}\selectfont
         \color{\tulcolor}\raggedright\sloppy%
-        \def\FrameCommand##1{\hspace{0pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{10pt}##1}%
+        \def\FrameCommand##1{\hspace{16pt}{\color{\tulcolor}\vrule width 1.0pt}\hspace{14pt}##1}%
         \MakeFramed{}{\setlength{\hsize}{\linewidth}\advance\hsize-\width\FrameRestore}%
         \par\nobreak\noindent\ignorespaces%
 }{%
