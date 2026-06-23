@@ -196,7 +196,10 @@
         \DefTblrTemplate{caption}{default}{}%
         \DefTblrTemplate{capcont}{default}{}%
         \begingroup\linespread{1.2}\selectfont%
-        \noindent\begin{tblr}[long, entry=none]{column{2}={co=1}}%
+        \noindent\begin{tblr}[long, entry=none]{
+            column{1}={leftsep=0pt},
+            column{2}={co=1}
+        }%
     }{%
         \end{tblr}\endgroup%
         \vspace{1em}%
