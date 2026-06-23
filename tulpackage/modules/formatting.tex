@@ -195,9 +195,11 @@
         \DefTblrTemplate{conthead}{default}{}%
         \DefTblrTemplate{caption}{default}{}%
         \DefTblrTemplate{capcont}{default}{}%
+        \begingroup\linespread{1.2}\selectfont%
         \noindent\begin{tblr}[long, entry=none]{column{2}={co=1}}%
     }{%
-        \end{tblr}\vspace{1em}%
+        \end{tblr}\endgroup%
+        \vspace{1em}%
     }%
 }%
 
