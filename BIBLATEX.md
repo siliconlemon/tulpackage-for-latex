@@ -9,7 +9,7 @@ upravené verze citačních stylů namísto těch výchozích pro biblatex.
 % Podpora českých uvozovek v citacích
 \usepackage{csquotes}
 % Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
-% Konfiguraci můžete změnit v hlavičce latexmkrc souboru (tul / ef / zotero)
+% Konfiguraci můžete změnit v hlavičce latexmkrc souboru (tul / zotero)
 % Ovlivněn bude poze styl ISO690 (ostatní zůstávají nedotčené)
 \usepackage[
   backend=biber,
@@ -26,8 +26,6 @@ Uvnitř složky */biblatex* najdete jak konfigurace kompatibilní se Zotero CSL,
 tak s biblatexem. V hlavičce skriptového souboru `latexmkrc` můžete zvolit jednu z následujících:
 
 - **tul (ISO690-2022):** Kopíruje nastavení citačního stylu [zoteroTUL2022](https://github.com/zizienova/zoteroTUL2022).
-- **ef (ISO690-2022):** Zavádí (lehce pofidérní) úpravy pro styl zoteroTUL2022 tak, aby vyhovoval
-  směrnicím ekonomické fakulty TUL.
 - **zotero (ISO690-2022):** Kopíruje nastavení ISO690-2022 ze standardní knihovny 
   citačního manažeru Zotero.
 
@@ -59,16 +57,6 @@ tak s biblatexem. V hlavičce skriptového souboru `latexmkrc` můžete zvolit j
 - **Patenty**: Logika upravena tak, aby vždy preferovala autora (vynálezce) 
   na úkor vlastníka (`holder`), i když je `holder` vyplněn.
 
-## Rozdíly verze EF oproti stylu TUL
-
-Verze ISO690-EF většinově kopíruje styl ISO690-TUL. Liší se ale v následujících 
-(dosti zvláštních) bodech, aby odpovídala doslovnému znění fakultní směrnice 
-o kvalifikačních pracích.
-
-- **Časopisy:** Vynucuje použití anglických zkratek **"vol."** a **"no."** (místo standardních 
-  českých "roč." a "č."), a to i v českém textu.
-- **Odkazy:** URL adresy a DOI **nejsou podtržené** (standardní styl TUL podtržení aktivně 
-  vynucuje u všech typů elektronických zdrojů).
 
 ---
 
@@ -86,7 +74,7 @@ of citation styles instead of the default ones for biblatex.
 % NOTE: The polyglossia package is part of tul.sty; use the following command to set the language
 \setdefaultlanguage{english}
 % The biblatex package loads ISO 690 configurations via the ./latexmkrc file
-% You can change the configuration in the header of the latexmkrc file (tul / ef / zotero)
+% You can change the configuration in the header of the latexmkrc file (tul / zotero)
 % Only the ISO690 style will be affected (others remain untouched)
 \usepackage[
   backend=biber,
@@ -102,8 +90,6 @@ of citation styles instead of the default ones for biblatex.
 Inside the `/biblatex` folder, you can find configurations compatible with both Zotero CSL and biblatex. You may go to the header of the `latexmkrc` script file and set one of the following:
 
 - **tul (ISO690-2022):** Copies the citation style settings from [zoteroTUL2022](https://github.com/zizienova/zoteroTUL2022).
-- **ef (ISO690-2022):** Introduces (slightly dodgy) modifications to the zoteroTUL2022 style. 
-  These ensure it complies with the guidelines of the TUL Faculty of Economics.
 - **zotero (ISO690-2022):** Copies the standard ISO690-2022 settings from 
   the Zotero citation manager library.
 
@@ -136,14 +122,3 @@ Inside the `/biblatex` folder, you can find configurations compatible with both 
   - Logic adjusted to always prefer the author (inventor) over the owner (`holder`), 
     even if `holder` is populated.
 
-## Differences between the TUL style and the EF version
-
-The ISO690-EF version mostly copies the ISO690-TUL style. However, it differs 
-in the following (rather peculiar) points to comply with the literal wording 
-of the faculty directive on final theses.
-
-- **Periodicals:** Forces the use of English abbreviations **"vol."** and **"no."** 
-  (instead of the standard Czech "roč." and "č."), even within Czech text 
-  [irrelevant for the English config].
-- **Links:** URLs and DOIs are **not underlined** (whereas the standard TUL style 
-  actively enforces underlining for all electronic source types).

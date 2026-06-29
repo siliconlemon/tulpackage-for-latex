@@ -160,7 +160,7 @@ Z výše zmíněných souborů si můžete vzít inspiraci ohledně nastavení a
 ### Bibliografie a citace (ISO 690)
 
 Tento balík obsahuje speciální konfiguraci pro citování dle normy **ISO 690** 
-(včetně specifik pro TUL a EF). Podrobné instrukce, jak tuto konfiguraci aktivovat 
+(včetně úprav pro TUL). Podrobné instrukce, jak tuto konfiguraci aktivovat 
 a přepínat styly, najdete v souboru [BIBLATEX.md](./BIBLATEX.md).
 
 ## Možnosti přizpůsobení
@@ -359,7 +359,7 @@ You can use the files above as inspiration for configuring and using **tulthesis
 ### Bibliography and Citations (ISO 690)
 
 This package includes a customized configuration for **ISO 690** citations 
-(including TUL and EF specifics). For detailed instructions on how to activate this configuration 
+(with TUL-specific adjustments). For detailed instructions on how to activate this configuration 
 and switch styles, please refer to [BIBLATEX.md](./BIBLATEX.md).
 
 ## Customization Options

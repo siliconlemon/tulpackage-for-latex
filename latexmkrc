@@ -1,14 +1,13 @@
 # ==============================================================================
 # UNIVERSAL LATEXMK CONFIGURATION
-# Handles path switching for TUL/EF/Zotero styles across Windows & Overleaf
+# Handles path switching for TUL/Zotero styles across Windows & Overleaf
 # ==============================================================================
 
 # CHOOSE YOUR VARIANT
-# Options: 'ef', 'tul', 'zotero'
+# Options: 'tul', 'zotero'
 $variant = 'tul';
 
 %paths = (
-    'ef'     => 'biblatex/iso690-2022-ef',
     'tul'    => 'biblatex/iso690-2022-tul',
     'zotero' => 'biblatex/iso690-2022-zotero'
 );
