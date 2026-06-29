@@ -3,11 +3,28 @@
 
 \documentclass[a4paper,12pt,fonts,numbering,listingsleft]{./tulpackage/tularticle}
 
+% POZNÁMKA: Balík polyglossia je součástí tul.sty, zde s ním nastavujeme jazyk
+\setdefaultlanguage{czech}
+\setotherlanguage{english}
+% Podpora českých uvozovek v citacích
+\usepackage{csquotes}
+% Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
+% Konfiguraci můžete změnit v hlavičce tohoto souboru (tul / zotero)
+% autolang=none brání změnám jazyka strukturálních řetězců (dostupné z X available from) podle jazyka zdroje
+\usepackage[
+  backend=biber,
+  style=iso-authoryear,
+  sortlocale=cs_CZ,
+  autolang=none,
+  bibencoding=utf8
+]{biblatex}
+% Nalinkování cesty k souboru bibliografie
+\addbibresource{./bibliography/references.bib}
+
 % Zvetseni radkovani
 \linespread{1.2}
 
-% Nastavení jazyka, odkazů a načtení indexu
-\setdefaultlanguage{czech}
+% Nazev PDF v ramci metadat
 \hypersetup{pdftitle={Návod k použití balíku tul pro LaTeX (\verze)}}
 \makeindex
 

@@ -1,19 +1,23 @@
 % tulpackage/example/article-template.tex
 % Kostra: tularticle, vykuchané z example-tularticle.tex
 
-\documentclass[a4paper,12pt,fonts,nocapnumbers,listingsleft]{./tulpackage/tularticle}
+\documentclass[
+a4paper,12pt,fonts,nocapnumbers,listingsleft,italiccaps
+]{./tulpackage/tularticle}
 
 % POZNÁMKA: Balík polyglossia je součástí tul.sty, zde s ním nastavujeme jazyk
 \setdefaultlanguage{czech}
+\setotherlanguage{english}
 % Podpora českých uvozovek v citacích
 \usepackage{csquotes}
 % Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
 % Konfiguraci můžete změnit v hlavičce tohoto souboru (tul / zotero)
+% autolang=none brání změnám jazyka strukturálních řetězců (dostupné z X available from) podle jazyka zdroje
 \usepackage[
   backend=biber,
   style=iso-authoryear,
   sortlocale=cs_CZ,
-  autolang=other,
+  autolang=none,
   bibencoding=utf8
 ]{biblatex}
 % Nalinkování cesty k souboru bibliografie

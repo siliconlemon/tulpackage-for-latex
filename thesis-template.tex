@@ -1,23 +1,24 @@
-\documentclass[a4paper,11pt,fonts,numbering,twoside,margins,listingsleft]{./tulpackage/tulthesis}
+\documentclass[
+BP,bw,print,a4paper,11pt,fonts,numbering,twoside,margins,longappendices,italiccaps
+]{./tulpackage/tulthesis}
 
 % POZNÁMKA: Balík polyglossia je součástí tul.sty, zde s ním nastavujeme jazyk
 \setdefaultlanguage{czech}
+\setotherlanguage{english}
 % Podpora českých uvozovek v citacích
 \usepackage{csquotes}
 % Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
 % Konfiguraci můžete změnit v hlavičce tohoto souboru (tul / zotero)
+% autolang=none brání změnám jazyka strukturálních řetězců (dostupné z X available from) podle jazyka zdroje
 \usepackage[
   backend=biber,
   style=iso-authoryear,
   sortlocale=cs_CZ,
-  autolang=other,
+  autolang=none,
   bibencoding=utf8
 ]{biblatex}
 % Nalinkování cesty k souboru bibliografie
 \addbibresource{./bibliography/references.bib}
-
-% Nastavení jazyka dokumentu na češtinu
-\setdefaultlanguage{czech}
 
 % Zvýšení řádkování pro lepší čitelnost návodu
 \linespread{1.5}
@@ -77,29 +78,29 @@
 % \ThesisStart{zahajeni.pdf} % pokud vkládáš STAG PDF
 
 % CZ anotace + klíčová slova
-\begin{abstractCZ}
+\begin{abstractCZ}[wide]
 text českého abstraktu
 \end{abstractCZ}
 
-\begin{keywordsCZ}
+\begin{keywordsCZ}[wide]
 klíčová slova v češtině
 \end{keywordsCZ}
 
 % EN anotace + klíčová slova
 \vspace{2cm}
 
-\begin{abstractEN}
+\begin{abstractEN}[wide]
 text anglického abstraktu
 \end{abstractEN}
 
-\begin{keywordsEN}
+\begin{keywordsEN}[wide]
 keywords in english
 \end{keywordsEN}
 
 \clearpage
 
 % Poděkování (volitelné)
-\begin{acknowledgement}
+\begin{acknowledgement}[wide]
 text poděkování (volitelné)
 \end{acknowledgement}
 

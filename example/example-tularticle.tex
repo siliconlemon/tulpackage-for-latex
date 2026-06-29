@@ -3,6 +3,24 @@
 
 \documentclass[a4paper,12pt,fonts,nocapnumbers,listingsleft]{./tulpackage/tularticle}
 
+% POZNÁMKA: Balík polyglossia je součástí tul.sty, zde s ním nastavujeme jazyk
+\setdefaultlanguage{czech}
+\setotherlanguage{english}
+% Podpora českých uvozovek v citacích
+\usepackage{csquotes}
+% Balík biblatex načítá iso 690 konfigurace podle souboru ./latexmkrc
+% Konfiguraci můžete změnit v hlavičce tohoto souboru (tul / zotero)
+% autolang=none brání změnám jazyka strukturálních řetězců (dostupné z X available from) podle jazyka zdroje
+\usepackage[
+  backend=biber,
+  style=iso-authoryear,
+  sortlocale=cs_CZ,
+  autolang=none,
+  bibencoding=utf8
+]{biblatex}
+% Nalinkování cesty k souboru bibliografie
+\addbibresource{./bibliography/references.bib}
+
 % Zvetseni radkovani
 \linespread{1.3}
 
@@ -24,14 +42,6 @@
 \clubpenalty=10000
 % Definice pomocneho prikazu pro ukazky
 \newcommand{\cmddemo}[1]{\bigskip\parbox[c]{3.9cm}{\cmd{#1}}\parbox[c]{10cm}{\csname #1\endcsname}\bigskip}
-
-% Správa bibliografie s biblatex-biber
-\usepackage[backend=biber]{biblatex}
-% \addbibresource{./bibliography/example-tularticle-references.bib}
-\addbibresource{./bibliography/example-tularticle-references.bib}
-
-% Nastavení jazyka dokumentu na cestinu
-\setdefaultlanguage{czech}
 
 % Nazev PDF v ramci metadat
 \hypersetup{pdftitle={TU v Liberci (Příkladový článek)}}
