@@ -1,3 +1,6 @@
+% tulpackage/tulthesis.cls
+% Obsahuje: Specifika pro tvorbu bakalářských a diplomových prací
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{./tulpackage/tulthesis}[2026/01/25 v3.0.0]
 % Licence: CC BY
@@ -249,6 +252,8 @@
 
 % Pomocné grafické prvky
 \newcommand{\@ddel}{\hspace{0.5em}\rule[-0.2em]{0.75pt}{1.2em}\hspace{0.5em}}
+% Lokální vlevo zarovnaná buňka tabulky (pro p-sloupce na titulní straně)
+\newcommand{\TUL@leftcell}[1]{{\raggedright#1\par}}
 
 % ==========================================================================
 % 5. Layout a Prostředí
@@ -288,20 +293,41 @@
 \setlength{\TUL@wide}{\linewidth}
 \addtolength{\TUL@wide}{2\TUL@shift}
 
+% Explicitní okraje titulní strany (přesné vzdálenosti od okraje papíru).
+\newlength{\Title@PageMarginT}
+\setlength{\Title@PageMarginT}{25mm}
+\newlength{\Title@PageMarginB}
+\setlength{\Title@PageMarginB}{22mm}
+\newlength{\Title@PageMarginH}
+\setlength{\Title@PageMarginH}{25mm}
+
 % ==========================================================================
 % 6. Titulní strana (\ThesisTitle)
 % ==========================================================================
 
 \newcommand{\ThesisTitle}[1]{{%
     \thispagestyle{TULheaderonly}%
-    \addtolength{\voffset}{2mm}%
+    % Titulní strana vždy používá rozvržení margins=true (vazební okraj vlevo)
+    \ifthenelse{\lengthtest{\paperwidth=210mm}\AND\lengthtest{\paperheight=297mm}}{%
+        \setlength{\oddsidemargin}{5mm}%
+        \setlength{\evensidemargin}{0mm}%
+        \setlength{\textwidth}{\dimexpr\paperwidth-55mm\relax}%
+    }{%
+        \setlength{\oddsidemargin}{10mm}%
+        \setlength{\evensidemargin}{0mm}%
+        \setlength{\textwidth}{\dimexpr\paperwidth-60mm\relax}%
+    }%
+    % Odvození interních parametrů z požadovaných okrajů
+    \setlength{\voffset}{\dimexpr\Title@PageMarginT-\topmargin-\headheight-\headsep-1in\relax}%
+    \setlength{\hoffset}{\dimexpr\Title@PageMarginH-\oddsidemargin-1in\relax}%
+    \enlargethispage{\dimexpr\paperheight-\Title@PageMarginT-\Title@PageMarginB-\textheight\relax}%
     \sffamily
 
     \mbox{}\vfill
 
     % Nadpis
     \begin{minipage}{\textwidth}
-        \noindent\large\TULHeadFont%
+        \noindent\Large\TULHeadFont%
         \ifthenelse{\equal{#1}{EN}}{\TUL@levelEN}{\TUL@levelCZ}\\[\bigskipamount]%
         \raggedright\fontsize{18pt}{22pt}\selectfont\color{\tulcolor}\TULHeadFont%
         \ifthenelse{\equal{#1}{EN}}{\TUL@nazevEN}{\TUL@nazevCZ}\par
@@ -319,48 +345,51 @@
     \addtolength{\TUL@hodnoty}{-15em}%
 
     \noindent
-    \begin{tabular}{@{}p{14em}p{\TUL@hodnoty}@{}}
+    \begin{tabular}{@{}p{13em}p{\TUL@hodnoty}@{}}
         \ifthenelse{\equal{\TUL@kat}{Hab}}{%
             % Habilitační práce
-            \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}: & \bfseries\TUL@autor \\
-            \ifthenelse{\equal{#1}{EN}}{Field}{Obor}:         & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ} \\
+            \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:}
+                & \TUL@leftcell{\bfseries\TUL@autor} \\
+            \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}{Field}{Obor}:}
+                & \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ}} \\
         }{%
             % Ostatní práce
-            \n@dpis \ifthenelse{\equal{#1}{EN}}{Study programme}{Studijní program}: & \ifthenelse{\equal{#1}{EN}}{\TUL@programEN}{\TUL@programCZ} \\
+            \TUL@leftcell{\n@dpis \ifthenelse{\equal{#1}{EN}}{Study programme}{Studijní program}:}
+                & \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}{\TUL@programEN}{\TUL@programCZ}} \\
             % Studijní obory
             \ifthenelse{\value{TUL@bor}=0}{}{%
-                \n@dpis
+                \TUL@leftcell{\n@dpis
                 \ifthenelse{\equal{#1}{EN}}
                 {Study branch\ifnum\theTUL@bor>1\relax es\fi}
-                {Studijní obor\ifnum\theTUL@bor>1\relax y\fi}:
-                & \ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ} \\
+                {Studijní obor\ifnum\theTUL@bor>1\relax y\fi}:}
+                & \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}{\i@TULoborEN}{\i@TULoborCZ}} \\
                 \setcounter{TULc@unter}{1}%
                 \whiledo{\value{TULc@unter} < \value{TUL@bor}}{%
                     \stepcounter{TULc@unter}\t@nd
-                    \ifthenelse{\equal{#1}{EN}}
+                    \TUL@leftcell{\ifthenelse{\equal{#1}{EN}}
                     {\@nameuse{\roman{TULc@unter}@TULoborEN}}
-                    {\@nameuse{\roman{TULc@unter}@TULoborCZ}} \\
+                    {\@nameuse{\roman{TULc@unter}@TULoborCZ}}} \\
                 }%
             }%
             % Autor a vedoucí
-            \n@dpis \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:     & \bfseries\TUL@autor \\
-            \n@dpis \ifthenelse{\equal{#1}{EN}}{Supervisor}{Vedoucí práce}: & \TUL@vedouci \\
+            \TUL@leftcell{\n@dpis \ifthenelse{\equal{#1}{EN}}{Author}{Autor práce}:}     & \TUL@leftcell{\bfseries\TUL@autor} \\
+            \TUL@leftcell{\n@dpis \ifthenelse{\equal{#1}{EN}}{Supervisor}{Vedoucí práce}:} & \TUL@leftcell{\TUL@vedouci} \\
             % Konzultanti
             \@ifundefined{i@TULkonzultant}{}{%
-                \n@dpis
+                \TUL@leftcell{\n@dpis
                 \ifthenelse{\equal{#1}{EN}}
                 {Consultant\@ifundefined{ii@TULkonzultant}{}{s}}
-                {Konzultant\@ifundefined{ii@TULkonzultant}{}{i}}:
-                & \i@TULkonzultant \\
+                {Konzultant\@ifundefined{ii@TULkonzultant}{}{i}}:}
+                & \TUL@leftcell{\i@TULkonzultant} \\
                 \setcounter{TULc@unter}{1}%
                 \whiledo{\value{TULc@unter} < \value{TULk@nzult}}{%
                     \stepcounter{TULc@unter}\t@nd
-                    \@nameuse{\roman{TULc@unter}@TULkonzultant} \\
+                    \TUL@leftcell{\@nameuse{\roman{TULc@unter}@TULkonzultant}} \\
                 }%
             }%
         }%
         % Rok a místo
-        \rule{0pt}{10mm} & Liberec \TUL@rok \\
+        \TUL@leftcell{\rule{0pt}{10mm}} & \TUL@leftcell{Liberec \TUL@rok} \\
     \end{tabular}
 
     \cleardoublepage%
