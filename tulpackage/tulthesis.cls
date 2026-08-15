@@ -392,25 +392,30 @@
         \TUL@leftcell{\rule{0pt}{10mm}} & \TUL@leftcell{Liberec \TUL@rok} \\
     \end{tabular}
 
-    \cleardoublepage%
+    \clearpage%
 }}
 
 % ==========================================================================
 % 7. Zadání a Prohlášení
 % ==========================================================================
 
-% Stránka pro nahrazení zadáním
-\newcommand{\Assignment}{%
+% Pomocná stránka pro nahrazení dokumentem z IS STAG
+\newcommand{\StagPlaceholderPage}[1]{%
     \mbox{}\vfill
     \begin{center}
-        \LARGE
-        \ifthenelse{\equal{\TUL@nguage}{EN}}
-        {Replace this page\\[0.5em]with the original assignment.}
-        {Tento list nahraďte\\[0.5em]originálem zadání.}
+        \LARGE\sffamily
+        #1
         \thispagestyle{empty}%
     \end{center}
     \vfill
-    \cleardoublepage%
+    \clearpage
+}
+
+% Stránka pro nahrazení zadáním (zpětná kompatibilita)
+\newcommand{\Assignment}{%
+    \ifthenelse{\equal{\TUL@nguage}{EN}}
+    {\StagPlaceholderPage{Replace this page\\[0.5em]with the original assignment.}}
+    {\StagPlaceholderPage{Tento list nahraďte\\[0.5em]originálem zadání.}}%
 }
 
 % Pomocné pro prohlášení
@@ -515,13 +520,24 @@
 % Hlavní příkaz pro zahájení práce
 \newcommand{\ThesisStart}[1]{%
     \ifthenelse{\equal{#1}{female} \OR\equal{#1}{male}}{%
-        \ifthenelse{\equal{\TUL@nguage}{EN}}{\ThesisTitle{EN}}{\ThesisTitle{CZ}}
-        % Vložení zadání (pouze BP, DP, RP, MP)
-        \ifthenelse{\equal{\TUL@kat}{BP}
-            \OR\equal{\TUL@kat}{DP}
-            \OR\equal{\TUL@kat}{RP}
-            \OR\equal{\TUL@kat}{MP}}{\Assignment}{}
-        \Declaration{#1}
+        % Stránka 1: Titulní list
+        \ifthenelse{\equal{\TUL@nguage}{EN}}{\ThesisTitle{EN}}{\ThesisTitle{CZ}}%
+        % Stránka 2: Vakát za titulkou
+        \thispagestyle{empty}\mbox{}\clearpage
+        % Stránka 3: Zadání – 1. strana
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {\StagPlaceholderPage{Replace with the first page of the assignment\\from IS STAG (double-sided).}}
+        {\StagPlaceholderPage{Nahraďte první stranou zadání\\z~IS STAG (oboustranně).}}%
+        % Stránka 4: Zadání – 2. strana
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {\StagPlaceholderPage{Replace with the second page of the assignment\\from IS STAG (double-sided).}}
+        {\StagPlaceholderPage{Nahraďte druhou stranou zadání\\z~IS STAG (oboustranně).}}%
+        % Stránka 5: Prohlášení
+        \ifthenelse{\equal{\TUL@nguage}{EN}}
+        {\StagPlaceholderPage{Replace with the declaration of authorship\\from IS STAG.}}
+        {\StagPlaceholderPage{Nahraďte prohlášením o~vypracování\\z~IS STAG.}}%
+        % Stránka 6: Vakát za prohlášením
+        \thispagestyle{empty}\mbox{}\clearpage
     }{%
         \includepdf[pages=-]{#1}%
     }%
