@@ -77,10 +77,10 @@ Příkazy pro vložení konkrétního loga bez ohledu na nastavení dokumentu.
 
 ## 8. Prostředí pro obsah a výpisy
 
-- **`\begin{listing} ... \end{listing}`** – Prostředí pro výpis kódu (bez rámečku).
-- **`\begin{slisting} ... \end{slisting}`** – "Small listing" – menší písmo, barevný text.
-- **`\begin{linelisting} ... \end{linelisting}`** – Výpis kódu s vertikální čarou.
-- **`\begin{tulquote} ... \end{tulquote}`** – Pomocné prostředí pro odsazený text (používají ho výpisy).
+- **`\begin{listing} ... \end{listing}`** – Prostředí pro výpis kódu se světle šedým pozadím.
+- **`\begin{slisting} ... \end{slisting}`** – "Small listing" – menší písmo se světle šedým pozadím.
+- **`\begin{linelisting} ... \end{linelisting}`** – Výpis kódu s vertikální čarou v barvě fakulty.
+- **`\begin{tulquote} ... \end{tulquote}`** – Pomocné prostředí pro odsazený text.
 - **`\begin{abbreviations} ... \end{abbreviations}`** – Prostředí pro seznam zkratek (založeno na `tabular`).
 
 ## 9. Formátování a Vzhled
@@ -195,10 +195,10 @@ Commands to insert a specific logo regardless of document settings.
 
 ## 8. Environments for Content & Listings
 
-- **`\begin{listing} ... \end{listing}`** – Environment for code listing (no frame).
-- **`\begin{slisting} ... \end{slisting}`** – "Small listing" – smaller font, colored text.
-- **`\begin{linelisting} ... \end{linelisting}`** – Code listing with a vertical line.
-- **`\begin{tulquote} ... \end{tulquote}`** – Helper environment for indented text (used by listings).
+- **`\begin{listing} ... \end{listing}`** – Code listing environment with a light gray background.
+- **`\begin{slisting} ... \end{slisting}`** – "Small listing" – smaller font with a light gray background.
+- **`\begin{linelisting} ... \end{linelisting}`** – Code listing with a vertical line in faculty color.
+- **`\begin{tulquote} ... \end{tulquote}`** – Helper environment for indented text.
 - **`\begin{abbreviations} ... \end{abbreviations}`** – Environment for the list of abbreviations (based on `tabular`).
 
 ## 9. Formatting & Layout
