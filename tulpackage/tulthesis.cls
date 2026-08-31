@@ -565,6 +565,24 @@
     \section*{Abstract}
 }{}
 
+\newenvironment{annotationCZ}[1][narrow]{%
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endannotationCZ}{\par}}
+    {\begin{uzky@text}\renewcommand{\endannotationCZ}{\end{uzky@text}}}
+    \section*{\LARGE\TUL@nazevCZ}
+    \thispagestyle{empty}
+    \section*{Anotace}
+}{}
+
+\newenvironment{annotationEN}[1][narrow]{%
+    \ifthenelse{\equal{#1}{wide}}
+    {\renewcommand{\endannotationEN}{\par}}
+    {\begin{uzky@text}\renewcommand{\endannotationEN}{\end{uzky@text}}}
+    \section*{\LARGE\TUL@nazevEN}
+    \thispagestyle{empty}
+    \section*{Annotation}
+}{}
+
 \newenvironment{keywordsCZ}[1][narrow]{%
     \ifthenelse{\equal{#1}{wide}}
     {\renewcommand{\endkeywordsCZ}{\par}}

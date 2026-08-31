@@ -112,6 +112,8 @@ Další možnosti pocházející z hlavního balíku najdete v souboru [OPTIONS.
 - `\TULthesisLOA`: Vygeneruje seznam příloh (List of Appendices). Příkaz musí být použit uvnitř prostředí `TULthesisAppendix`. Pokud je použit, jednotlivé přílohy se skryjí v hlavním obsahu.
 - `\begin{abstractCZ}[<wide|narrow>] ...`: Prostředí pro český abstrakt (volitelně široký/úzký).
 - `\begin{abstractEN}[<wide|narrow>] ...`: Prostředí pro anglický abstrakt.
+- `\begin{annotationCZ}[<wide|narrow>] ...`: Prostředí pro českou anotaci.
+- `\begin{annotationEN}[<wide|narrow>] ...`: Prostředí pro anglickou anotaci.
 - `\begin{keywordsCZ}[<wide|narrow>] ...`: Prostředí pro česká klíčová slova.
 - `\begin{keywordsEN}[<wide|narrow>] ...`: Prostředí pro anglická klíčová slova.
 - `\begin{acknowledgement}[<wide|narrow>] ...`: Prostředí pro poděkování.
@@ -312,6 +314,8 @@ See the rest of the options from the package in [OPTIONS.md](./OPTIONS.md)
 - `\TULthesisLOA`: Generates the List of Appendices. The command must be used inside the `TULthesisAppendix` environment. If used, individual appendices are hidden from the main table of contents.
 - `\begin{abstractCZ}[<wide|narrow>] ...`: An environment for Czech abstract (optionally wide/narrow).
 - `\begin{abstractEN}[<wide|narrow>] ...`: An environment for English abstract.
+- `\begin{annotationCZ}[<wide|narrow>] ...`: An environment for Czech annotation.
+- `\begin{annotationEN}[<wide|narrow>] ...`: An environment for English annotation.
 - `\begin{keywordsCZ}[<wide|narrow>] ...`: An environment for Czech keywords.
 - `\begin{keywordsEN}[<wide|narrow>] ...`: An environment for English keywords.
 - `\begin{acknowledgement}[<wide|narrow>] ...`: An environment for acknowledgements.

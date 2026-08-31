@@ -183,9 +183,10 @@ použitý v~prohlášení o~autorství. Příkaz \prikaz{ThesisStart} vysází:
 
 \clearpage
 
-Následuje typicky abstrakt a~klíčová slova ve~dvou jazycích, pro~něž jsou
+Následuje typicky abstrakt (či anotace) a~klíčová slova ve~dvou jazycích, pro~něž jsou
 k~dispozici prostředí \prostredi{abstractCZ}, \prostredi{keywordsCZ},
-\prostredi{abstractEN} a~\prostredi{keywordsEN}, poděkování (prostředí
+\prostredi{abstractEN} a~\prostredi{keywordsEN} (případně ekvivalenty
+\prostredi{annotationCZ} a~\prostredi{annotationEN}), poděkování (prostředí
 \prostredi{acknowledgement}), obsah (standardní příkaz
 \prikazneindex{tableofcontents}), seznam zkratek (prostředí \prostredi{abbreviations}) a
 pak již vlastní text práce.
@@ -564,12 +565,20 @@ součásti, především pro~úvodní partie práce.
     \end{slisting}
     \listingcaption{Abstrakt na celou šířku stránky}
 
-    Volba \argument{wide} je k~dispozici pro~všechna čtyři prostředí zajišťující
-    sazbu abstraktu a~klíčových slov. Používejte ji konzistentně~-- u~všech nebo u
+    Volba \argument{wide} je k~dispozici pro~všechna prostředí zajišťující
+    sazbu abstraktu, anotace a~klíčových slov. Používejte ji konzistentně~-- u~všech nebo u
     žádného.
 
     \polozka{\prostredi{abstractEN}} je prostředí pro~sazbu anglického abstraktu práce.
     Od~\argument{abstractCZ} se liší jen anglickým názvem práce a~nadpisem.
+
+    \polozka{\prostredi{annotationCZ}} je prostředí pro~sazbu české anotace práce.
+    Funguje zcela shodně jako \prostredi{abstractCZ}, namísto nadpisu „Abstrakt“ však vysází
+    nadpis „Anotace“.
+
+    \polozka{\prostredi{annotationEN}} je prostředí pro~sazbu anglické anotace práce.
+    Funguje zcela shodně jako \prostredi{abstractEN}, namísto nadpisu „Abstract“ však vysází
+    nadpis „Annotation“.
 
     \polozka{\prostredi{keywordsCZ}} je prostředí pro~sazbu českých klíčových slov.
     Podobně jako abstrakt vysází nadpis „Klíčová slova“ a~zúží řádek. Opět je k
